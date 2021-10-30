@@ -8,7 +8,7 @@ const mSTP = state => ({
     email: '',
     password: ''
   }
-})
+});
 
 const mDTP = dispatch => ({
   signup: user => dispatch(signup(user))

@@ -8,7 +8,7 @@ class Header extends React.Component {
         <p>Self.TV</p>
         <input type="text" placeholder="Seach" />
         <br /><br />
-        <Link to="/signup">SIGN IN</Link>
+        <Link to="/signin">SIGN IN</Link>
       </div>
     )
   }

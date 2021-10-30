@@ -25,7 +25,7 @@ class Signin extends React.Component {
       <div className="session">
         <h3>Georgle</h3>
         <h3>Sign in</h3>
-        <p>to contibue to Self.TV</p>
+        <p>to continue to Self.TV</p>
         <form onSubmit={this.handleSubmit}>
           <input
             type="text"
