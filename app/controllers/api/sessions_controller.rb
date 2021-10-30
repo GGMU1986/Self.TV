@@ -7,7 +7,7 @@ class Api::SessionsController < ApplicationController
     )
 
     if @user
-      login!(user)
+      login!(@user)
       render :show
     else
       render json: @user.errors.full_messages, status: 401
