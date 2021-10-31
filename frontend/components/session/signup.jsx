@@ -6,7 +6,18 @@ class Signup extends React.Component {
     super(props)
     this.state = this.props.user
     this.handleSubmit= this.handleSubmit.bind(this)
+    this.handleDemo = this.handleDemo.bind(this)
   }
+
+  handleDemo(e) {
+    let demo = {
+      username: 'demomode',
+      password: "demomode"
+    }
+    e.preventDefault();
+    this.props.login(demo)
+      .then(() => this.props.history.push('/'))
+  };
 
   update(field) {
     return e => this.setState({
@@ -48,6 +59,9 @@ class Signup extends React.Component {
             placeholder="Password"
           />
           <div className="session-option">
+            <p>Just looking? Try Demo mode below to preview</p>
+            <Link to="" onClick={this.handleDemo}>Demo mode</Link>
+            <br /><br />
             <Link to="/signin">Sign In instead</Link>
             <button onClick={this.handleSubmit}>Create account</button>
           </div>

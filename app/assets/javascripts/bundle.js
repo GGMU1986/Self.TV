@@ -507,26 +507,41 @@ var Signup = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = _this.props.user;
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.handleDemo = _this.handleDemo.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(Signup, [{
-    key: "update",
-    value: function update(field) {
+    key: "handleDemo",
+    value: function handleDemo(e) {
       var _this2 = this;
 
+      var demo = {
+        username: 'demomode',
+        password: "demomode"
+      };
+      e.preventDefault();
+      this.props.login(demo).then(function () {
+        return _this2.props.history.push('/');
+      });
+    }
+  }, {
+    key: "update",
+    value: function update(field) {
+      var _this3 = this;
+
       return function (e) {
-        return _this2.setState(_defineProperty({}, field, e.target.value));
+        return _this3.setState(_defineProperty({}, field, e.target.value));
       };
     }
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      var _this3 = this;
+      var _this4 = this;
 
       e.preventDefault();
       this.props.signup(this.state).then(function () {
-        return _this3.props.history.push('/');
+        return _this4.props.history.push('/');
       });
     }
   }, {
@@ -553,7 +568,10 @@ var Signup = /*#__PURE__*/function (_React$Component) {
         placeholder: "Password"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "session-option"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Just looking? Try Demo mode below to preview"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+        to: "",
+        onClick: this.handleDemo
+      }, "Demo mode"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
         to: "/signin"
       }, "Sign In instead"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         onClick: this.handleSubmit
