@@ -6,11 +6,16 @@ import configureStore from './store/store';
 import { postUser } from './utils/session';
 
 document.addEventListener('DOMContentLoaded', () => {
-  window.postUser = postUser
   const root = document.getElementById('root');
-  const store = configureStore();
+  let preloadedState = undefined;
+  if (window.currentUser){
+    preloadedState = {
+      session: {
+        currentUser: window.currentUser
+      }
+    }
+  }
+  const store = configureStore(preloadedState);
   ReactDOM.render(<Root store={store} />, root)
-  window.store = store
-  window.logout = logout
 });
 
