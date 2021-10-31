@@ -57,21 +57,23 @@ class Signup extends React.Component {
             onChange={this.update('username')} 
             placeholder="Username"
           />
-        
+          <br /><br />
           <input 
             type="email"
             value={this.state.email}
             onChange={this.update('email')}
             placeholder="Email"
           />
-      
+          <br /><br />
           <input 
             type="password"
             value={this.state.password}
             onChange={this.update('password')}
             placeholder="Password"
           />
-          {this.renderErrors()}
+          <div className="session-errors">
+            {this.renderErrors()}
+          </div>
           <div className="session-option">
             <p>Just looking? Try Demo mode below to preview</p>
             <Link to="" onClick={this.handleDemo}>Demo mode</Link>
