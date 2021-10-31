@@ -7,6 +7,20 @@ class Signup extends React.Component {
     this.state = this.props.user
     this.handleSubmit= this.handleSubmit.bind(this)
     this.handleDemo = this.handleDemo.bind(this)
+    // console.log(props)
+  }
+
+  renderErrors() {
+    console.log(this.props)
+    return (
+      <ul>
+        {this.props.errors.map((error, i) => (
+          <li key={`error-${i}`}>
+            {error}
+          </li>
+        ))}
+      </ul>
+    )
   }
 
   handleDemo(e) {
@@ -33,8 +47,8 @@ class Signup extends React.Component {
 
   render() {
     return (
-      <div className="session">
-        <h3>Georgle</h3>
+      <div className="session-form-container">
+        <h3 className="georgle">Georgle</h3>
         <h3>Create your Georgle Account</h3>
         <p>to continue to Self.TV</p>
         <form onSubmit={this.handleSubmit}>
@@ -58,6 +72,7 @@ class Signup extends React.Component {
             onChange={this.update('password')}
             placeholder="Password"
           />
+          {this.renderErrors()}
           <div className="session-option">
             <p>Just looking? Try Demo mode below to preview</p>
             <Link to="" onClick={this.handleDemo}>Demo mode</Link>
