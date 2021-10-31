@@ -2,12 +2,23 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 class Signin extends React.Component {
-  
   constructor(props) {
     super(props)
     this.state = this.props.user
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleDemo = this.handleDemo.bind(this)
+  }
+
+  renderErrors() {
+    return (
+      <ul>
+        {this.props.errors.map((error, i) => (
+          <li key={`error-${i}`}>
+            {error}
+          </li>
+        ))}
+      </ul>
+    )
   }
 
   handleDemo(e) {
@@ -52,6 +63,7 @@ class Signin extends React.Component {
             onChange={this.update('password')}
             placeholder="Password"
           />
+          {this.renderErrors()}
           <div className="session-option">
             <p>Just looking? Try Demo mode below to preview</p>
             <Link to="" onClick={this.handleDemo}>Demo mode</Link>
