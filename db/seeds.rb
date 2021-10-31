@@ -5,3 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Video.destroy_all
+ApplicationRecord.connection.reset_pk_sequence!('videos')
+Channel.destroy_all
+ApplicationRecord.connection.reset_pk_sequence!('channels')
+

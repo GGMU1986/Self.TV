@@ -1,4 +1,5 @@
 import React from 'react';
+import VideoIndexContainer from '../videos/video_index_container';
 import Header from './header';
 
 class Home extends React.Component {
@@ -6,6 +7,7 @@ class Home extends React.Component {
     return (
       <div>
         <Header />
+        <VideoIndexContainer />
       </div>
     )
   }
