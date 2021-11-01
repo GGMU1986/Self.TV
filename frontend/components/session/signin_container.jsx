@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { login } from '../../actions/session';
-import Signin from './Signin'
+import Signin from './signin'
 
 const mSTP = state => ({
   user: {
