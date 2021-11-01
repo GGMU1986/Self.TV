@@ -13,3 +13,21 @@
  *= require_tree .
  *= require_self
  */
+ .session-form-container {
+  position: fixed;
+  left: 35%;
+  top: 30%;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: solid 1px grey;
+  border-radius: 4px;
+  padding: 30px;
+  
+ }
+
+ .session-option {
+   display: flex;
+   justify-content: space-between;
+ }
