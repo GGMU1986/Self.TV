@@ -21,7 +21,7 @@ class User < ApplicationRecord
     foreign_key: :uploader_id,
     class_name: :Video
   
-    has_one_attached :photo
+  has_one_attached :photo
 
   after_initialize :ensure_session_token
 
