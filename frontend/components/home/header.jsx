@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { logout } from '../../actions/session';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { faBars } from '@fortawesome/free-solid-svg-icons'
+// library.add(faBars)
 import {
   faLinkedin,
   faYoutube,
@@ -21,12 +23,17 @@ class Header extends React.Component {
     // debugger
     return (
       <div className="header">
+        {/* <FontAwesomeIcon icon={faBars} /> */}
         <FontAwesomeIcon icon={faYoutube} />
         <p>Self.TV</p>
         <input type="text" placeholder="Seach" />
         <br /><br />
-        <FontAwesomeIcon icon={faGithub} />
-        <FontAwesomeIcon icon={faLinkedin} />
+        <a href="https://github.com/GGMU1986">
+          <FontAwesomeIcon icon={faGithub} />
+        </a>
+        <a href="https://www.linkedin.com/in/george-tsimis-a5986224/">
+          <FontAwesomeIcon icon={faLinkedin} />
+        </a>
         {
           currentUser ? (
             <button onClick={() => logout()}>SIGN OUT</button>
