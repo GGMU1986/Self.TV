@@ -6,7 +6,6 @@ import { logout } from '../../actions/session';
 class Header extends React.Component {
   render() {
     const { currentUser, logout } = this.props;
-    // debugger
     return (
       <div className="header">
         <p>Self.TV</p>
