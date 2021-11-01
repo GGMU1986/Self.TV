@@ -1,4 +1,4 @@
-import { getAllVideos, getVideo } from "../utils/videos";
+import { getAllVideos, getVideo } from "../utils/util_videos";
 
 export const RECEIVE_ALL_VIDEOS = 'RECEIVE_ALL_VIDEOS';
 export const RECEIVE_VIDEO = 'RECEIVE_ALL_VIDEO';
@@ -9,7 +9,7 @@ const receiveAllVideos = videos => ({
 });
 
 const receiveVideo = video => ({
-  type: RECEIVE_ALL_VIDEO,
+  type: RECEIVE_VIDEO,
   video
 });
 

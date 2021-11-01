@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import SessionReducer from './session';
 import SessionErrorsReducer from "./session_errors";
-import VideosReducer from "./videos";
+import VideosReducer from "./videos_reducer";
 
 const RootReducer = combineReducers({
   session: SessionReducer,
