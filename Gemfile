@@ -46,6 +46,7 @@ group :development, :test do
   gem 'jquery-rails'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem "aws-sdk-s3"
 end
 
 group :development do
