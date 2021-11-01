@@ -25,6 +25,7 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'activestorage'
+gem 'jquery-rails'
 
 
 
@@ -43,7 +44,6 @@ group :development, :test do
   gem 'pry-rails'
   gem 'spring'
   gem 'web-console', '>= 3.3.0'
-  gem 'jquery-rails'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem "aws-sdk-s3"
