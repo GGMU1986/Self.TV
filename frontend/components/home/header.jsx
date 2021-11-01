@@ -23,24 +23,26 @@ class Header extends React.Component {
     // debugger
     return (
       <div className="header">
-        {/* <FontAwesomeIcon icon={faBars} /> */}
-        <FontAwesomeIcon icon={faYoutube} />
-        <p>Self.TV</p>
+        <div className="logo">
+          <FontAwesomeIcon icon={faYoutube} />
+          <span>Self.TV</span>
+        </div>
         <input type="text" placeholder="Seach" />
-        <br /><br />
-        <a href="https://github.com/GGMU1986">
-          <FontAwesomeIcon icon={faGithub} />
-        </a>
-        <a href="https://www.linkedin.com/in/george-tsimis-a5986224/">
-          <FontAwesomeIcon icon={faLinkedin} />
-        </a>
-        {
-          currentUser ? (
-            <button onClick={() => logout()}>SIGN OUT</button>
-          ) : (
-            <Link to="/signin">SIGN IN</Link>
-          )
-        }
+        <div className="signin">
+          <a href="https://github.com/GGMU1986">
+            <FontAwesomeIcon icon={faGithub} />
+          </a>
+          <a href="https://www.linkedin.com/in/george-tsimis-a5986224/">
+            <FontAwesomeIcon icon={faLinkedin} />
+          </a>
+          {
+            currentUser ? (
+              <button onClick={() => logout()}>SIGN OUT</button>
+            ) : (
+              <Link to="/signin">SIGN IN</Link>
+            )
+          }
+        </div>
       </div>
     )
   }

@@ -8,8 +8,10 @@ class Home extends React.Component {
     return (
       <div>
         <Header />
-        <SideNav />
-        <VideoIndexContainer />
+        <div className="splash-main">
+          <SideNav />
+          <VideoIndexContainer />
+        </div>
       </div>
     )
   }

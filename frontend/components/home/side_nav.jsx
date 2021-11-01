@@ -5,16 +5,16 @@ class SideNav extends React.Component {
   render() {
     return (
       <div className="side-nav">
-        <Link>
+        <Link to="">
           Home
-        </Link>
-        <Link>
+        </Link >
+        <Link to="">
           Explore
         </Link>
-        <Link>
+        <Link to="">
           Subscriptions
         </Link>
-        <Link>
+        <Link to="">
           Library
         </Link>
       </div>
