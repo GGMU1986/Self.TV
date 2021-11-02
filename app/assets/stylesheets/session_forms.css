@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap');
+.session-form-container {
+  position: fixed;
+  left: 35%;
+  top: 30%;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: solid 1px grey;
+  border-radius: 5px;
+  padding: 30px;
+  font-size: 20px;;
+ }
+
+ .session-form-container input {
+   width: 95%;
+   height: 40px;
+   border-radius: 5px;
+ }
+
+ .georgle {
+   font-size: 30px;
+   font-family: 'Open Sans', sans-serif;
+ }
+
+ .session-option {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Open Sans', sans-serif;
+    text-decoration: none;
+    color: blue;
+ }
+
+ .errors {
+   color: red;
+   font-size: 15px;
+ }
+
+ button {
+   background:rgb(11, 112, 199);
+   color:white;
+   padding: 10px 15px;
+   border-width: 0;
+   border-radius: 5px;
+   text-decoration: none;
+   font-size: 15px;
+   cursor: pointer;
+ }
+
+.g {
+   color: blue;
+ }
+
+.e {
+  color: red;
+}
+
+.o {
+  color: orange;
+}
+
+.l {
+  color: green;
+}
+
+p {
+  font-family: 'Open Sans', sans-serif;
+}
+
+Link {
+  text-decoration: none;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.create {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.sign-in {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 25px;
+}

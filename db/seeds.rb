@@ -15,9 +15,9 @@ ActiveRecord::Base.connection.reset_pk_sequence!('users')
 # Comment.destroy_all
 # ActiveRecord::Base.connection.reset_pk_sequence!('comments')
 
-user1 = User.create!(username: "demomode", email: "demo@demo.com", password: "demomode")
-user2 = User.create!(username: "George21", email: "geo@geo.com", password: "iloveiro")
-user3 = User.create!(username: "Iro23", email: "iro@iro.com", password: "ilovegeorge")
+user1 = User.create!(email: "demo@demo.com", username: "demomode", password: "demomode")
+user2 = User.create!(email: "geo@geo.com", username: "George21", password: "iloveiro")
+user3 = User.create!(email: "iro@iro.com", username: "Iro23", password: "ilovegeorge")
 
 # channel1 - Channel.create!(name: "GeorgeTV", about: "My beautiful life", creator_id: user2)
 

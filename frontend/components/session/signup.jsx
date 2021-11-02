@@ -70,7 +70,7 @@ class Signup extends React.Component {
           </span>
 
         </h3>
-        <h3>Create your Georgle Account</h3>
+        <h3 className="create">Create your Georgle Account</h3>
         <p>to continue to Self.TV</p>
         <form onSubmit={this.handleSubmit}>
           <input 
@@ -94,7 +94,9 @@ class Signup extends React.Component {
             placeholder="Password"
           />
           <div className="session-errors">
+          <div className="errors">
             {this.renderErrors()}
+          </div>
           </div>
             <p>Just looking? Try Demo mode below to preview</p>
             <Link to="" onClick={this.handleDemo}>Demo mode</Link>

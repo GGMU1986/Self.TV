@@ -10,24 +10,8 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
  *= require_self
  */
- .session-form-container {
-  position: fixed;
-  left: 35%;
-  top: 30%;
-  display: inline-flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border: solid 1px grey;
-  border-radius: 4px;
-  padding: 30px;
-  
- }
-
- .session-option {
-   display: flex;
-   justify-content: space-between;
- }
+@import 'reset.scss';
+@import "./session_forms.css";
+@import './header.css'

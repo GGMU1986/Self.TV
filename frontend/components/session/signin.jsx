@@ -45,9 +45,32 @@ class Signin extends React.Component {
 
   render() {
     return (
-      <div className="session">
-        <h3>Georgle</h3>
-        <h3>Sign in</h3>
+      <div className="session-form-container">
+        <h3 className="georgle">
+          <span className="g">
+            G
+          </span>
+          <span className="e">
+            e
+          </span>
+          <span className="o">
+            o
+          </span>
+          <span className="o">
+            r
+          </span>
+          <span className="g">
+            g
+          </span>
+          <span className="l">
+            l
+          </span>
+          <span className="e">
+            e
+          </span>
+
+        </h3>
+        <h3 className="sign-in">Sign in</h3>
         <p>to continue to Self.TV</p>
         <form onSubmit={this.handleSubmit}>
           <input
@@ -66,10 +89,10 @@ class Signin extends React.Component {
           <div className="session-errors">
             {this.renderErrors()}
           </div>
-          <div className="session-option">
             <p>Just looking? Try Demo mode below to preview</p>
             <Link to="" onClick={this.handleDemo}>Demo mode</Link>
             <br /><br />
+          <div className="session-option">
             <Link to="/signup">Create account</Link>
             <button onClick={this.handleSubmit}>Sign in</button>
           </div>
