@@ -22,6 +22,11 @@ class VideoShow extends React.Component {
         <div className="video-show-descr">
           {video.description}
         </div>
+        <div>
+          [COMMENTS BELOW]
+          <br /><br />
+          {video.comment_ids}
+        </div>
       </div>
     )
   }

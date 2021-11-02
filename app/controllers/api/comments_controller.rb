@@ -1,25 +1,25 @@
 class Api::CommentsController < ApplicationController
   def index
     # debugger
-    @comments = Video.find_by(id: params[:video_id]).comments
+    @comments = Comment.all
     render :index
   end
 
-  def new
-    @comment = Comment.new(comment_params)
-  end
+  # def new
+  #   @comment = Comment.new(comment_params)
+  # end
   
-  def create
-  end
+  # def create
+  # end
   
-  def edit
-  end
+  # def edit
+  # end
   
-  def update
-  end
+  # def update
+  # end
   
-  def destroy
-  end
+  # def destroy
+  # end
 
   private
 

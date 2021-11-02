@@ -921,7 +921,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var mSTP = function mSTP(state) {
   return {
-    videos: Object.values(state.videos)
+    videos: Object.values(state.entities.videos)
   };
 };
 
@@ -1030,7 +1030,7 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
         className: "video-show-title"
       }, video.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "video-show-descr"
-      }, video.description));
+      }, video.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "[COMMENTS BELOW]", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), video.comment_ids));
     }
   }]);
 
@@ -1062,7 +1062,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var mSTP = function mSTP(state, ownProps) {
   return {
-    video: state.videos[ownProps.match.params.videoId]
+    video: state.entities.videos[ownProps.match.params.videoId]
   };
 };
 
@@ -1075,6 +1075,28 @@ var mDTP = function mDTP(dispatch) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mSTP, mDTP)(_video_show__WEBPACK_IMPORTED_MODULE_1__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/reducers/entities.js":
+/*!***************************************!*\
+  !*** ./frontend/reducers/entities.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _videos_reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./videos_reducer */ "./frontend/reducers/videos_reducer.js");
+
+
+var EntitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_1__.combineReducers)({
+  videos: _videos_reducer__WEBPACK_IMPORTED_MODULE_0__["default"]
+});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EntitiesReducer);
 
 /***/ }),
 
@@ -1092,15 +1114,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _session__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./session */ "./frontend/reducers/session.js");
 /* harmony import */ var _session_errors__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./session_errors */ "./frontend/reducers/session_errors.js");
-/* harmony import */ var _videos_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./videos_reducer */ "./frontend/reducers/videos_reducer.js");
+/* harmony import */ var _entities__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./entities */ "./frontend/reducers/entities.js");
 
 
 
 
 var RootReducer = (0,redux__WEBPACK_IMPORTED_MODULE_3__.combineReducers)({
+  entities: _entities__WEBPACK_IMPORTED_MODULE_2__["default"],
   session: _session__WEBPACK_IMPORTED_MODULE_0__["default"],
-  errors: _session_errors__WEBPACK_IMPORTED_MODULE_1__["default"],
-  videos: _videos_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
+  errors: _session_errors__WEBPACK_IMPORTED_MODULE_1__["default"]
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RootReducer);
 

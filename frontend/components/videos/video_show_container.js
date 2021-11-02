@@ -4,7 +4,7 @@ import { fetchVideo } from '../../actions/videos_actions';
 // import { withRouter } from 'react-router';
 
 const mSTP = (state, ownProps) => ({
-  video: state.videos[ownProps.match.params.videoId]
+  video: state.entities.videos[ownProps.match.params.videoId]
 });
 
 const mDTP = dispatch => ({
