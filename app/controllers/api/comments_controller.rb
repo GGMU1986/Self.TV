@@ -1,6 +1,5 @@
 class Api::CommentsController < ApplicationController
   def index
-    # debugger
     @comments = Comment.all
     render :index
   end
