@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 2021_11_02_000200) do
     t.text "body", null: false
     t.integer "commenter_id", null: false
     t.integer "video_id", null: false
-    t.integer "parent_comment_id", null: false
+    t.integer "parent_comment_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["commenter_id"], name: "index_comments_on_commenter_id"

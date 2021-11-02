@@ -4,7 +4,7 @@ class CreateComments < ActiveRecord::Migration[5.2]
       t.text :body, null: false, limit: 10000
       t.integer :commenter_id, null: false 
       t.integer :video_id, null: false 
-      t.integer :parent_comment_id, null: false 
+      t.integer :parent_comment_id 
 
       t.timestamps
     end
