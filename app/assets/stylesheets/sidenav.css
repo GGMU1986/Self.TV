@@ -1,0 +1,7 @@
+.side-nav {
+  /* position: fixed; */
+  left: 0;
+  top: 50px;
+  display: flex;
+  flex-direction: column;
+}

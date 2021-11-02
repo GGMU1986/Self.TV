@@ -11,3 +11,6 @@ ApplicationRecord.connection.reset_pk_sequence!('videos')
 Channel.destroy_all
 ApplicationRecord.connection.reset_pk_sequence!('channels')
 
+video1 = Video.create!(title: "Happy Coding!", duration: 0.10, description: "My youtibe clone is the best", uploader_id: 2, channel_id: 1)
+video2 = Video.create!(title: "Pizza is good", duration: 0.12, description: "I love to eat pizza everyday", uploader_id: 2, channel_id: 1)
+video3 = Video.create!(title: "FUN!", duration: 0.15, description: "ALOT OF FUN", uploader_id: 2, channel_id: 1)
