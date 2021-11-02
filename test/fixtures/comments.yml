@@ -6,7 +6,7 @@
 #  body              :text             not null
 #  commenter_id      :integer          not null
 #  video_id          :integer          not null
-#  parent_comment_id :integer          not null
+#  parent_comment_id :integer
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #
