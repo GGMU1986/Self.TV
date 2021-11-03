@@ -2,7 +2,7 @@ import React from 'react';
 
 class CommentsIndexItem extends React.Component {
   render () {
-    const { comment } = this.props
+    const { comment, deleteComment } = this.props
     return (
       <div>
         <div>
@@ -16,7 +16,7 @@ class CommentsIndexItem extends React.Component {
         </div>
         <button>Reply</button>
         <button>Edit</button>
-        <button>Delete</button>
+        <button onClick={() => deleteComment(comment.id)}>Delete</button>
         <br />
       </div>
     )

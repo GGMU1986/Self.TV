@@ -4,7 +4,7 @@ import CommentsIndexItem from './comments_index_item';
 
 class CommentsIndex extends React.Component {
   render() {
-    // const { comments } = this.props.comments
+    const { deleteComment } = this.props
     let comments = Object.values(this.props.comments)
     return (
       <div className="comments">
@@ -16,7 +16,8 @@ class CommentsIndex extends React.Component {
         {
           comments.map(comment => <CommentsIndexItem
                                       key={comment.id} 
-                                      comment={comment} 
+                                      comment={comment}
+                                      deleteComment={deleteComment} 
                                   />
                       )
         }

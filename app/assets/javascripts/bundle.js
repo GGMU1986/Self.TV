@@ -1,6 +1,16 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./frontend/actions/comments_actions.js":
+/*!**********************************************!*\
+  !*** ./frontend/actions/comments_actions.js ***!
+  \**********************************************/
+/***/ (() => {
+
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/george/Desktop/Self.TV/frontend/actions/comments_actions.js: Identifier 'deleteComment' has already been declared. (10:13)\n\n\u001b[0m \u001b[90m  8 |\u001b[39m })\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m  9 |\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 10 |\u001b[39m \u001b[36mexport\u001b[39m \u001b[36mconst\u001b[39m deleteComment \u001b[33m=\u001b[39m commentId \u001b[33m=>\u001b[39m dispatch \u001b[33m=>\u001b[39m (\u001b[0m\n\u001b[0m \u001b[90m    |\u001b[39m              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 11 |\u001b[39m   deleteComment(commentId)\u001b[33m.\u001b[39mthen(() \u001b[33m=>\u001b[39m dispatch(removeComment(commentId)))\u001b[0m\n\u001b[0m \u001b[90m 12 |\u001b[39m )\u001b[33m;\u001b[39m\u001b[0m\n    at Object._raise (/Users/george/Desktop/Self.TV/node_modules/@babel/parser/lib/index.js:541:17)\n    at Object.raiseWithData (/Users/george/Desktop/Self.TV/node_modules/@babel/parser/lib/index.js:534:17)\n    at Object.raise (/Users/george/Desktop/Self.TV/node_modules/@babel/parser/lib/index.js:495:17)\n    at ScopeHandler.checkRedeclarationInScope (/Users/george/Desktop/Self.TV/node_modules/@babel/parser/lib/index.js:1686:12)\n    at ScopeHandler.declareName (/Users/george/Desktop/Self.TV/node_modules/@babel/parser/lib/index.js:1652:12)\n    at Object.checkLVal (/Users/george/Desktop/Self.TV/node_modules/@babel/parser/lib/index.js:10919:24)\n    at Object.parseVarId (/Users/george/Desktop/Self.TV/node_modules/@babel/parser/lib/index.js:13831:10)\n    at Object.parseVar (/Users/george/Desktop/Self.TV/node_modules/@babel/parser/lib/index.js:13806:12)\n    at Object.parseVarStatement (/Users/george/Desktop/Self.TV/node_modules/@babel/parser/lib/index.js:13623:10)\n    at Object.parseStatementContent (/Users/george/Desktop/Self.TV/node_modules/@babel/parser/lib/index.js:13208:21)");
+
+/***/ }),
+
 /***/ "./frontend/actions/session.js":
 /*!*************************************!*\
   !*** ./frontend/actions/session.js ***!
@@ -283,7 +293,7 @@ var CommentsIndex = /*#__PURE__*/function (_React$Component) {
   _createClass(CommentsIndex, [{
     key: "render",
     value: function render() {
-      // const { comments } = this.props.comments
+      var deleteComment = this.props.deleteComment;
       var comments = Object.values(this.props.comments);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "comments"
@@ -292,7 +302,8 @@ var CommentsIndex = /*#__PURE__*/function (_React$Component) {
       }, comments.length, " Comments - Sort By"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_comments_form__WEBPACK_IMPORTED_MODULE_1__["default"], null), comments.map(function (comment) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_comments_index_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
           key: comment.id,
-          comment: comment
+          comment: comment,
+          deleteComment: deleteComment
         });
       }));
     }
@@ -356,8 +367,14 @@ var CommentsIndexItem = /*#__PURE__*/function (_React$Component) {
   _createClass(CommentsIndexItem, [{
     key: "render",
     value: function render() {
-      var comment = this.props.comment;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, this.props.comment.commenter), "-", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, comment.createdAt)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, comment.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "Reply"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "Edit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "Delete"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null));
+      var _this$props = this.props,
+          comment = _this$props.comment,
+          deleteComment = _this$props.deleteComment;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, this.props.comment.commenter), "-", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, comment.createdAt)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, comment.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "Reply"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "Edit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        onClick: function onClick() {
+          return deleteComment(comment.id);
+        }
+      }, "Delete"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null));
     }
   }]);
 
@@ -1229,7 +1246,8 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this$props = this.props,
           video = _this$props.video,
-          comments = _this$props.comments;
+          comments = _this$props.comments,
+          deleteComment = _this$props.deleteComment;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
         to: "/"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_home_header__WEBPACK_IMPORTED_MODULE_1__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -1239,7 +1257,8 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
       }, video.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "video-show-descr"
       }, video.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_comments_comments_index__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        comments: comments
+        comments: comments,
+        deleteComment: deleteComment
       })));
     }
   }]);
@@ -1266,7 +1285,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _video_show__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./video_show */ "./frontend/components/videos/video_show.jsx");
 /* harmony import */ var _actions_videos_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/videos_actions */ "./frontend/actions/videos_actions.js");
-/* harmony import */ var _reducers_selectors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../reducers/selectors */ "./frontend/reducers/selectors.js");
+/* harmony import */ var _actions_comments_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/comments_actions */ "./frontend/actions/comments_actions.js");
+/* harmony import */ var _actions_comments_actions__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_actions_comments_actions__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _reducers_selectors__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../reducers/selectors */ "./frontend/reducers/selectors.js");
+
 
 
 
@@ -1275,7 +1297,7 @@ __webpack_require__.r(__webpack_exports__);
 var mSTP = function mSTP(state, ownProps) {
   return {
     video: state.entities.videos[ownProps.match.params.videoId],
-    comments: (0,_reducers_selectors__WEBPACK_IMPORTED_MODULE_3__.selectCommentsByVideo)(state, ownProps.match.params.videoId)
+    comments: (0,_reducers_selectors__WEBPACK_IMPORTED_MODULE_4__.selectCommentsByVideo)(state, ownProps.match.params.videoId)
   };
 };
 
@@ -1283,6 +1305,9 @@ var mDTP = function mDTP(dispatch) {
   return {
     fetchVideo: function fetchVideo(videoId) {
       return dispatch((0,_actions_videos_actions__WEBPACK_IMPORTED_MODULE_2__.fetchVideo)(videoId));
+    },
+    deleteComment: function deleteComment(commentId) {
+      return dispatch((0,_actions_comments_actions__WEBPACK_IMPORTED_MODULE_3__.deleteComment)(commentId));
     }
   };
 };

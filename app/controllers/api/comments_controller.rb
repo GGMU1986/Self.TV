@@ -3,7 +3,7 @@ class Api::CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
 
     if @comment.save
-
+      render :info
     else
       render json: @comment.errors.full_messages, status: 422
     end
@@ -13,14 +13,21 @@ class Api::CommentsController < ApplicationController
     @comment = current_user.comments.find_by(id: params[:id])
 
     if @comment && @comment.update(comment_params)
-
+      render :edit
     else
       render json: @comment.errors.full_messages, status: 422
     end
   end
   
-  # def destroy
-  # end
+  def destroy
+    @comment = current_user.comments.find_by(id: params[:id])
+
+    if @comment 
+      @comment.destroy
+    else
+      render json: ["Only a comments author can delete it"] status: 422
+    end
+  end
 
   private
 

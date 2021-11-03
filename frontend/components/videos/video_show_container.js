@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import VideoShow from './video_show';
 import { fetchVideo } from '../../actions/videos_actions';
+import { deleteComment } from '../../actions/comments_actions';
 import { selectCommentsByVideo } from '../../reducers/selectors';
 
 const mSTP = (state, ownProps) => ({
@@ -9,7 +10,8 @@ const mSTP = (state, ownProps) => ({
 });
 
 const mDTP = dispatch => ({
-  fetchVideo: videoId => dispatch(fetchVideo(videoId))
+  fetchVideo: videoId => dispatch(fetchVideo(videoId)),
+  deleteComment: commentId => dispatch(deleteComment(commentId))
 });
 
 export default connect(mSTP, mDTP)(VideoShow);
