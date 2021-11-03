@@ -7,6 +7,9 @@ const removeComment = commentId => ({
   commentId
 });
 
-export const destroyComment = commentId => dispatch => (
-  deleteComment(commentId).then(() => dispatch(removeComment(commentId)))
-);
+export const destroyComment = commentId => dispatch => {
+  // debugger
+  return deleteComment(commentId).then(() => { 
+    // debugger
+    return dispatch(removeComment(commentId))})
+};

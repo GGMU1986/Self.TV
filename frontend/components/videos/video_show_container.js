@@ -4,10 +4,13 @@ import { fetchVideo } from '../../actions/videos_actions';
 import { destroyComment } from '../../actions/comments_actions';
 import { selectCommentsByVideo } from '../../reducers/selectors';
 
-const mSTP = (state, ownProps) => ({
-  video: state.entities.videos[ownProps.match.params.videoId],
-  comments: selectCommentsByVideo(state, ownProps.match.params.videoId)
-});
+const mSTP = (state, ownProps) => {
+  debugger
+  return {
+    video: state.entities.videos[ownProps.match.params.videoId],
+    comments: selectCommentsByVideo(state, ownProps.match.params.videoId)
+  } 
+};
 
 const mDTP = dispatch => ({
   fetchVideo: videoId => dispatch(fetchVideo(videoId)),

@@ -6,10 +6,12 @@ import CommentsIndex from '../comments/comments_index';
 class VideoShow extends React.Component {
   
   componentDidMount() {
+    debugger
     this.props.fetchVideo(this.props.match.params.videoId)
   }
   
   render() {
+    debugger
     const { video, comments, destroyComment } = this.props
     return (
       <div>
@@ -31,7 +33,7 @@ class VideoShow extends React.Component {
         <div>
           <CommentsIndex 
             comments={comments} 
-            deleteComment={destroyComment}
+            destroyComment={destroyComment}
           />
         </div>
       </div>

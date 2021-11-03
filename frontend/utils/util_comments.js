@@ -1,6 +1,7 @@
-export const deleteComment = commentId => (
-  $.ajax({
+export const deleteComment = commentId => {
+  // debugger
+  return $.ajax({
     method: 'DELETE',
     url: `/api/comments/${commentId}`
   })
-);
+};

@@ -11,6 +11,8 @@ class Api::CommentsController < ApplicationController
   
   def update
     @comment = current_user.comments.find_by(id: params[:id])
+    @comment.commenter_id = current_user.id
+    @comment.video_id = params[:video_id]
 
     if @comment && @comment.update(comment_params)
       render :edit
@@ -20,11 +22,14 @@ class Api::CommentsController < ApplicationController
   end
   
   def destroy
+    # debugger
     @comment = current_user.comments.find_by(id: params[:id])
 
-    if @comment 
+    if @comment
+      # debugger
       @comment.destroy
     else
+      # debugger
       render json: ["Only a comments author can delete it"], status: 422
     end
   end

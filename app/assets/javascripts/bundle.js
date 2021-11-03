@@ -26,7 +26,9 @@ var removeComment = function removeComment(commentId) {
 
 var destroyComment = function destroyComment(commentId) {
   return function (dispatch) {
+    // debugger
     return (0,_utils_util_comments__WEBPACK_IMPORTED_MODULE_0__.deleteComment)(commentId).then(function () {
+      // debugger
       return dispatch(removeComment(commentId));
     });
   };
@@ -307,15 +309,25 @@ var CommentsIndex = /*#__PURE__*/function (_React$Component) {
 
   var _super = _createSuper(CommentsIndex);
 
-  function CommentsIndex() {
+  function CommentsIndex(props) {
+    var _this;
+
     _classCallCheck(this, CommentsIndex);
 
-    return _super.apply(this, arguments);
+    _this = _super.call(this, props);
+    debugger;
+    return _this;
   }
 
   _createClass(CommentsIndex, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      debugger;
+    }
+  }, {
     key: "render",
     value: function render() {
+      debugger;
       var destroyComment = this.props.destroyComment;
       var comments = Object.values(this.props.comments);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -323,11 +335,13 @@ var CommentsIndex = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "comment-count"
       }, comments.length, " Comments - Sort By"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_comments_form__WEBPACK_IMPORTED_MODULE_1__["default"], null), comments.map(function (comment) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_comments_index_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
-          key: comment.id,
-          comment: comment,
-          destroyComment: destroyComment
-        });
+        if (comment) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_comments_index_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
+            key: comment.id,
+            comment: comment,
+            destroyComment: destroyComment
+          });
+        }
       }));
     }
   }]);
@@ -390,6 +404,7 @@ var CommentsIndexItem = /*#__PURE__*/function (_React$Component) {
   _createClass(CommentsIndexItem, [{
     key: "render",
     value: function render() {
+      // debugger
       var _this$props = this.props,
           comment = _this$props.comment,
           destroyComment = _this$props.destroyComment;
@@ -1262,11 +1277,13 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
   _createClass(VideoShow, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      debugger;
       this.props.fetchVideo(this.props.match.params.videoId);
     }
   }, {
     key: "render",
     value: function render() {
+      debugger;
       var _this$props = this.props,
           video = _this$props.video,
           comments = _this$props.comments,
@@ -1281,7 +1298,7 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
         className: "video-show-descr"
       }, video.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_comments_comments_index__WEBPACK_IMPORTED_MODULE_2__["default"], {
         comments: comments,
-        deleteComment: destroyComment
+        destroyComment: destroyComment
       })));
     }
   }]);
@@ -1317,6 +1334,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
+  debugger;
   return {
     video: state.entities.videos[ownProps.match.params.videoId],
     comments: (0,_reducers_selectors__WEBPACK_IMPORTED_MODULE_4__.selectCommentsByVideo)(state, ownProps.match.params.videoId)
@@ -1448,10 +1466,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "selectCommentsByVideo": () => (/* binding */ selectCommentsByVideo)
 /* harmony export */ });
 var selectCommentsByVideo = function selectCommentsByVideo(state, videoId) {
-  if (state.entities.videos[videoId].commentIds === undefined) return [];
-  return state.entities.videos[videoId].commentIds.map(function (commentId) {
-    return state.entities.comments[commentId];
-  });
+  debugger;
+
+  if (state.entities.videos[videoId].commentIds) {
+    debugger;
+    return state.entities.videos[videoId].commentIds.map(function (commentId) {
+      return state.entities.comments[commentId];
+    });
+  } else {
+    debugger;
+    return [];
+  }
 };
 
 /***/ }),
@@ -1707,6 +1732,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "deleteComment": () => (/* binding */ deleteComment)
 /* harmony export */ });
 var deleteComment = function deleteComment(commentId) {
+  // debugger
   return $.ajax({
     method: 'DELETE',
     url: "/api/comments/".concat(commentId)

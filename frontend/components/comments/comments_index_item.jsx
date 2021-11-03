@@ -2,6 +2,7 @@ import React from 'react';
 
 class CommentsIndexItem extends React.Component {
   render () {
+    // debugger
     const { comment, destroyComment } = this.props
     return (
       <div>

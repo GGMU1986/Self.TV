@@ -3,7 +3,15 @@ import CommentForm from './comments_form';
 import CommentsIndexItem from './comments_index_item';
 
 class CommentsIndex extends React.Component {
+  constructor(props) {
+    super(props)
+    debugger
+  }
+  componentDidMount() {
+    debugger
+  }
   render() {
+    debugger
     const { destroyComment } = this.props
     let comments = Object.values(this.props.comments)
     return (
@@ -14,12 +22,16 @@ class CommentsIndex extends React.Component {
         <hr />
         <CommentForm />
         {
-          comments.map(comment => <CommentsIndexItem
-                                      key={comment.id} 
-                                      comment={comment}
-                                      destroyComment={destroyComment} 
-                                  />
-                      )
+          comments.map(comment => {
+            if (comment) {
+              return <CommentsIndexItem
+                key={comment.id}
+                comment={comment}
+                destroyComment={destroyComment}
+              />
+            }
+          }
+        )
         }
       </div>
     )
