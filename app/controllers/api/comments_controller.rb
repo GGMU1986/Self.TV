@@ -25,7 +25,7 @@ class Api::CommentsController < ApplicationController
     if @comment 
       @comment.destroy
     else
-      render json: ["Only a comments author can delete it"] status: 422
+      render json: ["Only a comments author can delete it"], status: 422
     end
   end
 
