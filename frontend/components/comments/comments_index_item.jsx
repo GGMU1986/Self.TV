@@ -2,15 +2,22 @@ import React from 'react';
 
 class CommentsIndexItem extends React.Component {
   render () {
+    const { comment } = this.props
     return (
       <div>
         <div>
-          <span>{this.props.comment.commenter}</span>
-          <span>{this.props.comment.createdAt}</span>
+          <strong>{this.props.comment.commenter}</strong>
+          -
+          <span>{comment.createdAt}</span>
         </div>
+        <br />
         <div>
-          {this.props.comment.body}
+          {comment.body}
         </div>
+        <button>Reply</button>
+        <button>Edit</button>
+        <button>Delete</button>
+        <br />
       </div>
     )
   }

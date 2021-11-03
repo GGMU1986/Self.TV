@@ -8,6 +8,10 @@ class CommentsIndex extends React.Component {
     let comments = Object.values(this.props.comments)
     return (
       <div className="comments">
+        <div className="comment-count">
+          {comments.length} Comments - Sort By
+        </div>
+        <hr />
         <CommentForm />
         {
           comments.map(comment => <CommentsIndexItem
