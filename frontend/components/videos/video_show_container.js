@@ -1,10 +1,11 @@
 import { connect } from 'react-redux';
 import VideoShow from './video_show';
 import { fetchVideo } from '../../actions/videos_actions';
-// import { withRouter } from 'react-router';
+import { selectCommentsByVideo } from '../../reducers/selectors';
 
 const mSTP = (state, ownProps) => ({
-  video: state.entities.videos[ownProps.match.params.videoId]
+  video: state.entities.videos[ownProps.match.params.videoId],
+  comments: selectCommentsByVideo(state, ownProps.match.params.videoId)
 });
 
 const mDTP = dispatch => ({

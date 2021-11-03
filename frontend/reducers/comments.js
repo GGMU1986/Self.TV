@@ -1,6 +1,6 @@
 import { RECEIVE_VIDEO_DETAIL } from "../actions/videos_actions";
 
-const CommentsReducer = (state = {}. action) => {
+const CommentsReducer = (state = {}, action) => {
   Object.freeze(state);
 
   switch (action.type) {

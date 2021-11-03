@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../home/header';
 import { Link } from 'react-router-dom'
+import CommentsIndex from '../comments/comments_index';
 
 class VideoShow extends React.Component {
   
@@ -9,23 +10,26 @@ class VideoShow extends React.Component {
   }
   
   render() {
-    const { video } = this.props
+    const { video, comments } = this.props
     return (
       <div>
         <Link to="/">
           <Header />
         </Link>
-        <h1>[VIDEO GOES HERE]</h1>
+        <hr />
+        <div className="video-container">
+          <h1>[VIDEO GOES HERE]</h1>
+        </div>
         <div className="video-show-title">
           {video.title}
         </div>
+        <hr />
         <div className="video-show-descr">
           {video.description}
         </div>
+        <hr />
         <div>
-          [COMMENTS BELOW]
-          <br /><br />
-          {video.comment_ids}
+          <CommentsIndex comments={comments}/>
         </div>
       </div>
     )

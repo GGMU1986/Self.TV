@@ -1,5 +1,5 @@
 json.video do
-  json.extract! @video, :id, :title, :duration, :description
+  json.extract! @video, :id, :title, :duration, :description, :comment_ids
 end
 
 json.comments do 
