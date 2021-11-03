@@ -296,6 +296,9 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
       e.preventDefault(); // this.props.makeComment(this.state, this.props.videoId)
 
       this.props.makeComment(this.state, this.props.videoId);
+      this.setState({
+        body: ''
+      });
     }
   }, {
     key: "render",
