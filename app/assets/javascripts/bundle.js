@@ -5,9 +5,32 @@
 /*!**********************************************!*\
   !*** ./frontend/actions/comments_actions.js ***!
   \**********************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/george/Desktop/Self.TV/frontend/actions/comments_actions.js: Identifier 'deleteComment' has already been declared. (10:13)\n\n\u001b[0m \u001b[90m  8 |\u001b[39m })\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m  9 |\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 10 |\u001b[39m \u001b[36mexport\u001b[39m \u001b[36mconst\u001b[39m deleteComment \u001b[33m=\u001b[39m commentId \u001b[33m=>\u001b[39m dispatch \u001b[33m=>\u001b[39m (\u001b[0m\n\u001b[0m \u001b[90m    |\u001b[39m              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 11 |\u001b[39m   deleteComment(commentId)\u001b[33m.\u001b[39mthen(() \u001b[33m=>\u001b[39m dispatch(removeComment(commentId)))\u001b[0m\n\u001b[0m \u001b[90m 12 |\u001b[39m )\u001b[33m;\u001b[39m\u001b[0m\n    at Object._raise (/Users/george/Desktop/Self.TV/node_modules/@babel/parser/lib/index.js:541:17)\n    at Object.raiseWithData (/Users/george/Desktop/Self.TV/node_modules/@babel/parser/lib/index.js:534:17)\n    at Object.raise (/Users/george/Desktop/Self.TV/node_modules/@babel/parser/lib/index.js:495:17)\n    at ScopeHandler.checkRedeclarationInScope (/Users/george/Desktop/Self.TV/node_modules/@babel/parser/lib/index.js:1686:12)\n    at ScopeHandler.declareName (/Users/george/Desktop/Self.TV/node_modules/@babel/parser/lib/index.js:1652:12)\n    at Object.checkLVal (/Users/george/Desktop/Self.TV/node_modules/@babel/parser/lib/index.js:10919:24)\n    at Object.parseVarId (/Users/george/Desktop/Self.TV/node_modules/@babel/parser/lib/index.js:13831:10)\n    at Object.parseVar (/Users/george/Desktop/Self.TV/node_modules/@babel/parser/lib/index.js:13806:12)\n    at Object.parseVarStatement (/Users/george/Desktop/Self.TV/node_modules/@babel/parser/lib/index.js:13623:10)\n    at Object.parseStatementContent (/Users/george/Desktop/Self.TV/node_modules/@babel/parser/lib/index.js:13208:21)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "REMOVE_COMMENT": () => (/* binding */ REMOVE_COMMENT),
+/* harmony export */   "destroyComment": () => (/* binding */ destroyComment)
+/* harmony export */ });
+/* harmony import */ var _utils_util_comments__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/util_comments */ "./frontend/utils/util_comments.js");
+
+var REMOVE_COMMENT = 'REMOVE_COMMENT';
+
+var removeComment = function removeComment(commentId) {
+  return {
+    type: REMOVE_COMMENT,
+    commentId: commentId
+  };
+};
+
+var destroyComment = function destroyComment(commentId) {
+  return function (dispatch) {
+    return (0,_utils_util_comments__WEBPACK_IMPORTED_MODULE_0__.deleteComment)(commentId).then(function () {
+      return dispatch(removeComment(commentId));
+    });
+  };
+};
 
 /***/ }),
 
@@ -293,7 +316,7 @@ var CommentsIndex = /*#__PURE__*/function (_React$Component) {
   _createClass(CommentsIndex, [{
     key: "render",
     value: function render() {
-      var deleteComment = this.props.deleteComment;
+      var destroyComment = this.props.destroyComment;
       var comments = Object.values(this.props.comments);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "comments"
@@ -303,7 +326,7 @@ var CommentsIndex = /*#__PURE__*/function (_React$Component) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_comments_index_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
           key: comment.id,
           comment: comment,
-          deleteComment: deleteComment
+          destroyComment: destroyComment
         });
       }));
     }
@@ -369,10 +392,10 @@ var CommentsIndexItem = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this$props = this.props,
           comment = _this$props.comment,
-          deleteComment = _this$props.deleteComment;
+          destroyComment = _this$props.destroyComment;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, this.props.comment.commenter), "-", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, comment.createdAt)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, comment.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "Reply"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "Edit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         onClick: function onClick() {
-          return deleteComment(comment.id);
+          return destroyComment(comment.id);
         }
       }, "Delete"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null));
     }
@@ -428,8 +451,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
  // import { library } from '@fortawesome/fontawesome-svg-core'
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// // import { faBars } from '@fortawesome/free-solid-svg-icons'
-// // library.add(faBars)
 // import {
 //   faLinkedin,
 //   faYoutube,
@@ -469,10 +490,12 @@ var Header = /*#__PURE__*/function (_React$Component) {
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "signin"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-        href: "https://github.com/GGMU1986"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-        href: "https://www.linkedin.com/in/george-tsimis-a5986224/"
-      }), currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        href: "https://github.com/GGMU1986",
+        target: "blank"
+      }, "github"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+        href: "https://www.linkedin.com/in/george-tsimis-a5986224/",
+        target: "blank"
+      }, "linkedin"), currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         onClick: function onClick() {
           return logout();
         }
@@ -1247,7 +1270,7 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
       var _this$props = this.props,
           video = _this$props.video,
           comments = _this$props.comments,
-          deleteComment = _this$props.deleteComment;
+          destroyComment = _this$props.destroyComment;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
         to: "/"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_home_header__WEBPACK_IMPORTED_MODULE_1__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -1258,7 +1281,7 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
         className: "video-show-descr"
       }, video.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_comments_comments_index__WEBPACK_IMPORTED_MODULE_2__["default"], {
         comments: comments,
-        deleteComment: deleteComment
+        deleteComment: destroyComment
       })));
     }
   }]);
@@ -1286,7 +1309,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _video_show__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./video_show */ "./frontend/components/videos/video_show.jsx");
 /* harmony import */ var _actions_videos_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/videos_actions */ "./frontend/actions/videos_actions.js");
 /* harmony import */ var _actions_comments_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/comments_actions */ "./frontend/actions/comments_actions.js");
-/* harmony import */ var _actions_comments_actions__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_actions_comments_actions__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _reducers_selectors__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../reducers/selectors */ "./frontend/reducers/selectors.js");
 
 
@@ -1306,8 +1328,8 @@ var mDTP = function mDTP(dispatch) {
     fetchVideo: function fetchVideo(videoId) {
       return dispatch((0,_actions_videos_actions__WEBPACK_IMPORTED_MODULE_2__.fetchVideo)(videoId));
     },
-    deleteComment: function deleteComment(commentId) {
-      return dispatch((0,_actions_comments_actions__WEBPACK_IMPORTED_MODULE_3__.deleteComment)(commentId));
+    destroyComment: function destroyComment(commentId) {
+      return dispatch((0,_actions_comments_actions__WEBPACK_IMPORTED_MODULE_3__.destroyComment)(commentId));
     }
   };
 };
@@ -1328,6 +1350,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _actions_videos_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/videos_actions */ "./frontend/actions/videos_actions.js");
+/* harmony import */ var _actions_comments_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/comments_actions */ "./frontend/actions/comments_actions.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -1336,14 +1359,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 var CommentsReducer = function CommentsReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
+  var nextState = Object.assign({}, state);
 
   switch (action.type) {
     case _actions_videos_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_VIDEO_DETAIL:
       return _objectSpread(_objectSpread({}, state), action.payload.comments);
+
+    case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_1__.REMOVE_COMMENT:
+      delete nextState[action.commentId];
+      return nextState;
 
     default:
       return state;
@@ -1661,6 +1690,26 @@ var deleteSession = function deleteSession() {
   return $.ajax({
     method: 'DELETE',
     url: '/api/session'
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/utils/util_comments.js":
+/*!*****************************************!*\
+  !*** ./frontend/utils/util_comments.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "deleteComment": () => (/* binding */ deleteComment)
+/* harmony export */ });
+var deleteComment = function deleteComment(commentId) {
+  return $.ajax({
+    method: 'DELETE',
+    url: "/api/comments/".concat(commentId)
   });
 };
 

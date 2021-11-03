@@ -10,7 +10,7 @@ class VideoShow extends React.Component {
   }
   
   render() {
-    const { video, comments, deleteComment } = this.props
+    const { video, comments, destroyComment } = this.props
     return (
       <div>
         <Link to="/">
@@ -31,7 +31,7 @@ class VideoShow extends React.Component {
         <div>
           <CommentsIndex 
             comments={comments} 
-            deleteComment={deleteComment}
+            deleteComment={destroyComment}
           />
         </div>
       </div>
