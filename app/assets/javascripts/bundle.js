@@ -11,11 +11,21 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "REMOVE_COMMENT": () => (/* binding */ REMOVE_COMMENT),
-/* harmony export */   "destroyComment": () => (/* binding */ destroyComment)
+/* harmony export */   "RECEIVE_COMMENT": () => (/* binding */ RECEIVE_COMMENT),
+/* harmony export */   "destroyComment": () => (/* binding */ destroyComment),
+/* harmony export */   "makeComment": () => (/* binding */ makeComment)
 /* harmony export */ });
 /* harmony import */ var _utils_util_comments__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/util_comments */ "./frontend/utils/util_comments.js");
 
 var REMOVE_COMMENT = 'REMOVE_COMMENT';
+var RECEIVE_COMMENT = 'RECEIVE_COMMENT';
+
+var receiveComment = function receiveComment(comment) {
+  return {
+    type: RECEIVE_COMMENT,
+    comment: comment
+  };
+};
 
 var removeComment = function removeComment(commentId) {
   return {
@@ -26,10 +36,25 @@ var removeComment = function removeComment(commentId) {
 
 var destroyComment = function destroyComment(commentId) {
   return function (dispatch) {
-    // debugger
+    // // debugger
     return (0,_utils_util_comments__WEBPACK_IMPORTED_MODULE_0__.deleteComment)(commentId).then(function () {
-      // debugger
+      // // debugger
       return dispatch(removeComment(commentId));
+    });
+  };
+}; // export const updateComment = (comment, videoId) => dispatch => {
+//   // // debugger
+//   return updateComment(comment, videoId).then(comment => { 
+//     // // debugger
+//     return dispatch(receiveComment(comment))})
+// };
+
+var makeComment = function makeComment(comment, videoId) {
+  return function (dispatch) {
+    // // debugger
+    return (0,_utils_util_comments__WEBPACK_IMPORTED_MODULE_0__.createComment)(comment, videoId).then(function (comment) {
+      // // debugger
+      return dispatch(receiveComment(comment));
     });
   };
 };
@@ -243,16 +268,48 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
 
   var _super = _createSuper(CommentForm);
 
-  function CommentForm() {
+  function CommentForm(props) {
+    var _this;
+
     _classCallCheck(this, CommentForm);
 
-    return _super.apply(this, arguments);
+    _this = _super.call(this, props);
+    _this.state = {
+      video_id: _this.props.videoId,
+      body: ''
+    };
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.update = _this.update.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(CommentForm, [{
+    key: "update",
+    value: function update(e) {
+      this.setState({
+        body: e.target.value
+      });
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault(); // this.props.makeComment(this.state, this.props.videoId)
+
+      this.props.makeComment(this.state, this.props.videoId);
+    }
+  }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "comment-form"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
+        type: "text",
+        placeholder: "Add a public comment...",
+        value: this.state.body,
+        onChange: this.update
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        onClick: this.handleSubmit
+      }, "COMMENT")));
     }
   }]);
 
@@ -310,36 +367,40 @@ var CommentsIndex = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(CommentsIndex);
 
   function CommentsIndex(props) {
-    var _this;
-
     _classCallCheck(this, CommentsIndex);
 
-    _this = _super.call(this, props);
-    debugger;
-    return _this;
+    return _super.call(this, props); // debugger
   }
 
   _createClass(CommentsIndex, [{
     key: "componentDidMount",
-    value: function componentDidMount() {
-      debugger;
+    value: function componentDidMount() {// debugger
     }
   }, {
     key: "render",
     value: function render() {
-      debugger;
-      var destroyComment = this.props.destroyComment;
+      // debugger
+      var _this$props = this.props,
+          destroyComment = _this$props.destroyComment,
+          makeComment = _this$props.makeComment,
+          updateComment = _this$props.updateComment,
+          videoId = _this$props.videoId;
       var comments = Object.values(this.props.comments);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "comments"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "comment-count"
-      }, comments.length, " Comments - Sort By"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_comments_form__WEBPACK_IMPORTED_MODULE_1__["default"], null), comments.map(function (comment) {
+      }, comments.length, " Comments - Sort By"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_comments_form__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        makeComment: makeComment,
+        videoId: videoId
+      }), comments.map(function (comment) {
         if (comment) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_comments_index_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
             key: comment.id,
             comment: comment,
-            destroyComment: destroyComment
+            destroyComment: destroyComment,
+            updateComment: updateComment,
+            videoId: videoId
           });
         }
       }));
@@ -404,10 +465,12 @@ var CommentsIndexItem = /*#__PURE__*/function (_React$Component) {
   _createClass(CommentsIndexItem, [{
     key: "render",
     value: function render() {
-      // debugger
+      // // debugger
       var _this$props = this.props,
           comment = _this$props.comment,
-          destroyComment = _this$props.destroyComment;
+          destroyComment = _this$props.destroyComment,
+          updateComment = _this$props.updateComment,
+          videoId = _this$props.videoId;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, this.props.comment.commenter), "-", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, comment.createdAt)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, comment.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "Reply"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "Edit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         onClick: function onClick() {
           return destroyComment(comment.id);
@@ -493,7 +556,7 @@ var Header = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this$props = this.props,
           currentUser = _this$props.currentUser,
-          logout = _this$props.logout; // debugger
+          logout = _this$props.logout; // // debugger
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "header"
@@ -1277,17 +1340,20 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
   _createClass(VideoShow, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      debugger;
+      // debugger
       this.props.fetchVideo(this.props.match.params.videoId);
     }
   }, {
     key: "render",
     value: function render() {
-      debugger;
+      // debugger
       var _this$props = this.props,
           video = _this$props.video,
+          destroyComment = _this$props.destroyComment,
           comments = _this$props.comments,
-          destroyComment = _this$props.destroyComment;
+          updateComment = _this$props.updateComment,
+          makeComment = _this$props.makeComment;
+      var videoId = this.props.match.params.videoId;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
         to: "/"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_home_header__WEBPACK_IMPORTED_MODULE_1__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -1298,7 +1364,10 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
         className: "video-show-descr"
       }, video.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_comments_comments_index__WEBPACK_IMPORTED_MODULE_2__["default"], {
         comments: comments,
-        destroyComment: destroyComment
+        destroyComment: destroyComment,
+        updateComment: updateComment,
+        makeComment: makeComment,
+        videoId: videoId
       })));
     }
   }]);
@@ -1334,7 +1403,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  debugger;
+  // console.log(ownProps)
   return {
     video: state.entities.videos[ownProps.match.params.videoId],
     comments: (0,_reducers_selectors__WEBPACK_IMPORTED_MODULE_4__.selectCommentsByVideo)(state, ownProps.match.params.videoId)
@@ -1348,6 +1417,12 @@ var mDTP = function mDTP(dispatch) {
     },
     destroyComment: function destroyComment(commentId) {
       return dispatch((0,_actions_comments_actions__WEBPACK_IMPORTED_MODULE_3__.destroyComment)(commentId));
+    },
+    updateComment: function updateComment(comment, videoId) {
+      return dispatch((0,_actions_comments_actions__WEBPACK_IMPORTED_MODULE_3__.updateComment)(comment, videoId));
+    },
+    makeComment: function makeComment(comment, videoId) {
+      return dispatch((0,_actions_comments_actions__WEBPACK_IMPORTED_MODULE_3__.makeComment)(comment, videoId));
     }
   };
 };
@@ -1387,6 +1462,9 @@ var CommentsReducer = function CommentsReducer() {
   switch (action.type) {
     case _actions_videos_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_VIDEO_DETAIL:
       return _objectSpread(_objectSpread({}, state), action.payload.comments);
+
+    case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_1__.RECEIVE_COMMENT:
+      return Object.assign({}, state, _defineProperty({}, action.comment.id, action.comment));
 
     case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_1__.REMOVE_COMMENT:
       delete nextState[action.commentId];
@@ -1466,15 +1544,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "selectCommentsByVideo": () => (/* binding */ selectCommentsByVideo)
 /* harmony export */ });
 var selectCommentsByVideo = function selectCommentsByVideo(state, videoId) {
-  debugger;
-
+  // debugger
   if (state.entities.videos[videoId].commentIds) {
-    debugger;
+    // debugger
     return state.entities.videos[videoId].commentIds.map(function (commentId) {
       return state.entities.comments[commentId];
     });
   } else {
-    debugger;
+    // debugger
     return [];
   }
 };
@@ -1729,13 +1806,37 @@ var deleteSession = function deleteSession() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "deleteComment": () => (/* binding */ deleteComment)
+/* harmony export */   "deleteComment": () => (/* binding */ deleteComment),
+/* harmony export */   "updateComment": () => (/* binding */ updateComment),
+/* harmony export */   "createComment": () => (/* binding */ createComment)
 /* harmony export */ });
 var deleteComment = function deleteComment(commentId) {
-  // debugger
+  // // debugger
   return $.ajax({
     method: 'DELETE',
     url: "/api/comments/".concat(commentId)
+  });
+};
+var updateComment = function updateComment(comment, videoId) {
+  // // debugger
+  return $.ajax({
+    method: 'PATCH',
+    url: "/api/comments/".concat(commentId),
+    data: {
+      comment: comment,
+      videoId: videoId
+    }
+  });
+};
+var createComment = function createComment(comment, videoId) {
+  debugger;
+  return $.ajax({
+    method: 'POST',
+    url: "/api/comments",
+    data: {
+      comment: comment,
+      videoId: videoId
+    }
   });
 };
 

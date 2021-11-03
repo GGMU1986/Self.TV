@@ -1,7 +1,25 @@
 export const deleteComment = commentId => {
-  // debugger
+  // // debugger
   return $.ajax({
     method: 'DELETE',
     url: `/api/comments/${commentId}`
+  })
+};
+
+export const updateComment = (comment, videoId)=> {
+  // // debugger
+  return $.ajax({
+    method: 'PATCH',
+    url: `/api/comments/${commentId}`,
+    data: { comment, videoId }
+  })
+};
+
+export const createComment = (comment, videoId)=> {
+  debugger
+  return $.ajax({
+    method: 'POST',
+    url: `/api/comments`,
+    data: { comment, videoId }
   })
 };

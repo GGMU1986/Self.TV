@@ -15,9 +15,7 @@ ActiveRecord::Base.connection.reset_pk_sequence!('channels')
 Comment.destroy_all
 ActiveRecord::Base.connection.reset_pk_sequence!('comments')
 
-user1 = User.create!(email: )
-
-channel1 - Channel.create!(name: "GeorgeTV", about: "My beautiful life", creator_id: user2)
+channel1 = Channel.create!(name: "GeorgeTV", about: "My beautiful life", creator_id: user2)
 
 video1 = Video.create!(title: "Boat ride!", duration: "0.10", description: "Riding a boat across the Long Island sound on a beautiful day", uploader_id: user2, channel_id: 1)
 video2 = Video.create!(title: "Bundesliga match", duration: "0.12", description: "At the footbal stadium to watch Mochengladbach", uploader_id: user2, channel_id: 1)

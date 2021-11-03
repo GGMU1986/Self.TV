@@ -1,18 +1,22 @@
 import React from 'react';
 import Header from '../home/header';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import CommentsIndex from '../comments/comments_index';
 
 class VideoShow extends React.Component {
   
   componentDidMount() {
-    debugger
+    // debugger
     this.props.fetchVideo(this.props.match.params.videoId)
   }
   
   render() {
-    debugger
-    const { video, comments, destroyComment } = this.props
+    // debugger
+    const { 
+      video, destroyComment, 
+      comments, updateComment, makeComment 
+    } = this.props
+    let videoId = this.props.match.params.videoId
     return (
       <div>
         <Link to="/">
@@ -34,6 +38,9 @@ class VideoShow extends React.Component {
           <CommentsIndex 
             comments={comments} 
             destroyComment={destroyComment}
+            updateComment={updateComment}
+            makeComment={makeComment}
+            videoId={videoId}
           />
         </div>
       </div>

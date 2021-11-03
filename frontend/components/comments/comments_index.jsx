@@ -5,14 +5,16 @@ import CommentsIndexItem from './comments_index_item';
 class CommentsIndex extends React.Component {
   constructor(props) {
     super(props)
-    debugger
+    // debugger
   }
   componentDidMount() {
-    debugger
+    // debugger
   }
   render() {
-    debugger
-    const { destroyComment } = this.props
+    // debugger
+    const { 
+      destroyComment, makeComment, 
+      updateComment, videoId } = this.props
     let comments = Object.values(this.props.comments)
     return (
       <div className="comments">
@@ -20,7 +22,10 @@ class CommentsIndex extends React.Component {
           {comments.length} Comments - Sort By
         </div>
         <hr />
-        <CommentForm />
+        <CommentForm 
+          makeComment={makeComment} 
+          videoId={videoId}
+        />
         {
           comments.map(comment => {
             if (comment) {
@@ -28,6 +33,8 @@ class CommentsIndex extends React.Component {
                 key={comment.id}
                 comment={comment}
                 destroyComment={destroyComment}
+                updateComment={updateComment}
+                videoId={videoId}
               />
             }
           }

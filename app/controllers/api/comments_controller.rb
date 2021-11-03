@@ -1,7 +1,10 @@
 class Api::CommentsController < ApplicationController  
   def create
+    # debugger
     @comment = Comment.new(comment_params)
-
+    @comment.commenter_id = current_user.id
+    @comment.video_id = params[:videoId].to_i
+    # debugger
     if @comment.save
       render :info
     else
@@ -12,7 +15,7 @@ class Api::CommentsController < ApplicationController
   def update
     @comment = current_user.comments.find_by(id: params[:id])
     @comment.commenter_id = current_user.id
-    @comment.video_id = params[:video_id]
+    # @comment.video_id = params[:videoId]
 
     if @comment && @comment.update(comment_params)
       render :edit
@@ -22,14 +25,14 @@ class Api::CommentsController < ApplicationController
   end
   
   def destroy
-    # debugger
+    # // debugger
     @comment = current_user.comments.find_by(id: params[:id])
 
     if @comment
-      # debugger
+      # // debugger
       @comment.destroy
     else
-      # debugger
+      # // debugger
       render json: ["Only a comments author can delete it"], status: 422
     end
   end
@@ -37,6 +40,6 @@ class Api::CommentsController < ApplicationController
   private
 
   def comment_params
-    params.permit(:comment).require(:body)
+    params.require(:comment).permit(:body, :video_id)
   end
 end
