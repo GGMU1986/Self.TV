@@ -1,21 +1,23 @@
-class Api::CommentsController < ApplicationController
-  def index
-    @comments = Comment.all
-    render :index
-  end
+class Api::CommentsController < ApplicationController  
+  def create
+    @comment = Comment.new(comment_params)
 
-  # def new
-  #   @comment = Comment.new(comment_params)
-  # end
+    if @comment.save
+
+    else
+      render json: @comment.errors.full_messages, status: 422
+    end
+  end
   
-  # def create
-  # end
-  
-  # def edit
-  # end
-  
-  # def update
-  # end
+  def update
+    @comment = current_user.comments.find_by(id: params[:id])
+
+    if @comment && @comment.update(comment_params)
+
+    else
+      render json: @comment.errors.full_messages, status: 422
+    end
+  end
   
   # def destroy
   # end

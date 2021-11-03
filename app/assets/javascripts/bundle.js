@@ -81,14 +81,14 @@ var logout = function logout() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "RECEIVE_ALL_VIDEOS": () => (/* binding */ RECEIVE_ALL_VIDEOS),
-/* harmony export */   "RECEIVE_VIDEO": () => (/* binding */ RECEIVE_VIDEO),
+/* harmony export */   "RECEIVE_VIDEO_DETAIL": () => (/* binding */ RECEIVE_VIDEO_DETAIL),
 /* harmony export */   "fetchVideos": () => (/* binding */ fetchVideos),
 /* harmony export */   "fetchVideo": () => (/* binding */ fetchVideo)
 /* harmony export */ });
 /* harmony import */ var _utils_util_videos__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/util_videos */ "./frontend/utils/util_videos.js");
 
 var RECEIVE_ALL_VIDEOS = 'RECEIVE_ALL_VIDEOS';
-var RECEIVE_VIDEO = 'RECEIVE_ALL_VIDEO';
+var RECEIVE_VIDEO_DETAIL = 'RECEIVE_VIDEO_DETAIL';
 
 var receiveAllVideos = function receiveAllVideos(videos) {
   return {
@@ -97,10 +97,10 @@ var receiveAllVideos = function receiveAllVideos(videos) {
   };
 };
 
-var receiveVideo = function receiveVideo(video) {
+var receiveVideoDetail = function receiveVideoDetail(payload) {
   return {
-    type: RECEIVE_VIDEO,
-    video: video
+    type: RECEIVE_VIDEO_DETAIL,
+    payload: payload
   };
 };
 
@@ -113,8 +113,8 @@ var fetchVideos = function fetchVideos() {
 };
 var fetchVideo = function fetchVideo(videoId) {
   return function (dispatch) {
-    return (0,_utils_util_videos__WEBPACK_IMPORTED_MODULE_0__.getVideo)(videoId).then(function (video) {
-      return dispatch(receiveVideo(video));
+    return (0,_utils_util_videos__WEBPACK_IMPORTED_MODULE_0__.getVideo)(videoId).then(function (payload) {
+      return dispatch(receiveVideoDetail(payload));
     });
   };
 };
@@ -1078,6 +1078,43 @@ var mDTP = function mDTP(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/reducers/comments.js":
+/*!***************************************!*\
+  !*** ./frontend/reducers/comments.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _actions_videos_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/videos_actions */ "./frontend/actions/videos_actions.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var CommentsReducer = function CommentsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {}.action;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_videos_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_VIDEO_DETAIL:
+      return _objectSpread(_objectSpread({}, state), action.payload.comments);
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CommentsReducer);
+
+/***/ }),
+
 /***/ "./frontend/reducers/entities.js":
 /*!***************************************!*\
   !*** ./frontend/reducers/entities.js ***!
@@ -1089,12 +1126,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _videos_reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./videos_reducer */ "./frontend/reducers/videos_reducer.js");
+/* harmony import */ var _comments__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./comments */ "./frontend/reducers/comments.js");
 
 
-var EntitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_1__.combineReducers)({
-  videos: _videos_reducer__WEBPACK_IMPORTED_MODULE_0__["default"]
+
+var EntitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_2__.combineReducers)({
+  videos: _videos_reducer__WEBPACK_IMPORTED_MODULE_0__["default"],
+  comments: _comments__WEBPACK_IMPORTED_MODULE_1__["default"]
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EntitiesReducer);
 
@@ -1228,8 +1268,8 @@ var VideosReducer = function VideosReducer() {
     case _actions_videos_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_ALL_VIDEOS:
       return action.videos;
 
-    case _actions_videos_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_VIDEO:
-      return Object.assign({}, state, _defineProperty({}, action.video.id, action.video));
+    case _actions_videos_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_VIDEO_DETAIL:
+      return Object.assign({}, state, _defineProperty({}, action.payload.video.id, action.payload.video));
 
     default:
       return state;

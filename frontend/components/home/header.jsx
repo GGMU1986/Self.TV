@@ -24,6 +24,7 @@ class Header extends React.Component {
     return (
       <div className="header">
         <div className="logo">
+          {/* <img src="../../../app/assets/images.splash_logo.jpeg" alt="logo" /> */}
           {/* <FontAwesomeIcon icon={faYoutube} /> */}
           <span>Self.TV</span>
         </div>

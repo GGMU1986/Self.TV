@@ -1,16 +1,16 @@
 import { getAllVideos, getVideo } from "../utils/util_videos";
 
 export const RECEIVE_ALL_VIDEOS = 'RECEIVE_ALL_VIDEOS';
-export const RECEIVE_VIDEO = 'RECEIVE_ALL_VIDEO';
+export const RECEIVE_VIDEO_DETAIL = 'RECEIVE_VIDEO_DETAIL';
 
 const receiveAllVideos = videos => ({
   type: RECEIVE_ALL_VIDEOS,
   videos
 });
 
-const receiveVideo = video => ({
-  type: RECEIVE_VIDEO,
-  video
+const receiveVideoDetail = (payload) => ({
+  type: RECEIVE_VIDEO_DETAIL,
+  payload
 });
 
 export const fetchVideos = () => dispatch => (
@@ -18,5 +18,5 @@ export const fetchVideos = () => dispatch => (
 );
 
 export const fetchVideo = videoId => dispatch => (
-  getVideo(videoId).then(video => dispatch(receiveVideo(video)))
+  getVideo(videoId).then(payload => dispatch(receiveVideoDetail(payload)))
 ); 

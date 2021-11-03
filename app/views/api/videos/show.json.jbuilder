@@ -1,10 +1,11 @@
+json.video do
+  json.extract! @video, :id, :title, :duration, :description
+end
 
-json.extract! @video, :id, :title, :duration, :description
-
-@video.comments.each do |comment|
-  json.comments do
+json.comments do 
+  @video.comments.each do |comment|
     json.set! comment.id do 
-      json.extract! comment, :id, :body, :created_at
+      json.extract! comment, :id, :body, :created_at, :video_id
       json.commenter comment.commenter.username
     end
   end
