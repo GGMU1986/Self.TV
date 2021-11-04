@@ -18,8 +18,6 @@ class Api::CommentsController < ApplicationController
   
   def update
     @comment = current_user.comments.find_by(id: params[:id])
-    @comment.commenter_id = current_user.id
-    # @comment.video_id = params[:videoId]
 
     if @comment && @comment.update(comment_params)
       render :edit

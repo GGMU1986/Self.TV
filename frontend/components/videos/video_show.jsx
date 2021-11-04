@@ -22,7 +22,7 @@ class VideoShow extends React.Component {
         <Link to="/">
           <Header />
         </Link>
-        <div>
+        <div className="video-show">
           <div className="video-show-container">
             <video 
               width='70%'

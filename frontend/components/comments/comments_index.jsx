@@ -27,7 +27,7 @@ class CommentsIndex extends React.Component {
           videoId={videoId}
         />
         {
-          comments.map(comment => {
+          comments.reverse().map(comment => {
             if (comment) {
               return <CommentsIndexItem
                 key={comment.id}
