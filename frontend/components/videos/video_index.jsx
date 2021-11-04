@@ -4,7 +4,7 @@ import VideoIndexItem from './video_index_item';
 class VideoIndex extends React.Component {
   
   componentDidMount() {
-    console.log("I mounted");
+    console.log("ed");
     this.props.fetchVideos()
   };
 

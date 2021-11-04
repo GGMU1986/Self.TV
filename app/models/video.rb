@@ -25,4 +25,5 @@ class Video < ApplicationRecord
     class_name: :Channel
 
   has_one_attached :video
+  has_one_attached :photo
 end

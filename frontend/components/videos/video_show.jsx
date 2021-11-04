@@ -15,12 +15,16 @@ class VideoShow extends React.Component {
         <Link to="/">
           <Header />
         </Link>
-        <h1>[VIDEO GOES HERE]</h1>
-        <div className="video-show-title">
-          {video.title}
-        </div>
-        <div className="video-show-descr">
-          {video.description}
+        <div>
+          <div className="video-show-container">
+            <video src={video.videoUrl} width="700" height="1000"></video>
+          </div>
+          <div className="video-show-title">
+            {video.title}
+          </div>
+          <div className="video-show-descr">
+            {video.description}
+          </div>
         </div>
       </div>
     )

@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 const VideoIndexItem = ({ video }) => {
   return (
     <Link to={`/videos/${video.id}`} >
-      <h3>Thumbnail {video.id}</h3>
+      <div className="video-index">
+        <img src={video.photoUrl} width="300" heigth="300" />
+      </div>
       <div>
         {video.title}
       </div>
