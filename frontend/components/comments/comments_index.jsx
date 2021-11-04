@@ -6,16 +6,11 @@ class CommentsIndex extends React.Component {
   constructor(props) {
     super(props)
   }
-  // componentDidMount() {
-  //   this.props.fetch
-  // }
   render() {
-    // debugger
     const { 
       destroyComment, makeComment, 
       updateComment, videoId } = this.props
     let comments = Object.values(this.props.comments)
-    // console.log(this.props.comments)
     return (
       <div className="comments">
         <div className="comment-count">

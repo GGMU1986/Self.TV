@@ -1,8 +1,16 @@
 import React from 'react';
 
 class CommentsIndexItem extends React.Component {
+  constructor(props) {
+    super(props)
+    this.handleEdit = this.handleEdit.bind(this);
+  }
+
+  handleEdit(e) {
+    
+  }
+
   render () {
-    // // debugger
     const { comment, destroyComment, updateComment, videoId } = this.props
     return (
       <div>
@@ -16,7 +24,7 @@ class CommentsIndexItem extends React.Component {
           {comment.body}
         </div>
         <button>Reply</button>
-        <button>Edit</button>
+        <button onClick={this.handleEdit}>Edit</button>
         <button onClick={() => destroyComment(comment.id)}>Delete</button>
         <br />
       </div>
