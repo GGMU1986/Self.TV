@@ -5,17 +5,51 @@
 }
 
 .header {
-   width: 100%;
-   height: 50px;
-   border-bottom: lightgray;
+  margin: 0 20px;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+ }
+
+ .bars-logo {
+   width: 10%;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+ }
+
+ .search-mic {
+  display: flex;
+  align-items: center;
+ }
+
+ .mag-glass {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10 20px;
+  border: 1px solid gray;
+  height: 34px;
+  width: 60px;
+  cursor: pointer;
+ }
+
+ .ext-links {
    display: flex;
    align-items: center;
-   justify-content: space-around;
+   justify-content: space-evenly;
  }
 
  input {
-   width: 500px;
-   height: 30px;
+  width: 350px; 
+  height: 30px;
+ }
+
+ .mic {
+  border: 1px solid lightgray;
+  border-radius: 50%;
  }
 
  .YT{

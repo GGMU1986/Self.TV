@@ -28,31 +28,42 @@ class Header extends React.Component {
     // debugger
     return (
       <div className="header">
-        <FontAwesomeIcon className="bars" icon={faBars} />
-        <div className="logo">
-          <FontAwesomeIcon className="YT" icon={faYoutube} />
-          <span>Self.TV</span>
+        <div className="bars-logo">
+          <FontAwesomeIcon className="bars" icon={faBars} />
+          <div className="logo">
+            <FontAwesomeIcon className="YT" icon={faYoutube} />
+            <span>Self.TV</span>
+          </div>
         </div>
-        <input type="text" placeholder="Seach" />
-        {/* <FontAwesomeIcon icon={faMagnifyingGlass} /> */}
-        <i className="fas fa-search"></i>
-        <FontAwesomeIcon icon={faMicrophone} />
-        <FontAwesomeIcon icon={faVideo} />
-          <a href="https://github.com/GGMU1986" target="blank">
-            <FontAwesomeIcon className="github" icon={faGithub} />
-          </a>
-        <a href="https://www.linkedin.com/in/george-tsimis-a5986224/" target="blank">
-            <FontAwesomeIcon className="linkedin" icon={faLinkedin} /> 
-          </a>
-        <div className="signin">
-          <FontAwesomeIcon icon={faUserAstronaut} />
-          {
-            currentUser ? (
-              <button onClick={() => logout()}>SIGN OUT</button>
-            ) : (
-              <Link to="/signin">SIGN IN</Link>
-            )
-          }
+
+        <div class="search-mic">
+          <input type="text" placeholder="Search" />
+          <div class="mag-glass">
+            <i className="fas fa-search"></i>
+          </div>
+          <div className="mic">
+            <FontAwesomeIcon icon={faMicrophone} />
+          </div>
+        </div>
+
+        <div className="ext-links">
+          <FontAwesomeIcon icon={faVideo} />
+            <a href="https://github.com/GGMU1986" target="blank">
+              <FontAwesomeIcon className="github" icon={faGithub} />
+            </a>
+          <a href="https://www.linkedin.com/in/george-tsimis-a5986224/" target="blank">
+              <FontAwesomeIcon className="linkedin" icon={faLinkedin} /> 
+            </a>
+          <div className="signin">
+            <FontAwesomeIcon icon={faUserAstronaut} />
+            {
+              currentUser ? (
+                <button onClick={() => logout()}>SIGN OUT</button>
+              ) : (
+                <Link to="/signin">SIGN IN</Link>
+              )
+            }
+          </div>
         </div>
       </div>
     )
