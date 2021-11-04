@@ -14,6 +14,10 @@
   justify-content: space-between;
  }
 
+ .upload {
+   cursor: pointer;
+ }
+
  .bars-logo {
    width: 10%;
    display: flex;
@@ -32,9 +36,14 @@
   align-items: center;
   padding: 10 20px;
   border: 1px solid gray;
+  background: rgb(242, 242, 242);
   height: 34px;
   width: 60px;
   cursor: pointer;
+ }
+
+ .mag-glass:hover {
+   background: rgb(228, 228, 228)
  }
 
  .ext-links {
@@ -58,8 +67,11 @@
  }
 
  .mic {
-  border: 1px solid lightgray;
-  border-radius: 50%;
+   margin-left: 3px;
+  padding: 10px;
+  border: 0 solid white;
+  background-color: rgb(242, 242, 242);
+  border-radius: 47%;
  }
 
  .YT{

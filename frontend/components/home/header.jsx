@@ -36,9 +36,9 @@ class Header extends React.Component {
           </div>
         </div>
 
-        <div class="search-mic">
+        <div className="search-mic">
           <input type="text" placeholder="Search" />
-          <div class="mag-glass">
+          <div className="mag-glass">
             <i className="fas fa-search"></i>
           </div>
           <div className="mic">
@@ -48,7 +48,7 @@ class Header extends React.Component {
 
         <div className="ext-links">
           <div className="links">
-            <FontAwesomeIcon icon={faVideo} className="link"/>
+            <FontAwesomeIcon icon={faVideo} className="link upload"/>
               <a href="https://github.com/GGMU1986" target="blank">
               <FontAwesomeIcon className="github" icon={faGithub} className="link"/>
               </a>
