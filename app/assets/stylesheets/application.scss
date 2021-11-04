@@ -13,12 +13,8 @@
  *= require_self
  */
 
-<<<<<<< HEAD:app/assets/stylesheets/application.scss
-
+@import './reset.css';
 @import './header.css';
 @import './sidenav.css';
 @import './video_index.css';
-=======
-@import './reset.scss'
-
->>>>>>> comments:app/assets/stylesheets/application.css
+@import './comments.css';
