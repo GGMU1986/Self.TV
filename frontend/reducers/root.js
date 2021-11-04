@@ -1,12 +1,12 @@
 import { combineReducers } from "redux";
 import SessionReducer from './session';
 import SessionErrorsReducer from "./session_errors";
-import VideosReducer from "./videos_reducer";
+import EntitiesReducer from "./entities";
 
 const RootReducer = combineReducers({
+  entities: EntitiesReducer,
   session: SessionReducer,
-  errors: SessionErrorsReducer,
-  videos: VideosReducer
+  errors: SessionErrorsReducer
 });
 
 export default RootReducer;

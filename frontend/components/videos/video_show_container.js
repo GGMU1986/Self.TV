@@ -1,14 +1,27 @@
 import { connect } from 'react-redux';
 import VideoShow from './video_show';
 import { fetchVideo } from '../../actions/videos_actions';
-// import { withRouter } from 'react-router';
+import { 
+  destroyComment, 
+  updateComment,
+  makeComment 
+} from '../../actions/comments_actions';
+import { selectCommentsByVideo } from '../../reducers/selectors';
 
-const mSTP = (state, ownProps) => ({
-  video: state.videos[ownProps.match.params.videoId]
-});
+const mSTP = (state, ownProps) => {
+  // console.log(ownProps)
+  return {
+    video: state.entities.videos[ownProps.match.params.videoId],
+    // comments: selectCommentsByVideo(state, ownProps.match.params.videoId)
+    comments: Object.values(state.entities.comments)
+  } 
+};
 
 const mDTP = dispatch => ({
-  fetchVideo: videoId => dispatch(fetchVideo(videoId))
+  fetchVideo: videoId => dispatch(fetchVideo(videoId)),
+  destroyComment: commentId => dispatch(destroyComment(commentId)),
+  updateComment: (comment, videoId) => dispatch(updateComment(comment, videoId)),
+  makeComment: (comment, videoId) => dispatch(makeComment(comment, videoId)) 
 });
 
 export default connect(mSTP, mDTP)(VideoShow);

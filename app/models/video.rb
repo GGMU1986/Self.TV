@@ -24,6 +24,10 @@ class Video < ApplicationRecord
     foreign_key: :channel_id,
     class_name: :Channel
 
+  has_many :comments,
+    foreign_key: :video_id,
+    class_name: :Comment
+
   has_one_attached :video
   has_one_attached :photo
 end
