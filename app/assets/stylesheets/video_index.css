@@ -1,4 +1,5 @@
 .video-index {
   display: flex;
+  flex-wrap: wrap;
   margin: 30px;
 }
