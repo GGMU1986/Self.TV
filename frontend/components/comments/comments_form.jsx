@@ -5,10 +5,7 @@ import { withRouter } from 'react-router-dom';
 class CommentForm extends React.Component {
   constructor(props){
     super(props)
-    this.state = {
-      video_id: this.props.videoId,
-      body: '' 
-    }
+    this.state = this.props.comment
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
     this.noComment = this.noComment.bind(this);
@@ -20,15 +17,12 @@ class CommentForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.makeComment(this.state, this.props.videoId)
+    this.props.action(this.state, this.props.videoId)
     this.setState({ body: ''})
   }
 
   noComment(e) {
-    // debugger
     if (!this.props.currentUser) this.props.history.push('/signin')
-    // debugger
-    // console.log(this.props.currentUser)
   }
 
   render() {

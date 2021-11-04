@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '../home/header';
 import { Link } from 'react-router-dom';
 import CommentsIndex from '../comments/comments_index';
+import CommentForm from '../comments/comments_form';
 
 class VideoShow extends React.Component {
   
@@ -12,7 +13,7 @@ class VideoShow extends React.Component {
   render() {
     const { 
       video, destroyComment, 
-      comments, updateComment, makeComment 
+      comments, action, comment
     } = this.props
     let videoId = this.props.match.params.videoId
     return (
@@ -39,12 +40,14 @@ class VideoShow extends React.Component {
         </div>
         <hr />
         <div>
-          
+          <CommentForm
+            comment={comment}
+            action={action}
+            videoId={videoId}
+          />
           <CommentsIndex 
             comments={comments} 
             destroyComment={destroyComment}
-            updateComment={updateComment}
-            makeComment={makeComment}
             videoId={videoId}
           />
         </div>

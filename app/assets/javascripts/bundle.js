@@ -13181,10 +13181,10 @@ var destroyComment = function destroyComment(commentId) {
 //     return dispatch(receiveComment(comment))})
 // };
 
-var makeComment = function makeComment(comment) {
+var makeComment = function makeComment(comment, videoId) {
   return function (dispatch) {
     debugger;
-    return (0,_utils_util_comments__WEBPACK_IMPORTED_MODULE_0__.createComment)(comment).then(function (comment) {
+    return (0,_utils_util_comments__WEBPACK_IMPORTED_MODULE_0__.createComment)(comment, videoId).then(function (comment) {
       debugger;
       return dispatch(receiveComment(comment));
     });
@@ -13410,10 +13410,7 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, CommentForm);
 
     _this = _super.call(this, props);
-    _this.state = {
-      video_id: _this.props.videoId,
-      body: ''
-    };
+    _this.state = _this.props.comment;
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.update = _this.update.bind(_assertThisInitialized(_this));
     _this.noComment = _this.noComment.bind(_assertThisInitialized(_this));
@@ -13431,7 +13428,7 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      this.props.makeComment(this.state, this.props.videoId);
+      this.props.action(this.state, this.props.videoId);
       this.setState({
         body: ''
       });
@@ -13439,9 +13436,7 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "noComment",
     value: function noComment(e) {
-      // debugger
-      if (!this.props.currentUser) this.props.history.push('/signin'); // debugger
-      // console.log(this.props.currentUser)
+      if (!this.props.currentUser) this.props.history.push('/signin');
     }
   }, {
     key: "render",
@@ -13487,8 +13482,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _comments_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./comments_form */ "./frontend/components/comments/comments_form.jsx");
-/* harmony import */ var _comments_index_item__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./comments_index_item */ "./frontend/components/comments/comments_index_item.jsx");
+/* harmony import */ var _comments_index_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./comments_index_item */ "./frontend/components/comments/comments_index_item.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -13510,7 +13504,6 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
 
 
 
@@ -13539,12 +13532,9 @@ var CommentsIndex = /*#__PURE__*/function (_React$Component) {
         className: "comments"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "comment-count"
-      }, comments.length, " Comments"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_comments_form__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        makeComment: makeComment,
-        videoId: videoId
-      }), comments.reverse().map(function (comment) {
+      }, comments.length, " Comments"), comments.reverse().map(function (comment) {
         if (comment) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_comments_index_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_comments_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
             key: comment.id,
             comment: comment,
             destroyComment: destroyComment,
@@ -14495,8 +14485,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _home_header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../home/header */ "./frontend/components/home/header.jsx");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _comments_comments_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../comments/comments_index */ "./frontend/components/comments/comments_index.jsx");
+/* harmony import */ var _comments_comments_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../comments/comments_form */ "./frontend/components/comments/comments_form.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -14518,6 +14509,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -14547,10 +14539,10 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
           video = _this$props.video,
           destroyComment = _this$props.destroyComment,
           comments = _this$props.comments,
-          updateComment = _this$props.updateComment,
-          makeComment = _this$props.makeComment;
+          action = _this$props.action,
+          comment = _this$props.comment;
       var videoId = this.props.match.params.videoId;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
         to: "/"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_home_header__WEBPACK_IMPORTED_MODULE_1__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "video-show"
@@ -14566,11 +14558,13 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
         className: "video-show-title"
       }, video.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "video-show-descr"
-      }, video.description)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_comments_comments_index__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      }, video.description)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_comments_comments_form__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        comment: comment,
+        action: action,
+        videoId: videoId
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_comments_comments_index__WEBPACK_IMPORTED_MODULE_2__["default"], {
         comments: comments,
         destroyComment: destroyComment,
-        updateComment: updateComment,
-        makeComment: makeComment,
         videoId: videoId
       })));
     }
@@ -14599,8 +14593,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _video_show__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./video_show */ "./frontend/components/videos/video_show.jsx");
 /* harmony import */ var _actions_videos_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/videos_actions */ "./frontend/actions/videos_actions.js");
 /* harmony import */ var _actions_comments_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/comments_actions */ "./frontend/actions/comments_actions.js");
-/* harmony import */ var _reducers_selectors__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../reducers/selectors */ "./frontend/reducers/selectors.js");
-
 
 
 
@@ -14610,8 +14602,10 @@ var mSTP = function mSTP(state, ownProps) {
   // console.log(ownProps)
   return {
     video: state.entities.videos[ownProps.match.params.videoId],
-    // comments: selectCommentsByVideo(state, ownProps.match.params.videoId)
-    comments: Object.values(state.entities.comments)
+    comments: Object.values(state.entities.comments),
+    comment: {
+      body: ''
+    }
   };
 };
 
@@ -14623,10 +14617,7 @@ var mDTP = function mDTP(dispatch) {
     destroyComment: function destroyComment(commentId) {
       return dispatch((0,_actions_comments_actions__WEBPACK_IMPORTED_MODULE_3__.destroyComment)(commentId));
     },
-    updateComment: function updateComment(comment, videoId) {
-      return dispatch((0,_actions_comments_actions__WEBPACK_IMPORTED_MODULE_3__.updateComment)(comment, videoId));
-    },
-    makeComment: function makeComment(comment, videoId) {
+    action: function action(comment, videoId) {
       return dispatch((0,_actions_comments_actions__WEBPACK_IMPORTED_MODULE_3__.makeComment)(comment, videoId));
     }
   };
@@ -15033,13 +15024,14 @@ var updateComment = function updateComment(comment, videoId) {
     }
   });
 };
-var createComment = function createComment(comment) {
+var createComment = function createComment(comment, videoId) {
   debugger;
   return $.ajax({
     method: 'POST',
     url: "/api/comments",
     data: {
-      comment: comment
+      comment: comment,
+      videoId: videoId
     }
   });
 };

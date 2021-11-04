@@ -1,5 +1,4 @@
 import React from 'react'
-import CommentForm from './comments_form';
 import CommentsIndexItem from './comments_index_item';
 
 class CommentsIndex extends React.Component {
@@ -16,11 +15,10 @@ class CommentsIndex extends React.Component {
         <div className="comment-count">
           {comments.length} Comments
         </div>
-        <hr />
-        <CommentForm 
+        {/* <CommentForm 
           makeComment={makeComment} 
           videoId={videoId}
-        />
+        /> */}
         {
           comments.reverse().map(comment => {
             if (comment) {

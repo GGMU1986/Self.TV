@@ -31,9 +31,9 @@ export const destroyComment = commentId => dispatch => {
 //     return dispatch(receiveComment(comment))})
 // };
 
-export const makeComment = (comment) => dispatch => {
+export const makeComment = (comment, videoId) => dispatch => {
   debugger
-  return createComment(comment).then(comment => { 
+  return createComment(comment, videoId).then(comment => { 
     debugger
     return dispatch(receiveComment(comment))})
 };
