@@ -47,13 +47,15 @@ class Header extends React.Component {
         </div>
 
         <div className="ext-links">
-          <FontAwesomeIcon icon={faVideo} />
-            <a href="https://github.com/GGMU1986" target="blank">
-              <FontAwesomeIcon className="github" icon={faGithub} />
-            </a>
-          <a href="https://www.linkedin.com/in/george-tsimis-a5986224/" target="blank">
-              <FontAwesomeIcon className="linkedin" icon={faLinkedin} /> 
-            </a>
+          <div className="links">
+            <FontAwesomeIcon icon={faVideo} className="link"/>
+              <a href="https://github.com/GGMU1986" target="blank">
+              <FontAwesomeIcon className="github" icon={faGithub} className="link"/>
+              </a>
+            <a href="https://www.linkedin.com/in/george-tsimis-a5986224/" target="blank">
+              <FontAwesomeIcon className="linkedin" icon={faLinkedin} className="link"/>
+              </a>
+          </div>
           <div className="signin">
             <FontAwesomeIcon icon={faUserAstronaut} />
             {

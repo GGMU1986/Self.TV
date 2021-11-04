@@ -6,6 +6,7 @@
 
 .header {
   margin: 0 20px;
+  padding-right: 20px;
   width: 100%;
   height: 50px;
   display: flex;
@@ -37,9 +38,18 @@
  }
 
  .ext-links {
+   width: 30%;
    display: flex;
    align-items: center;
    justify-content: space-evenly;
+ }
+
+ .links {
+  display: flex;
+ }
+
+ .link {
+   padding: 0 15px;
  }
 
  input {
@@ -64,13 +74,10 @@
  }
 
  .signin {
-   color: blue;
+  color: blue;
   font-weight: 700;
   font-family: 'Open Sans', sans-serif;
   border: 1px solid blue;
   padding: 10px 15px;
   text-decoration: none;
  }
- /* .video-index {
-   display: flex;
- } */
