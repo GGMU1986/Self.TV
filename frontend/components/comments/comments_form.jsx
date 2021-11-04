@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom';
 
 class CommentForm extends React.Component {
   constructor(props){
@@ -9,6 +11,7 @@ class CommentForm extends React.Component {
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
+    this.noComment = this.noComment.bind(this);
   }
 
   update(e) {
@@ -17,9 +20,15 @@ class CommentForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    // this.props.makeComment(this.state, this.props.videoId)
     this.props.makeComment(this.state, this.props.videoId)
     this.setState({ body: ''})
+  }
+
+  noComment(e) {
+    // debugger
+    if (!this.props.currentUser) this.props.history.push('/signin')
+    // debugger
+    // console.log(this.props.currentUser)
   }
 
   render() {
@@ -31,6 +40,7 @@ class CommentForm extends React.Component {
             placeholder="Add a public comment..." 
             value={this.state.body}
             onChange={this.update}
+            onClick={this.noComment}
           />
           <button onClick={this.handleSubmit}>COMMENT</button>
         </form>
@@ -39,4 +49,8 @@ class CommentForm extends React.Component {
   }
 };
 
-export default CommentForm;
+const mSTP = state => ({
+  currentUser: state.session.currentUser
+})
+
+export default withRouter(connect(mSTP)(CommentForm));

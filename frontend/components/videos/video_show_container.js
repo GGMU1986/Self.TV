@@ -12,7 +12,8 @@ const mSTP = (state, ownProps) => {
   // console.log(ownProps)
   return {
     video: state.entities.videos[ownProps.match.params.videoId],
-    comments: selectCommentsByVideo(state, ownProps.match.params.videoId)
+    // comments: selectCommentsByVideo(state, ownProps.match.params.videoId)
+    comments: Object.values(state.entities.comments)
   } 
 };
 

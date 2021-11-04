@@ -49,11 +49,11 @@ var destroyComment = function destroyComment(commentId) {
 //     return dispatch(receiveComment(comment))})
 // };
 
-var makeComment = function makeComment(comment, videoId) {
+var makeComment = function makeComment(comment) {
   return function (dispatch) {
-    // // debugger
-    return (0,_utils_util_comments__WEBPACK_IMPORTED_MODULE_0__.createComment)(comment, videoId).then(function (comment) {
-      // // debugger
+    debugger;
+    return (0,_utils_util_comments__WEBPACK_IMPORTED_MODULE_0__.createComment)(comment).then(function (comment) {
+      debugger;
       return dispatch(receiveComment(comment));
     });
   };
@@ -239,6 +239,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -263,6 +265,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
+
 var CommentForm = /*#__PURE__*/function (_React$Component) {
   _inherits(CommentForm, _React$Component);
 
@@ -280,6 +284,7 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.update = _this.update.bind(_assertThisInitialized(_this));
+    _this.noComment = _this.noComment.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -293,12 +298,18 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      e.preventDefault(); // this.props.makeComment(this.state, this.props.videoId)
-
+      e.preventDefault();
       this.props.makeComment(this.state, this.props.videoId);
       this.setState({
         body: ''
       });
+    }
+  }, {
+    key: "noComment",
+    value: function noComment(e) {
+      // debugger
+      if (!this.props.currentUser) this.props.history.push('/signin'); // debugger
+      // console.log(this.props.currentUser)
     }
   }, {
     key: "render",
@@ -309,7 +320,8 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
         type: "text",
         placeholder: "Add a public comment...",
         value: this.state.body,
-        onChange: this.update
+        onChange: this.update,
+        onClick: this.noComment
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         onClick: this.handleSubmit
       }, "COMMENT")));
@@ -320,7 +332,14 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
 ;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CommentForm);
+
+var mSTP = function mSTP(state) {
+  return {
+    currentUser: state.session.currentUser
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_2__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mSTP)(CommentForm)));
 
 /***/ }),
 
@@ -372,14 +391,13 @@ var CommentsIndex = /*#__PURE__*/function (_React$Component) {
   function CommentsIndex(props) {
     _classCallCheck(this, CommentsIndex);
 
-    return _super.call(this, props); // debugger
-  }
+    return _super.call(this, props);
+  } // componentDidMount() {
+  //   this.props.fetch
+  // }
+
 
   _createClass(CommentsIndex, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {// debugger
-    }
-  }, {
     key: "render",
     value: function render() {
       // debugger
@@ -388,12 +406,13 @@ var CommentsIndex = /*#__PURE__*/function (_React$Component) {
           makeComment = _this$props.makeComment,
           updateComment = _this$props.updateComment,
           videoId = _this$props.videoId;
-      var comments = Object.values(this.props.comments);
+      var comments = Object.values(this.props.comments); // console.log(this.props.comments)
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "comments"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "comment-count"
-      }, comments.length, " Comments - Sort By"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_comments_form__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      }, comments.length, " Comments"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_comments_form__WEBPACK_IMPORTED_MODULE_1__["default"], {
         makeComment: makeComment,
         videoId: videoId
       }), comments.map(function (comment) {
@@ -1409,7 +1428,8 @@ var mSTP = function mSTP(state, ownProps) {
   // console.log(ownProps)
   return {
     video: state.entities.videos[ownProps.match.params.videoId],
-    comments: (0,_reducers_selectors__WEBPACK_IMPORTED_MODULE_4__.selectCommentsByVideo)(state, ownProps.match.params.videoId)
+    // comments: selectCommentsByVideo(state, ownProps.match.params.videoId)
+    comments: Object.values(state.entities.comments)
   };
 };
 
@@ -1467,6 +1487,7 @@ var CommentsReducer = function CommentsReducer() {
       return _objectSpread(_objectSpread({}, state), action.payload.comments);
 
     case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_1__.RECEIVE_COMMENT:
+      debugger;
       return Object.assign({}, state, _defineProperty({}, action.comment.id, action.comment));
 
     case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_1__.REMOVE_COMMENT:
@@ -1474,6 +1495,7 @@ var CommentsReducer = function CommentsReducer() {
       return nextState;
 
     default:
+      debugger;
       return state;
   }
 };
@@ -1831,14 +1853,13 @@ var updateComment = function updateComment(comment, videoId) {
     }
   });
 };
-var createComment = function createComment(comment, videoId) {
+var createComment = function createComment(comment) {
   debugger;
   return $.ajax({
     method: 'POST',
     url: "/api/comments",
     data: {
-      comment: comment,
-      videoId: videoId
+      comment: comment
     }
   });
 };

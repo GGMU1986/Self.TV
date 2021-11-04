@@ -3,11 +3,13 @@ class Api::CommentsController < ApplicationController
     # debugger
     @comment = Comment.new(comment_params)
     @comment.commenter_id = current_user.id
-    @comment.video_id = params[:videoId].to_i
+    @comment.video_id = comment_params["video_id"].to_i
     # debugger
     if @comment.save
+      # debugger
       render :info
     else
+      # debugger
       render json: @comment.errors.full_messages, status: 422
     end
   end

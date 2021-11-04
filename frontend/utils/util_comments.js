@@ -15,11 +15,11 @@ export const updateComment = (comment, videoId)=> {
   })
 };
 
-export const createComment = (comment, videoId)=> {
+export const createComment = (comment)=> {
   debugger
   return $.ajax({
     method: 'POST',
     url: `/api/comments`,
-    data: { comment, videoId }
+    data: { comment }
   })
 };
