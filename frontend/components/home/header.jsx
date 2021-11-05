@@ -50,7 +50,12 @@ class Header extends React.Component {
 
         <div className="ext-links">
           <div className="links">
-            <FontAwesomeIcon icon={faVideo} className="link upload"/>
+            { currentUser ? (
+              <FontAwesomeIcon icon={faVideo} className="link upload"/>
+            ) : (
+                null
+              )
+            }
               <a href="https://github.com/GGMU1986" target="blank">
               <FontAwesomeIcon className="github" icon={faGithub} className="link"/>
               </a>
@@ -63,6 +68,7 @@ class Header extends React.Component {
             {
               currentUser ? (
                 <button onClick={() => logout()}>SIGN OUT</button>
+                // <span className="loggedin">{currentUser.username[0].toUpperCase()}</span>
               ) : (
                 <Link to="/signin">SIGN IN</Link>
               )
