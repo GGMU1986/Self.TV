@@ -22,56 +22,59 @@ class VideoShow extends React.Component {
       <div>
         <Header />
         <div className="video-show">
-          <div className="video-show-container">
-            <video 
-              width='70%'
-              height='50%'
-              src={video.videoUrl}   
-              title={video.title}
-              controls
-            />
-          </div>
-          <div className="video-show-title">
-            <strong>
-              {video.title}
-            </strong>
-            <br />
-            [views] - {uploadDate} --- [likes/dislikes] - [share]
-          </div>
-          <hr />
-          <div className="channel-desc">
-            <div className="video-channel">
+          <div>
+            <div className="video-show-container">
+              <video 
+                width='70%'
+                height='50%'
+                src={video.videoUrl}   
+                title={video.title}
+                controls
+              />
+            </div>
+            <div className="video-show-title">
               <strong>
-                {video.channel}
+                {video.title}
               </strong>
               <br />
-              [subscribers]
+              [views] - {uploadDate
+              } --- [likes/dislikes] - [share]
             </div>
-            <br />
-            <div className="video-show-descr">
-              {video.description}
+            <hr />
+            <div className="channel-desc">
+              <div className="video-channel">
+                <strong>
+                  {video.channel}
+                </strong>
+                <br />
+                [subscribers]
+              </div>
+              <br />
+              <div className="video-show-descr">
+                {video.description}
+              </div>
             </div>
           </div>
-        </div>
-        <hr />
-        <div className="comment-count">
-          {comments.length} Comments
-          &nbsp;&nbsp;
-          <span className='sort-by'>
-            SORT BY
-          </span>
-        </div>
-        <div>
-          <CommentForm
-            comment={comment}
-            action={action}
-            videoId={videoId}
-          />
-          <CommentsIndex 
-            comments={comments} 
-            destroyComment={destroyComment}
-            videoId={videoId}
-          />
+          <hr />
+          <div className="comment-count">
+            {comments.length} Comments
+            &nbsp;&nbsp;
+            <span className='sort-by'>
+              SORT BY
+            </span>
+          </div>
+          <div>
+            <CommentForm
+              comment={comment}
+              action={action}
+              videoId={videoId}
+            />
+            <CommentsIndex 
+              comments={comments} 
+              destroyComment={destroyComment}
+              videoId={videoId}
+            />
+          </div>
         </div>
       </div>
     )
