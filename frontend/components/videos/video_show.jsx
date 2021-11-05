@@ -40,7 +40,6 @@ class VideoShow extends React.Component {
         <div className="comment-count">
           {comments.length} Comments
         </div>
-        <hr />
         <div>
           <CommentForm
             comment={comment}

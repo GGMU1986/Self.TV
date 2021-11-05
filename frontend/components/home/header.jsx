@@ -33,7 +33,7 @@ class Header extends React.Component {
           <div className="logo">
             <Link className="logo-link" to="/">
               <FontAwesomeIcon className="YT" icon={faYoutube} />
-              <span>Self.TV</span>
+              <span class="self">Self.TV</span>
             </Link>
           </div>
         </div>
