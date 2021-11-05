@@ -1,6 +1,7 @@
 json.video do
-  json.extract! @video, :id, :title, :duration, :description, :comment_ids
+  json.extract! @video, :id, :title, :duration, :description
   json.videoUrl url_for(@video.video)
+  json.channel @video.channel.name
 end
 
 json.comments do 

@@ -30,15 +30,33 @@ class VideoShow extends React.Component {
             />
           </div>
           <div className="video-show-title">
-            {video.title}
+            <strong>
+              {video.title}
+            </strong>
+            <br />
+            [views] - [date uploaded] --- [likes/dislikes] - [share]
           </div>
-          <div className="video-show-descr">
-            {video.description}
+          <hr />
+          <div className="channel-desc">
+            <div className="video-channel">
+              <strong>
+                {video.channel}
+              </strong>
+              <br />
+              [subscribers]
+            </div>
+            <div className="video-show-descr">
+              {video.description}
+            </div>
           </div>
         </div>
         <hr />
         <div className="comment-count">
           {comments.length} Comments
+          &nbsp;&nbsp;
+          <span className='sort-by'>
+            SORT BY
+          </span>
         </div>
         <div>
           <CommentForm

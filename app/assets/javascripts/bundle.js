@@ -14686,11 +14686,17 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
         controls: true
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "video-show-title"
-      }, video.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, video.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), "[views] - [date uploaded] --- [likes/dislikes] - [share]"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "channel-desc"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "video-channel"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, video.channel), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), "[subscribers]"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "video-show-descr"
-      }, video.description)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, video.description))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "comment-count"
-      }, comments.length, " Comments"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_comments_comments_form__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      }, comments.length, " Comments \xA0\xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+        className: "sort-by"
+      }, "SORT BY")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_comments_comments_form__WEBPACK_IMPORTED_MODULE_3__["default"], {
         comment: comment,
         action: action,
         videoId: videoId
