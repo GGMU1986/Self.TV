@@ -12,12 +12,21 @@ class CommentsIndexItem extends React.Component {
 
   render () {
     const { comment, destroyComment, updateComment, videoId } = this.props
+    const timeNow = new Date()
+    const oldTime = new Date(comment.createdAt)
+    const time = timeNow - oldTime
+    const timeDays = Math.round(time / (1000 * 3600 * 24))
+    const timeAgo = timeDays < 1 ? 'today' : (
+      timeDays === 1 ? '1 day ago' : `${timeDays} ago`
+    )
     return (
       <div className='comments-index'>
         <div>
           <strong>{this.props.comment.commenter}</strong>
           &nbsp;
-          <span>{(comment.createdAt)}</span>
+          <span>
+            {timeAgo}
+          </span>
         </div>
         <br />
         <div>

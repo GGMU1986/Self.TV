@@ -13170,18 +13170,18 @@ var removeComment = function removeComment(commentId) {
 
 var destroyComment = function destroyComment(commentId) {
   return function (dispatch) {
-    // // debugger
+    // // // debugger
     return (0,_utils_util_comments__WEBPACK_IMPORTED_MODULE_0__.deleteComment)(commentId).then(function () {
-      // // debugger
+      // // // debugger
       return dispatch(removeComment(commentId));
     });
   };
 };
 var reviseComment = function reviseComment(comment) {
   return function (dispatch) {
-    // // debugger
+    // // // debugger
     return (0,_utils_util_comments__WEBPACK_IMPORTED_MODULE_0__.updateComment)(comment).then(function (comment) {
-      // // debugger
+      // // // debugger
       return dispatch(receiveComment(comment));
     });
   };
@@ -13195,9 +13195,9 @@ var requestComment = function requestComment(commentId) {
 };
 var makeComment = function makeComment(comment, videoId) {
   return function (dispatch) {
-    debugger;
+    // debugger
     return (0,_utils_util_comments__WEBPACK_IMPORTED_MODULE_0__.createComment)(comment, videoId).then(function (comment) {
-      debugger;
+      // debugger
       return dispatch(receiveComment(comment));
     });
   };
@@ -13634,9 +13634,14 @@ var CommentsIndexItem = /*#__PURE__*/function (_React$Component) {
           destroyComment = _this$props.destroyComment,
           updateComment = _this$props.updateComment,
           videoId = _this$props.videoId;
+      var timeNow = new Date();
+      var oldTime = new Date(comment.createdAt);
+      var time = timeNow - oldTime;
+      var timeDays = Math.round(time / (1000 * 3600 * 24));
+      var timeAgo = timeDays < 1 ? 'today' : timeDays === 1 ? '1 day ago' : "".concat(timeDays, " ago");
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "comments-index"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, this.props.comment.commenter), "\xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, comment.createdAt)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, comment.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "Reply"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, this.props.comment.commenter), "\xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, timeAgo)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, comment.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "Reply"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         onClick: this.handleEdit
       }, "Edit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         onClick: function onClick() {
@@ -13832,7 +13837,7 @@ var Header = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this$props = this.props,
           currentUser = _this$props.currentUser,
-          logout = _this$props.logout; // // debugger
+          logout = _this$props.logout; // // // debugger
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "header"
@@ -14690,7 +14695,7 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
         className: "channel-desc"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "video-channel"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, video.channel), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), "[subscribers]"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, video.channel), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), "[subscribers]"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "video-show-descr"
       }, video.description))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "comment-count"
@@ -14798,7 +14803,7 @@ var CommentsReducer = function CommentsReducer() {
       return _objectSpread(_objectSpread({}, state), action.payload.comments);
 
     case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_1__.RECEIVE_COMMENT:
-      debugger;
+      // debugger
       return Object.assign({}, state, _defineProperty({}, action.comment.id, action.comment));
 
     case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_1__.REMOVE_COMMENT:
@@ -14806,7 +14811,7 @@ var CommentsReducer = function CommentsReducer() {
       return nextState;
 
     default:
-      debugger;
+      // debugger
       return state;
   }
 };
@@ -14880,14 +14885,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "selectCommentsByVideo": () => (/* binding */ selectCommentsByVideo)
 /* harmony export */ });
 var selectCommentsByVideo = function selectCommentsByVideo(state, videoId) {
-  // debugger
+  // // debugger
   if (state.entities.videos[videoId].commentIds) {
-    // debugger
+    // // debugger
     return state.entities.videos[videoId].commentIds.map(function (commentId) {
       return state.entities.comments[commentId];
     });
   } else {
-    // debugger
+    // // debugger
     return [];
   }
 };
@@ -15163,7 +15168,7 @@ var updateComment = function updateComment(comment) {
   });
 };
 var createComment = function createComment(comment, videoId) {
-  debugger;
+  // debugger
   return $.ajax({
     method: 'POST',
     url: "/api/comments",

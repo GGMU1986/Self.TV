@@ -1,7 +1,7 @@
 .comment-form {
   margin: 5%;
   border-bottom: 2px solid lightgray;
-  // position: relative;
+  position: relative;
 }
 
 textarea {
@@ -20,8 +20,7 @@ textarea {
 
 .cmt-btn {
   position: absolute;
-  top: 84%;
-  
+  top: 128%;
   background: blue;
   color: white;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -31,10 +30,10 @@ textarea {
 }
 
 .cmt-cancel {
-  top: 84%;
-  right: 15%;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   position:absolute;
+  top: 110%;
+  left: 85%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   color: gray;
   font-size: 13px;
   font-weight: 600;

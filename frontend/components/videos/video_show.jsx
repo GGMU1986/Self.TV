@@ -45,6 +45,7 @@ class VideoShow extends React.Component {
               <br />
               [subscribers]
             </div>
+            <br />
             <div className="video-show-descr">
               {video.description}
             </div>
