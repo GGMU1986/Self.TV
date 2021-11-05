@@ -13,11 +13,11 @@ class CommentsIndexItem extends React.Component {
   render () {
     const { comment, destroyComment, updateComment, videoId } = this.props
     return (
-      <div>
+      <div className='comments-index'>
         <div>
           <strong>{this.props.comment.commenter}</strong>
-          -
-          <span>{comment.createdAt}</span>
+          &nbsp;
+          <span>{(comment.createdAt)}</span>
         </div>
         <br />
         <div>

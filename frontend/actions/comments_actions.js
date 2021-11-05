@@ -1,7 +1,8 @@
 import { 
   deleteComment, 
   createComment, 
-  updateComment 
+  updateComment, 
+  fetchComment
 } from '../utils/util_comments';
 
 export const REMOVE_COMMENT = 'REMOVE_COMMENT'
@@ -24,12 +25,19 @@ export const destroyComment = commentId => dispatch => {
     return dispatch(removeComment(commentId))})
 };
 
-// export const updateComment = (comment, videoId) => dispatch => {
-//   // // debugger
-//   return updateComment(comment, videoId).then(comment => { 
-//     // // debugger
-//     return dispatch(receiveComment(comment))})
-// };
+export const reviseComment = (comment) => dispatch => {
+  // // debugger
+  return updateComment(comment).then(comment => { 
+    // // debugger
+    return dispatch(receiveComment(comment))})
+};
+
+export const requestComment = commentId => dispatch => {
+
+  return fetchComment(commentId).then(comment => {
+    
+    return dispatch(receiveComment(comment))}) 
+}
 
 export const makeComment = (comment, videoId) => dispatch => {
   debugger

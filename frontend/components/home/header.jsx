@@ -31,8 +31,10 @@ class Header extends React.Component {
         <div className="bars-logo">
           <FontAwesomeIcon className="bars" icon={faBars} />
           <div className="logo">
-            <FontAwesomeIcon className="YT" icon={faYoutube} />
-            <span>Self.TV</span>
+            <Link className="logo-link" to="/">
+              <FontAwesomeIcon className="YT" icon={faYoutube} />
+              <span>Self.TV</span>
+            </Link>
           </div>
         </div>
 

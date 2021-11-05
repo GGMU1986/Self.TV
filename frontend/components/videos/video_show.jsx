@@ -18,9 +18,7 @@ class VideoShow extends React.Component {
     let videoId = this.props.match.params.videoId
     return (
       <div>
-        <Link to="/">
-          <Header />
-        </Link>
+        <Header />
         <div className="video-show">
           <div className="video-show-container">
             <video 
@@ -37,6 +35,10 @@ class VideoShow extends React.Component {
           <div className="video-show-descr">
             {video.description}
           </div>
+        </div>
+        <hr />
+        <div className="comment-count">
+          {comments.length} Comments
         </div>
         <hr />
         <div>

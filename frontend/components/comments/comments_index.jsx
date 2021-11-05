@@ -12,15 +12,10 @@ class CommentsIndex extends React.Component {
     let comments = Object.values(this.props.comments)
     return (
       <div className="comments">
-        <div className="comment-count">
+        {/* <div className="comment-count">
           {comments.length} Comments
-        </div>
-        {/* <CommentForm 
-          makeComment={makeComment} 
-          videoId={videoId}
-        /> */}
-        {
-          comments.reverse().map(comment => {
+        </div> */}
+          {comments.reverse().map(comment => {
             if (comment) {
               return <CommentsIndexItem
                 key={comment.id}

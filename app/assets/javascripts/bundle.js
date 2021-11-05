@@ -13145,6 +13145,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "REMOVE_COMMENT": () => (/* binding */ REMOVE_COMMENT),
 /* harmony export */   "RECEIVE_COMMENT": () => (/* binding */ RECEIVE_COMMENT),
 /* harmony export */   "destroyComment": () => (/* binding */ destroyComment),
+/* harmony export */   "reviseComment": () => (/* binding */ reviseComment),
+/* harmony export */   "requestComment": () => (/* binding */ requestComment),
 /* harmony export */   "makeComment": () => (/* binding */ makeComment)
 /* harmony export */ });
 /* harmony import */ var _utils_util_comments__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/util_comments */ "./frontend/utils/util_comments.js");
@@ -13174,13 +13176,23 @@ var destroyComment = function destroyComment(commentId) {
       return dispatch(removeComment(commentId));
     });
   };
-}; // export const updateComment = (comment, videoId) => dispatch => {
-//   // // debugger
-//   return updateComment(comment, videoId).then(comment => { 
-//     // // debugger
-//     return dispatch(receiveComment(comment))})
-// };
-
+};
+var reviseComment = function reviseComment(comment) {
+  return function (dispatch) {
+    // // debugger
+    return (0,_utils_util_comments__WEBPACK_IMPORTED_MODULE_0__.updateComment)(comment).then(function (comment) {
+      // // debugger
+      return dispatch(receiveComment(comment));
+    });
+  };
+};
+var requestComment = function requestComment(commentId) {
+  return function (dispatch) {
+    return (0,_utils_util_comments__WEBPACK_IMPORTED_MODULE_0__.fetchComment)(commentId).then(function (comment) {
+      return dispatch(receiveComment(comment));
+    });
+  };
+};
 var makeComment = function makeComment(comment, videoId) {
   return function (dispatch) {
     debugger;
@@ -13325,12 +13337,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _home_home__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./home/home */ "./frontend/components/home/home.jsx");
 /* harmony import */ var _session_signup_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./session/signup_container */ "./frontend/components/session/signup_container.jsx");
 /* harmony import */ var _session_signin_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./session/signin_container */ "./frontend/components/session/signin_container.jsx");
 /* harmony import */ var _videos_video_show_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./videos/video_show_container */ "./frontend/components/videos/video_show_container.js");
-/* harmony import */ var _utils_route_utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/route_utils */ "./frontend/utils/route_utils.jsx");
+/* harmony import */ var _comments_edit_comment_form_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./comments/edit_comment_form_container */ "./frontend/components/comments/edit_comment_form_container.jsx");
+/* harmony import */ var _utils_route_utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/route_utils */ "./frontend/utils/route_utils.jsx");
+
 
 
 
@@ -13340,16 +13354,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var App = function App() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Route, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
     path: "/videos/:videoId",
     component: _videos_video_show_container__WEBPACK_IMPORTED_MODULE_4__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_utils_route_utils__WEBPACK_IMPORTED_MODULE_5__.AuthRoute, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
+    path: "/edit",
+    component: _comments_edit_comment_form_container__WEBPACK_IMPORTED_MODULE_5__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_utils_route_utils__WEBPACK_IMPORTED_MODULE_6__.AuthRoute, {
     path: "/signup",
     component: _session_signup_container__WEBPACK_IMPORTED_MODULE_2__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_utils_route_utils__WEBPACK_IMPORTED_MODULE_5__.AuthRoute, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_utils_route_utils__WEBPACK_IMPORTED_MODULE_6__.AuthRoute, {
     path: "/signin",
     component: _session_signin_container__WEBPACK_IMPORTED_MODULE_3__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
     path: "/",
     component: _home_home__WEBPACK_IMPORTED_MODULE_1__["default"]
   })));
@@ -13449,7 +13466,10 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
         value: this.state.body,
         onChange: this.update,
         onClick: this.noComment
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+        className: "cmt-cancel"
+      }, "CANCEL"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        className: "cmt-btn",
         onClick: this.handleSubmit
       }, "COMMENT")));
     }
@@ -13530,9 +13550,7 @@ var CommentsIndex = /*#__PURE__*/function (_React$Component) {
       var comments = Object.values(this.props.comments);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "comments"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "comment-count"
-      }, comments.length, " Comments"), comments.reverse().map(function (comment) {
+      }, comments.reverse().map(function (comment) {
         if (comment) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_comments_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
             key: comment.id,
@@ -13616,7 +13634,9 @@ var CommentsIndexItem = /*#__PURE__*/function (_React$Component) {
           destroyComment = _this$props.destroyComment,
           updateComment = _this$props.updateComment,
           videoId = _this$props.videoId;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, this.props.comment.commenter), "-", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, comment.createdAt)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, comment.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "Reply"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "comments-index"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, this.props.comment.commenter), "\xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, comment.createdAt)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, comment.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "Reply"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         onClick: this.handleEdit
       }, "Edit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         onClick: function onClick() {
@@ -13631,6 +13651,114 @@ var CommentsIndexItem = /*#__PURE__*/function (_React$Component) {
 
 ;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CommentsIndexItem);
+
+/***/ }),
+
+/***/ "./frontend/components/comments/edit_comment_form_container.jsx":
+/*!**********************************************************************!*\
+  !*** ./frontend/components/comments/edit_comment_form_container.jsx ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+var EditCommentForm = /*#__PURE__*/function (_React$Component) {
+  _inherits(EditCommentForm, _React$Component);
+
+  var _super = _createSuper(EditCommentForm);
+
+  function EditCommentForm() {
+    _classCallCheck(this, EditCommentForm);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(EditCommentForm, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.requestComment(this.props.match.params.commentId);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          action = _this$props.action,
+          comment = _this$props.comment;
+      if (!comment) return null;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "edit"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(CommentForm, {
+        action: action,
+        comment: comment
+      }));
+    }
+  }]);
+
+  return EditCommentForm;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+;
+
+var mSTP = function mSTP(state, ownProps) {
+  return {
+    comment: state.entities.comments[ownProps.match.params.commentId]
+  };
+};
+
+var mDTP = function mDTP(dispatch) {
+  return {
+    action: function action(comment) {
+      return dispatch(reviseComment(comment));
+    },
+    requestComment: function (_requestComment) {
+      function requestComment(_x) {
+        return _requestComment.apply(this, arguments);
+      }
+
+      requestComment.toString = function () {
+        return _requestComment.toString();
+      };
+
+      return requestComment;
+    }(function (commentId) {
+      return dispatch(requestComment(commentId));
+    })
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router__WEBPACK_IMPORTED_MODULE_2__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mSTP, mDTP)(EditCommentForm)));
 
 /***/ }),
 
@@ -13715,10 +13843,13 @@ var Header = /*#__PURE__*/function (_React$Component) {
         icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__.faBars
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "logo"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link, {
+        className: "logo-link",
+        to: "/"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_4__.FontAwesomeIcon, {
         className: "YT",
         icon: _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_6__.faYoutube
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Self.TV"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Self.TV")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "search-mic"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "text",
@@ -14485,7 +14616,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _home_header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../home/header */ "./frontend/components/home/header.jsx");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _comments_comments_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../comments/comments_index */ "./frontend/components/comments/comments_index.jsx");
 /* harmony import */ var _comments_comments_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../comments/comments_form */ "./frontend/components/comments/comments_form.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -14542,9 +14672,7 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
           action = _this$props.action,
           comment = _this$props.comment;
       var videoId = this.props.match.params.videoId;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
-        to: "/"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_home_header__WEBPACK_IMPORTED_MODULE_1__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_home_header__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "video-show"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "video-show-container"
@@ -14558,7 +14686,9 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
         className: "video-show-title"
       }, video.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "video-show-descr"
-      }, video.description)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_comments_comments_form__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      }, video.description)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "comment-count"
+      }, comments.length, " Comments"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_comments_comments_form__WEBPACK_IMPORTED_MODULE_3__["default"], {
         comment: comment,
         action: action,
         videoId: videoId
@@ -15006,7 +15136,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "deleteComment": () => (/* binding */ deleteComment),
 /* harmony export */   "updateComment": () => (/* binding */ updateComment),
-/* harmony export */   "createComment": () => (/* binding */ createComment)
+/* harmony export */   "createComment": () => (/* binding */ createComment),
+/* harmony export */   "fetchComment": () => (/* binding */ fetchComment)
 /* harmony export */ });
 var deleteComment = function deleteComment(commentId) {
   return $.ajax({
@@ -15014,13 +15145,12 @@ var deleteComment = function deleteComment(commentId) {
     url: "/api/comments/".concat(commentId)
   });
 };
-var updateComment = function updateComment(comment, videoId) {
+var updateComment = function updateComment(comment) {
   return $.ajax({
     method: 'PATCH',
     url: "/api/comments/".concat(commentId),
     data: {
-      comment: comment,
-      videoId: videoId
+      comment: comment
     }
   });
 };
@@ -15033,6 +15163,12 @@ var createComment = function createComment(comment, videoId) {
       comment: comment,
       videoId: videoId
     }
+  });
+};
+var fetchComment = function fetchComment(commentId) {
+  return $.ajax({
+    method: 'GET',
+    url: "/api/comments/".concat(commentId)
   });
 };
 

@@ -4,6 +4,10 @@
   display: flex;
 }
 
+.logo-link {
+  text-decoration: none;
+}
+
 .header {
   margin: 0 20px;
   padding-right: 20px;

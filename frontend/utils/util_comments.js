@@ -5,11 +5,11 @@ export const deleteComment = commentId => {
   })
 };
 
-export const updateComment = (comment, videoId)=> {
+export const updateComment = (comment)=> {
   return $.ajax({
     method: 'PATCH',
     url: `/api/comments/${commentId}`,
-    data: { comment, videoId }
+    data: { comment }
   })
 };
 
@@ -21,3 +21,10 @@ export const createComment = (comment, videoId)=> {
     data: { comment, videoId }
   })
 };
+
+export const fetchComment = commentId => {
+  return $.ajax({
+    method: 'GET',
+    url: `/api/comments/${commentId}`
+  })
+}

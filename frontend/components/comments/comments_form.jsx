@@ -6,6 +6,7 @@ class CommentForm extends React.Component {
   constructor(props){
     super(props)
     this.state = this.props.comment
+    
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
     this.noComment = this.noComment.bind(this);
@@ -36,7 +37,13 @@ class CommentForm extends React.Component {
             onChange={this.update}
             onClick={this.noComment}
           />
-          <button onClick={this.handleSubmit}>COMMENT</button>
+          <p className="cmt-cancel">CANCEL</p>
+          <button 
+            className="cmt-btn"
+            onClick={this.handleSubmit}
+          >
+            COMMENT
+          </button>
         </form>
       </div>
     )
