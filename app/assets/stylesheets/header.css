@@ -4,10 +4,6 @@
   display: flex;
 }
 
-.logo-link {
-  text-decoration: none;
-}
-
 .header {
   margin: 0 20px;
   padding-right: 20px;
@@ -16,11 +12,27 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
- }
+}
 
- .self {
-   color: black
- }
+.self {
+  color: black;
+  margin-left: 3px;
+  vertical-align: middle;
+  font-size: 20px;
+  font-weight: 900;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.YT{
+  color: red;
+  font-size: 25px;
+}
+
+ .logo-link {
+  display: flex;
+  text-decoration: none;
+  align-items: center;
+}
 
  .upload {
    cursor: pointer;
@@ -70,34 +82,29 @@
  }
 
  input {
-  width: 350px; 
+  width: 550px; 
   height: 30px;
+ }
+ 
+ input::placeholder {
+  font-size: 16px;
+  position: relative;
+  left: 6px;
  }
 
  .mic {
-   margin-left: 3px;
+   margin-left: 6px;
   padding: 10px;
   border: 0 solid white;
   background-color: rgb(242, 242, 242);
-  border-radius: 47%;
- }
-
- .YT{
-   color: red;
- }
-
-
- .logo {
-   font-size: 20px;
-   font-weight: 900;
-   font-family: 'Open Sans', sans-serif;
+  border-radius: 50%;
  }
 
  .signin {
-   width: 100px;
-   display: flex;
-   justify-content: space-around;
-   align-items: center;
+  width: 100px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   color: blue;
   font-weight: 700;
   font-family: 'Open Sans', sans-serif;
