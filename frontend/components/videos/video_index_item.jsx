@@ -1,17 +1,34 @@
 import React from "react";
+import { render } from "react-dom";
 import { Link } from "react-router-dom";
 
-const VideoIndexItem = ({ video }) => {
-  return (
-    <Link to={`/videos/${video.id}`} >
-      <div className="video-index">
-        <img src={video.photoUrl} width="300" heigth="300" />
+class VideoIndexItem extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+  render() {
+    const { video } = this.props;
+    const date = new Date(video.createdAt).toString().slice(4,15)
+    return (
+      <div className="video">
+        <Link to={`/videos/${video.id}`}>
+          <img src={video.photoUrl} width="300" heigth="300" />
+        </Link>
+        <Link to={`/videos/${video.id}`}>
+          <div className="video-index-link title">
+            {video.title}
+            <div className="video-index-link channel">
+              {video.channel}
+              <br />
+              [views]
+              <span>&nbsp; &#183; &nbsp;</span>
+              {date}
+            </div>
+          </div>
+        </Link>
       </div>
-      <div>
-        {video.title}
-      </div>
-    </Link>
-  )
+    )
+  }
 };
 
 export default VideoIndexItem;

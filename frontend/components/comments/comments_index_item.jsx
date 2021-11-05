@@ -24,18 +24,29 @@ class CommentsIndexItem extends React.Component {
         <div>
           <strong>{this.props.comment.commenter}</strong>
           &nbsp;
-          <span>
+          <span className="time-ago">
             {timeAgo}
           </span>
         </div>
-        <br />
         <div>
           {comment.body}
+        </div>
+        <div className="comment-drop-down">
+          <div className="edit-delete-comment">
+            <div className="edit-comment">
+              <i class="fas fa-pen"></i>
+              <p>Edit</p>
+            </div>
+            <div className="delete-comment">
+              <i class="fas fa-trash"></i>
+              <p>Delete</p>
+            </div>
+          </div>
         </div>
         <button>Reply</button>
         <button onClick={this.handleEdit}>Edit</button>
         <button onClick={() => destroyComment(comment.id)}>Delete</button>
-        <br />
+        <br /><br />
       </div>
     )
   }
