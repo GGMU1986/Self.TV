@@ -53,6 +53,7 @@ class VideoShow extends React.Component {
               <div className="video-show-descr">
                 {video.description}
               </div>
+              <button className="sub">SUBSCRIBE</button>
             </div>
           </div>
           <hr />
