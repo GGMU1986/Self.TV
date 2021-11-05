@@ -14741,6 +14741,8 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
           comments = _this$props.comments,
           action = _this$props.action,
           comment = _this$props.comment;
+      var uploadDate = new Date(video.createdAt).toString().slice(4, 15);
+      debugger;
       var videoId = this.props.match.params.videoId;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_home_header__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "video-show"
@@ -14754,7 +14756,7 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
         controls: true
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "video-show-title"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, video.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), "[views] - [date uploaded] --- [likes/dislikes] - [share]"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, video.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), "[views] - ", uploadDate, " --- [likes/dislikes] - [share]"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "channel-desc"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "video-channel"

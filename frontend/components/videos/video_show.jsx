@@ -15,6 +15,8 @@ class VideoShow extends React.Component {
       video, destroyComment, 
       comments, action, comment
     } = this.props
+    const uploadDate = new Date(video.createdAt).toString().slice(4, 15)
+    debugger
     let videoId = this.props.match.params.videoId
     return (
       <div>
@@ -34,7 +36,7 @@ class VideoShow extends React.Component {
               {video.title}
             </strong>
             <br />
-            [views] - [date uploaded] --- [likes/dislikes] - [share]
+            [views] - {uploadDate} --- [likes/dislikes] - [share]
           </div>
           <hr />
           <div className="channel-desc">
