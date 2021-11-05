@@ -129,7 +129,6 @@
  }
 
  .loggedin {
-   vertical-align: center;
    width: 12px;
    height: 12px;
    padding: 10px;
@@ -138,4 +137,39 @@
    background-color: purple;
    cursor: pointer;
    color: white;
+   position: relative;
+ }
+
+ .dropdown {
+  border-left: 1px solid lightgrey;
+  border-right: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
+  position: absolute;
+  cursor: pointer;
+  width: 250px;
+  top: 105%;
+  right: 1%;
+  color: black;
+ }
+
+ .dropdown-username {
+   padding: 12px;
+   font-size: 25px;
+   margin: 0 auto;
+ }
+
+ .dropdown > .out {
+  padding: 10px;
+  cursor: pointer;
+ }
+
+ .dropdown > .out:hover {
+   background: lightgrey
+ }
+
+ .out {
+   display: flex;
+   justify-content: space-evenly;
+   align-items: center;
+   
  }

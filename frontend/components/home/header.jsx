@@ -63,10 +63,21 @@ class Header extends React.Component {
           <div>
             {
               currentUser ? (
-                <div className="loggedin"
-                  onClick={() => logout()}
-                >
+                <div className="loggedin">
                   {currentUser.username[0].toUpperCase()} 
+                  <div className='dropdown'>
+                    <div className="dropdown-username">
+                      {currentUser.username}
+                    </div>
+                    <div className="out">
+                      <i class="fas fa-user-alt"></i>
+                      <p>Your channel</p>
+                    </div>
+                    <div className="out" onClick={() => logout()}>
+                      <i class="fas fa-sign-out-alt"></i>
+                      <p>Sign out</p>
+                    </div>
+                  </div>
                 </div>
               ) : (
                 <div className="signin">
