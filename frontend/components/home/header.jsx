@@ -51,26 +51,28 @@ class Header extends React.Component {
         <div className="ext-links">
           <div className="links">
             { currentUser ? (
-              <FontAwesomeIcon icon={faVideo} className="link upload"/>
-            ) : (
-                null
-              )
-            }
-              <a href="https://github.com/GGMU1986" target="blank">
-              <FontAwesomeIcon className="github" icon={faGithub} className="link"/>
-              </a>
+              <FontAwesomeIcon icon={faVideo} className="link"/>
+            ) : null }
+            <a href="https://github.com/GGMU1986" target="blank">
+              <FontAwesomeIcon icon={faGithub} className="link"/>
+            </a>
             <a href="https://www.linkedin.com/in/george-tsimis-a5986224/" target="blank">
-              <FontAwesomeIcon className="linkedin" icon={faLinkedin} className="link"/>
-              </a>
+              <FontAwesomeIcon icon={faLinkedin} className="link two"/>
+            </a>
           </div>
-          <div className="signin">
-            <FontAwesomeIcon icon={faUserAstronaut} />
+          <div>
             {
               currentUser ? (
-                <button onClick={() => logout()}>SIGN OUT</button>
-                // <span className="loggedin">{currentUser.username[0].toUpperCase()}</span>
+                <div className="loggedin"
+                  onClick={() => logout()}
+                >
+                  {currentUser.username[0].toUpperCase()} 
+                </div>
               ) : (
-                <Link to="/signin">SIGN IN</Link>
+                <div className="signin">
+                  <FontAwesomeIcon icon={faUserAstronaut} />
+                  <Link to="/signin">SIGN IN</Link>
+                </div>
               )
             }
           </div>

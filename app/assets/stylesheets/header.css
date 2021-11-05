@@ -74,7 +74,16 @@
  }
 
  .links {
+  font-size: 25px;
   display: flex;
+ }
+
+ .links > a {
+   color: black;
+ }
+
+ .two {
+   color: rgb(60, 60, 255);
  }
 
  .link {
@@ -111,4 +120,20 @@
   border: 1px solid blue;
   padding: 10px 15px;
   text-decoration: none;
+ }
+
+ .signin > Link {
+   color: blue;
+ }
+
+ .loggedin {
+   vertical-align: center;
+   width: 12px;
+   height: 12px;
+   padding: 10px;
+   border: 0 solid white;
+   border-radius: 50%;
+   background-color: purple;
+   cursor: pointer;
+   color: white;
  }
