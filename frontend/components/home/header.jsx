@@ -85,11 +85,11 @@ class Header extends React.Component {
                       {currentUser.username}
                     </div>
                     <div className="out">
-                      <i class="fas fa-user-alt"></i>
+                      <i className="fas fa-user-alt"></i>
                       <p>Your channel</p>
                     </div>
                     <div className="out" onClick={() => logout()}>
-                      <i class="fas fa-sign-out-alt"></i>
+                      <i className="fas fa-sign-out-alt"></i>
                       <p>Sign out</p>
                     </div>
                   </div>

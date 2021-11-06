@@ -13650,11 +13650,11 @@ var CommentsIndexItem = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "edit-comment"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
-        "class": "fas fa-pen"
+        className: "fas fa-pen"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Edit")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "delete-comment"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
-        "class": "fas fa-trash"
+        className: "fas fa-trash"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Delete")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "Reply"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         onClick: this.handleEdit
       }, "Edit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
@@ -13925,14 +13925,14 @@ var Header = /*#__PURE__*/function (_React$Component) {
       }, currentUser.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "out"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
-        "class": "fas fa-user-alt"
+        className: "fas fa-user-alt"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Your channel")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "out",
         onClick: function onClick() {
           return logout();
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
-        "class": "fas fa-sign-out-alt"
+        className: "fas fa-sign-out-alt"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Sign out")))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "signin"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_4__.FontAwesomeIcon, {

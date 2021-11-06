@@ -34,11 +34,11 @@ class CommentsIndexItem extends React.Component {
         <div className="comment-drop-down">
           <div className="edit-delete-comment">
             <div className="edit-comment">
-              <i class="fas fa-pen"></i>
+              <i className="fas fa-pen"></i>
               <p>Edit</p>
             </div>
             <div className="delete-comment">
-              <i class="fas fa-trash"></i>
+              <i className="fas fa-trash"></i>
               <p>Delete</p>
             </div>
           </div>

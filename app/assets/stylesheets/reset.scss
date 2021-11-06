@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap');
+
 html, body, div, span, h1, h2, h3, h4, a, ol, ul, li, form, label, article, aside, figure, figcaption, footer, header, nav {
   margin: 0;
   padding: 0;
@@ -6,6 +8,10 @@ html, body, div, span, h1, h2, h3, h4, a, ol, ul, li, form, label, article, asid
   font: inherit;
   vertical-align: baseline;
   text-decoration: none;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
 }
 
 ol, ul {

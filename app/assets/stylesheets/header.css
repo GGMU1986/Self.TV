@@ -67,7 +67,7 @@
  }
 
  .ext-links {
-   width: 30%;
+   width: 25%;
    display: flex;
    align-items: center;
    justify-content: space-evenly;
@@ -76,6 +76,7 @@
  .links {
   font-size: 25px;
   display: flex;
+  cursor: pointer;
  }
 
  .links > a {
