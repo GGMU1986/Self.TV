@@ -17,7 +17,7 @@ class UploadVideoForm extends React.Component {
         </div>
         <hr />
         <main className='file-upload'>
-            {/* <i class="fas fa-upload"></i> */}
+            {/* <i className="fas fa-upload"></i> */}
             <div className="upload-circle">
               <i className="fas fa-upload"></i>
             </div>
