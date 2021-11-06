@@ -6,19 +6,22 @@ class UploadVideoForm extends React.Component {
   }
 
   render() {
+    const { closeModal } = this.props;
     return (
       <div className="upload-video-container">
         <div className="upload-videos-header">
           <p className="title">Upload videos</p>
-          <div className="upload-video-icons-header">
-          {/* <i className="fas fa-comment-alt"></i> */}
-          <i className="fas fa-times"></i>
+          <div className="upload-video-icons-header" onClick={closeModal}>
+            <i className="fas fa-times"></i>
           </div>
         </div>
         <hr />
         <main className='file-upload'>
-            <i className="fas fa-file-upload"></i>
-            <div class="mid-text">
+            {/* <i class="fas fa-upload"></i> */}
+            <div className="upload-circle">
+              <i className="fas fa-upload"></i>
+            </div>
+            <div className="mid-text">
               <div>
                 Drag and drop files to upload
               </div>

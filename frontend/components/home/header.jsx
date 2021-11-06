@@ -16,6 +16,7 @@ import {
   faYoutube,
   faGithub
 } from '@fortawesome/free-brands-svg-icons'
+import { openModal } from '../../actions/modal_actions';
 library.add(
   faLinkedin,
   faYoutube,
@@ -39,7 +40,7 @@ class Header extends React.Component {
   }
 
   render() {
-    const { currentUser, logout } = this.props;
+    const { currentUser, logout, openModal } = this.props;
     // // // debugger
     return (
       <div className="header">
@@ -66,7 +67,9 @@ class Header extends React.Component {
         <div className="ext-links">
           <div className="links">
             { currentUser ? (
-              <FontAwesomeIcon icon={faVideo} className="link"/>
+              <div onClick={() => openModal('upload')}>
+                <FontAwesomeIcon icon={faVideo} className="link"/>
+              </div>
             ) : null }
             <a href="https://github.com/GGMU1986" target="blank">
               <FontAwesomeIcon icon={faGithub} className="link"/>
@@ -113,7 +116,8 @@ const mSTP = state => ({
 });
 
 const mDTP = dispatch => ({
-  logout: () => dispatch(logout())
+  logout: () => dispatch(logout()),
+  openModal: modal => dispatch(openModal(modal))
 });
 
 export default connect(mSTP, mDTP)(Header);

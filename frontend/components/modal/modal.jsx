@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from 'react-redux';
 import { closeModal } from '../../actions/modal_actions';
+import UploadVideoForm from "../videos/upload_video_form";
 
 const Modal = ({modal, closeModal}) => {
   if (!modal) {
@@ -10,13 +11,14 @@ const Modal = ({modal, closeModal}) => {
   let component;
   switch (modal) {
     case 'upload':
-      // component = <UploadVideoForm />
+      component = <UploadVideoForm closeModal={closeModal}/>;
+      break;
     default:
       return null;
   }
 
   return (
-    <div className='modal-background'>
+    <div className='modal-background' >
       <div className="modal-child" onClick={e => e.stopPropagation()}>
         {component}
       </div>
