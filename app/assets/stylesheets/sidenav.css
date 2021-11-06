@@ -4,7 +4,25 @@
   top: 50px;
   display: flex;
   flex-direction: column;
+  /* justify-content: center; */
   height: calc(100vh - 50px);
   width: 100px;
+  color: black
+}
+
+.icon-cont {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 10px;
+  color: black;
+}
+
+.icon {
+  font-size: 20px;
+}
+
+.icon-text {
   font-size: 12px;
 }
+  

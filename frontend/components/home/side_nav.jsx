@@ -6,23 +6,44 @@ class SideNav extends React.Component {
     return (
       <div className="side-nav">
         <Link to="">
-          <i class="fas fa-home"></i>
-          <br />
-          Home
+          <div className="icon-cont">
+            <div className="icon">
+              <i class="fas fa-home"></i>
+            </div>
+            <div className="icon-text">
+              Home
+            </div>
+          </div>
         </Link >
         <Link to="">
-          <i class="far fa-compass"></i>
-          <br />
-          Explore
+          <div className="icon-cont">
+            <div className="icon">
+              <i class="far fa-compass"></i>
+            </div>
+            <div className="icon-text">
+              Explore
+            </div>
+          </div>
         </Link>
         <Link to="">
-          
-          Subscriptions
+          <div className="icon-cont">
+            <div className="icon">
+              <i class="far fa-play-circle"></i>
+            </div>
+            <div className="icon-text">
+              Subscriptions
+            </div>
+          </div>
         </Link>
         <Link to="">
-          <br />
-          <i class="fas fa-folder"></i>
-          Library
+          <div className="icon-cont">
+            <div className="icon">
+              <i class="fas fa-folder"></i>
+            </div>
+            <div className="icon-text">
+              Library
+            </div>
+          </div>
         </Link>
       </div>
     )
