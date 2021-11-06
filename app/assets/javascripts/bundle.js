@@ -13838,13 +13838,28 @@ var Header = /*#__PURE__*/function (_React$Component) {
 
   var _super = _createSuper(Header);
 
-  function Header() {
+  function Header(props) {
+    var _this;
+
     _classCallCheck(this, Header);
 
-    return _super.apply(this, arguments);
+    _this = _super.call(this, props);
+    _this.state = {
+      active: false
+    };
+    _this.addActiveClass = _this.addActiveClass.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(Header, [{
+    key: "addActiveClass",
+    value: function addActiveClass(e) {
+      var currState = this.state.active;
+      this.setState({
+        active: !currState
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -13901,9 +13916,10 @@ var Header = /*#__PURE__*/function (_React$Component) {
         icon: _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_6__.faLinkedin,
         className: "link two"
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        onClick: this.addActiveClass,
         className: "loggedin"
       }, currentUser.username[0].toUpperCase(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "dropdown"
+        className: this.state.active ? 'dropdown active' : 'dropdown'
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "dropdown-username"
       }, currentUser.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {

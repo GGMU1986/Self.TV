@@ -23,6 +23,21 @@ library.add(
 )
 
 class Header extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      active: false
+    }
+    this.addActiveClass = this.addActiveClass.bind(this);
+  }
+
+  addActiveClass(e) {
+    const currState = this.state.active
+    this.setState({
+      active: !currState
+    })
+  }
+
   render() {
     const { currentUser, logout } = this.props;
     // // // debugger
@@ -63,9 +78,9 @@ class Header extends React.Component {
           <div>
             {
               currentUser ? (
-                <div className="loggedin">
+                <div onClick={this.addActiveClass} className="loggedin">
                   {currentUser.username[0].toUpperCase()} 
-                  <div className='dropdown'>
+                  <div className={this.state.active ? 'dropdown active' : 'dropdown'}>
                     <div className="dropdown-username">
                       {currentUser.username}
                     </div>

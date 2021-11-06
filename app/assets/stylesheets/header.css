@@ -150,7 +150,12 @@
   top: 105%;
   right: 1%;
   color: black;
+  display: none;
  }
+
+.dropdown.active {
+  display: inline-block;
+} 
 
  .dropdown-username {
    padding: 12px;
