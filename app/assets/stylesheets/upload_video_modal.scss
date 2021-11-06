@@ -1,0 +1,90 @@
+.upload-video-container {
+  top: 15%;
+  left: 25%;
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px 5px lightgrey;
+  position: fixed;
+  width: 50%;
+  height: 70%;
+  background: white;
+  z-index: 10;
+}
+
+.upload-videos-header {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 20px;
+}
+
+.fa-file-upload {
+  font-size: 200px;
+  padding-bottom: 40px;
+  cursor: pointer;
+}
+
+.file-upload {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80%;
+}
+
+.upload-video-icons-header {
+  width: 20px;
+  display: flex;
+  padding: 0 10px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.footer-uploads-videos {
+  display: flex;
+}
+
+.gray {
+  color: gray;
+  font-size: 12px;
+  text-align: center;
+}
+
+.mid-text {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  line-height: 2em;
+}
+
+.mid-text-lower {
+  font-size: 14px;
+  color: gray;
+}
+
+span {
+  font-size: 12px;
+  color: blue;
+}
+
+input[type='file'] {
+  display: none;
+}
+
+label {
+  border-radius: 2px;
+  text-align: center;
+  padding-top: 5px;
+  width: 140px;
+  height: 40px;
+  border: 0 solid white;
+  background-color: rgb(51, 51, 232);
+  color: white;
+  cursor: pointer;
+}
