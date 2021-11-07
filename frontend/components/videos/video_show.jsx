@@ -39,8 +39,7 @@ class VideoShow extends React.Component {
                 {video.title}
               </strong>
               <br />
-              [views] - {uploadDate
-              } --- [likes/dislikes] - [share]
+              {video.views} views &#8226; {uploadDate} --- [likes/dislikes] - [share]
             </div>
             <hr />
             <div className="channel-desc">

@@ -4,12 +4,12 @@
 #
 #  id          :bigint           not null, primary key
 #  title       :string           not null
-#  duration    :float            not null
 #  description :text
 #  uploader_id :integer          not null
 #  channel_id  :integer          not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  views       :integer          default(0)
 #
 class Video < ApplicationRecord
 
