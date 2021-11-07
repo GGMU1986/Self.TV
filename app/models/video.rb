@@ -31,6 +31,10 @@ class Video < ApplicationRecord
     foreign_key: :video_id,
     class_name: :View 
 
+  has_many :likes,
+    foreign_key: :video_id,
+    class_name: :Like 
+
   has_one_attached :video
   has_one_attached :photo
 end
