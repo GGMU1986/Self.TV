@@ -19,16 +19,16 @@ const removeComment = commentId => ({
 });
 
 export const destroyComment = commentId => dispatch => {
-  // // // debugger
+  // // // // debugger
   return deleteComment(commentId).then(() => { 
-    // // // debugger
+    // // // // debugger
     return dispatch(removeComment(commentId))})
 };
 
 export const reviseComment = (comment) => dispatch => {
-  // // // debugger
+  // // // // debugger
   return updateComment(comment).then(comment => { 
-    // // // debugger
+    // // // // debugger
     return dispatch(receiveComment(comment))})
 };
 
@@ -40,9 +40,9 @@ export const requestComment = commentId => dispatch => {
 }
 
 export const makeComment = (comment, videoId) => dispatch => {
-  // debugger
+  // // debugger
   return createComment(comment, videoId).then(comment => { 
-    // debugger
+    // // debugger
     return dispatch(receiveComment(comment))})
 };
 

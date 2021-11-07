@@ -22,7 +22,7 @@ const mDTP = dispatch => ({
   fetchVideo: videoId => dispatch(fetchVideo(videoId)),
   destroyComment: commentId => dispatch(destroyComment(commentId)),
   action: (comment, videoId) => dispatch(makeComment(comment, videoId)),
-  incViews: () => dispatch(incrementViews())
+  incViews: videoId => dispatch(incrementViews(videoId))
 });
 
 export default connect(mSTP, mDTP)(VideoShow);

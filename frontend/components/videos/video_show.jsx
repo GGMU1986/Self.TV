@@ -1,6 +1,5 @@
 import React from 'react';
 import Header from '../home/header';
-import { Link } from 'react-router-dom';
 import CommentsIndex from '../comments/comments_index';
 import CommentForm from '../comments/comments_form';
 import Modal from '../modal/modal';
@@ -11,13 +10,17 @@ class VideoShow extends React.Component {
     this.state = {
       views: this.props.video.views
     }
+    this.viewCount = this.viewCount.bind(this);
   }
   componentDidMount() {
     this.props.fetchVideo(this.props.match.params.videoId)
   }
 
   viewCount(e) {
-    this.props.incViews();
+    this.props.incViews(this.props.match.params.videoId);
+    // this.setState(prevState => ({
+    //   views: prevState + 1
+    // }))
   }
   
   render() {
@@ -26,7 +29,6 @@ class VideoShow extends React.Component {
       comments, action, comment
     } = this.props
     const uploadDate = new Date(video.createdAt).toString().slice(4, 15)
-    debugger
     let videoId = this.props.match.params.videoId
     return (
       <div className="video-show-cont">

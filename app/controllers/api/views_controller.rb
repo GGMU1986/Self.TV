@@ -1,8 +1,12 @@
-class Api::UsersController < ApplicationController
+class Api::ViewsController < ApplicationController
   
   def create
-    @view = View.new(params["video_id"]).to_i
-    @view.save
+    @view = View.new()
+    @view.video_id = params["videoId"].to_i
+    if @view.save
+      render :info
+    else
+    end
   end
 
   

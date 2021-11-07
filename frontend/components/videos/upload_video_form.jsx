@@ -14,7 +14,7 @@ class UploadVideoForm extends React.Component {
   };
 
   handleFile(e) {
-    // debugger
+    // // debugger
     this.setState({
       videoFile: e.currentTarget.files[0]
     })

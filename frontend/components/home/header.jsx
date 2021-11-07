@@ -41,7 +41,7 @@ class Header extends React.Component {
 
   render() {
     const { currentUser, logout, openModal } = this.props;
-    // // // debugger
+    // // // // debugger
     return (
       <div className="header">
         <div className="bars-logo">

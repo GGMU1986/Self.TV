@@ -1,6 +1,7 @@
-export const postView = () => (
+export const postView = videoId => (
   $.ajax({
     method: 'POST',
-    url: '/api/views'
+    url: '/api/views',
+    data: { videoId }
   })
 );

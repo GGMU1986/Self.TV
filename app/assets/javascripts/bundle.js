@@ -13170,18 +13170,18 @@ var removeComment = function removeComment(commentId) {
 
 var destroyComment = function destroyComment(commentId) {
   return function (dispatch) {
-    // // // debugger
+    // // // // debugger
     return (0,_utils_util_comments__WEBPACK_IMPORTED_MODULE_0__.deleteComment)(commentId).then(function () {
-      // // // debugger
+      // // // // debugger
       return dispatch(removeComment(commentId));
     });
   };
 };
 var reviseComment = function reviseComment(comment) {
   return function (dispatch) {
-    // // // debugger
+    // // // // debugger
     return (0,_utils_util_comments__WEBPACK_IMPORTED_MODULE_0__.updateComment)(comment).then(function (comment) {
-      // // // debugger
+      // // // // debugger
       return dispatch(receiveComment(comment));
     });
   };
@@ -13195,9 +13195,9 @@ var requestComment = function requestComment(commentId) {
 };
 var makeComment = function makeComment(comment, videoId) {
   return function (dispatch) {
-    // debugger
+    // // debugger
     return (0,_utils_util_comments__WEBPACK_IMPORTED_MODULE_0__.createComment)(comment, videoId).then(function (comment) {
-      // debugger
+      // // debugger
       return dispatch(receiveComment(comment));
     });
   };
@@ -13378,9 +13378,10 @@ var receiveView = function receiveView(view) {
   };
 };
 
-var incrementViews = function incrementViews() {
+var incrementViews = function incrementViews(videoId) {
   return function (dispatch) {
-    return post.View().then(function (view) {
+    // debugger
+    return (0,_utils_view_util__WEBPACK_IMPORTED_MODULE_0__.postView)(videoId).then(function (view) {
       return dispatch(receiveView(view));
     });
   };
@@ -13930,7 +13931,7 @@ var Header = /*#__PURE__*/function (_React$Component) {
       var _this$props = this.props,
           currentUser = _this$props.currentUser,
           logout = _this$props.logout,
-          openModal = _this$props.openModal; // // // debugger
+          openModal = _this$props.openModal; // // // // debugger
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "header"
@@ -14262,7 +14263,7 @@ var Modal = function Modal(_ref) {
       break;
 
     case 'title':
-      // debugger
+      // // debugger
       component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_videos_upload_video_title__WEBPACK_IMPORTED_MODULE_4__["default"], {
         closeModal: closeModal
       });
@@ -14761,7 +14762,7 @@ var UploadVideoForm = /*#__PURE__*/function (_React$Component) {
   _createClass(UploadVideoForm, [{
     key: "handleFile",
     value: function handleFile(e) {
-      // debugger
+      // // debugger
       this.setState({
         videoFile: e.currentTarget.files[0]
       });
@@ -15118,7 +15119,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-
 var VideoShow = /*#__PURE__*/function (_React$Component) {
   _inherits(VideoShow, _React$Component);
 
@@ -15133,6 +15133,7 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       views: _this.props.video.views
     };
+    _this.viewCount = _this.viewCount.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -15144,7 +15145,9 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "viewCount",
     value: function viewCount(e) {
-      this.props.incViews();
+      this.props.incViews(this.props.match.params.videoId); // this.setState(prevState => ({
+      //   views: prevState + 1
+      // }))
     }
   }, {
     key: "render",
@@ -15156,7 +15159,6 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
           action = _this$props.action,
           comment = _this$props.comment;
       var uploadDate = new Date(video.createdAt).toString().slice(4, 15);
-      debugger;
       var videoId = this.props.match.params.videoId;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "video-show-cont"
@@ -15263,8 +15265,8 @@ var mDTP = function mDTP(dispatch) {
     action: function action(comment, videoId) {
       return dispatch((0,_actions_comments_actions__WEBPACK_IMPORTED_MODULE_3__.makeComment)(comment, videoId));
     },
-    incViews: function incViews() {
-      return dispatch((0,_actions_view_actions__WEBPACK_IMPORTED_MODULE_4__.incrementViews)());
+    incViews: function incViews(videoId) {
+      return dispatch((0,_actions_view_actions__WEBPACK_IMPORTED_MODULE_4__.incrementViews)(videoId));
     }
   };
 };
@@ -15306,7 +15308,7 @@ var CommentsReducer = function CommentsReducer() {
       return _objectSpread(_objectSpread({}, state), action.payload.comments);
 
     case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_1__.RECEIVE_COMMENT:
-      // debugger
+      // // debugger
       return Object.assign({}, state, _defineProperty({}, action.comment.id, action.comment));
 
     case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_1__.REMOVE_COMMENT:
@@ -15314,7 +15316,7 @@ var CommentsReducer = function CommentsReducer() {
       return nextState;
 
     default:
-      // debugger
+      // // debugger
       return state;
   }
 };
@@ -15428,14 +15430,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "selectCommentsByVideo": () => (/* binding */ selectCommentsByVideo)
 /* harmony export */ });
 var selectCommentsByVideo = function selectCommentsByVideo(state, videoId) {
-  // // debugger
+  // // // debugger
   if (state.entities.videos[videoId].commentIds) {
-    // // debugger
+    // // // debugger
     return state.entities.videos[videoId].commentIds.map(function (commentId) {
       return state.entities.comments[commentId];
     });
   } else {
-    // // debugger
+    // // // debugger
     return [];
   }
 };
@@ -15599,6 +15601,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var ViewsReducer = function ViewsReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
+  // // debugger
   Object.freeze(state);
 
   switch (action.type) {
@@ -15771,7 +15774,7 @@ var updateComment = function updateComment(comment) {
   });
 };
 var createComment = function createComment(comment, videoId) {
-  // debugger
+  // // debugger
   return $.ajax({
     method: 'POST',
     url: "/api/comments",
@@ -15828,10 +15831,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "postView": () => (/* binding */ postView)
 /* harmony export */ });
-var postView = function postView() {
+var postView = function postView(videoId) {
   return $.ajax({
     method: 'POST',
-    url: '/api/views'
+    url: '/api/views',
+    data: {
+      videoId: videoId
+    }
   });
 };
 
