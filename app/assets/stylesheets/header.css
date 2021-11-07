@@ -104,13 +104,13 @@
    background: rgb(228, 228, 228)
  }
 
- input {
+ .input {
   width: 550px; 
   height: 30px;
   border: none;
  }
  
- input::placeholder {
+ .input::placeholder {
   font-size: 16px;
   position: relative;
   left: 6px;
@@ -147,6 +147,15 @@
 
  .signin > Link {
    color: blue;
+ }
+
+ .prof-icon-content {
+   color: white;
+   font-family: 'Open Sans', sans-serif;
+   font-size: 20px;
+   position: absolute;
+   bottom: 8%;
+   left: 30%;
  }
 
  .loggedin {

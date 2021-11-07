@@ -56,7 +56,7 @@ class Header extends React.Component {
 
         <div className="search-mic">
           <div className='search-glass'>
-            <input type="text" placeholder="Search" />
+            <input className="input" type="text" placeholder="Search" />
             <div className="mag-glass">
               <i className="fas fa-search"></i>
             </div>
@@ -79,7 +79,10 @@ class Header extends React.Component {
             <a href="https://github.com/GGMU1986" target="blank">
               <FontAwesomeIcon icon={faGithub} className="link"/>
             </a>
-            <a href="https://www.linkedin.com/in/george-tsimis-a5986224/" target="blank">
+            <a 
+              href="https://www.linkedin.com/in/george-tsimis-a5986224/" 
+              target="blank"
+            >
               <FontAwesomeIcon icon={faLinkedin} className="link two"/>
             </a>
           </div>
@@ -87,7 +90,7 @@ class Header extends React.Component {
             {
               currentUser ? (
                 <div onClick={this.addActiveClass} className="loggedin">
-                  {currentUser.username[0].toUpperCase()} 
+                  <span className="prof-icon-content">{currentUser.username[0].toUpperCase()}</span>
                   <div className={this.state.active ? 'dropdown active' : 'dropdown'}>
                     <div className="dropdown-username">
                       {currentUser.username}
