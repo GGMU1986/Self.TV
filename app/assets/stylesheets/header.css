@@ -33,6 +33,7 @@
 }
 
  .logo-link {
+  margin-left: 20px;
   display: flex;
   text-decoration: none;
   align-items: center;
@@ -43,10 +44,13 @@
  }
 
  .bars-logo {
-   width: 10%;
    display: flex;
    justify-content: space-between;
    align-items: center;
+ }
+
+ .bars {
+   margin-left: 20px;
  }
 
  .ext-links {
@@ -120,7 +124,13 @@
   border: 0 solid white;
   background-color: rgb(242, 242, 242);
   border-radius: 50%;
+  position: relative;
  }
+
+.mic-icon {
+  position: absolute;
+  bottom: 25%;
+}
 
  .signin {
   width: 100px;

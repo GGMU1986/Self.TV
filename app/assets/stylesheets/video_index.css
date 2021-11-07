@@ -1,5 +1,6 @@
 .video-index {
   display: flex;
+  flex: .92;
 }
 
 .video {

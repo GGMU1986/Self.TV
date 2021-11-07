@@ -62,7 +62,10 @@ class Header extends React.Component {
             </div>
           </div>
           <div className="mic">
-            <FontAwesomeIcon icon={faMicrophone} />
+            <FontAwesomeIcon 
+              className="mic-icon"
+              icon={faMicrophone} 
+            />
           </div>
         </div>
 
