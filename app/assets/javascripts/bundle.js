@@ -15027,7 +15027,9 @@ var VideoIndexItem = /*#__PURE__*/function (_React$Component) {
         className: "video-index-link title"
       }, video.title, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "video-index-link channel"
-      }, video.channel, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), "[views]", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "\xA0 \xB7 \xA0"), date))));
+      }, video.channel, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), "[views]", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "\xA0 ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+        className: "bul"
+      }, "\u2022"), " \xA0"), date))));
     }
   }]);
 

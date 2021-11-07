@@ -21,7 +21,7 @@ class VideoIndexItem extends React.Component {
               {video.channel}
               <br />
               [views]
-              <span>&nbsp; &#183; &nbsp;</span>
+              <span>&nbsp; <span className="bul">&#8226;</span> &nbsp;</span>
               {date}
             </div>
           </div>
