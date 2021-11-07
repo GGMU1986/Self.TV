@@ -13355,6 +13355,39 @@ var fetchVideo = function fetchVideo(videoId) {
 
 /***/ }),
 
+/***/ "./frontend/actions/view_actions.js":
+/*!******************************************!*\
+  !*** ./frontend/actions/view_actions.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "RECEIVE_VIEW": () => (/* binding */ RECEIVE_VIEW),
+/* harmony export */   "incrementViews": () => (/* binding */ incrementViews)
+/* harmony export */ });
+/* harmony import */ var _utils_view_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/view_util */ "./frontend/utils/view_util.js");
+
+var RECEIVE_VIEW = 'RECEIVE_VIEW';
+
+var receiveView = function receiveView(view) {
+  return {
+    type: RECEIVE_VIEW,
+    view: view
+  };
+};
+
+var incrementViews = function incrementViews() {
+  return function (dispatch) {
+    return post.View().then(function (view) {
+      return dispatch(receiveView(view));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/components/app.jsx":
 /*!*************************************!*\
   !*** ./frontend/components/app.jsx ***!
@@ -15202,13 +15235,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _video_show__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./video_show */ "./frontend/components/videos/video_show.jsx");
 /* harmony import */ var _actions_videos_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/videos_actions */ "./frontend/actions/videos_actions.js");
 /* harmony import */ var _actions_comments_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/comments_actions */ "./frontend/actions/comments_actions.js");
+/* harmony import */ var _actions_view_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/view_actions */ "./frontend/actions/view_actions.js");
+
 
 
 
 
 
 var mSTP = function mSTP(state, ownProps) {
-  // console.log(ownProps)
   return {
     video: state.entities.videos[ownProps.match.params.videoId],
     comments: Object.values(state.entities.comments),
@@ -15228,6 +15262,9 @@ var mDTP = function mDTP(dispatch) {
     },
     action: function action(comment, videoId) {
       return dispatch((0,_actions_comments_actions__WEBPACK_IMPORTED_MODULE_3__.makeComment)(comment, videoId));
+    },
+    incViews: function incViews() {
+      return dispatch((0,_actions_view_actions__WEBPACK_IMPORTED_MODULE_4__.incrementViews)());
     }
   };
 };
@@ -15297,15 +15334,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _videos_reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./videos_reducer */ "./frontend/reducers/videos_reducer.js");
 /* harmony import */ var _comments__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./comments */ "./frontend/reducers/comments.js");
+/* harmony import */ var _views__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./views */ "./frontend/reducers/views.js");
 
 
 
-var EntitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_2__.combineReducers)({
+
+var EntitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_3__.combineReducers)({
   videos: _videos_reducer__WEBPACK_IMPORTED_MODULE_0__["default"],
-  comments: _comments__WEBPACK_IMPORTED_MODULE_1__["default"]
+  comments: _comments__WEBPACK_IMPORTED_MODULE_1__["default"],
+  views: _views__WEBPACK_IMPORTED_MODULE_2__["default"]
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EntitiesReducer);
 
@@ -15536,6 +15576,44 @@ var VideosReducer = function VideosReducer() {
 
 /***/ }),
 
+/***/ "./frontend/reducers/views.js":
+/*!************************************!*\
+  !*** ./frontend/reducers/views.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _actions_view_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/view_actions */ "./frontend/actions/view_actions.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var ViewsReducer = function ViewsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_view_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_VIEW:
+      return _objectSpread(_objectSpread({}, state), {}, _defineProperty({}, action.view.id, action.view));
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ViewsReducer);
+
+/***/ }),
+
 /***/ "./frontend/store/store.js":
 /*!*********************************!*\
   !*** ./frontend/store/store.js ***!
@@ -15734,6 +15812,26 @@ var getVideo = function getVideo(videoId) {
   return $.ajax({
     method: 'GET',
     url: "/api/videos/".concat(videoId)
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/utils/view_util.js":
+/*!*************************************!*\
+  !*** ./frontend/utils/view_util.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "postView": () => (/* binding */ postView)
+/* harmony export */ });
+var postView = function postView() {
+  return $.ajax({
+    method: 'POST',
+    url: '/api/views'
   });
 };
 

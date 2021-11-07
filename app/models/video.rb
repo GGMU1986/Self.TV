@@ -29,7 +29,7 @@ class Video < ApplicationRecord
 
   has_many :views,
     foreign_key: :video_id,
-    class_name: :Views 
+    class_name: :View 
 
   has_one_attached :video
   has_one_attached :photo

@@ -2,6 +2,7 @@
   json.set! video.id do
     json.channel video.channel.name
     json.photoUrl url_for(video.photo)
-    json.extract! video, :id, :title, :views, :description, :created_at
+    json.extract! video, :id, :title, :description, :created_at
+    json.views video.views.length
   end
 end

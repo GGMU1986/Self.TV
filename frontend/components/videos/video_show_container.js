@@ -6,9 +6,9 @@ import {
   updateComment,
   makeComment 
 } from '../../actions/comments_actions';
+import { incrementViews } from '../../actions/view_actions';
 
 const mSTP = (state, ownProps) => {
-  // console.log(ownProps)
   return {
     video: state.entities.videos[ownProps.match.params.videoId],
     comments: Object.values(state.entities.comments),
@@ -21,7 +21,8 @@ const mSTP = (state, ownProps) => {
 const mDTP = dispatch => ({
   fetchVideo: videoId => dispatch(fetchVideo(videoId)),
   destroyComment: commentId => dispatch(destroyComment(commentId)),
-  action: (comment, videoId) => dispatch(makeComment(comment, videoId)) 
+  action: (comment, videoId) => dispatch(makeComment(comment, videoId)),
+  incViews: () => dispatch(incrementViews())
 });
 
 export default connect(mSTP, mDTP)(VideoShow);

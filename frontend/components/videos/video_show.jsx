@@ -17,7 +17,7 @@ class VideoShow extends React.Component {
   }
 
   viewCount(e) {
-    this.props.incViews()
+    this.props.incViews();
   }
   
   render() {
