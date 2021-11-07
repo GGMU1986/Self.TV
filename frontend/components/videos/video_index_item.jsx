@@ -12,7 +12,7 @@ class VideoIndexItem extends React.Component {
     return (
       <div className="video">
         <Link to={`/videos/${video.id}`}>
-          <img src={video.photoUrl} width="300" heigth="300" />
+          <img src={video.photoUrl} />
         </Link>
         <Link to={`/videos/${video.id}`}>
           <div className="video-index-link title">

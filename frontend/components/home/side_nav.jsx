@@ -38,7 +38,7 @@ class SideNav extends React.Component {
         <Link to="">
           <div className="icon-cont">
             <div className="icon">
-              <i class="far fa-folder"></i>
+              <i className="far fa-folder"></i>
             </div>
             <div className="icon-text">
               Library
