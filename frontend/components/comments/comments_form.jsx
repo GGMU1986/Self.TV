@@ -37,13 +37,15 @@ class CommentForm extends React.Component {
             onChange={this.update}
             onClick={this.noComment}
           />
-          <p className="cmt-cancel">CANCEL</p>
-          <button 
-            className="cmt-btn"
-            onClick={this.handleSubmit}
-          >
-            COMMENT
-          </button>
+          <div className="comment-btns">
+            <p className="cmt-cancel">CANCEL</p>
+            <button 
+              className="cmt-btn"
+              onClick={this.handleSubmit}
+            >
+              COMMENT
+            </button>
+          </div>
         </form>
       </div>
     )

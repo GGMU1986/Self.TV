@@ -13530,12 +13530,14 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
         value: this.state.body,
         onChange: this.update,
         onClick: this.noComment
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "comment-btns"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
         className: "cmt-cancel"
       }, "CANCEL"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         className: "cmt-btn",
         onClick: this.handleSubmit
-      }, "COMMENT")));
+      }, "COMMENT"))));
     }
   }]);
 
