@@ -13,11 +13,11 @@
  *= require_self
  */
 
-@import './reset.css';
-@import './header.css';
-@import './sidenav.css';
-@import './video_index.css';
-@import './video_show.css';
-@import './comment_form.scss';
+@import './reset';
+@import './header';
+@import './sidenav';
+@import './video_index';
+@import './video_show';
+@import './comment_form';
 @import './comments_index';
-@import './upload_video_modal.scss'
+@import './upload_video_modal'
