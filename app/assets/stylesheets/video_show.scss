@@ -26,6 +26,11 @@
 .fa-thumbs-up, .fa-thumbs-down {
   cursor: pointer;
   font-size: 20px;
+  margin: 0 12px;
+}
+
+.dislikes { 
+  margin-right: 100px;
 }
 
 .sub {
@@ -45,4 +50,14 @@
   margin-top: 20px;
   margin-bottom: 20px;
   line-height: 2;
+}
+
+.likes-cont {
+  width: 10%;
+  display: flex;
+}
+
+.video-show-likes {
+  display: flex;
+  align-items: center;
 }

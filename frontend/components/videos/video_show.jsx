@@ -57,11 +57,11 @@ class VideoShow extends React.Component {
                 <div className="likes-cont">
                   <div className="video-show-likes">
                     <i className="far fa-thumbs-up"></i>
-                    [like-count]
+                    <div>0</div>
                   </div>
-                  <div className="video-show-dislikes">
+                  <div className="video-show-likes">
                     <i className="far fa-thumbs-down"></i>
-                    [dislike-count]
+                    <div className="dislikes">0</div>
                   </div>
                 </div> 
               </div>
