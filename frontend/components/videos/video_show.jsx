@@ -23,58 +23,75 @@ class VideoShow extends React.Component {
       <div className="video-show-cont">
         <Modal />
         <Header />
-        <div className="video-show">
-          <div>
-            <div className="video-show-container">
-              <video 
-                className="video-cont"
-                src={video.videoUrl}   
-                title={video.title}
-                controls
-              />
-            </div>
-            <div className="video-show-title">
-              <strong>
-                {video.title}
-              </strong>
-              <br />
-              {video.views} views &#8226; {uploadDate} --- [likes/dislikes] - [share]
+        <div className="show-page">
+          <div className="video-show">
+            <div>
+              <div className="video-show-container">
+                <video 
+                  className="video-cont"
+                  src={video.videoUrl}   
+                  title={video.title}
+                  controls
+                />
+              </div>
+              <div className="video-show-title">
+                <div className="video-title">
+                  <strong>
+                    {video.title}
+                  </strong>
+                  <br />
+                  {video.views} views &#8226; {uploadDate}
+                </div>
+                <div className="likes-cont">
+                  <div className="video-show-likes">
+                    <i className="far fa-thumbs-up"></i>
+                    [like-count]
+                  </div>
+                  <div className="video-show-dislikes">
+                    <i className="far fa-thumbs-down"></i>
+                    [dislike-count]
+                  </div>
+                </div> 
+              </div>
+              <hr />
+              <div className="channel-desc">
+                <div className="video-channel">
+                  <strong>
+                    {video.channel}
+                  </strong>
+                  <br />
+                  [subscribers]
+                </div>
+                <br />
+                <div className="video-show-descr">
+                  {video.description}
+                </div>
+                <button className="sub">SUBSCRIBE</button>
+              </div>
             </div>
             <hr />
-            <div className="channel-desc">
-              <div className="video-channel">
-                <strong>
-                  {video.channel}
-                </strong>
-                <br />
-                [subscribers]
-              </div>
-              <br />
-              <div className="video-show-descr">
-                {video.description}
-              </div>
-              <button className="sub">SUBSCRIBE</button>
+            <div className="comment-count">
+              {comments.length} Comments
+              &nbsp;&nbsp;
+              <span className='sort-by'>
+                SORT BY
+              </span>
+            </div>
+            <div>
+              <CommentForm
+                comment={comment}
+                action={action}
+                videoId={videoId}
+              />
+              <CommentsIndex 
+                comments={comments} 
+                destroyComment={destroyComment}
+                videoId={videoId}
+              />
             </div>
           </div>
-          <hr />
-          <div className="comment-count">
-            {comments.length} Comments
-            &nbsp;&nbsp;
-            <span className='sort-by'>
-              SORT BY
-            </span>
-          </div>
-          <div>
-            <CommentForm
-              comment={comment}
-              action={action}
-              videoId={videoId}
-            />
-            <CommentsIndex 
-              comments={comments} 
-              destroyComment={destroyComment}
-              videoId={videoId}
-            />
+          <div className="related-videos-cont">
+
           </div>
         </div>
       </div>

@@ -15117,6 +15117,8 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "video-show-cont"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_modal_modal__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_home_header__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "show-page"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "video-show"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "video-show-container"
@@ -15127,7 +15129,19 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
         controls: true
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "video-show-title"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, video.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), video.views, " views \u2022 ", uploadDate, " --- [likes/dislikes] - [share]"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "video-title"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, video.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), video.views, " views \u2022 ", uploadDate), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "likes-cont"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "video-show-likes"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
+        className: "far fa-thumbs-up"
+      }), "[like-count]"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "video-show-dislikes"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
+        className: "far fa-thumbs-down"
+      }), "[dislike-count]"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "channel-desc"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "video-channel"
@@ -15147,7 +15161,9 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
         comments: comments,
         destroyComment: destroyComment,
         videoId: videoId
-      }))));
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "related-videos-cont"
+      })));
     }
   }]);
 

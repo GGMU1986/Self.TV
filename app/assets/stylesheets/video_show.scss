@@ -1,5 +1,9 @@
 .video-show-cont {
   background-color: rgb(244, 244, 244);
+  // display: flex;
+}
+.show-page {
+  display: flex
 }
 
 .video-show {
@@ -11,8 +15,16 @@
 }
 
 .video-cont {
-  width: 80%;
+  width: 100%;
   height: 40%;
+}
+
+.related-videos-cont {
+  width: 33%
+}
+
+.fa-thumbs-up, .fa-thumbs-down {
+  cursor: pointer;
 }
 
 .sub {

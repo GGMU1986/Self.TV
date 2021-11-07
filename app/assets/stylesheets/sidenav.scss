@@ -11,6 +11,18 @@
   color: black
 }
 
+.video-show-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.likes-cont {
+  display: flex;
+  justify-content: space-evenly;
+  width: 10%;
+}
+
 .icon-cont {
   display: flex;
   flex-direction: column;
