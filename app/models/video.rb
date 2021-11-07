@@ -9,7 +9,6 @@
 #  channel_id  :integer          not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  views       :integer          default(0)
 #
 class Video < ApplicationRecord
 
@@ -27,6 +26,10 @@ class Video < ApplicationRecord
   has_many :comments,
     foreign_key: :video_id,
     class_name: :Comment
+
+  has_many :views,
+    foreign_key: :video_id,
+    class_name: :Views 
 
   has_one_attached :video
   has_one_attached :photo

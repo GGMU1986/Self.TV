@@ -6,9 +6,18 @@ import CommentForm from '../comments/comments_form';
 import Modal from '../modal/modal';
 
 class VideoShow extends React.Component {
-  
+  constructor(props){
+    super(props)
+    this.state = {
+      views: this.props.video.views
+    }
+  }
   componentDidMount() {
     this.props.fetchVideo(this.props.match.params.videoId)
+  }
+
+  viewCount(e) {
+    this.props.incViews()
   }
   
   render() {
@@ -27,7 +36,8 @@ class VideoShow extends React.Component {
           <div className="video-show">
             <div>
               <div className="video-show-container">
-                <video 
+                <video
+                  onClick={this.viewCount} 
                   className="video-cont"
                   src={video.videoUrl}   
                   title={video.title}
@@ -40,7 +50,7 @@ class VideoShow extends React.Component {
                     {video.title}
                   </strong>
                   <br />
-                  {video.views} views &#8226; {uploadDate}
+                  {this.state.views} views &#8226; {uploadDate}
                 </div>
                 <div className="likes-cont">
                   <div className="video-show-likes">

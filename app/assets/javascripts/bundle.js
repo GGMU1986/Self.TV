@@ -15091,16 +15091,27 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
 
   var _super = _createSuper(VideoShow);
 
-  function VideoShow() {
+  function VideoShow(props) {
+    var _this;
+
     _classCallCheck(this, VideoShow);
 
-    return _super.apply(this, arguments);
+    _this = _super.call(this, props);
+    _this.state = {
+      views: _this.props.video.views
+    };
+    return _this;
   }
 
   _createClass(VideoShow, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchVideo(this.props.match.params.videoId);
+    }
+  }, {
+    key: "viewCount",
+    value: function viewCount(e) {
+      this.props.incViews();
     }
   }, {
     key: "render",
@@ -15123,6 +15134,7 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "video-show-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("video", {
+        onClick: this.viewCount,
         className: "video-cont",
         src: video.videoUrl,
         title: video.title,
@@ -15131,7 +15143,7 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
         className: "video-show-title"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "video-title"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, video.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), video.views, " views \u2022 ", uploadDate), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, video.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), this.state.views, " views \u2022 ", uploadDate), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "likes-cont"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "video-show-likes"

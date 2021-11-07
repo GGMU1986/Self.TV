@@ -9,7 +9,6 @@
 #  channel_id  :integer          not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  views       :integer          default(0)
 #
 require 'test_helper'
 
