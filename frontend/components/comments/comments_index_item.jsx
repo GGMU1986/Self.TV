@@ -17,13 +17,13 @@ class CommentsIndexItem extends React.Component {
     const time = timeNow - oldTime
     const timeDays = Math.round(time / (1000 * 3600 * 24))
     const timeAgo = timeDays < 1 ? 'today' : (
-      timeDays === 1 ? '1 day ago' : `${timeDays} ago`
+      timeDays === 1 ? '1 day ago' : `${timeDays} days ago`
     )
     return (
       <div className='comments-index'>
         <div>
           <strong>{this.props.comment.commenter}</strong>
-          &nbsp;
+          &nbsp;&nbsp;
           <span className="time-ago">
             {timeAgo}
           </span>

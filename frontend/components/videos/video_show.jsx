@@ -3,6 +3,7 @@ import Header from '../home/header';
 import { Link } from 'react-router-dom';
 import CommentsIndex from '../comments/comments_index';
 import CommentForm from '../comments/comments_form';
+import Modal from '../modal/modal';
 
 class VideoShow extends React.Component {
   
@@ -20,6 +21,7 @@ class VideoShow extends React.Component {
     let videoId = this.props.match.params.videoId
     return (
       <div>
+        <Modal />
         <Header />
         <div className="video-show">
           <div>
