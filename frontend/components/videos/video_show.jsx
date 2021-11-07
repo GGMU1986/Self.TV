@@ -20,7 +20,7 @@ class VideoShow extends React.Component {
     debugger
     let videoId = this.props.match.params.videoId
     return (
-      <div>
+      <div className="video-show-cont">
         <Modal />
         <Header />
         <div className="video-show">

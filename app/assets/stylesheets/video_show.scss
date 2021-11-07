@@ -1,3 +1,7 @@
+.video-show-cont {
+  background-color: rgb(244, 244, 244);
+}
+
 .video-show {
   margin:  2% 5%;
 }
@@ -22,4 +26,10 @@
   padding: 10px 10px;
   border: none;
   font-size: 12px;
+}
+
+.video-show-title {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  line-height: 2;
 }
