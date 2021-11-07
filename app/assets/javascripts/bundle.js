@@ -15119,8 +15119,7 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "video-show-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("video", {
-        width: "70%",
-        height: "50%",
+        className: "video-cont",
         src: video.videoUrl,
         title: video.title,
         controls: true

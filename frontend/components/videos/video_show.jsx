@@ -27,8 +27,7 @@ class VideoShow extends React.Component {
           <div>
             <div className="video-show-container">
               <video 
-                width='70%'
-                height='50%'
+                className="video-cont"
                 src={video.videoUrl}   
                 title={video.title}
                 controls
