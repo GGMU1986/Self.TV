@@ -1,6 +1,7 @@
 .video-index {
   display: flex;
   flex: .92;
+  background-color: rgb(237, 237, 237);
 }
 
 .video {

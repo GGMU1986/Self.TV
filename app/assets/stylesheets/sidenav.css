@@ -19,6 +19,10 @@
   color: black;
 }
 
+.icon-cont:hover {
+  background-color: lightgray;
+}
+
 .icon {
   font-size: 20px;
 }

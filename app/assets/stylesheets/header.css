@@ -51,6 +51,7 @@
 
  .bars {
    margin-left: 20px;
+   cursor: pointer;
  }
 
  .ext-links {
