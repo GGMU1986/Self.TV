@@ -55,9 +55,11 @@ class Header extends React.Component {
         </div>
 
         <div className="search-mic">
-          <input type="text" placeholder="Search" />
-          <div className="mag-glass">
-            <i className="fas fa-search"></i>
+          <div className='search-glass'>
+            <input type="text" placeholder="Search" />
+            <div className="mag-glass">
+              <i className="fas fa-search"></i>
+            </div>
           </div>
           <div className="mic">
             <FontAwesomeIcon icon={faMicrophone} />

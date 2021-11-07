@@ -49,27 +49,6 @@
    align-items: center;
  }
 
- .search-mic {
-  display: flex;
-  align-items: center;
- }
-
- .mag-glass {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10 20px;
-  border: 1px solid gray;
-  background: rgb(242, 242, 242);
-  height: 34px;
-  width: 60px;
-  cursor: pointer;
- }
-
- .mag-glass:hover {
-   background: rgb(228, 228, 228)
- }
-
  .ext-links {
    width: 25%;
    display: flex;
@@ -95,9 +74,36 @@
    padding: 0 15px;
  }
 
+ .search-mic {
+  display: flex;
+  align-items: center;
+ }
+
+ .search-glass {
+   display: flex;
+   border: 1px solid lightgray;
+ }
+
+ .mag-glass {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10 20px;
+  border-left: 1px solid lightgray;
+  background: rgb(242, 242, 242);
+  height: 34px;
+  width: 60px;
+  cursor: pointer;
+ }
+
+ .mag-glass:hover {
+   background: rgb(228, 228, 228)
+ }
+
  input {
   width: 550px; 
   height: 30px;
+  border: none;
  }
  
  input::placeholder {
