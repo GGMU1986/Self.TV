@@ -30,7 +30,7 @@ img {
 
 .channel {
   font-size: .8em;
-  color: gray
+  color: rgb(126, 126, 126);
 }
 
 span {
@@ -38,5 +38,5 @@ span {
 }
 
 .bul {
-  color: gray;
+  color: rgb(126, 126, 126);
 }
