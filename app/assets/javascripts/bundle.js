@@ -14196,6 +14196,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
 /* harmony import */ var _videos_upload_video_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../videos/upload_video_form */ "./frontend/components/videos/upload_video_form.jsx");
+/* harmony import */ var _videos_upload_video_title__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../videos/upload_video_title */ "./frontend/components/videos/upload_video_title.jsx");
+
 
 
 
@@ -14203,7 +14205,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var Modal = function Modal(_ref) {
   var modal = _ref.modal,
-      closeModal = _ref.closeModal;
+      closeModal = _ref.closeModal,
+      openModal = _ref.openModal;
 
   if (!modal) {
     return null;
@@ -14214,9 +14217,16 @@ var Modal = function Modal(_ref) {
   switch (modal) {
     case 'upload':
       component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_videos_upload_video_form__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        closeModal: closeModal
+        closeModal: closeModal,
+        openModal: openModal
       });
       break;
+
+    case 'title':
+      // debugger
+      component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_videos_upload_video_title__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        closeModal: closeModal
+      });
 
     default:
       return null;
@@ -14242,6 +14252,9 @@ var mDTP = function mDTP(dispatch) {
   return {
     closeModal: function closeModal() {
       return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__.closeModal)());
+    },
+    openModal: function openModal(modal) {
+      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__.openModal)(modal));
     }
   };
 };
@@ -14659,6 +14672,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _upload_video_title__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./upload_video_title */ "./frontend/components/videos/upload_video_title.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -14683,20 +14697,46 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var UploadVideoForm = /*#__PURE__*/function (_React$Component) {
   _inherits(UploadVideoForm, _React$Component);
 
   var _super = _createSuper(UploadVideoForm);
 
   function UploadVideoForm(props) {
+    var _this;
+
     _classCallCheck(this, UploadVideoForm);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+    _this.state = {
+      title: '',
+      duration: 0,
+      description: '',
+      videoFile: null
+    };
+    _this.handleFile = _this.handleFile.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(UploadVideoForm, [{
+    key: "handleFile",
+    value: function handleFile(e) {
+      // debugger
+      this.setState({
+        videoFile: e.currentTarget.files[0]
+      });
+      this.props.closeModal();
+      this.props.openModal('title'); // console.log(this.props)
+    }
+  }, {
     key: "render",
-    value: function render() {
+    value: // handleSubmit(e) {
+    //   e.preventDefault();
+    //   const formData = new formData();
+    //   formData.append('video[]')
+    // }
+    function render() {
       var closeModal = this.props.closeModal;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "upload-video-container"
@@ -14720,7 +14760,8 @@ var UploadVideoForm = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Drag and drop files to upload"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "mid-text-lower"
       }, "Your videos will be private until you publish them.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "SELECT FILES", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-        type: "file"
+        type: "file",
+        onChange: this.handleFile
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "footer-upload-videos"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
@@ -14733,6 +14774,68 @@ var UploadVideoForm = /*#__PURE__*/function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UploadVideoForm);
+
+/***/ }),
+
+/***/ "./frontend/components/videos/upload_video_title.jsx":
+/*!***********************************************************!*\
+  !*** ./frontend/components/videos/upload_video_title.jsx ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var UploadVideoTitle = /*#__PURE__*/function (_React$Component) {
+  _inherits(UploadVideoTitle, _React$Component);
+
+  var _super = _createSuper(UploadVideoTitle);
+
+  function UploadVideoTitle() {
+    _classCallCheck(this, UploadVideoTitle);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(UploadVideoTitle, [{
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "HELLO");
+    }
+  }]);
+
+  return UploadVideoTitle;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UploadVideoTitle);
 
 /***/ }),
 

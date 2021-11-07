@@ -1,9 +1,33 @@
 import React from "react";
+import UploadVideoTitle from './upload_video_title'
 
 class UploadVideoForm extends React.Component {
   constructor(props) {
     super(props)
-  }
+    this.state = {
+      title: '',
+      duration: 0,
+      description: '',
+      videoFile: null
+    };
+    this.handleFile = this.handleFile.bind(this);
+  };
+
+  handleFile(e) {
+    // debugger
+    this.setState({
+      videoFile: e.currentTarget.files[0]
+    })
+    this.props.closeModal();
+    this.props.openModal('title');
+    // console.log(this.props)
+  };
+
+  // handleSubmit(e) {
+  //   e.preventDefault();
+  //   const formData = new formData();
+  //   formData.append('video[]')
+  // }
 
   render() {
     const { closeModal } = this.props;
@@ -30,7 +54,7 @@ class UploadVideoForm extends React.Component {
               </div>
             </div>
           <label>SELECT FILES
-            <input type="file" />
+            <input type="file" onChange={this.handleFile}/>
           </label>
         </main>
         <div className="footer-upload-videos">

@@ -1,9 +1,10 @@
 import React from "react";
 import { connect } from 'react-redux';
-import { closeModal } from '../../actions/modal_actions';
+import { closeModal, openModal } from '../../actions/modal_actions';
 import UploadVideoForm from "../videos/upload_video_form";
+import UploadVideoTitle from "../videos/upload_video_title";
 
-const Modal = ({modal, closeModal}) => {
+const Modal = ({modal, closeModal, openModal}) => {
   if (!modal) {
     return null;
   }
@@ -11,8 +12,14 @@ const Modal = ({modal, closeModal}) => {
   let component;
   switch (modal) {
     case 'upload':
-      component = <UploadVideoForm closeModal={closeModal}/>;
+      component = <UploadVideoForm 
+                    closeModal={closeModal}
+                    openModal={openModal}  
+                  />;
       break;
+    case 'title':
+      // debugger
+      component = <UploadVideoTitle closeModal={closeModal}/>
     default:
       return null;
   }
@@ -31,7 +38,8 @@ const mSTP = state => ({
 });
 
 const mDTP = dispatch => ({
-  closeModal: () => dispatch(closeModal())
+  closeModal: () => dispatch(closeModal()),
+  openModal: modal => dispatch(openModal(modal))
 });
 
 export default connect(mSTP, mDTP)(Modal);
