@@ -2,6 +2,8 @@
   display: flex;
   flex: .92;
   background-color: rgb(238, 238, 238);
+  padding: 20px 20px;
+  padding-bottom: 0; 
 }
 
 .video {
