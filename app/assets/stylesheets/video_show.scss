@@ -38,9 +38,30 @@
 }
 
 .views-likes-share {
-  width: 100%;
+  width: 1000px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.up, .down {
+  display: flex;
+  align-items: center;
+}
+
+.thumb {
+  margin-right: 10px;
+}
+
+.likes-share {
+  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.share, .save {
+  display: flex;
   align-items: center;
 }
 

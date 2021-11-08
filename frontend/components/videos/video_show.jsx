@@ -57,6 +57,7 @@ class VideoShow extends React.Component {
                   title={video.title}
                   autoPlay
                   controls
+                  muted
                 />
               </div>
               <div className="video-show-title">
@@ -65,47 +66,34 @@ class VideoShow extends React.Component {
                     {video.title}
                   </strong>
                   <br />
-                  {/* //
-                  // views - upload date - likes - share START// */}
                   <div className="views-likes-share">
-                    <div>
-                      <div>
-                        {video.views} views &#8226; {uploadDate}
-                      </div>
+                    <div className="views-upload-date">
+                      {video.views} views &#8226; {uploadDate}
                     </div>
-                    <div className="likes-cont">
-                      <div className="video-show-likes">
-                        <i onClick={this.handleLike} className="far fa-thumbs-up"></i>
-                        <div>{this.state.likes}</div>
+                    <div className="likes-share">
+                      <div className="up">
+                        <i className="far fa-thumbs-up thumb"></i>
+                        <div>0</div>
                       </div>
-                      <div className="video-show-likes">
-                        <i onClick={this.handleDislike} className="far fa-thumbs-down"></i>
-                        <div className="dislikes">{this.state.dislikes}</div>
+                      <div className="down">
+                        <i className="far fa-thumbs-down thumb"></i>
+                        <div>0</div>
                       </div>
-                      <a 
-                        href="https://www.linkedin.com/in/george-tsimis-a5986224/" 
-                        className="vid-show-link" 
-                        target="blank"
-                      >
-                        <i className="fas fa-share"></i>
+                      <div className="share">
+                        
+                        <i className="fas fa-share thumb"></i>
                         <div>
                           SHARE
-                        </div>
-                      </a>
-                      <a 
-                        href="https://www.linkedin.com/in/george-tsimis-a5986224/" 
-                        className="vid-show-link" 
-                        target="blank"
-                      >
-                        <i className="fas fa-plus"></i>
+                        </div>  
+                      </div>
+                      <div className="save">
+                        <i className="fas fa-plus thumb"></i>
                         <div>
                           SAVE
-                        </div> 
-                      </a>
-                    </div> 
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                    {/* //
-                    // views - upload date - likes - share END */}
                 </div>
               </div>
               <hr />
