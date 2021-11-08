@@ -8,7 +8,8 @@ class VideoShow extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      views: this.props.video.views
+      views: this.props.video.views,
+      likes: this.props.video.likes
     }
     this.viewCount = this.viewCount.bind(this);
   }
@@ -30,6 +31,18 @@ class VideoShow extends React.Component {
     } = this.props
     const uploadDate = new Date(video.createdAt).toString().slice(4, 15)
     let videoId = this.props.match.params.videoId
+    let yes = 0;
+    let no = 0;
+    let videoLikes = video.likes;
+    if (videoLikes) {
+      videoLikes.forEach(like => {
+        if (like.dislike) {
+          return no += 1;
+        } else {
+          return yes += 1
+        }
+      })
+    } 
     return (
       <div className="video-show-cont">
         <Modal />
@@ -57,11 +70,11 @@ class VideoShow extends React.Component {
                 <div className="likes-cont">
                   <div className="video-show-likes">
                     <i className="far fa-thumbs-up"></i>
-                    <div>0</div>
+                    <div>{yes}</div>
                   </div>
                   <div className="video-show-likes">
                     <i className="far fa-thumbs-down"></i>
-                    <div className="dislikes">0</div>
+                    <div className="dislikes">{no}</div>
                   </div>
                 </div> 
               </div>
