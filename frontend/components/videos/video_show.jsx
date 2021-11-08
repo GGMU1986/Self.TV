@@ -65,18 +65,48 @@ class VideoShow extends React.Component {
                     {video.title}
                   </strong>
                   <br />
-                  {video.views} views &#8226; {uploadDate}
+                  {/* //
+                  // views - upload date - likes - share START// */}
+                  <div className="views-likes-share">
+                    <div>
+                      <div>
+                        {video.views} views &#8226; {uploadDate}
+                      </div>
+                    </div>
+                    <div className="likes-cont">
+                      <div className="video-show-likes">
+                        <i onClick={this.handleLike} className="far fa-thumbs-up"></i>
+                        <div>{this.state.likes}</div>
+                      </div>
+                      <div className="video-show-likes">
+                        <i onClick={this.handleDislike} className="far fa-thumbs-down"></i>
+                        <div className="dislikes">{this.state.dislikes}</div>
+                      </div>
+                      <a 
+                        href="https://www.linkedin.com/in/george-tsimis-a5986224/" 
+                        className="vid-show-link" 
+                        target="blank"
+                      >
+                        <i className="fas fa-share"></i>
+                        <div>
+                          SHARE
+                        </div>
+                      </a>
+                      <a 
+                        href="https://www.linkedin.com/in/george-tsimis-a5986224/" 
+                        className="vid-show-link" 
+                        target="blank"
+                      >
+                        <i className="fas fa-plus"></i>
+                        <div>
+                          SAVE
+                        </div> 
+                      </a>
+                    </div> 
+                  </div>
+                    {/* //
+                    // views - upload date - likes - share END */}
                 </div>
-                <div className="likes-cont">
-                  <div className="video-show-likes">
-                    <i onClick={this.handleLike} className="far fa-thumbs-up"></i>
-                    <div>{this.state.likes}</div>
-                  </div>
-                  <div className="video-show-likes">
-                    <i onClick={this.handleDislike} className="far fa-thumbs-down"></i>
-                    <div className="dislikes">{this.state.dislikes}</div>
-                  </div>
-                </div> 
               </div>
               <hr />
               <div className="channel-desc">

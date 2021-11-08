@@ -23,14 +23,25 @@
   width: 33%
 }
 
-.fa-thumbs-up, .fa-thumbs-down {
-  cursor: pointer;
-  font-size: 20px;
-  margin: 0 12px;
+.fas{
+  display: flex;
 }
+
+// .fa-thumbs-up, .fa-thumbs-down {
+//   cursor: pointer;
+//   font-size: 20px;
+//   margin: 0 12px;
+// }
 
 .dislikes { 
   margin-right: 100px;
+}
+
+.views-likes-share {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .sub {
