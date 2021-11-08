@@ -61,3 +61,14 @@
   display: flex;
   align-items: center;
 }
+
+.video-show-container {
+  position: relative;
+}
+
+.play-btn {
+  position: absolute;
+  bottom: 3%;
+  left: 2%;
+  cursor: pointer;
+}

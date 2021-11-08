@@ -6,7 +6,7 @@ import {
   updateComment,
   makeComment 
 } from '../../actions/comments_actions';
-import { incrementViews } from '../../actions/view_actions';
+// import { incrementViews } from '../../actions/view_actions';
 import { incrementLikes } from '../../actions/likes_actions';
 
 const mSTP = (state, ownProps) => {
@@ -15,7 +15,9 @@ const mSTP = (state, ownProps) => {
     comments: Object.values(state.entities.comments),
     comment: {
       body: ''
-    }
+    },
+    // likes: state.entities.videos.likes.filter(like => !like['dislike']),
+    // dislikes: state.entities.videos.likes.filter(like => like['dislike'])
   } 
 };
 
@@ -23,7 +25,7 @@ const mDTP = dispatch => ({
   fetchVideo: videoId => dispatch(fetchVideo(videoId)),
   destroyComment: commentId => dispatch(destroyComment(commentId)),
   action: (comment, videoId) => dispatch(makeComment(comment, videoId)),
-  incViews: videoId => dispatch(incrementViews(videoId)),
+  // incViews: videoId => dispatch(incrementViews(videoId)),
   incLikes: videoId => dispatch(incrementLikes(videoId))
 });
 

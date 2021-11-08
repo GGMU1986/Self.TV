@@ -4,18 +4,18 @@ import VideoIndexItem from './video_index_item';
 class VideoIndex extends React.Component {
   
   componentDidMount() {
-    console.log("ed");
     this.props.fetchVideos()
   };
 
   render() {
-    const { videos } = this.props;
+    const { videos, incViews } = this.props;
     return (
       <div className="video-index">
         {
           videos.map(video => <VideoIndexItem 
                                 key={video.id} 
                                 video={video}
+                                incViews={incViews}
                               />)
         }
       </div>

@@ -13221,7 +13221,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var RECEIVE_LIKE = 'RECEIVE_LIKE';
 
-var recieveLike = function recieveLike(like) {
+var receiveLike = function receiveLike(like) {
   return {
     type: RECEIVE_LIKE,
     like: like
@@ -13231,7 +13231,7 @@ var recieveLike = function recieveLike(like) {
 var incrementLikes = function incrementLikes(videoId) {
   return function (dispatch) {
     return (0,_utils_like_utils__WEBPACK_IMPORTED_MODULE_0__.postLike)(videoId).then(function (like) {
-      return dispatch(recieveLike(like));
+      return dispatch(receiveLike(like));
     });
   };
 };
@@ -14965,19 +14965,21 @@ var VideoIndex = /*#__PURE__*/function (_React$Component) {
   _createClass(VideoIndex, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      console.log("ed");
       this.props.fetchVideos();
     }
   }, {
     key: "render",
     value: function render() {
-      var videos = this.props.videos;
+      var _this$props = this.props,
+          videos = _this$props.videos,
+          incViews = _this$props.incViews;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "video-index"
       }, videos.map(function (video) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_video_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: video.id,
-          video: video
+          video: video,
+          incViews: incViews
         });
       }));
     }
@@ -15005,6 +15007,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _video_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./video_index */ "./frontend/components/videos/video_index.jsx");
 /* harmony import */ var _actions_videos_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/videos_actions */ "./frontend/actions/videos_actions.js");
+/* harmony import */ var _actions_view_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/view_actions */ "./frontend/actions/view_actions.js");
+
 
 
 
@@ -15019,6 +15023,9 @@ var mDTP = function mDTP(dispatch) {
   return {
     fetchVideos: function fetchVideos() {
       return dispatch((0,_actions_videos_actions__WEBPACK_IMPORTED_MODULE_2__.fetchVideos)());
+    },
+    incViews: function incViews(videoId) {
+      return dispatch((0,_actions_view_actions__WEBPACK_IMPORTED_MODULE_3__.incrementViews)(videoId));
     }
   };
 };
@@ -15073,18 +15080,33 @@ var VideoIndexItem = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(VideoIndexItem);
 
   function VideoIndexItem(props) {
+    var _this;
+
     _classCallCheck(this, VideoIndexItem);
 
-    return _super.call(this, props);
+    console.log(props);
+    _this = _super.call(this, props);
+    _this.viewCount = _this.viewCount.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(VideoIndexItem, [{
+    key: "viewCount",
+    value: function viewCount(e) {
+      this.props.incViews(this.props.video.id);
+    }
+  }, {
     key: "render",
     value: function render() {
       var video = this.props.video;
-      var date = new Date(video.createdAt).toString().slice(4, 15);
+      var timeNow = new Date();
+      var oldTime = new Date(video.createdAt);
+      var time = timeNow - oldTime;
+      var timeDays = Math.round(time / (1000 * 3600 * 24));
+      var timeAgo = timeDays < 1 ? 'today' : timeDays === 1 ? '1 day ago' : "".concat(timeDays, " days ago");
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "video"
+        className: "video",
+        onClick: this.viewCount
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
         to: "/videos/".concat(video.id)
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
@@ -15095,9 +15117,9 @@ var VideoIndexItem = /*#__PURE__*/function (_React$Component) {
         className: "video-index-link title"
       }, video.title, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "video-index-link channel"
-      }, video.channel, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), video.views, " views", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "\xA0 ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+      }, video.channel, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), this.props.video.views, " views", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "\xA0 ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
         className: "bul"
-      }, "\u2022"), " \xA0"), date))));
+      }, "\u2022"), " \xA0"), timeAgo))));
     }
   }]);
 
@@ -15165,10 +15187,9 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      views: _this.props.video.views,
-      likes: _this.props.video.likes
+      likes: _this.props.likes,
+      dislikes: _this.props.likes
     };
-    _this.viewCount = _this.viewCount.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -15176,16 +15197,6 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchVideo(this.props.match.params.videoId);
-    }
-  }, {
-    key: "viewCount",
-    value: function viewCount(e) {
-      this.props.incViews(this.props.match.params.videoId);
-      this.setState(function (prevState) {
-        return {
-          views: prevState.views + 1
-        };
-      });
     } // handleLike(e) {
     // }
     // handleDislike(e) 
@@ -15201,20 +15212,18 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
           action = _this$props.action,
           comment = _this$props.comment;
       var uploadDate = new Date(video.createdAt).toString().slice(4, 15);
-      var videoId = this.props.match.params.videoId;
-      var yes = 0;
-      var no = 0;
-      var videoLikes = video.likes;
-
-      if (videoLikes) {
-        videoLikes.forEach(function (like) {
-          if (like.dislike) {
-            return no += 1;
-          } else {
-            return yes += 1;
-          }
-        });
-      }
+      var videoId = this.props.match.params.videoId; // let yes = 0;
+      // let no = 0;
+      // let videoLikes = video.likes;
+      // if (videoLikes) {
+      //   videoLikes.forEach(like => {
+      //     if (like.dislike) {
+      //       return no += 1;
+      //     } else {
+      //       return yes += 1
+      //     }
+      //   })
+      // } 
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "video-show-cont"
@@ -15225,7 +15234,6 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "video-show-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("video", {
-        onClick: this.viewCount,
         className: "video-cont",
         src: video.videoUrl,
         title: video.title,
@@ -15234,21 +15242,21 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
         className: "video-show-title"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "video-title"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, video.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), this.state.views, " views \u2022 ", uploadDate), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, video.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), video.views, " views \u2022 ", uploadDate), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "likes-cont"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "video-show-likes"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
         onClick: this.handleLike,
         className: "far fa-thumbs-up"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, yes)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, this.state.likes)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "video-show-likes"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
         onClick: this.handleDislike,
         className: "far fa-thumbs-down"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "dislikes"
-      }, no)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, this.state.dislikes)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "channel-desc"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "video-channel"
@@ -15297,12 +15305,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _video_show__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./video_show */ "./frontend/components/videos/video_show.jsx");
 /* harmony import */ var _actions_videos_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/videos_actions */ "./frontend/actions/videos_actions.js");
 /* harmony import */ var _actions_comments_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/comments_actions */ "./frontend/actions/comments_actions.js");
-/* harmony import */ var _actions_view_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/view_actions */ "./frontend/actions/view_actions.js");
-/* harmony import */ var _actions_likes_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/likes_actions */ "./frontend/actions/likes_actions.js");
+/* harmony import */ var _actions_likes_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/likes_actions */ "./frontend/actions/likes_actions.js");
 
 
 
-
+ // import { incrementViews } from '../../actions/view_actions';
 
 
 
@@ -15312,7 +15319,9 @@ var mSTP = function mSTP(state, ownProps) {
     comments: Object.values(state.entities.comments),
     comment: {
       body: ''
-    }
+    } // likes: state.entities.videos.likes.filter(like => !like['dislike']),
+    // dislikes: state.entities.videos.likes.filter(like => like['dislike'])
+
   };
 };
 
@@ -15327,11 +15336,9 @@ var mDTP = function mDTP(dispatch) {
     action: function action(comment, videoId) {
       return dispatch((0,_actions_comments_actions__WEBPACK_IMPORTED_MODULE_3__.makeComment)(comment, videoId));
     },
-    incViews: function incViews(videoId) {
-      return dispatch((0,_actions_view_actions__WEBPACK_IMPORTED_MODULE_4__.incrementViews)(videoId));
-    },
+    // incViews: videoId => dispatch(incrementViews(videoId)),
     incLikes: function incLikes(videoId) {
-      return dispatch((0,_actions_likes_actions__WEBPACK_IMPORTED_MODULE_5__.incrementLikes)(videoId));
+      return dispatch((0,_actions_likes_actions__WEBPACK_IMPORTED_MODULE_4__.incrementLikes)(videoId));
     }
   };
 };
