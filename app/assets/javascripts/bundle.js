@@ -15237,6 +15237,7 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
         className: "video-cont",
         src: video.videoUrl,
         title: video.title,
+        autoPlay: true,
         controls: true
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "video-show-title"

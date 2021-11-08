@@ -55,6 +55,7 @@ class VideoShow extends React.Component {
                   className="video-cont"
                   src={video.videoUrl}   
                   title={video.title}
+                  autoPlay
                   controls
                 />
               </div>
