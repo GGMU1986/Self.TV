@@ -13736,7 +13736,7 @@ var CommentsIndexItem = /*#__PURE__*/function (_React$Component) {
       var oldTime = new Date(comment.createdAt);
       var time = timeNow - oldTime;
       var timeDays = Math.round(time / (1000 * 3600 * 24));
-      var timeAgo = timeDays < 1 ? 'today' : timeDays === 1 ? '1 day ago' : "".concat(timeDays, " days ago");
+      var timeAgo = timeDays < 1 ? 'less than 1 day ago' : timeDays === 1 ? '1 day ago' : "".concat(timeDays, " days ago");
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "comments-index"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, this.props.comment.commenter), "\xA0\xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
@@ -14747,6 +14747,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _upload_video_title__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./upload_video_title */ "./frontend/components/videos/upload_video_title.jsx");
+/* harmony import */ var _video_upload_1__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./video_upload_1 */ "./frontend/components/videos/video_upload_1.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -14772,6 +14773,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var UploadVideoForm = /*#__PURE__*/function (_React$Component) {
   _inherits(UploadVideoForm, _React$Component);
 
@@ -14785,9 +14787,9 @@ var UploadVideoForm = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       title: '',
-      duration: 0,
       description: '',
-      videoFile: null
+      videoFile: null,
+      photoFile: null
     };
     _this.handleFile = _this.handleFile.bind(_assertThisInitialized(_this));
     return _this;
@@ -14796,11 +14798,11 @@ var UploadVideoForm = /*#__PURE__*/function (_React$Component) {
   _createClass(UploadVideoForm, [{
     key: "handleFile",
     value: function handleFile(e) {
-      // // debugger
+      debugger;
       this.setState({
         videoFile: e.currentTarget.files[0]
-      });
-      this.props.closeModal();
+      }); // this.props.closeModal();
+
       this.props.openModal('title'); // console.log(this.props)
     }
   }, {
@@ -14812,40 +14814,23 @@ var UploadVideoForm = /*#__PURE__*/function (_React$Component) {
     // }
     function render() {
       var closeModal = this.props.closeModal;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "upload-video-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "upload-videos-header"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
-        className: "title"
-      }, "Upload videos"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "upload-video-icons-header",
-        onClick: closeModal
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
-        className: "fas fa-times"
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("main", {
-        className: "file-upload"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "upload-circle"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
-        className: "fas fa-upload"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "mid-text"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Drag and drop files to upload"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "mid-text-lower"
-      }, "Your videos will be private until you publish them.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "SELECT FILES", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-        type: "file",
-        onChange: this.handleFile
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "footer-upload-videos"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
-        className: "gray"
-      }, "By submitting your videos to Self.TV, you agree to Self.TV's ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Terms of Service"), " and ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Community Guidelines."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), "Please be sure not to violate others' copyright or privacy rights. ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Learn more"))));
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_video_upload_1__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        handleFile: this.handleFile,
+        closeModal: closeModal
+      });
     }
   }]);
 
   return UploadVideoForm;
-}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component); // const mSTP = state => ({
+//   video: {
+//     title: '',
+//     description: '',
+//     videoUrl: null,
+//     photoUrl: null,
+//   }
+// });
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UploadVideoForm);
 
@@ -15103,7 +15088,7 @@ var VideoIndexItem = /*#__PURE__*/function (_React$Component) {
       var oldTime = new Date(video.createdAt);
       var time = timeNow - oldTime;
       var timeDays = Math.round(time / (1000 * 3600 * 24));
-      var timeAgo = timeDays < 1 ? 'today' : timeDays === 1 ? '1 day ago' : "".concat(timeDays, " days ago");
+      var timeAgo = timeDays < 1 ? 'less than 1 day ago' : timeDays === 1 ? '1 day ago' : "".concat(timeDays, " days ago");
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "video",
         onClick: this.viewCount
@@ -15324,13 +15309,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
+  console.log(state);
   return {
     video: state.entities.videos[ownProps.match.params.videoId],
     comments: Object.values(state.entities.comments),
     comment: {
       body: ''
-    } // likes: state.entities.videos.likes.filter(like => !like['dislike']),
-    // dislikes: state.entities.videos.likes.filter(like => like['dislike'])
+    } // likes: state.entities.videos.likes.filter(like => like['dislike'] === false),
+    // dislikes: state.entities.videos.likes.filter(like => like['dislike'] === true)
 
   };
 };
@@ -15354,6 +15340,58 @@ var mDTP = function mDTP(dispatch) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mSTP, mDTP)(_video_show__WEBPACK_IMPORTED_MODULE_1__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/videos/video_upload_1.jsx":
+/*!*******************************************************!*\
+  !*** ./frontend/components/videos/video_upload_1.jsx ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+var UploadPart1 = function UploadPart1(_ref) {
+  var handleFile = _ref.handleFile,
+      closeModal = _ref.closeModal;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "upload-video-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "upload-videos-header"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+    className: "title"
+  }, "Upload videos"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "upload-video-icons-header",
+    onClick: closeModal
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
+    className: "fas fa-times"
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("main", {
+    className: "file-upload"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "upload-circle"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
+    className: "fas fa-upload"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "mid-text"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Drag and drop files to upload"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "mid-text-lower"
+  }, "Your videos will be private until you publish them.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "SELECT FILES", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    type: "file",
+    onChange: handleFile
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "footer-upload-videos"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+    className: "gray"
+  }, "By submitting your videos to Self.TV, you agree to Self.TV's ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Terms of Service"), " and ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Community Guidelines."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), "Please be sure not to violate others' copyright or privacy rights. ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Learn more"))));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UploadPart1);
 
 /***/ }),
 

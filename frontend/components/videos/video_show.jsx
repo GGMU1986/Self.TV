@@ -21,7 +21,7 @@ class VideoShow extends React.Component {
   // }
 
   // handleDislike(e) 
-
+    
   // }
   
   render() {
@@ -80,7 +80,7 @@ class VideoShow extends React.Component {
                         <div>0</div>
                       </div>
                       <div className="share">
-                        
+
                         <i className="fas fa-share thumb"></i>
                         <div>
                           SHARE

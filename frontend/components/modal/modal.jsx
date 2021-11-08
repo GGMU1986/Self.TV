@@ -28,6 +28,7 @@ const Modal = ({modal, closeModal, openModal}) => {
     <div className='modal-background' >
       <div className="modal-child" onClick={e => e.stopPropagation()}>
         {component}
+        {/* <UploadVideoTitle closeModal={closeModal} /> */}
       </div>
     </div>
   )

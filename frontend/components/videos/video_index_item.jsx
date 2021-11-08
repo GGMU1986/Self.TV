@@ -19,7 +19,7 @@ class VideoIndexItem extends React.Component {
     const oldTime = new Date(video.createdAt)
     const time = timeNow - oldTime
     const timeDays = Math.round(time / (1000 * 3600 * 24))
-    const timeAgo = timeDays < 1 ? 'today' : (
+    const timeAgo = timeDays < 1 ? 'less than 1 day ago' : (
       timeDays === 1 ? '1 day ago' : `${timeDays} days ago`
     )
     return (

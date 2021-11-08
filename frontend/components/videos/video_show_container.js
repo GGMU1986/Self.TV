@@ -10,14 +10,15 @@ import {
 import { incrementLikes } from '../../actions/likes_actions';
 
 const mSTP = (state, ownProps) => {
+  console.log(state)
   return {
     video: state.entities.videos[ownProps.match.params.videoId],
     comments: Object.values(state.entities.comments),
     comment: {
       body: ''
     },
-    // likes: state.entities.videos.likes.filter(like => !like['dislike']),
-    // dislikes: state.entities.videos.likes.filter(like => like['dislike'])
+    // likes: state.entities.videos.likes.filter(like => like['dislike'] === false),
+    // dislikes: state.entities.videos.likes.filter(like => like['dislike'] === true)
   } 
 };
 
