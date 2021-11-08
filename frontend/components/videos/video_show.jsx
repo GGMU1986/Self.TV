@@ -19,10 +19,18 @@ class VideoShow extends React.Component {
 
   viewCount(e) {
     this.props.incViews(this.props.match.params.videoId);
-    // this.setState(prevState => ({
-    //   views: prevState + 1
-    // }))
+    this.setState(prevState => ({
+      views: prevState.views + 1
+    }))
   }
+
+  // handleLike(e) {
+    
+  // }
+
+  // handleDislike(e) 
+
+  // }
   
   render() {
     const { 
@@ -69,11 +77,11 @@ class VideoShow extends React.Component {
                 </div>
                 <div className="likes-cont">
                   <div className="video-show-likes">
-                    <i className="far fa-thumbs-up"></i>
+                    <i onClick={this.handleLike} className="far fa-thumbs-up"></i>
                     <div>{yes}</div>
                   </div>
                   <div className="video-show-likes">
-                    <i className="far fa-thumbs-down"></i>
+                    <i onClick={this.handleDislike} className="far fa-thumbs-down"></i>
                     <div className="dislikes">{no}</div>
                   </div>
                 </div> 

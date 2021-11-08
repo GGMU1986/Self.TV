@@ -13205,6 +13205,39 @@ var makeComment = function makeComment(comment, videoId) {
 
 /***/ }),
 
+/***/ "./frontend/actions/likes_actions.js":
+/*!*******************************************!*\
+  !*** ./frontend/actions/likes_actions.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "RECEIVE_LIKE": () => (/* binding */ RECEIVE_LIKE),
+/* harmony export */   "incrementLikes": () => (/* binding */ incrementLikes)
+/* harmony export */ });
+/* harmony import */ var _utils_like_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/like_utils */ "./frontend/utils/like_utils.js");
+
+var RECEIVE_LIKE = 'RECEIVE_LIKE';
+
+var recieveLike = function recieveLike(like) {
+  return {
+    type: RECEIVE_LIKE,
+    like: like
+  };
+};
+
+var incrementLikes = function incrementLikes(videoId) {
+  return function (dispatch) {
+    return (0,_utils_like_utils__WEBPACK_IMPORTED_MODULE_0__.postLike)(videoId).then(function (like) {
+      return dispatch(recieveLike(like));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/modal_actions.js":
 /*!*******************************************!*\
   !*** ./frontend/actions/modal_actions.js ***!
@@ -13380,7 +13413,6 @@ var receiveView = function receiveView(view) {
 
 var incrementViews = function incrementViews(videoId) {
   return function (dispatch) {
-    // debugger
     return (0,_utils_view_util__WEBPACK_IMPORTED_MODULE_0__.postView)(videoId).then(function (view) {
       return dispatch(receiveView(view));
     });
@@ -15148,10 +15180,17 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "viewCount",
     value: function viewCount(e) {
-      this.props.incViews(this.props.match.params.videoId); // this.setState(prevState => ({
-      //   views: prevState + 1
-      // }))
-    }
+      this.props.incViews(this.props.match.params.videoId);
+      this.setState(function (prevState) {
+        return {
+          views: prevState.views + 1
+        };
+      });
+    } // handleLike(e) {
+    // }
+    // handleDislike(e) 
+    // }
+
   }, {
     key: "render",
     value: function render() {
@@ -15200,10 +15239,12 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "video-show-likes"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
+        onClick: this.handleLike,
         className: "far fa-thumbs-up"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, yes)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "video-show-likes"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
+        onClick: this.handleDislike,
         className: "far fa-thumbs-down"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "dislikes"
@@ -15257,6 +15298,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_videos_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/videos_actions */ "./frontend/actions/videos_actions.js");
 /* harmony import */ var _actions_comments_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/comments_actions */ "./frontend/actions/comments_actions.js");
 /* harmony import */ var _actions_view_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/view_actions */ "./frontend/actions/view_actions.js");
+/* harmony import */ var _actions_likes_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/likes_actions */ "./frontend/actions/likes_actions.js");
+
 
 
 
@@ -15286,6 +15329,9 @@ var mDTP = function mDTP(dispatch) {
     },
     incViews: function incViews(videoId) {
       return dispatch((0,_actions_view_actions__WEBPACK_IMPORTED_MODULE_4__.incrementViews)(videoId));
+    },
+    incLikes: function incLikes(videoId) {
+      return dispatch((0,_actions_likes_actions__WEBPACK_IMPORTED_MODULE_5__.incrementLikes)(videoId));
     }
   };
 };
@@ -15355,20 +15401,61 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _videos_reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./videos_reducer */ "./frontend/reducers/videos_reducer.js");
 /* harmony import */ var _comments__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./comments */ "./frontend/reducers/comments.js");
 /* harmony import */ var _views__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./views */ "./frontend/reducers/views.js");
+/* harmony import */ var _likes_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./likes_reducer */ "./frontend/reducers/likes_reducer.js");
 
 
 
 
-var EntitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_3__.combineReducers)({
+
+var EntitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_4__.combineReducers)({
   videos: _videos_reducer__WEBPACK_IMPORTED_MODULE_0__["default"],
   comments: _comments__WEBPACK_IMPORTED_MODULE_1__["default"],
-  views: _views__WEBPACK_IMPORTED_MODULE_2__["default"]
+  views: _views__WEBPACK_IMPORTED_MODULE_2__["default"],
+  likes: _likes_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EntitiesReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/likes_reducer.js":
+/*!********************************************!*\
+  !*** ./frontend/reducers/likes_reducer.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _actions_likes_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/likes_actions */ "./frontend/actions/likes_actions.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var LikesReducer = function LikesReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_likes_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_LIKE:
+      return _objectSpread(_objectSpread({}, state), {}, _defineProperty({}, action.like.id, action.like));
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (LikesReducer);
 
 /***/ }),
 
@@ -15662,6 +15749,29 @@ var configureStore = function configureStore(preloadedState) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (configureStore);
+
+/***/ }),
+
+/***/ "./frontend/utils/like_utils.js":
+/*!**************************************!*\
+  !*** ./frontend/utils/like_utils.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "likePost": () => (/* binding */ likePost)
+/* harmony export */ });
+var likePost = function likePost(videoId) {
+  return $.ajax({
+    method: 'POST',
+    url: '/api/likes',
+    data: {
+      videoId: videoId
+    }
+  });
+};
 
 /***/ }),
 
