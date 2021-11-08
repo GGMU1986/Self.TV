@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from 'react-redux';
 import { closeModal, openModal } from '../../actions/modal_actions';
 import UploadVideoForm from "../videos/upload_video_form";
-import UploadVideoTitle from "../videos/upload_video_title";
+// import UploadVideoTitle from "../videos/upload_video_title";
 
 const Modal = ({modal, closeModal, openModal}) => {
   if (!modal) {
@@ -17,9 +17,9 @@ const Modal = ({modal, closeModal, openModal}) => {
                     openModal={openModal}  
                   />;
       break;
-    case 'title':
-      // // debugger
-      component = <UploadVideoTitle closeModal={closeModal}/>
+    // case 'title':
+    //   // // debugger
+    //   component = <UploadVideoTitle closeModal={closeModal}/>
     default:
       return null;
   }

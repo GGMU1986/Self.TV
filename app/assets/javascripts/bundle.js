@@ -13349,13 +13349,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "RECEIVE_ALL_VIDEOS": () => (/* binding */ RECEIVE_ALL_VIDEOS),
 /* harmony export */   "RECEIVE_VIDEO_DETAIL": () => (/* binding */ RECEIVE_VIDEO_DETAIL),
+/* harmony export */   "RECEIVE_VIDEO": () => (/* binding */ RECEIVE_VIDEO),
 /* harmony export */   "fetchVideos": () => (/* binding */ fetchVideos),
-/* harmony export */   "fetchVideo": () => (/* binding */ fetchVideo)
+/* harmony export */   "fetchVideo": () => (/* binding */ fetchVideo),
+/* harmony export */   "createVideo": () => (/* binding */ createVideo)
 /* harmony export */ });
 /* harmony import */ var _utils_util_videos__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/util_videos */ "./frontend/utils/util_videos.js");
 
 var RECEIVE_ALL_VIDEOS = 'RECEIVE_ALL_VIDEOS';
 var RECEIVE_VIDEO_DETAIL = 'RECEIVE_VIDEO_DETAIL';
+var RECEIVE_VIDEO = 'RECEIVE_VIDEO';
 
 var receiveAllVideos = function receiveAllVideos(videos) {
   return {
@@ -13371,6 +13374,13 @@ var receiveVideoDetail = function receiveVideoDetail(payload) {
   };
 };
 
+var recieveVideo = function recieveVideo(video) {
+  return {
+    type: RECEIVE_VIDEO,
+    video: video
+  };
+};
+
 var fetchVideos = function fetchVideos() {
   return function (dispatch) {
     return (0,_utils_util_videos__WEBPACK_IMPORTED_MODULE_0__.getAllVideos)().then(function (videos) {
@@ -13382,6 +13392,13 @@ var fetchVideo = function fetchVideo(videoId) {
   return function (dispatch) {
     return (0,_utils_util_videos__WEBPACK_IMPORTED_MODULE_0__.getVideo)(videoId).then(function (payload) {
       return dispatch(receiveVideoDetail(payload));
+    });
+  };
+};
+var createVideo = function createVideo(video) {
+  return function (dispatch) {
+    return (0,_utils_util_videos__WEBPACK_IMPORTED_MODULE_0__.makeVideo)(video).then(function (video) {
+      return dispatch(recieveVideo(video));
     });
   };
 };
@@ -14270,12 +14287,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
 /* harmony import */ var _videos_upload_video_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../videos/upload_video_form */ "./frontend/components/videos/upload_video_form.jsx");
-/* harmony import */ var _videos_upload_video_title__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../videos/upload_video_title */ "./frontend/components/videos/upload_video_title.jsx");
 
 
 
-
-
+ // import UploadVideoTitle from "../videos/upload_video_title";
 
 var Modal = function Modal(_ref) {
   var modal = _ref.modal,
@@ -14295,12 +14310,9 @@ var Modal = function Modal(_ref) {
         openModal: openModal
       });
       break;
-
-    case 'title':
-      // // debugger
-      component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_videos_upload_video_title__WEBPACK_IMPORTED_MODULE_4__["default"], {
-        closeModal: closeModal
-      });
+    // case 'title':
+    //   // // debugger
+    //   component = <UploadVideoTitle closeModal={closeModal}/>
 
     default:
       return null;
@@ -14746,9 +14758,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _upload_video_title__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./upload_video_title */ "./frontend/components/videos/upload_video_title.jsx");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _video_upload_1__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./video_upload_1 */ "./frontend/components/videos/video_upload_1.jsx");
+/* harmony import */ var _video_upload_2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./video_upload_2 */ "./frontend/components/videos/video_upload_2.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -14769,6 +14784,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -14785,13 +14801,11 @@ var UploadVideoForm = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, UploadVideoForm);
 
     _this = _super.call(this, props);
-    _this.state = {
-      title: '',
-      description: '',
-      videoFile: null,
-      photoFile: null
-    };
+    _this.state = _this.props.video;
     _this.handleFile = _this.handleFile.bind(_assertThisInitialized(_this));
+    _this.handleInput = _this.handleInput.bind(_assertThisInitialized(_this));
+    _this.handleThumbnail = _this.handleThumbnail.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -14801,100 +14815,71 @@ var UploadVideoForm = /*#__PURE__*/function (_React$Component) {
       debugger;
       this.setState({
         videoFile: e.currentTarget.files[0]
-      }); // this.props.closeModal();
+      });
+    }
+  }, {
+    key: "handleThumbnail",
+    value: function handleThumbnail(e) {
+      debugger;
+      debugger;
+      this.setState({
+        photoFile: e.currentTarget.value[0]
+      });
+    }
+  }, {
+    key: "handleInput",
+    value: function handleInput(field) {
+      var _this2 = this;
 
-      this.props.openModal('title'); // console.log(this.props)
+      return function (e) {
+        return _this2.setState(_defineProperty({}, field, e.currentTarget.value));
+      };
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      var formData = new formData();
+      formData.append('video[title]', this.state.title);
+      formData.append('video[description]', this.state.description);
+      formData.append('video[video_file]', this.state.videoFile);
+      formData.append('video[photo_file]', this.state.photoFile);
+      this.props.createVideo(formData);
+      this.props.history.push('/');
     }
   }, {
     key: "render",
-    value: // handleSubmit(e) {
-    //   e.preventDefault();
-    //   const formData = new formData();
-    //   formData.append('video[]')
-    // }
-    function render() {
+    value: function render() {
       var closeModal = this.props.closeModal;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_video_upload_1__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      var videoFile = this.state.videoFile;
+      var part = !videoFile ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_video_upload_1__WEBPACK_IMPORTED_MODULE_2__["default"], {
         handleFile: this.handleFile,
         closeModal: closeModal
+      }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_video_upload_2__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        closeModal: closeModal,
+        handleInput: this.handleInput,
+        handleThumbnail: this.handleThumbnail,
+        handleSubmit: this.handleSubmit
       });
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, part);
     }
   }]);
 
   return UploadVideoForm;
-}(react__WEBPACK_IMPORTED_MODULE_0__.Component); // const mSTP = state => ({
-//   video: {
-//     title: '',
-//     description: '',
-//     videoUrl: null,
-//     photoUrl: null,
-//   }
-// });
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UploadVideoForm);
-
-/***/ }),
-
-/***/ "./frontend/components/videos/upload_video_title.jsx":
-/*!***********************************************************!*\
-  !*** ./frontend/components/videos/upload_video_title.jsx ***!
-  \***********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-
-
-var UploadVideoTitle = /*#__PURE__*/function (_React$Component) {
-  _inherits(UploadVideoTitle, _React$Component);
-
-  var _super = _createSuper(UploadVideoTitle);
-
-  function UploadVideoTitle() {
-    _classCallCheck(this, UploadVideoTitle);
-
-    return _super.apply(this, arguments);
-  }
-
-  _createClass(UploadVideoTitle, [{
-    key: "render",
-    value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "HELLO");
-    }
-  }]);
-
-  return UploadVideoTitle;
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
-;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UploadVideoTitle);
+var mSTP = function mSTP(state) {
+  return {
+    video: {
+      title: '',
+      description: '',
+      videoFile: null,
+      photoFile: null
+    }
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mSTP)(UploadVideoForm));
 
 /***/ }),
 
@@ -15395,6 +15380,56 @@ var UploadPart1 = function UploadPart1(_ref) {
 
 /***/ }),
 
+/***/ "./frontend/components/videos/video_upload_2.jsx":
+/*!*******************************************************!*\
+  !*** ./frontend/components/videos/video_upload_2.jsx ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+var UploadPart2 = function UploadPart2(_ref) {
+  var closeModal = _ref.closeModal,
+      handleInput = _ref.handleInput,
+      handleThumbnail = _ref.handleThumbnail,
+      handleSubmit = _ref.handleSubmit;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "title-desc-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "upload-videos-header"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+    className: "video-file-name"
+  }, "[Title goes here]"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "upload-video-icons-header",
+    onClick: closeModal
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
+    className: "fas fa-times"
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Details"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    type: "text",
+    placeholder: "Title (required)",
+    required: true,
+    onChange: handleInput('title')
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
+    placeholder: "Descritpion of your video...",
+    onChange: handleInput('description')
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Thumbnail"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Select or upload a picture that shows what's in your video. A good thumbnail stands out and draws viewers' attention.", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Learn more")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    type: "file",
+    onChange: handleThumbnail
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    onClick: handleSubmit
+  }, "PUBLISH"));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UploadPart2);
+
+/***/ }),
+
 /***/ "./frontend/reducers/comments.js":
 /*!***************************************!*\
   !*** ./frontend/reducers/comments.js ***!
@@ -15579,32 +15614,6 @@ var RootReducer = (0,redux__WEBPACK_IMPORTED_MODULE_4__.combineReducers)({
 
 /***/ }),
 
-/***/ "./frontend/reducers/selectors.js":
-/*!****************************************!*\
-  !*** ./frontend/reducers/selectors.js ***!
-  \****************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "selectCommentsByVideo": () => (/* binding */ selectCommentsByVideo)
-/* harmony export */ });
-var selectCommentsByVideo = function selectCommentsByVideo(state, videoId) {
-  // // // debugger
-  if (state.entities.videos[videoId].commentIds) {
-    // // // debugger
-    return state.entities.videos[videoId].commentIds.map(function (commentId) {
-      return state.entities.comments[commentId];
-    });
-  } else {
-    // // // debugger
-    return [];
-  }
-};
-
-/***/ }),
-
 /***/ "./frontend/reducers/session.js":
 /*!**************************************!*\
   !*** ./frontend/reducers/session.js ***!
@@ -15714,6 +15723,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _actions_videos_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/videos_actions */ "./frontend/actions/videos_actions.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
@@ -15729,6 +15742,9 @@ var VideosReducer = function VideosReducer() {
 
     case _actions_videos_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_VIDEO_DETAIL:
       return Object.assign({}, state, _defineProperty({}, action.payload.video.id, action.payload.video));
+
+    case _actions_videos_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_VIDEO:
+      return _objectSpread(_objectSpread({}, state), {}, _defineProperty({}, action.type.id, action.type));
 
     default:
       return state;
@@ -15987,7 +16003,8 @@ var fetchComment = function fetchComment(commentId) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "getAllVideos": () => (/* binding */ getAllVideos),
-/* harmony export */   "getVideo": () => (/* binding */ getVideo)
+/* harmony export */   "getVideo": () => (/* binding */ getVideo),
+/* harmony export */   "makeVideo": () => (/* binding */ makeVideo)
 /* harmony export */ });
 var getAllVideos = function getAllVideos() {
   return $.ajax({
@@ -15999,6 +16016,15 @@ var getVideo = function getVideo(videoId) {
   return $.ajax({
     method: 'GET',
     url: "/api/videos/".concat(videoId)
+  });
+};
+var makeVideo = function makeVideo(video) {
+  return $.ajax({
+    method: 'POST',
+    url: "/api/videos",
+    data: {
+      video: video
+    }
   });
 };
 
@@ -53343,16 +53369,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_root__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/root */ "./frontend/components/root.jsx");
 /* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store/store */ "./frontend/store/store.js");
 /* harmony import */ var _actions_videos_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./actions/videos_actions */ "./frontend/actions/videos_actions.js");
-/* harmony import */ var _reducers_selectors__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./reducers/selectors */ "./frontend/reducers/selectors.js");
 
 
 
 
-
+ // import { selectCommentsByVideo } from './reducers/selectors';
 
 document.addEventListener('DOMContentLoaded', function () {
-  window.fetchVideo = _actions_videos_actions__WEBPACK_IMPORTED_MODULE_4__.fetchVideo;
-  window.selectCommentsByVideo = _reducers_selectors__WEBPACK_IMPORTED_MODULE_5__.selectCommentsByVideo;
+  window.fetchVideo = _actions_videos_actions__WEBPACK_IMPORTED_MODULE_4__.fetchVideo; // window.selectCommentsByVideo = selectCommentsByVideo;
+
   var root = document.getElementById('root');
   var preloadedState = undefined;
 
