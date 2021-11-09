@@ -77,6 +77,25 @@
   margin-top: 20px;
 }
 
+.thumb-file {
+  display: none;
+}
+
+.thumb-input2 {
+  width: 100px;
+  height: 50px;
+  border: 1px solid gray;
+  background-color: white;
+  position: relative;
+}
+
+.fa-image {
+  position: absolute;
+  color: black;
+  left: 40%;
+  top: 30%;
+}
+
 .words {
   font-size: 12px;
   color: gray;

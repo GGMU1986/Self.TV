@@ -20,7 +20,10 @@ const UploadPart2 = ({ closeModal, handleInput, handleThumbnail, handleSubmit })
             <p className="words">Select or upload a picture that shows what's in your video.
             A good thumbnail stands out and draws viewers' attention. 
             <span>Learn more</span></p>
-            <input type="file" onChange={handleThumbnail}/>
+            <label className="thumb-input2">
+              <i class="fas fa-image"></i>
+              <input type="file" className="thumb-file" onChange={handleThumbnail}/>
+            </label>
         </div>
         <div className="middle-right">
           [PREVIEW]
