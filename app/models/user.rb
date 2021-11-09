@@ -29,7 +29,7 @@ class User < ApplicationRecord
     foreign_key: :liker_id,
     class_name: :Like
     
-  has_one_attached :photo
+  has_one_attached :prof_pic
 
   after_initialize :ensure_session_token
 

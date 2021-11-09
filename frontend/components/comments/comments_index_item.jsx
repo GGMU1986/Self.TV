@@ -20,39 +20,58 @@ class CommentsIndexItem extends React.Component {
       timeDays === 1 ? '1 day ago' : `${timeDays} days ago`
     )
     return (
-      <div className='comments-index'>
-        <div className="pic-commenter">
-          <div className="user-circle">
-            {comment.commenter[0].toUpperCase()}
+      <div className="comments-index">
+        <div className="comment-header">
+          <div className='pic-commenter-time'>
+            <div className="pic-circle">
+              <span className="pic-text">{comment.commenter[0].toUpperCase()}</span>
+            </div>
+            <div className="commenter-time">
+              <strong>{comment.commenter}</strong>
+              &nbsp;&nbsp;
+              <span className="time-ago">
+                {timeAgo}
+              </span>
+            </div>
           </div>
           <div>
-            <strong>{comment.commenter}</strong>
-            &nbsp;&nbsp;
-            <span className="time-ago">
-              {timeAgo}
-            </span>
-          </div>
-        </div>
-        <div>
-          {comment.body}
-        </div>
-        <div className="comment-drop-down">
-          <div className="edit-delete-comment">
-            <div className="edit-comment">
-              <i className="fas fa-pen"></i>
-              <p>Edit</p>
-            </div>
-            <div className="delete-comment">
-              <i className="fas fa-trash"></i>
-              <p>Delete</p>
+            <div className="delete-container">
+              <label id="x" /><i className="fas fa-ellipsis-v dots"></i>
+              <input htmlFor="x" type="checkbox" className="delete-input"/>
+              <div className="trash" onClick={() => destroyComment(comment.id)}>
+                <i className="fas fa-trash"></i>
+                <button  className="trash-btn">Delete</button>
+              </div>
             </div>
           </div>
         </div>
-        {/* <button>Reply</button> */}
-        {/* <button onClick={this.handleEdit}>Edit</button> */}
-        <button onClick={() => destroyComment(comment.id)}>Delete</button>
-        <br /><br />
       </div>
+    //   <div className='comments-index'>
+    //     <div className="pic-commenter">
+    //       <div className="user-circle">
+    //         {comment.commenter[0].toUpperCase()}
+    //       </div>
+    //       <div>
+    //         <strong>{comment.commenter}</strong>
+    //         &nbsp;&nbsp;
+    //         <span className="time-ago">
+    //           {timeAgo}
+    //         </span>
+    //       </div>
+    //     </div>
+    //     <div>
+    //       {comment.body}
+    //     </div>
+    //     <div className="comment-drop-down">
+    //       <div className="edit-delete-comment">
+    //         <div className="delete-comment">
+    //           <i className="fas fa-trash"></i>
+    //         </div>
+    //       </div>
+    //     </div>
+    //     <button onClick={() => destroyComment(comment.id)}>Delete</button>
+    //     <br /><br />
+    //   </div>
     )
   }
 };

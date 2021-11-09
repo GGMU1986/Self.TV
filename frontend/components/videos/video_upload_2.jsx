@@ -2,7 +2,6 @@ import { faDove } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 
 const UploadPart2 = ({ closeModal, handleInput, handleThumbnail, handleSubmit, videoFile }) => {
-  console.log(videoFile)
   return (
     <div className="title-desc-container">
       <div className="header2">
