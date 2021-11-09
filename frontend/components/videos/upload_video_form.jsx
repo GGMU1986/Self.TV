@@ -45,22 +45,30 @@ class UploadVideoForm extends React.Component {
 
   render() {
     const { closeModal } = this.props;
-    const { videoFile } = this.state;
-    const part = !videoFile ? (
-      <UploadPart1 
-        handleFile={this.handleFile} 
-        closeModal={closeModal}
-      />
-    ) : (
-      <UploadPart2 
-        closeModal={closeModal}
-        handleInput={this.handleInput}
-        handleThumbnail={this.handleThumbnail}
-        handleSubmit={this.handleSubmit}
-      />
-    )
+    // const { videoFile } = this.state;
+    // const part = !videoFile ? (
+    //   <UploadPart1 
+    //     handleFile={this.handleFile} 
+    //     closeModal={closeModal}
+    //   />
+    // ) : (
+    //   <UploadPart2 
+    //     closeModal={closeModal}
+    //     handleInput={this.handleInput}
+    //     handleThumbnail={this.handleThumbnail}
+    //     handleSubmit={this.handleSubmit}
+    //   />
+    // )
     return (
-      <div>{part}</div>
+      // <div>{part}</div>
+      <div>
+          <UploadPart2 
+          closeModal={closeModal}
+          handleInput={this.handleInput}
+          handleThumbnail={this.handleThumbnail}
+          handleSubmit={this.handleSubmit}
+        />
+      </div>
     )
   }
 }

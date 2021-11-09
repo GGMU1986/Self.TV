@@ -14851,18 +14851,31 @@ var UploadVideoForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var closeModal = this.props.closeModal;
-      var videoFile = this.state.videoFile;
-      var part = !videoFile ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_video_upload_1__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        handleFile: this.handleFile,
-        closeModal: closeModal
-      }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_video_upload_2__WEBPACK_IMPORTED_MODULE_4__["default"], {
-        closeModal: closeModal,
-        handleInput: this.handleInput,
-        handleThumbnail: this.handleThumbnail,
-        handleSubmit: this.handleSubmit
-      });
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, part);
+      var closeModal = this.props.closeModal; // const { videoFile } = this.state;
+      // const part = !videoFile ? (
+      //   <UploadPart1 
+      //     handleFile={this.handleFile} 
+      //     closeModal={closeModal}
+      //   />
+      // ) : (
+      //   <UploadPart2 
+      //     closeModal={closeModal}
+      //     handleInput={this.handleInput}
+      //     handleThumbnail={this.handleThumbnail}
+      //     handleSubmit={this.handleSubmit}
+      //   />
+      // )
+
+      return (
+        /*#__PURE__*/
+        // <div>{part}</div>
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_video_upload_2__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          closeModal: closeModal,
+          handleInput: this.handleInput,
+          handleThumbnail: this.handleThumbnail,
+          handleSubmit: this.handleSubmit
+        }))
+      );
     }
   }]);
 
@@ -15419,20 +15432,26 @@ var UploadPart2 = function UploadPart2(_ref) {
     onClick: closeModal
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
     className: "fas fa-times"
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Details"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "middle-text-title"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Details"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    className: "details",
     type: "text",
     placeholder: "Title (required)",
     required: true,
     onChange: handleInput('title')
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
+    className: "description",
     placeholder: "Descritpion of your video...",
     onChange: handleInput('description')
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Thumbnail"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Select or upload a picture that shows what's in your video. A good thumbnail stands out and draws viewers' attention.", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Learn more")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     type: "file",
     onChange: handleThumbnail
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: true
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     onClick: handleSubmit
-  }, "PUBLISH"));
+  }, "PUBLISH")));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UploadPart2);

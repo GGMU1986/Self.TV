@@ -5,4 +5,12 @@
   width: 800px;
   height: 800px;
   background-color: white;
+  // margin: 50px;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.middle-text-title {
+  margin: 20px 50px;
 }
