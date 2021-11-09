@@ -60,15 +60,15 @@ class UploadVideoForm extends React.Component {
       />
     )
     return (
-      <div>{part}</div>
-      // <div>
-      //     <UploadPart2 
-      //     closeModal={closeModal}
-      //     handleInput={this.handleInput}
-      //     handleThumbnail={this.handleThumbnail}
-      //     handleSubmit={this.handleSubmit}
-      //   />
-      // </div>
+      // <div>{part}</div>
+      <div>
+          <UploadPart2 
+          closeModal={closeModal}
+          handleInput={this.handleInput}
+          handleThumbnail={this.handleThumbnail}
+          handleSubmit={this.handleSubmit}
+        />
+      </div>
     )
   }
 }
@@ -83,7 +83,7 @@ const mSTP = state => ({
 });
 
 const mDTP = dispatch => {
-  debugger
+  // debugger
   return {
     createVideo: video => dispatch(createVideo(video))
   }

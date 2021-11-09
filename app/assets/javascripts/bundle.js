@@ -13170,18 +13170,18 @@ var removeComment = function removeComment(commentId) {
 
 var destroyComment = function destroyComment(commentId) {
   return function (dispatch) {
-    // // // // debugger
+    // // // // // debugger
     return (0,_utils_util_comments__WEBPACK_IMPORTED_MODULE_0__.deleteComment)(commentId).then(function () {
-      // // // // debugger
+      // // // // // debugger
       return dispatch(removeComment(commentId));
     });
   };
 };
 var reviseComment = function reviseComment(comment) {
   return function (dispatch) {
-    // // // // debugger
+    // // // // // debugger
     return (0,_utils_util_comments__WEBPACK_IMPORTED_MODULE_0__.updateComment)(comment).then(function (comment) {
-      // // // // debugger
+      // // // // // debugger
       return dispatch(receiveComment(comment));
     });
   };
@@ -13195,9 +13195,9 @@ var requestComment = function requestComment(commentId) {
 };
 var makeComment = function makeComment(comment, videoId) {
   return function (dispatch) {
-    // // debugger
+    // // // debugger
     return (0,_utils_util_comments__WEBPACK_IMPORTED_MODULE_0__.createComment)(comment, videoId).then(function (comment) {
-      // // debugger
+      // // // debugger
       return dispatch(receiveComment(comment));
     });
   };
@@ -13397,9 +13397,9 @@ var fetchVideo = function fetchVideo(videoId) {
 };
 var createVideo = function createVideo(video) {
   return function (dispatch) {
-    debugger;
+    // debugger
     return (0,_utils_util_videos__WEBPACK_IMPORTED_MODULE_0__.makeVideo)(video).then(function (video) {
-      debugger;
+      // debugger
       return dispatch(receiveVideo(video));
     });
   };
@@ -14330,7 +14330,7 @@ var Modal = function Modal(_ref) {
       });
       break;
     // case 'title':
-    //   // // debugger
+    //   // // // debugger
     //   component = <UploadVideoTitle closeModal={closeModal}/>
 
     default:
@@ -14884,15 +14884,16 @@ var UploadVideoForm = /*#__PURE__*/function (_React$Component) {
         handleThumbnail: this.handleThumbnail,
         handleSubmit: this.handleSubmit
       });
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, part) // <div>
-      //     <UploadPart2 
-      //     closeModal={closeModal}
-      //     handleInput={this.handleInput}
-      //     handleThumbnail={this.handleThumbnail}
-      //     handleSubmit={this.handleSubmit}
-      //   />
-      // </div>
-      ;
+      return (
+        /*#__PURE__*/
+        // <div>{part}</div>
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_video_upload_2__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          closeModal: closeModal,
+          handleInput: this.handleInput,
+          handleThumbnail: this.handleThumbnail,
+          handleSubmit: this.handleSubmit
+        }))
+      );
     }
   }]);
 
@@ -14911,7 +14912,7 @@ var mSTP = function mSTP(state) {
 };
 
 var mDTP = function mDTP(dispatch) {
-  debugger;
+  // debugger
   return {
     createVideo: function createVideo(video) {
       return dispatch((0,_actions_videos_actions__WEBPACK_IMPORTED_MODULE_2__.createVideo)(video));
@@ -15435,16 +15436,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 
+
 var UploadPart2 = function UploadPart2(_ref) {
   var closeModal = _ref.closeModal,
       handleInput = _ref.handleInput,
       handleThumbnail = _ref.handleThumbnail,
       handleSubmit = _ref.handleSubmit;
-  debugger;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "title-desc-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "upload-videos-header"
+    className: "header2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
     className: "video-file-name"
   }, "[Title goes here]"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -15452,26 +15453,67 @@ var UploadPart2 = function UploadPart2(_ref) {
     onClick: closeModal
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
     className: "fas fa-times"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "middle-text-title"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Details"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-    className: "details",
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "middle"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "middle-left"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+    className: "details"
+  }, "Details"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     type: "text",
-    placeholder: "Title (required)",
-    required: true,
-    onChange: handleInput('title')
+    className: "title2",
+    placeholder: "Title"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
-    className: "description",
-    placeholder: "Descritpion of your video...",
-    onChange: handleInput('description')
+    className: "descr",
+    placeholder: "Tell viewer about your video"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Thumbnail"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Select or upload a picture that shows what's in your video. A good thumbnail stands out and draws viewers' attention.", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Learn more")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     type: "file",
     onChange: handleThumbnail
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: true
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-    onClick: handleSubmit
-  }, "PUBLISH")));
+    className: "middle-right"
+  }, "[PREVIEW]")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "publish"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "PUBLISH"))) // <div className="title-desc-container">
+  //   <div className="upload-videos-header">
+  //     <p className="video-file-name">[Title goes here]</p>
+  //     <div className="upload-video-icons-header" onClick={closeModal}>
+  //       <i className="fas fa-times"></i>
+  //     </div>
+  //   </div>
+  //   <hr />
+  //   <div class="middle">
+  //     <div className="middle-text-title">
+  //       <div className="middle-top">
+  //         <h2>Details</h2>
+  //         <input
+  //           className="details" 
+  //           type="text" 
+  //           placeholder="Title (required)" 
+  //           required
+  //           onChange={handleInput('title')} 
+  //         />
+  //         <textarea
+  //           className="description" 
+  //           placeholder="Descritpion of your video..."
+  //           onChange={handleInput('description')}
+  //         />
+  //       </div>
+  //       <div className="middle-bottom">
+  //         <h2>Thumbnail</h2>
+  //         <p>Select or upload a picture that shows what's in your video. 
+  //           A good thumbnail stands out and draws viewers' attention. 
+  //           <span>Learn more</span></p>
+  //         <input type="file" onChange={handleThumbnail}/>
+  //       </div>
+  //     </div>
+  //     <div className="preview">
+  //     </div>
+  //   </div>
+  //   <div className>
+  //     <button onClick={handleSubmit}>PUBLISH</button>
+  //   </div>
+  // </div>
+  ;
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UploadPart2);
@@ -15511,7 +15553,7 @@ var CommentsReducer = function CommentsReducer() {
       return _objectSpread(_objectSpread({}, state), action.payload.comments);
 
     case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_1__.RECEIVE_COMMENT:
-      // // debugger
+      // // // debugger
       return Object.assign({}, state, _defineProperty({}, action.comment.id, action.comment));
 
     case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_1__.REMOVE_COMMENT:
@@ -15519,7 +15561,7 @@ var CommentsReducer = function CommentsReducer() {
       return nextState;
 
     default:
-      // // debugger
+      // // // debugger
       return state;
   }
 };
@@ -15788,10 +15830,10 @@ var VideosReducer = function VideosReducer() {
       return Object.assign({}, state, _defineProperty({}, action.payload.video.id, action.payload.video));
 
     case _actions_videos_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_VIDEO:
-      debugger; // return {
+      // debugger
+      // return {
       //   ...state, { [action.type.id]: action.type }
       // }
-
       return Object.assign({}, state, _defineProperty({}, action.video.id, action.video));
 
     default:
@@ -15826,7 +15868,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var ViewsReducer = function ViewsReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  // // debugger
+  // // // debugger
   Object.freeze(state);
 
   switch (action.type) {
@@ -16022,7 +16064,7 @@ var updateComment = function updateComment(comment) {
   });
 };
 var createComment = function createComment(comment, videoId) {
-  // // debugger
+  // // // debugger
   return $.ajax({
     method: 'POST',
     url: "/api/comments",
@@ -16067,7 +16109,7 @@ var getVideo = function getVideo(videoId) {
   });
 };
 var makeVideo = function makeVideo(video) {
-  debugger;
+  // debugger
   return $.ajax({
     method: 'POST',
     url: "/api/videos",

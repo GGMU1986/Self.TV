@@ -18,7 +18,7 @@ const Modal = ({modal, closeModal, openModal}) => {
                   />;
       break;
     // case 'title':
-    //   // // debugger
+    //   // // // debugger
     //   component = <UploadVideoTitle closeModal={closeModal}/>
     default:
       return null;

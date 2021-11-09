@@ -5,12 +5,12 @@ class Api::CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     @comment.commenter_id = current_user.id
     @comment.video_id = params["videoId"].to_i
-    # // // debugger
+    # // // // debugger
     if @comment.save
-      # // // debugger
+      # // // // debugger
       render :info
     else
-      # // // debugger
+      # // // // debugger
       render json: @comment.errors.full_messages, status: 422
     end
   end
@@ -26,14 +26,14 @@ class Api::CommentsController < ApplicationController
   end
   
   def destroy
-    # // // // debugger
+    # // // // // debugger
     @comment = current_user.comments.find_by(id: params[:id])
 
     if @comment
-      # // // // debugger
+      # // // // // debugger
       @comment.destroy
     else
-      # // // // debugger
+      # // // // // debugger
       render json: ["Only a comments author can delete it"], status: 422
     end
   end

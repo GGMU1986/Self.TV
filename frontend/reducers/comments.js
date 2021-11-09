@@ -9,7 +9,7 @@ const CommentsReducer = (state = {}, action) => {
       return {...state, ...action.payload.comments}
 
     case RECEIVE_COMMENT:
-      // // debugger
+      // // // debugger
       return Object.assign({}, state, { [action.comment.id]: action.comment })
 
     case REMOVE_COMMENT:
@@ -17,7 +17,7 @@ const CommentsReducer = (state = {}, action) => {
       return nextState;
 
     default:
-      // // debugger
+      // // // debugger
       return state;
   }
 };
