@@ -33,21 +33,14 @@ class UploadVideoForm extends React.Component {
   };
 
   handleSubmit(e) {
-    debugger
     e.preventDefault();
     let formData = new FormData();
     formData.append('video[title]', this.state.title)
     formData.append('video[description]', this.state.description)
     formData.append('video[video]', this.state.videoFile)
     formData.append('video[photo]', this.state.photoFile)
-    // let formData = new FormData();
-    // formData.append('video[title]', this.state.title)
-    // formData.append('video[description]', this.state.description)
-    // formData.append('video[video]', this.state.videoFile)
-    // formData.append('video[photo]', this.state.photoFile)
-    debugger
     this.props.createVideo(formData)
-      // .then(() => this.props.history.push('/'))
+      .then(() => this.props.history.push('/'))
   }
 
   render() {

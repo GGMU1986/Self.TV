@@ -14858,20 +14858,17 @@ var UploadVideoForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      debugger;
+      var _this3 = this;
+
       e.preventDefault();
       var formData = new FormData();
       formData.append('video[title]', this.state.title);
       formData.append('video[description]', this.state.description);
       formData.append('video[video]', this.state.videoFile);
-      formData.append('video[photo]', this.state.photoFile); // let formData = new FormData();
-      // formData.append('video[title]', this.state.title)
-      // formData.append('video[description]', this.state.description)
-      // formData.append('video[video]', this.state.videoFile)
-      // formData.append('video[photo]', this.state.photoFile)
-
-      debugger;
-      this.props.createVideo(formData); // .then(() => this.props.history.push('/'))
+      formData.append('video[photo]', this.state.photoFile);
+      this.props.createVideo(formData).then(function () {
+        return _this3.props.history.push('/');
+      });
     }
   }, {
     key: "render",
