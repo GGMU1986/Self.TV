@@ -13,7 +13,6 @@ class Api::VideosController < ApplicationController
   end
 
   def create
-    # debugger
     @video = Video.new(video_params)
     @video.uploader_id = current_user.id
     @video.channel_id = 1
@@ -27,7 +26,6 @@ class Api::VideosController < ApplicationController
   private
 
   def video_params
-    debugger
     params.require(:video).permit(
                                   :title, 
                                   :description, 
