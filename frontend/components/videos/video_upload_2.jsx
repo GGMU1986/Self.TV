@@ -1,11 +1,12 @@
 import { faDove } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 
-const UploadPart2 = ({ closeModal, handleInput, handleThumbnail, handleSubmit }) => {
+const UploadPart2 = ({ closeModal, handleInput, handleThumbnail, handleSubmit, videoFile }) => {
+  console.log(videoFile)
   return (
     <div className="title-desc-container">
       <div className="header2">
-        <p className="video-file-name">[Title goes here]</p>
+        <p className="video-file-name">{videoFile}</p>
         <div className="upload-video-icons-header" onClick={closeModal}>
          <i className="fas fa-times"></i>
         </div>
@@ -14,14 +15,21 @@ const UploadPart2 = ({ closeModal, handleInput, handleThumbnail, handleSubmit })
       <div className="middle">
         <div className="middle-left">
           <p className="details">Details</p>
-          <input type="text" className='title2' placeholder="Title"/>
-          <textarea className="descr" placeholder="Tell viewers about your video"/>
+          <input  
+            type="text" className='title2' 
+            placeholder="Title" onChange={handleInput('title')} 
+          />
+          <textarea 
+            className="descr" 
+            placeholder="Tell viewers about your video" 
+            onChange={handleInput('title')} 
+          />
           <h2 className="thumb">Thumbnail</h2>
             <p className="words">Select or upload a picture that shows what's in your video.
             A good thumbnail stands out and draws viewers' attention. 
             <span>Learn more</span></p>
             <label className="thumb-input2">
-              <i class="fas fa-image"></i>
+              <i className="fas fa-image"></i>
               <input type="file" className="thumb-file" onChange={handleThumbnail}/>
             </label>
         </div>
@@ -31,7 +39,7 @@ const UploadPart2 = ({ closeModal, handleInput, handleThumbnail, handleSubmit })
       </div>
       <hr />
       <div className="publish">
-        <button className="pub-btn">PUBLISH</button>
+        <button className="pub-btn" onClick={handleSubmit}>PUBLISH</button>
       </div>
     </div>
 

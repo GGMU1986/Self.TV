@@ -22,8 +22,8 @@ const UploadPart1 = ({ handleFile, closeModal }) => {
             Your videos will be private until you publish them.
           </div>
         </div>
-        <label>SELECT FILES
-          <input type="file" onChange={handleFile} />
+        <label className="select-files">SELECT FILES
+          <input type="file" className="video-input" onChange={handleFile} />
         </label>
       </main>
       <div className="footer-upload-videos">

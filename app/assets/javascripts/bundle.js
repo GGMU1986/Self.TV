@@ -14884,16 +14884,16 @@ var UploadVideoForm = /*#__PURE__*/function (_React$Component) {
         handleThumbnail: this.handleThumbnail,
         handleSubmit: this.handleSubmit
       });
-      return (
-        /*#__PURE__*/
-        // <div>{part}</div>
-        react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_video_upload_2__WEBPACK_IMPORTED_MODULE_4__["default"], {
-          closeModal: closeModal,
-          handleInput: this.handleInput,
-          handleThumbnail: this.handleThumbnail,
-          handleSubmit: this.handleSubmit
-        }))
-      );
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, part) // <div>
+      //     <UploadPart2 
+      //     closeModal={closeModal}
+      //     handleInput={this.handleInput}
+      //     handleThumbnail={this.handleThumbnail}
+      //     handleSubmit={this.handleSubmit}
+      //     videoFile={videoFile}
+      //   />
+      // </div>
+      ;
     }
   }]);
 
@@ -15408,8 +15408,11 @@ var UploadPart1 = function UploadPart1(_ref) {
     className: "mid-text"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Drag and drop files to upload"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "mid-text-lower"
-  }, "Your videos will be private until you publish them.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "SELECT FILES", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+  }, "Your videos will be private until you publish them.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+    className: "select-files"
+  }, "SELECT FILES", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     type: "file",
+    className: "video-input",
     onChange: handleFile
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "footer-upload-videos"
@@ -15441,14 +15444,16 @@ var UploadPart2 = function UploadPart2(_ref) {
   var closeModal = _ref.closeModal,
       handleInput = _ref.handleInput,
       handleThumbnail = _ref.handleThumbnail,
-      handleSubmit = _ref.handleSubmit;
+      handleSubmit = _ref.handleSubmit,
+      videoFile = _ref.videoFile;
+  console.log(videoFile);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "title-desc-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "header2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
     className: "video-file-name"
-  }, "[Title goes here]"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, videoFile), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "upload-video-icons-header",
     onClick: closeModal
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
@@ -15462,10 +15467,12 @@ var UploadPart2 = function UploadPart2(_ref) {
   }, "Details"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     type: "text",
     className: "title2",
-    placeholder: "Title"
+    placeholder: "Title",
+    onChange: handleInput('title')
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
     className: "descr",
-    placeholder: "Tell viewers about your video"
+    placeholder: "Tell viewers about your video",
+    onChange: handleInput('title')
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
     className: "thumb"
   }, "Thumbnail"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
@@ -15473,7 +15480,7 @@ var UploadPart2 = function UploadPart2(_ref) {
   }, "Select or upload a picture that shows what's in your video. A good thumbnail stands out and draws viewers' attention.", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Learn more")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
     className: "thumb-input2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
-    "class": "fas fa-image"
+    className: "fas fa-image"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     type: "file",
     className: "thumb-file",
@@ -15483,7 +15490,8 @@ var UploadPart2 = function UploadPart2(_ref) {
   }, "[PREVIEW]")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "publish"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-    className: "pub-btn"
+    className: "pub-btn",
+    onClick: handleSubmit
   }, "PUBLISH"))) // <div className="title-desc-container">
   //   <div className="upload-videos-header">
   //     <p className="video-file-name">[Title goes here]</p>
