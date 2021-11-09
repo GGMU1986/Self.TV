@@ -24,7 +24,7 @@ class UploadVideoForm extends React.Component {
 
   handleThumbnail(e) {
     this.setState({
-      photoFile: e.currentTarget.value[0]
+      photoFile: e.currentTarget.files[0]
     })
   }
 
@@ -33,42 +33,49 @@ class UploadVideoForm extends React.Component {
   };
 
   handleSubmit(e) {
+    debugger
     e.preventDefault();
-    const formData = new FormData();
+    let formData = new FormData();
     formData.append('video[title]', this.state.title)
     formData.append('video[description]', this.state.description)
     formData.append('video[video]', this.state.videoFile)
     formData.append('video[photo]', this.state.photoFile)
+    // let formData = new FormData();
+    // formData.append('video[title]', this.state.title)
+    // formData.append('video[description]', this.state.description)
+    // formData.append('video[video]', this.state.videoFile)
+    // formData.append('video[photo]', this.state.photoFile)
+    debugger
     this.props.createVideo(formData)
-    this.props.history.push('/')  
+      // .then(() => this.props.history.push('/'))
   }
 
   render() {
     const { closeModal } = this.props;
-    // const { videoFile } = this.state;
-    // const part = !videoFile ? (
-    //   <UploadPart1 
-    //     handleFile={this.handleFile} 
-    //     closeModal={closeModal}
-    //   />
-    // ) : (
-    //   <UploadPart2 
-    //     closeModal={closeModal}
-    //     handleInput={this.handleInput}
-    //     handleThumbnail={this.handleThumbnail}
-    //     handleSubmit={this.handleSubmit}
-    //   />
-    // )
+    const { videoFile } = this.state;
+    const part = !videoFile ? (
+      <UploadPart1 
+        handleFile={this.handleFile} 
+        closeModal={closeModal}
+      />
+    ) : (
+      <UploadPart2 
+        closeModal={closeModal}
+        handleInput={this.handleInput}
+        handleThumbnail={this.handleThumbnail}
+        handleSubmit={this.handleSubmit}
+      />
+    )
     return (
-      // <div>{part}</div>
-      <div>
-          <UploadPart2 
-          closeModal={closeModal}
-          handleInput={this.handleInput}
-          handleThumbnail={this.handleThumbnail}
-          handleSubmit={this.handleSubmit}
-        />
-      </div>
+      <div>{part}</div>
+      // <div>
+      //     <UploadPart2 
+      //     closeModal={closeModal}
+      //     handleInput={this.handleInput}
+      //     handleThumbnail={this.handleThumbnail}
+      //     handleSubmit={this.handleSubmit}
+      //   />
+      // </div>
     )
   }
 }
@@ -82,9 +89,12 @@ const mSTP = state => ({
   }
 });
 
-const mDTP = dispatch => ({
-  createVideo: video => dispatch(createVideo(video))
-});
+const mDTP = dispatch => {
+  debugger
+  return {
+    createVideo: video => dispatch(createVideo(video))
+  }
+};
 
 
 

@@ -15,6 +15,7 @@ class VideoIndexItem extends React.Component {
 
   render() {
     const { video } = this.props;
+    console.log(video.photoUrl)
     const timeNow = new Date()
     const oldTime = new Date(video.createdAt)
     const time = timeNow - oldTime
@@ -25,7 +26,7 @@ class VideoIndexItem extends React.Component {
     return (
       <div className="video" onClick={this.viewCount}>
         <Link to={`/videos/${video.id}`}>
-          <img src={video.photoUrl} />
+          <img src={video.photoUrl} /> 
         </Link>
         <Link to={`/videos/${video.id}`}>
           <div className="video-index-link title">

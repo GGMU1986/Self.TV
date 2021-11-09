@@ -27,6 +27,9 @@ export const fetchVideo = videoId => dispatch => (
   getVideo(videoId).then(payload => dispatch(receiveVideoDetail(payload)))
 ); 
 
-export const createVideo = video => dispatch => (
-  makeVideo(video).then(video => dispatch(receiveVideo(video)))
-);
+export const createVideo = video => dispatch => {
+  debugger
+  return makeVideo(video).then(video => {
+    debugger
+    return dispatch(receiveVideo(video))})
+};

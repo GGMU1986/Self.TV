@@ -13397,7 +13397,9 @@ var fetchVideo = function fetchVideo(videoId) {
 };
 var createVideo = function createVideo(video) {
   return function (dispatch) {
+    debugger;
     return (0,_utils_util_videos__WEBPACK_IMPORTED_MODULE_0__.makeVideo)(video).then(function (video) {
+      debugger;
       return dispatch(receiveVideo(video));
     });
   };
@@ -13618,6 +13620,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _comments_index_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./comments_index_item */ "./frontend/components/comments/comments_index_item.jsx");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -13639,6 +13642,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -13669,10 +13673,11 @@ var CommentsIndex = /*#__PURE__*/function (_React$Component) {
         if (comment) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_comments_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
             key: comment.id,
+            currentUser: currentUser,
             comment: comment,
-            destroyComment: destroyComment,
-            updateComment: updateComment,
-            videoId: videoId
+            destroyComment: destroyComment // updateComment={updateComment}
+            // videoId={videoId}
+
           });
         }
       }));
@@ -13683,7 +13688,14 @@ var CommentsIndex = /*#__PURE__*/function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
 ;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CommentsIndex);
+
+var mSTP = function mSTP(state) {
+  return {
+    currentUser: state.session.currentUser
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_2__.connect)(mSTP)(CommentsIndex));
 
 /***/ }),
 
@@ -13747,6 +13759,7 @@ var CommentsIndexItem = /*#__PURE__*/function (_React$Component) {
       var _this$props = this.props,
           comment = _this$props.comment,
           destroyComment = _this$props.destroyComment,
+          currentUser = _this$props.currentUser,
           updateComment = _this$props.updateComment,
           videoId = _this$props.videoId;
       var timeNow = new Date();
@@ -13756,9 +13769,13 @@ var CommentsIndexItem = /*#__PURE__*/function (_React$Component) {
       var timeAgo = timeDays < 1 ? 'less than 1 day ago' : timeDays === 1 ? '1 day ago' : "".concat(timeDays, " days ago");
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "comments-index"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, this.props.comment.commenter), "\xA0\xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "pic-commenter"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "user-circle"
+      }, comment.commenter[0].toUpperCase()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, comment.commenter), "\xA0\xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
         className: "time-ago"
-      }, timeAgo)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, comment.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, timeAgo))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, comment.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "comment-drop-down"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "edit-delete-comment"
@@ -13770,9 +13787,7 @@ var CommentsIndexItem = /*#__PURE__*/function (_React$Component) {
         className: "delete-comment"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
         className: "fas fa-trash"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Delete")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "Reply"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-        onClick: this.handleEdit
-      }, "Edit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Delete")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         onClick: function onClick() {
           return destroyComment(comment.id);
         }
@@ -13982,7 +13997,11 @@ var Header = /*#__PURE__*/function (_React$Component) {
       var _this$props = this.props,
           currentUser = _this$props.currentUser,
           logout = _this$props.logout,
-          openModal = _this$props.openModal; // // // // debugger
+          openModal = _this$props.openModal; // const profile = currentUser.imgUrl ? (
+      //   currentUser.imgUrl
+      // ) : (
+      //   currentUser.username[0].toUpperCase() 
+      // )
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "header"
@@ -14824,7 +14843,7 @@ var UploadVideoForm = /*#__PURE__*/function (_React$Component) {
     key: "handleThumbnail",
     value: function handleThumbnail(e) {
       this.setState({
-        photoFile: e.currentTarget.value[0]
+        photoFile: e.currentTarget.files[0]
       });
     }
   }, {
@@ -14839,43 +14858,44 @@ var UploadVideoForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
+      debugger;
       e.preventDefault();
       var formData = new FormData();
       formData.append('video[title]', this.state.title);
       formData.append('video[description]', this.state.description);
       formData.append('video[video]', this.state.videoFile);
-      formData.append('video[photo]', this.state.photoFile);
-      this.props.createVideo(formData);
-      this.props.history.push('/');
+      formData.append('video[photo]', this.state.photoFile); // let formData = new FormData();
+      // formData.append('video[title]', this.state.title)
+      // formData.append('video[description]', this.state.description)
+      // formData.append('video[video]', this.state.videoFile)
+      // formData.append('video[photo]', this.state.photoFile)
+
+      debugger;
+      this.props.createVideo(formData); // .then(() => this.props.history.push('/'))
     }
   }, {
     key: "render",
     value: function render() {
-      var closeModal = this.props.closeModal; // const { videoFile } = this.state;
-      // const part = !videoFile ? (
-      //   <UploadPart1 
-      //     handleFile={this.handleFile} 
-      //     closeModal={closeModal}
-      //   />
-      // ) : (
-      //   <UploadPart2 
+      var closeModal = this.props.closeModal;
+      var videoFile = this.state.videoFile;
+      var part = !videoFile ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_video_upload_1__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        handleFile: this.handleFile,
+        closeModal: closeModal
+      }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_video_upload_2__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        closeModal: closeModal,
+        handleInput: this.handleInput,
+        handleThumbnail: this.handleThumbnail,
+        handleSubmit: this.handleSubmit
+      });
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, part) // <div>
+      //     <UploadPart2 
       //     closeModal={closeModal}
       //     handleInput={this.handleInput}
       //     handleThumbnail={this.handleThumbnail}
       //     handleSubmit={this.handleSubmit}
       //   />
-      // )
-
-      return (
-        /*#__PURE__*/
-        // <div>{part}</div>
-        react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_video_upload_2__WEBPACK_IMPORTED_MODULE_4__["default"], {
-          closeModal: closeModal,
-          handleInput: this.handleInput,
-          handleThumbnail: this.handleThumbnail,
-          handleSubmit: this.handleSubmit
-        }))
-      );
+      // </div>
+      ;
     }
   }]);
 
@@ -14894,6 +14914,7 @@ var mSTP = function mSTP(state) {
 };
 
 var mDTP = function mDTP(dispatch) {
+  debugger;
   return {
     createVideo: function createVideo(video) {
       return dispatch((0,_actions_videos_actions__WEBPACK_IMPORTED_MODULE_2__.createVideo)(video));
@@ -15091,6 +15112,7 @@ var VideoIndexItem = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       var video = this.props.video;
+      console.log(video.photoUrl);
       var timeNow = new Date();
       var oldTime = new Date(video.createdAt);
       var time = timeNow - oldTime;
@@ -15421,6 +15443,7 @@ var UploadPart2 = function UploadPart2(_ref) {
       handleInput = _ref.handleInput,
       handleThumbnail = _ref.handleThumbnail,
       handleSubmit = _ref.handleSubmit;
+  debugger;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "title-desc-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -15751,10 +15774,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _actions_videos_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/videos_actions */ "./frontend/actions/videos_actions.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
@@ -15772,7 +15791,11 @@ var VideosReducer = function VideosReducer() {
       return Object.assign({}, state, _defineProperty({}, action.payload.video.id, action.payload.video));
 
     case _actions_videos_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_VIDEO:
-      return _objectSpread(_objectSpread({}, state), {}, _defineProperty({}, action.type.id, action.type));
+      debugger; // return {
+      //   ...state, { [action.type.id]: action.type }
+      // }
+
+      return Object.assign({}, state, _defineProperty({}, action.video.id, action.video));
 
     default:
       return state;
@@ -16046,11 +16069,14 @@ var getVideo = function getVideo(videoId) {
     url: "/api/videos/".concat(videoId)
   });
 };
-var makeVideo = function makeVideo(formData) {
+var makeVideo = function makeVideo(video) {
+  debugger;
   return $.ajax({
     method: 'POST',
     url: "/api/videos",
-    data: formData
+    data: video,
+    contentType: false,
+    processData: false
   });
 };
 

@@ -11,7 +11,7 @@ class CommentsIndexItem extends React.Component {
   }
 
   render () {
-    const { comment, destroyComment, updateComment, videoId } = this.props
+    const { comment, destroyComment, currentUser, updateComment, videoId } = this.props
     const timeNow = new Date()
     const oldTime = new Date(comment.createdAt)
     const time = timeNow - oldTime
@@ -21,12 +21,17 @@ class CommentsIndexItem extends React.Component {
     )
     return (
       <div className='comments-index'>
-        <div>
-          <strong>{this.props.comment.commenter}</strong>
-          &nbsp;&nbsp;
-          <span className="time-ago">
-            {timeAgo}
-          </span>
+        <div className="pic-commenter">
+          <div className="user-circle">
+            {comment.commenter[0].toUpperCase()}
+          </div>
+          <div>
+            <strong>{comment.commenter}</strong>
+            &nbsp;&nbsp;
+            <span className="time-ago">
+              {timeAgo}
+            </span>
+          </div>
         </div>
         <div>
           {comment.body}
@@ -43,8 +48,8 @@ class CommentsIndexItem extends React.Component {
             </div>
           </div>
         </div>
-        <button>Reply</button>
-        <button onClick={this.handleEdit}>Edit</button>
+        {/* <button>Reply</button> */}
+        {/* <button onClick={this.handleEdit}>Edit</button> */}
         <button onClick={() => destroyComment(comment.id)}>Delete</button>
         <br /><br />
       </div>

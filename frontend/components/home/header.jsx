@@ -40,8 +40,14 @@ class Header extends React.Component {
   }
 
   render() {
+    
     const { currentUser, logout, openModal } = this.props;
-    // // // // debugger
+    // const profile = currentUser.imgUrl ? (
+    //   currentUser.imgUrl
+    // ) : (
+    //   currentUser.username[0].toUpperCase() 
+    // )
+    
     return (
       <div className="header">
         <div className="bars-logo">
@@ -91,6 +97,7 @@ class Header extends React.Component {
               currentUser ? (
                 <div onClick={this.addActiveClass} className="loggedin">
                   <span className="prof-icon-content">{currentUser.username[0].toUpperCase()}</span>
+                  {/* <span className="prof-icon-content">{profile}</span> */}
                   <div className={this.state.active ? 'dropdown active' : 'dropdown'}>
                     <div className="dropdown-username">
                       {currentUser.username}

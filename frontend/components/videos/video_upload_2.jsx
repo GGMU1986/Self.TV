@@ -1,8 +1,8 @@
 import React from "react";
 
 const UploadPart2 = ({ closeModal, handleInput, handleThumbnail, handleSubmit }) => {
+  debugger
   return (
-
     <div className="title-desc-container">
       <div className="upload-videos-header">
         <p className="video-file-name">[Title goes here]</p>

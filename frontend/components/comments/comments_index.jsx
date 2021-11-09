@@ -1,5 +1,6 @@
 import React from 'react'
 import CommentsIndexItem from './comments_index_item';
+import { connect } from 'react-redux'
 
 class CommentsIndex extends React.Component {
   constructor(props) {
@@ -16,10 +17,11 @@ class CommentsIndex extends React.Component {
             if (comment) {
               return <CommentsIndexItem
                 key={comment.id}
+                currentUser={currentUser}
                 comment={comment}
                 destroyComment={destroyComment}
-                updateComment={updateComment}
-                videoId={videoId}
+                // updateComment={updateComment}
+                // videoId={videoId}
               />
             }
           }
@@ -30,4 +32,8 @@ class CommentsIndex extends React.Component {
   }
 };
 
-export default CommentsIndex;
+const mSTP = state => ({
+  currentUser: state.session.currentUser
+});
+
+export default connect(mSTP)(CommentsIndex);

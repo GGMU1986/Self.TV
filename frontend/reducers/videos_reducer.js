@@ -18,10 +18,15 @@ const VideosReducer = (state = {}, action) => {
                             { [action.payload.video.id]: action.payload.video }
                           )
     case RECEIVE_VIDEO:
-      return {
-        ...state, [action.type.id]: action.type
-      }
-  
+      debugger
+      // return {
+      //   ...state, { [action.type.id]: action.type }
+      // }
+      return Object.assign(
+          {},
+          state,
+          { [action.video.id]: action.video }
+        )
     default:
       return state;
   }
