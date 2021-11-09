@@ -14,7 +14,7 @@ const receiveVideoDetail = (payload) => ({
   payload
 });
 
-const recieveVideo = video => ({
+const receiveVideo = video => ({
   type: RECEIVE_VIDEO,
   video
 })
@@ -28,5 +28,5 @@ export const fetchVideo = videoId => dispatch => (
 ); 
 
 export const createVideo = video => dispatch => (
-  makeVideo(video).then(video => dispatch(recieveVideo(video)))
+  makeVideo(video).then(video => dispatch(receiveVideo(video)))
 );

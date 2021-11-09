@@ -12,10 +12,10 @@ export const getVideo = videoId => (
   })
 );
 
-export const makeVideo = video => (
+export const makeVideo = formData => (
   $.ajax({
     method: 'POST',
     url: `/api/videos`,
-    data: { video }
+    data: formData
   })
 );

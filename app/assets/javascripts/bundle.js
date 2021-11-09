@@ -13374,7 +13374,7 @@ var receiveVideoDetail = function receiveVideoDetail(payload) {
   };
 };
 
-var recieveVideo = function recieveVideo(video) {
+var receiveVideo = function receiveVideo(video) {
   return {
     type: RECEIVE_VIDEO,
     video: video
@@ -13398,7 +13398,7 @@ var fetchVideo = function fetchVideo(videoId) {
 var createVideo = function createVideo(video) {
   return function (dispatch) {
     return (0,_utils_util_videos__WEBPACK_IMPORTED_MODULE_0__.makeVideo)(video).then(function (video) {
-      return dispatch(recieveVideo(video));
+      return dispatch(receiveVideo(video));
     });
   };
 };
@@ -14759,8 +14759,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _video_upload_1__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./video_upload_1 */ "./frontend/components/videos/video_upload_1.jsx");
-/* harmony import */ var _video_upload_2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./video_upload_2 */ "./frontend/components/videos/video_upload_2.jsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var _actions_videos_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/videos_actions */ "./frontend/actions/videos_actions.js");
+/* harmony import */ var _video_upload_1__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./video_upload_1 */ "./frontend/components/videos/video_upload_1.jsx");
+/* harmony import */ var _video_upload_2__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./video_upload_2 */ "./frontend/components/videos/video_upload_2.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -14790,6 +14792,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
+
 var UploadVideoForm = /*#__PURE__*/function (_React$Component) {
   _inherits(UploadVideoForm, _React$Component);
 
@@ -14812,7 +14816,6 @@ var UploadVideoForm = /*#__PURE__*/function (_React$Component) {
   _createClass(UploadVideoForm, [{
     key: "handleFile",
     value: function handleFile(e) {
-      debugger;
       this.setState({
         videoFile: e.currentTarget.files[0]
       });
@@ -14820,8 +14823,6 @@ var UploadVideoForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleThumbnail",
     value: function handleThumbnail(e) {
-      debugger;
-      debugger;
       this.setState({
         photoFile: e.currentTarget.value[0]
       });
@@ -14839,11 +14840,11 @@ var UploadVideoForm = /*#__PURE__*/function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      var formData = new formData();
+      var formData = new FormData();
       formData.append('video[title]', this.state.title);
       formData.append('video[description]', this.state.description);
-      formData.append('video[video_file]', this.state.videoFile);
-      formData.append('video[photo_file]', this.state.photoFile);
+      formData.append('video[video]', this.state.videoFile);
+      formData.append('video[photo]', this.state.photoFile);
       this.props.createVideo(formData);
       this.props.history.push('/');
     }
@@ -14852,10 +14853,10 @@ var UploadVideoForm = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var closeModal = this.props.closeModal;
       var videoFile = this.state.videoFile;
-      var part = !videoFile ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_video_upload_1__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      var part = !videoFile ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_video_upload_1__WEBPACK_IMPORTED_MODULE_3__["default"], {
         handleFile: this.handleFile,
         closeModal: closeModal
-      }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_video_upload_2__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_video_upload_2__WEBPACK_IMPORTED_MODULE_4__["default"], {
         closeModal: closeModal,
         handleInput: this.handleInput,
         handleThumbnail: this.handleThumbnail,
@@ -14879,7 +14880,15 @@ var mSTP = function mSTP(state) {
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mSTP)(UploadVideoForm));
+var mDTP = function mDTP(dispatch) {
+  return {
+    createVideo: function createVideo(video) {
+      return dispatch((0,_actions_videos_actions__WEBPACK_IMPORTED_MODULE_2__.createVideo)(video));
+    }
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mSTP, mDTP)(UploadVideoForm)));
 
 /***/ }),
 
@@ -16018,13 +16027,11 @@ var getVideo = function getVideo(videoId) {
     url: "/api/videos/".concat(videoId)
   });
 };
-var makeVideo = function makeVideo(video) {
+var makeVideo = function makeVideo(formData) {
   return $.ajax({
     method: 'POST',
     url: "/api/videos",
-    data: {
-      video: video
-    }
+    data: formData
   });
 };
 

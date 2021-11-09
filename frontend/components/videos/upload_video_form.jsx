@@ -1,5 +1,7 @@
 import React from "react";
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom';
+import { createVideo } from '../../actions/videos_actions';
 import UploadPart1 from "./video_upload_1";
 import UploadPart2 from "./video_upload_2";
 
@@ -15,15 +17,12 @@ class UploadVideoForm extends React.Component {
   };
 
   handleFile(e) {
-    debugger
     this.setState({
       videoFile: e.currentTarget.files[0]
     })
   };
 
   handleThumbnail(e) {
-    debugger
-    debugger
     this.setState({
       photoFile: e.currentTarget.value[0]
     })
@@ -35,14 +34,13 @@ class UploadVideoForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const formData = new formData();
+    const formData = new FormData();
     formData.append('video[title]', this.state.title)
     formData.append('video[description]', this.state.description)
-    formData.append('video[video_file]', this.state.videoFile)
-    formData.append('video[photo_file]', this.state.photoFile)
+    formData.append('video[video]', this.state.videoFile)
+    formData.append('video[photo]', this.state.photoFile)
     this.props.createVideo(formData)
-    this.props.history.push('/')
-    
+    this.props.history.push('/')  
   }
 
   render() {
@@ -76,6 +74,10 @@ const mSTP = state => ({
   }
 });
 
+const mDTP = dispatch => ({
+  createVideo: video => dispatch(createVideo(video))
+});
 
 
-export default connect(mSTP)(UploadVideoForm); 
+
+export default withRouter(connect(mSTP, mDTP)(UploadVideoForm)); 
