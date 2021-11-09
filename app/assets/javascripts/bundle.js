@@ -15465,15 +15465,21 @@ var UploadPart2 = function UploadPart2(_ref) {
     placeholder: "Title"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
     className: "descr",
-    placeholder: "Tell viewer about your video"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Thumbnail"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Select or upload a picture that shows what's in your video. A good thumbnail stands out and draws viewers' attention.", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Learn more")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    placeholder: "Tell viewers about your video"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
+    className: "thumb"
+  }, "Thumbnail"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+    className: "words"
+  }, "Select or upload a picture that shows what's in your video. A good thumbnail stands out and draws viewers' attention.", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Learn more")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     type: "file",
     onChange: handleThumbnail
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "middle-right"
   }, "[PREVIEW]")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "publish"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "PUBLISH"))) // <div className="title-desc-container">
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    className: "pub-btn"
+  }, "PUBLISH"))) // <div className="title-desc-container">
   //   <div className="upload-videos-header">
   //     <p className="video-file-name">[Title goes here]</p>
   //     <div className="upload-video-icons-header" onClick={closeModal}>

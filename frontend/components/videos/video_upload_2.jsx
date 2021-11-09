@@ -15,9 +15,9 @@ const UploadPart2 = ({ closeModal, handleInput, handleThumbnail, handleSubmit })
         <div className="middle-left">
           <p className="details">Details</p>
           <input type="text" className='title2' placeholder="Title"/>
-          <textarea className="descr" placeholder="Tell viewer about your video"/>
-          <h2>Thumbnail</h2>
-            <p>Select or upload a picture that shows what's in your video.
+          <textarea className="descr" placeholder="Tell viewers about your video"/>
+          <h2 className="thumb">Thumbnail</h2>
+            <p className="words">Select or upload a picture that shows what's in your video.
             A good thumbnail stands out and draws viewers' attention. 
             <span>Learn more</span></p>
             <input type="file" onChange={handleThumbnail}/>
@@ -28,7 +28,7 @@ const UploadPart2 = ({ closeModal, handleInput, handleThumbnail, handleSubmit })
       </div>
       <hr />
       <div className="publish">
-        <button>PUBLISH</button>
+        <button className="pub-btn">PUBLISH</button>
       </div>
     </div>
 
