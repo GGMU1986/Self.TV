@@ -96,6 +96,13 @@ class Header extends React.Component {
             {
               currentUser ? (
                 <div onClick={this.addActiveClass} className="loggedin">
+                  {/* {
+                    currentUser.imgUrl ? (
+                      <div className="prof-icon-img"><img className="hi" src={currentUser.imgUrl} alt="profile-pic" /></div>
+                    ) : (
+                      <div className="prof-icon-content">{currentUser.username[0].toUpperCase()}</div>
+                    )
+                  } */}
                   <div className="prof-icon-content">{currentUser.username[0].toUpperCase()}</div>
                   {/* <span className="prof-icon-content">{profile}</span> */}
                   <div className={this.state.active ? 'dropdown active' : 'dropdown'}>
