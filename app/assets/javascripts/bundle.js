@@ -13170,18 +13170,14 @@ var removeComment = function removeComment(commentId) {
 
 var destroyComment = function destroyComment(commentId) {
   return function (dispatch) {
-    // // // // // debugger
     return (0,_utils_util_comments__WEBPACK_IMPORTED_MODULE_0__.deleteComment)(commentId).then(function () {
-      // // // // // debugger
       return dispatch(removeComment(commentId));
     });
   };
 };
 var reviseComment = function reviseComment(comment) {
   return function (dispatch) {
-    // // // // // debugger
     return (0,_utils_util_comments__WEBPACK_IMPORTED_MODULE_0__.updateComment)(comment).then(function (comment) {
-      // // // // // debugger
       return dispatch(receiveComment(comment));
     });
   };
@@ -13195,9 +13191,7 @@ var requestComment = function requestComment(commentId) {
 };
 var makeComment = function makeComment(comment, videoId) {
   return function (dispatch) {
-    // // // debugger
     return (0,_utils_util_comments__WEBPACK_IMPORTED_MODULE_0__.createComment)(comment, videoId).then(function (comment) {
-      // // // debugger
       return dispatch(receiveComment(comment));
     });
   };
@@ -13215,7 +13209,8 @@ var makeComment = function makeComment(comment, videoId) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "RECEIVE_LIKE": () => (/* binding */ RECEIVE_LIKE),
-/* harmony export */   "incrementLikes": () => (/* binding */ incrementLikes)
+/* harmony export */   "createLike": () => (/* binding */ createLike),
+/* harmony export */   "reviseLike": () => (/* binding */ reviseLike)
 /* harmony export */ });
 /* harmony import */ var _utils_like_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/like_utils */ "./frontend/utils/like_utils.js");
 
@@ -13228,9 +13223,18 @@ var receiveLike = function receiveLike(like) {
   };
 };
 
-var incrementLikes = function incrementLikes(videoId) {
+var createLike = function createLike(like) {
   return function (dispatch) {
-    return (0,_utils_like_utils__WEBPACK_IMPORTED_MODULE_0__.postLike)(videoId).then(function (like) {
+    debugger;
+    (0,_utils_like_utils__WEBPACK_IMPORTED_MODULE_0__.postLike)(like).then(function (like) {
+      debugger;
+      return dispatch(receiveLike(like));
+    });
+  };
+};
+var reviseLike = function reviseLike(like) {
+  return function (dispatch) {
+    return (0,_utils_like_utils__WEBPACK_IMPORTED_MODULE_0__.updateLike)(like).then(function (like) {
       return dispatch(receiveLike(like));
     });
   };
@@ -14652,8 +14656,7 @@ var Signup = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = _this.props.user;
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
-    _this.handleDemo = _this.handleDemo.bind(_assertThisInitialized(_this)); // console.log(props)
-
+    _this.handleDemo = _this.handleDemo.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -15140,7 +15143,6 @@ var VideoIndexItem = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, VideoIndexItem);
 
-    console.log(props);
     _this = _super.call(this, props);
     _this.viewCount = _this.viewCount.bind(_assertThisInitialized(_this));
     return _this;
@@ -15155,7 +15157,6 @@ var VideoIndexItem = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       var video = this.props.video;
-      console.log(video.photoUrl);
       var timeNow = new Date();
       var oldTime = new Date(video.createdAt);
       var time = timeNow - oldTime;
@@ -15244,9 +15245,15 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
+      active: false,
       likes: _this.props.likes,
-      dislikes: _this.props.likes
+      like: {
+        likerId: currentUser.id,
+        videoId: _this.props.match.params.videoId,
+        dislike: false
+      }
     };
+    _this.handleLike = _this.handleLike.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -15254,14 +15261,22 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchVideo(this.props.match.params.videoId);
-    } // handleLike(e) {
-    // }
-    // handleDislike(e) 
+    }
+  }, {
+    key: "handleLike",
+    value: function handleLike(e) {
+      debugger;
+      this.props.createLike(this.state.like);
+    } // handleDislike(e) {
+    //   const currState = this.state.like.dislike
+    //   this.setState({ dislike: !currState  })
+    //   this.props.updateLike(this.state)
     // }
 
   }, {
     key: "render",
     value: function render() {
+      console.log(this.state);
       var _this$props = this.props,
           video = _this$props.video,
           destroyComment = _this$props.destroyComment,
@@ -15269,19 +15284,7 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
           action = _this$props.action,
           comment = _this$props.comment;
       var uploadDate = new Date(video.createdAt).toString().slice(4, 15);
-      var videoId = this.props.match.params.videoId; // let yes = 0;
-      // let no = 0;
-      // let videoLikes = video.likes;
-      // if (videoLikes) {
-      //   videoLikes.forEach(like => {
-      //     if (like.dislike) {
-      //       return no += 1;
-      //     } else {
-      //       return yes += 1
-      //     }
-      //   })
-      // } 
-
+      var videoId = this.props.match.params.videoId;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "video-show-cont"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_modal_modal__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_home_header__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -15310,7 +15313,8 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "up"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
-        className: "far fa-thumbs-up thumb"
+        className: "far fa-thumbs-up thumb",
+        onClick: this.handleLike
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "0")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "down"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
@@ -15332,7 +15336,8 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
         className: "fas fa-plus thumb"
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-        href: "https://www.linkedin.com/in/george-tsimis-a5986224/"
+        href: "https://www.linkedin.com/in/george-tsimis-a5986224/",
+        target: "blank"
       }, "SAVE"))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "channel-desc"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -15386,20 +15391,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // import { incrementViews } from '../../actions/view_actions';
 
 
 
 var mSTP = function mSTP(state, ownProps) {
-  console.log(state);
   return {
+    currentUser: state.session.currentUser,
     video: state.entities.videos[ownProps.match.params.videoId],
     comments: Object.values(state.entities.comments),
+    likes: Object.values(state.entities.likes),
     comment: {
       body: ''
-    } // likes: state.entities.videos.likes.filter(like => like['dislike'] === false),
-    // dislikes: state.entities.videos.likes.filter(like => like['dislike'] === true)
-
+    }
   };
 };
 
@@ -15414,9 +15417,11 @@ var mDTP = function mDTP(dispatch) {
     action: function action(comment, videoId) {
       return dispatch((0,_actions_comments_actions__WEBPACK_IMPORTED_MODULE_3__.makeComment)(comment, videoId));
     },
-    // incViews: videoId => dispatch(incrementViews(videoId)),
-    incLikes: function incLikes(videoId) {
-      return dispatch((0,_actions_likes_actions__WEBPACK_IMPORTED_MODULE_4__.incrementLikes)(videoId));
+    createLike: function createLike(like) {
+      return dispatch((0,_actions_likes_actions__WEBPACK_IMPORTED_MODULE_4__.createLike)(like));
+    },
+    updateLike: function updateLike(like) {
+      return dispatch((0,_actions_likes_actions__WEBPACK_IMPORTED_MODULE_4__.updateLike)(like));
     }
   };
 };
@@ -15605,7 +15610,6 @@ var CommentsReducer = function CommentsReducer() {
       return _objectSpread(_objectSpread({}, state), action.payload.comments);
 
     case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_1__.RECEIVE_COMMENT:
-      // // // debugger
       return Object.assign({}, state, _defineProperty({}, action.comment.id, action.comment));
 
     case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_1__.REMOVE_COMMENT:
@@ -15613,7 +15617,6 @@ var CommentsReducer = function CommentsReducer() {
       return nextState;
 
     default:
-      // // // debugger
       return state;
   }
 };
@@ -15665,11 +15668,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _actions_likes_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/likes_actions */ "./frontend/actions/likes_actions.js");
+/* harmony import */ var _actions_videos_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/videos_actions */ "./frontend/actions/videos_actions.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -15679,6 +15684,9 @@ var LikesReducer = function LikesReducer() {
   Object.freeze(state);
 
   switch (action.type) {
+    case _actions_videos_actions__WEBPACK_IMPORTED_MODULE_1__.RECEIVE_VIDEO_DETAIL:
+      return _objectSpread(_objectSpread({}, state), action.payload.likes);
+
     case _actions_likes_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_LIKE:
       return _objectSpread(_objectSpread({}, state), {}, _defineProperty({}, action.like.id, action.like));
 
@@ -15974,17 +15982,34 @@ var configureStore = function configureStore(preloadedState) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "likePost": () => (/* binding */ likePost)
+/* harmony export */   "postLike": () => (/* binding */ postLike),
+/* harmony export */   "updateLike": () => (/* binding */ updateLike)
 /* harmony export */ });
-var likePost = function likePost(videoId) {
+var postLike = function postLike(like) {
+  debugger;
   return $.ajax({
     method: 'POST',
     url: '/api/likes',
     data: {
-      videoId: videoId
+      like: like
     }
   });
 };
+var updateLike = function updateLike(like) {
+  // debugger
+  return $.ajax({
+    method: 'PATCH',
+    url: "/api/likes/".concat(like.id),
+    data: {
+      like: like
+    }
+  });
+}; // export const destroylike = likeId => (
+//   $.ajax({
+//     method: 'POST',
+//     url: `/api/likes/likerId`
+//   })
+// );
 
 /***/ }),
 

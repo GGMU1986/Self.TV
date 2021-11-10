@@ -6,19 +6,17 @@ import {
   updateComment,
   makeComment 
 } from '../../actions/comments_actions';
-// import { incrementViews } from '../../actions/view_actions';
-import { incrementLikes } from '../../actions/likes_actions';
+import { createLike, updateLike } from '../../actions/likes_actions';
 
 const mSTP = (state, ownProps) => {
-  console.log(state)
   return {
+    currentUser: state.session.currentUser,
     video: state.entities.videos[ownProps.match.params.videoId],
     comments: Object.values(state.entities.comments),
+    likes: Object.values(state.entities.likes),
     comment: {
       body: ''
     },
-    // likes: state.entities.videos.likes.filter(like => like['dislike'] === false),
-    // dislikes: state.entities.videos.likes.filter(like => like['dislike'] === true)
   } 
 };
 
@@ -26,8 +24,8 @@ const mDTP = dispatch => ({
   fetchVideo: videoId => dispatch(fetchVideo(videoId)),
   destroyComment: commentId => dispatch(destroyComment(commentId)),
   action: (comment, videoId) => dispatch(makeComment(comment, videoId)),
-  // incViews: videoId => dispatch(incrementViews(videoId)),
-  incLikes: videoId => dispatch(incrementLikes(videoId))
+  createLike: like => dispatch(createLike(like)),
+  updateLike: like => dispatch(updateLike(like))
 });
 
 export default connect(mSTP, mDTP)(VideoShow);

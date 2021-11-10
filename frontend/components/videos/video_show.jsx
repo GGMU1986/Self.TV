@@ -8,41 +8,38 @@ class VideoShow extends React.Component {
   constructor(props){
     super(props)
     this.state = {
+      active: false,
       likes: this.props.likes,
-      dislikes: this.props.likes
+      like: {
+        likerId: currentUser.id,
+        videoId: this.props.match.params.videoId,
+        dislike: false
+      }
     }
+    this.handleLike = this.handleLike.bind(this);
   }
   componentDidMount() {
     this.props.fetchVideo(this.props.match.params.videoId)
   }
-
-  // handleLike(e) {
-    
-  // }
-
-  // handleDislike(e) 
-    
-  // }
+  handleLike(e) {
+    debugger
+    this.props.createLike(this.state.like)
+  }
   
-  render() {
-    const { 
+  // handleDislike(e) {
+    //   const currState = this.state.like.dislike
+    //   this.setState({ dislike: !currState  })
+    //   this.props.updateLike(this.state)
+    // }
+    
+    render() {
+      console.log(this.state)
+      const { 
       video, destroyComment, 
       comments, action, comment
     } = this.props
     const uploadDate = new Date(video.createdAt).toString().slice(4, 15)
     let videoId = this.props.match.params.videoId
-    // let yes = 0;
-    // let no = 0;
-    // let videoLikes = video.likes;
-    // if (videoLikes) {
-    //   videoLikes.forEach(like => {
-    //     if (like.dislike) {
-    //       return no += 1;
-    //     } else {
-    //       return yes += 1
-    //     }
-    //   })
-    // } 
     return (
       <div className="video-show-cont">
         <Modal />
@@ -72,29 +69,43 @@ class VideoShow extends React.Component {
                     </div>
                     <div className="likes-share">
                       <div className="up">
-                        <i className="far fa-thumbs-up thumb"></i>
+                        <i 
+                          className="far fa-thumbs-up thumb"
+                          onClick={this.handleLike}
+                        ></i>
                         <div>0</div>
                       </div>
                       <div className="down">
                         <div>
-                          <i className="far fa-thumbs-down thumb"></i>
+                          <i 
+                            className="far fa-thumbs-down thumb"
+                            
+                          ></i>
                         </div>
                         <div>0</div>
                       </div>
                       <div className="share">
                         <div>
-                          <a href="https://www.linkedin.com/in/george-tsimis-a5986224/" target="blank"><i className="fas fa-share thumb"></i></a>
+                          <a href="https://www.linkedin.com/in/george-tsimis-a5986224/" 
+                            target="blank"><i className="fas fa-share thumb"></i>
+                          </a>
                         </div>
                         <div>
-                          <a href="https://www.linkedin.com/in/george-tsimis-a5986224/" target="blank">SHARE</a>
+                          <a href="https://www.linkedin.com/in/george-tsimis-a5986224/" 
+                            target="blank">SHARE
+                          </a>
                         </div>  
                       </div>
                       <div className="save">
                         <div>
-                          <a href="https://www.linkedin.com/in/george-tsimis-a5986224/"><i className="fas fa-plus thumb"></i></a>
+                          <a href="https://www.linkedin.com/in/george-tsimis-a5986224/">
+                            <i className="fas fa-plus thumb"></i>
+                          </a>
                         </div>
                         <div>
-                          <a href="https://www.linkedin.com/in/george-tsimis-a5986224/">SAVE</a>
+                          <a href="https://www.linkedin.com/in/george-tsimis-a5986224/" 
+                            target="blank">SAVE
+                          </a>
                         </div>
                       </div>
                     </div>

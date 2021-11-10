@@ -7,7 +7,7 @@ class Signup extends React.Component {
     this.state = this.props.user
     this.handleSubmit= this.handleSubmit.bind(this)
     this.handleDemo = this.handleDemo.bind(this)
-    // console.log(props)
+ 
   }
 
   renderErrors() {

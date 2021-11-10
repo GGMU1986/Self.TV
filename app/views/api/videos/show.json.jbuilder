@@ -3,7 +3,6 @@ json.video do
   json.videoUrl url_for(@video.video)
   json.channel @video.channel.name
   json.views @video.views.count
-  json.likes @video.likes
 end
 
 json.comments do 
@@ -14,5 +13,13 @@ json.comments do
     end
   end
 end
+
+ json.likes do 
+  @video.likes.each do |like|
+    json.set! like.id do 
+      json.extract! like, :id, :liker_id, :video_id, :dislike
+    end
+  end
+ end
 
 

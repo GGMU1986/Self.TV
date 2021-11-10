@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 class VideoIndexItem extends React.Component {
   constructor(props) {
-    console.log(props)
+  
     super(props)
     this.viewCount = this.viewCount.bind(this);
   }
@@ -15,7 +15,7 @@ class VideoIndexItem extends React.Component {
 
   render() {
     const { video } = this.props;
-    console.log(video.photoUrl)
+ 
     const timeNow = new Date()
     const oldTime = new Date(video.createdAt)
     const time = timeNow - oldTime

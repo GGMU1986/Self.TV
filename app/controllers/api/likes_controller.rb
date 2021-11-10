@@ -1,16 +1,29 @@
 class Api::LikesController < ApplicationController
   def create
-    @like = Like.new()
-    @like.like_id = current_user.id
-    @like.video_id = params[:videoId].to_i
-    @like.save
+    # debugger
+    @like = Like.new(like_params)
+    @like.liker_id = params["like"]["likerId"].to_i
+    @like.video_id = params["like"]["videoId"].to_i
+    # debugger
+    if @like.save
+      render :info
+    end
   end
 
-  def destroy
-    @like = current_user.likes.find_by(id: params[:id])
+  def update
+  end
 
-    if @like
-      @like.destroy
-    end
+  # def destroy
+  #   @like = current_user.likes.find_by(id: params[:id])
+
+  #   if @like
+  #     @like.destroy
+  #   end
+  # end
+
+  private 
+
+  def like_params
+    params.require(:like).permit(:liker_id, :video_id, :dislike)
   end
 end
