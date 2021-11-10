@@ -7,7 +7,7 @@ class SideNav extends React.Component {
       <div className="side-nav">
         <Link to="">
           <div className="icon-cont">
-            <div className="icon">
+            <div className="icon2">
               <i className="fas fa-home"></i>
             </div>
             <div className="icon-text">
@@ -17,7 +17,7 @@ class SideNav extends React.Component {
         </Link >
         <Link to="">
           <div className="icon-cont">
-            <div className="icon">
+            <div className="icon2">
               <i className="far fa-compass"></i>
             </div>
             <div className="icon-text">
@@ -27,7 +27,7 @@ class SideNav extends React.Component {
         </Link>
         <Link to="">
           <div className="icon-cont">
-            <div className="icon">
+            <div className="icon2">
               <i className="far fa-play-circle"></i>
             </div>
             <div className="icon-text">
@@ -37,7 +37,7 @@ class SideNav extends React.Component {
         </Link>
         <Link to="">
           <div className="icon-cont">
-            <div className="icon">
+            <div className="icon2">
               <i className="far fa-folder"></i>
             </div>
             <div className="icon-text">
