@@ -13806,7 +13806,9 @@ var CommentsIndexItem = /*#__PURE__*/function (_React$Component) {
         className: "fas fa-trash"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         className: "trash-btn"
-      }, "Delete"))))))) //   <div className='comments-index'>
+      }, "Delete")))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "comment-body"
+      }, comment.body)) //   <div className='comments-index'>
       //     <div className="pic-commenter">
       //       <div className="user-circle">
       //         {comment.commenter[0].toUpperCase()}

@@ -62,6 +62,9 @@ class CommentsIndexItem extends React.Component {
             </div>
           </div>
         </div>
+        <div className="comment-body">
+          {comment.body}
+        </div>
       </div>
     //   <div className='comments-index'>
     //     <div className="pic-commenter">
