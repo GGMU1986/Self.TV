@@ -1,0 +1,43 @@
+.video-index {
+  display: flex;
+  flex-wrap: wrap;
+  width: calc(100vw - 90px);
+  background-color: rgb(238, 238, 238);
+  padding: 20px 20px;
+  padding-bottom: 0; 
+  border-top: 1px solid lightgray;
+}
+
+.video {
+  display: flex;
+  flex-direction: column;
+  margin:  10px 20px;
+  height: 300px;
+}
+
+img {
+  width: 320px;
+  height: 200px;
+}
+
+.video-index-link {
+  text-decoration: none;
+}
+
+.title {
+  font-size: 18px;
+  color: black
+}
+
+.channel {
+  font-size: .8em;
+  color: rgb(126, 126, 126);
+}
+
+span {
+  font-size: 16px;
+}
+
+.bul {
+  color: rgb(126, 126, 126);
+}

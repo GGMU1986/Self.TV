@@ -10,10 +10,63 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_29_193310) do
+ActiveRecord::Schema.define(version: 2021_11_10_180022) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "channels", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "about"
+    t.integer "creator_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["creator_id"], name: "index_channels_on_creator_id"
+    t.index ["name"], name: "index_channels_on_name", unique: true
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "body", null: false
+    t.integer "commenter_id", null: false
+    t.integer "video_id", null: false
+    t.integer "parent_comment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["commenter_id"], name: "index_comments_on_commenter_id"
+    t.index ["parent_comment_id"], name: "index_comments_on_parent_comment_id"
+    t.index ["video_id"], name: "index_comments_on_video_id"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer "liker_id", null: false
+    t.integer "video_id", null: false
+    t.boolean "dislike", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["liker_id", "video_id"], name: "index_likes_on_liker_id_and_video_id", unique: true
+    t.index ["video_id"], name: "index_likes_on_video_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username", null: false
@@ -27,4 +80,24 @@ ActiveRecord::Schema.define(version: 2021_10_29_193310) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  create_table "videos", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "description"
+    t.integer "uploader_id", null: false
+    t.integer "channel_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["channel_id"], name: "index_videos_on_channel_id"
+    t.index ["title"], name: "index_videos_on_title", unique: true
+    t.index ["uploader_id"], name: "index_videos_on_uploader_id"
+  end
+
+  create_table "views", force: :cascade do |t|
+    t.integer "video_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["video_id"], name: "index_views_on_video_id"
+  end
+
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
 end

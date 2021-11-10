@@ -1,0 +1,150 @@
+.title-desc-container {
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px lightgrey;
+  width: 800px;
+  height: 800px;
+  background-color: white;
+  // display:flex;
+  // flex-direction: column;
+  // justify-content: space-between;
+}
+
+.header2 {
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.video-file-name {
+  margin-left: 20px;
+}
+
+.middle {
+  display: flex;
+  height: 660px;
+}
+
+.details {
+  font-size: 20px;
+}
+
+.title2 {
+  width: 100%;
+  height: 10%;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  margin-bottom: 5%;
+}
+
+.descr {
+  width: 100%;
+  height: 25%;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  background-color: white;
+}
+
+.middle-left {
+  width: 60%;
+  margin: 5% 5%;
+  display: flex;
+  flex-direction: column;
+}
+
+.middle-right {
+  width: 40%;
+  margin: 30% 2% 5% 2%;
+  position: relative;
+  
+}
+
+.video-preview {
+  position: absolute;
+  right: 1%;
+  width: 300px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.publish {
+  float: right;
+  margin-right: 5%;
+  padding-top: 2px;
+}
+
+.pub-btn {
+  background:  rgb(51, 51, 232);
+  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+}
+
+.thumb {
+  font-size: 15px;
+  margin-top: 20px;
+}
+
+.thumb-file {
+  display: none;
+}
+
+.thumb-input2 {
+  width: 100px;
+  height: 50px;
+  border: 1px solid gray;
+  background-color: white;
+  position: relative;
+  border-radius: 2px;
+}
+
+.thumbnail-prev-cont {
+  display: flex;
+  align-items: center;
+}
+
+.thumbnail-prev {
+  width: 200px;
+  height: 100px;
+  border: 1px solid gray;
+  border-radius: 2px;
+  margin-right: 10px;
+}
+
+.fa-image {
+  position: absolute;
+  color: black;
+  left: 42%;
+  top: 32%;
+}
+
+.thumbnail-prev > img {
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.words {
+  font-size: 12px;
+  color: gray;
+}
+
+
+
+
+// .middle-text-title {
+//   margin: 20px 50px;
+//   width: 60%;
+// }
+
+// .details {
+//   width: 100%;
+//   height: 33%
+// }
+
+// .preview {
+//   width: 40%;
+// }
+

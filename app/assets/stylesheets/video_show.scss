@@ -1,0 +1,123 @@
+.video-show-cont {
+  background-color: rgb(244, 244, 244);
+  // display: flex;
+}
+.show-page {
+  display: flex
+}
+
+.video-show {
+  margin:  2% 5%;
+}
+
+.channel-desc{
+  position: relative;
+}
+
+.video-cont {
+  width: 100%;
+  height: 40%;
+}
+
+.related-videos-cont {
+  width: 33%
+}
+
+.fas{
+  display: flex;
+}
+
+// .fa-thumbs-up, .fa-thumbs-down {
+//   cursor: pointer;
+//   font-size: 20px;
+//   margin: 0 12px;
+// }
+
+.dislikes { 
+  margin-right: 100px;
+}
+
+.views-likes-share {
+  width: 1000px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// .up, .down {
+//   display: flex;
+//   align-items: center;
+// }
+
+.thumb {
+  margin-right: 10px;
+}
+
+.likes-share {
+  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.up, .down, .share, .save {
+  display: flex;
+  // align-items: center;
+  // justify-content: center;
+  cursor: pointer;
+  
+}
+
+.share > div > a, .save > div> a {
+  color: black;
+}
+
+// .share, .save {
+//   display: flex;
+//   align-items: center;
+// }
+
+.sub {
+  right: 0;
+  bottom: 50%;
+  position: absolute;
+  color: white;
+  background-color: rgb(182, 3, 3);
+  width: 110px;
+  height: 35px;
+  padding: 10px 10px;
+  border: none;
+  font-size: 12px;
+}
+
+.video-show-title {
+  margin-top: 20px;
+  margin-bottom: 5px;
+  line-height: 2;
+}
+
+.likes-cont {
+  width: 10%;
+  display: flex;
+}
+
+.video-show-likes {
+  display: flex;
+  align-items: center;
+}
+
+.video-show-container {
+  position: relative;
+}
+
+.play-btn {
+  position: absolute;
+  bottom: 3%;
+  left: 2%;
+  cursor: pointer;
+}
+
+.active-thumb {
+  color: red;
+  font-size: 30px;
+}

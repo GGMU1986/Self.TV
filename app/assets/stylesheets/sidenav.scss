@@ -1,0 +1,45 @@
+.side-nav {
+  /* position: fixed; */
+  left: 0;
+  top: 50px;
+  width: 90px;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  height: calc(100vh - 50px);
+  /* width: 50px; */
+  color: black
+}
+
+.video-show-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.likes-cont {
+  display: flex;
+  justify-content: space-evenly;
+  width: 10%;
+}
+
+.icon-cont {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px 0;
+  color: black;
+}
+
+.icon-cont:hover {
+  background-color: lightgray;
+}
+
+.icon2 {
+  font-size: 20px;
+}
+
+.icon-text {
+  font-size: 10px;
+}
+  
