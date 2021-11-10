@@ -5,7 +5,7 @@ const UploadPart2 = ({ closeModal, handleInput, handleThumbnail, handleSubmit, v
   return (
     <div className="title-desc-container">
       <div className="header2">
-        <p className="video-file-name">{videoFile}</p>
+        <p className="video-file-name">Title</p>
         <div className="upload-video-icons-header" onClick={closeModal}>
          <i className="fas fa-times"></i>
         </div>
@@ -16,7 +16,7 @@ const UploadPart2 = ({ closeModal, handleInput, handleThumbnail, handleSubmit, v
           <p className="details">Details</p>
           <input  
             type="text" className='title2' 
-            placeholder="Title" onChange={handleInput('title')} 
+            placeholder="Title (required)" onChange={handleInput('title')} 
           />
           <textarea 
             className="descr" 

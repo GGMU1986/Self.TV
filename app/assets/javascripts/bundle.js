@@ -15469,7 +15469,7 @@ var UploadPart2 = function UploadPart2(_ref) {
     className: "header2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
     className: "video-file-name"
-  }, videoFile), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, "Title"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "upload-video-icons-header",
     onClick: closeModal
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
@@ -15483,7 +15483,7 @@ var UploadPart2 = function UploadPart2(_ref) {
   }, "Details"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     type: "text",
     className: "title2",
-    placeholder: "Title",
+    placeholder: "Title (required)",
     onChange: handleInput('title')
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
     className: "descr",
