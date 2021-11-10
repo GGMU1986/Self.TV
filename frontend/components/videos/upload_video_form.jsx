@@ -23,6 +23,11 @@ class UploadVideoForm extends React.Component {
   };
 
   handleThumbnail(e) {
+    // let thumbnailUrl;
+    // const file = e.currentTarget.files[0]
+    // const fileReader = new FileReader();
+    console.log(e.currentTarget.files[0])
+
     this.setState({
       photoFile: e.currentTarget.files[0]
     })
@@ -59,19 +64,21 @@ class UploadVideoForm extends React.Component {
         handleInput={this.handleInput}
         handleThumbnail={this.handleThumbnail}
         handleSubmit={this.handleSubmit}
+        photoFile={this.state.photoFile}
       />
     )
     return (
-      // <div>{part}</div>
-      <div>
-          <UploadPart2 
-          closeModal={closeModal}
-          handleInput={this.handleInput}
-          handleThumbnail={this.handleThumbnail}
-          handleSubmit={this.handleSubmit}
-          videoFile={videoFile}
-        />
-      </div>
+      <div>{part}</div>
+      // <div>
+      //     <UploadPart2 
+      //     closeModal={closeModal}
+      //     handleInput={this.handleInput}
+      //     handleThumbnail={this.handleThumbnail}
+      //     handleSubmit={this.handleSubmit}
+      //     // videoFile={this.state.videoFile.bind(this)}
+      //     photoFile={this.state.photoFile}
+      //   />
+      // </div>
     )
   }
 }

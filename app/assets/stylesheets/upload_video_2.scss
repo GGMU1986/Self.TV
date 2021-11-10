@@ -90,6 +90,14 @@
   border-radius: 2px;
 }
 
+.thumb-img {
+  width: 100px;
+  height: 50px;
+  border: 1px solid gray;
+  border-radius: 2px;
+  object-fit: cover;
+}
+
 .fa-image {
   position: absolute;
   color: black;

@@ -14865,6 +14865,10 @@ var UploadVideoForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleThumbnail",
     value: function handleThumbnail(e) {
+      // let thumbnailUrl;
+      // const file = e.currentTarget.files[0]
+      // const fileReader = new FileReader();
+      console.log(e.currentTarget.files[0]);
       this.setState({
         photoFile: e.currentTarget.files[0]
       });
@@ -14906,19 +14910,20 @@ var UploadVideoForm = /*#__PURE__*/function (_React$Component) {
         closeModal: closeModal,
         handleInput: this.handleInput,
         handleThumbnail: this.handleThumbnail,
-        handleSubmit: this.handleSubmit
+        handleSubmit: this.handleSubmit,
+        photoFile: this.state.photoFile
       });
-      return (
-        /*#__PURE__*/
-        // <div>{part}</div>
-        react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_video_upload_2__WEBPACK_IMPORTED_MODULE_4__["default"], {
-          closeModal: closeModal,
-          handleInput: this.handleInput,
-          handleThumbnail: this.handleThumbnail,
-          handleSubmit: this.handleSubmit,
-          videoFile: videoFile
-        }))
-      );
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, part) // <div>
+      //     <UploadPart2 
+      //     closeModal={closeModal}
+      //     handleInput={this.handleInput}
+      //     handleThumbnail={this.handleThumbnail}
+      //     handleSubmit={this.handleSubmit}
+      //     // videoFile={this.state.videoFile.bind(this)}
+      //     photoFile={this.state.photoFile}
+      //   />
+      // </div>
+      ;
     }
   }]);
 
@@ -15470,7 +15475,7 @@ var UploadPart2 = function UploadPart2(_ref) {
       handleInput = _ref.handleInput,
       handleThumbnail = _ref.handleThumbnail,
       handleSubmit = _ref.handleSubmit,
-      videoFile = _ref.videoFile;
+      photoFile = _ref.photoFile;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "title-desc-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -15501,7 +15506,7 @@ var UploadPart2 = function UploadPart2(_ref) {
     className: "thumb"
   }, "Thumbnail"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
     className: "words"
-  }, "Select or upload a picture that shows what's in your video. A good thumbnail stands out and draws viewers' attention.", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Learn more")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+  }, "Select or upload a picture that shows what's in your video. A good thumbnail stands out and draws viewers' attention.", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Learn more")), photoFile ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, photoFile.name) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
     className: "thumb-input2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
     className: "fas fa-image"

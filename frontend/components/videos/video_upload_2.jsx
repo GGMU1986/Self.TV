@@ -1,7 +1,7 @@
 import { faDove } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 
-const UploadPart2 = ({ closeModal, handleInput, handleThumbnail, handleSubmit, videoFile }) => {
+const UploadPart2 = ({ closeModal, handleInput, handleThumbnail, handleSubmit, photoFile }) => {
   return (
     <div className="title-desc-container">
       <div className="header2">
@@ -16,7 +16,8 @@ const UploadPart2 = ({ closeModal, handleInput, handleThumbnail, handleSubmit, v
           <p className="details">Details</p>
           <input  
             type="text" className='title2' 
-            placeholder="Title (required)" onChange={handleInput('title')} 
+            placeholder="Title (required)" 
+            onChange={handleInput('title')} 
           />
           <textarea 
             className="descr" 
@@ -27,10 +28,19 @@ const UploadPart2 = ({ closeModal, handleInput, handleThumbnail, handleSubmit, v
             <p className="words">Select or upload a picture that shows what's in your video.
             A good thumbnail stands out and draws viewers' attention. 
             <span>Learn more</span></p>
-            <label className="thumb-input2">
-              <i className="fas fa-image"></i>
-              <input type="file" className="thumb-file" onChange={handleThumbnail}/>
-            </label>
+            {
+              photoFile ? (
+               <div>
+                 {photoFile.name}
+                 {/* <img src={photoFile} alt="thumbnail" /> */}
+               </div>  
+              ) : (
+                <label className="thumb-input2">
+                  <i className="fas fa-image"></i>
+                  <input type="file" className="thumb-file" onChange={handleThumbnail}/>
+                </label>
+              ) 
+            }
         </div>
         <div className="middle-right">
           [PREVIEW]
