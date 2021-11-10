@@ -53,13 +53,22 @@
   margin-top: 15px;
   margin-bottom: 8px;
   cursor: pointer;
+  // display:none;
 }
 
+// .comments-index:hover > .dots {
+//   display: block;
+// }
+
 .fa-trash {
-  margin-right: 10px;
+  margin-right: 8px;
+  margin-left: 4px;
 }
 
 .trash.active {
+  background-color: white;
+  width: 110px;
+  height: 50px;
   display: inline-block;
   display: flex;
   align-items: center;
@@ -67,12 +76,16 @@
   position: absolute;
   right: 20%;
   cursor: pointer;
+  border-radius: 5px;
+  z-index: 10;
+  box-shadow: 2px 2px lightgray;
 }
 
 .trash-btn {
-  background-color: rgb(237, 237, 237);
+  background-color: white;
   border: none;
   cursor: pointer;
+  color: black;
 }
 
 .comment-body {
