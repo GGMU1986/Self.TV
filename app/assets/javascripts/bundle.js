@@ -13746,13 +13746,24 @@ var CommentsIndexItem = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, CommentsIndexItem);
 
     _this = _super.call(this, props);
-    _this.handleEdit = _this.handleEdit.bind(_assertThisInitialized(_this));
+    _this.state = {
+      active: false
+    };
+    _this.addActiveClass = _this.addActiveClass.bind(_assertThisInitialized(_this)); // this.handleEdit = this.handleEdit.bind(this);
+
     return _this;
-  }
+  } // handleEdit(e) {
+  // }
+
 
   _createClass(CommentsIndexItem, [{
-    key: "handleEdit",
-    value: function handleEdit(e) {}
+    key: "addActiveClass",
+    value: function addActiveClass(e) {
+      var currState = this.state.active;
+      this.setState({
+        active: !currState
+      });
+    }
   }, {
     key: "render",
     value: function render() {
@@ -13783,24 +13794,19 @@ var CommentsIndexItem = /*#__PURE__*/function (_React$Component) {
         className: "time-ago"
       }, timeAgo))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "delete-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
-        id: "x"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
-        className: "fas fa-ellipsis-v dots"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-        htmlFor: "x",
-        type: "checkbox",
-        className: "delete-input"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
+        className: "fas fa-ellipsis-v dots",
+        onClick: this.addActiveClass
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "trash",
+        className: this.state.active ? "trash active" : "trash",
         onClick: function onClick() {
           return destroyComment(comment.id);
         }
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
         className: "fas fa-trash"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         className: "trash-btn"
-      }, "Delete")))))) //   <div className='comments-index'>
+      }, "Delete"))))))) //   <div className='comments-index'>
       //     <div className="pic-commenter">
       //       <div className="user-circle">
       //         {comment.commenter[0].toUpperCase()}

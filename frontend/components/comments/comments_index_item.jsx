@@ -3,11 +3,22 @@ import React from 'react';
 class CommentsIndexItem extends React.Component {
   constructor(props) {
     super(props)
-    this.handleEdit = this.handleEdit.bind(this);
+    this.state = {
+      active: false
+    }
+    this.addActiveClass = this.addActiveClass.bind(this);
+    // this.handleEdit = this.handleEdit.bind(this);
   }
 
-  handleEdit(e) {
+  // handleEdit(e) {
     
+  // }
+
+  addActiveClass(e) {
+    const currState = this.state.active
+    this.setState({
+      active: !currState
+    })
   }
 
   render () {
@@ -36,11 +47,17 @@ class CommentsIndexItem extends React.Component {
           </div>
           <div>
             <div className="delete-container">
-              <label id="x" /><i className="fas fa-ellipsis-v dots"></i>
-              <input htmlFor="x" type="checkbox" className="delete-input"/>
-              <div className="trash" onClick={() => destroyComment(comment.id)}>
-                <i className="fas fa-trash"></i>
-                <button  className="trash-btn">Delete</button>
+              <i className="fas fa-ellipsis-v dots" onClick={this.addActiveClass}></i>
+              <div 
+                className={this.state.active ? "trash active" : "trash"} 
+                onClick={() => destroyComment(comment.id)}
+              > 
+                <div>
+                  <i className="fas fa-trash"></i>
+                </div>
+                <div>
+                  <button  className="trash-btn">Delete</button>
+                </div>
               </div>
             </div>
           </div>

@@ -41,6 +41,7 @@
 
 .trash {
   display: flex;
+  width: 100px;
   border: 1px solid lightgray;
   box-shadow: 1px 1px darkgray;
   padding: 2px 4px;
@@ -58,11 +59,7 @@
   margin-right: 10px;
 }
 
-.delete-input {
-  // display: none;
-}
-
-.delete-input:checked ~ .trash{
+.trash.active {
   display: inline-block;
 }
 
