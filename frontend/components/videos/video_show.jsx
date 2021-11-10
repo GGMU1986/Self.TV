@@ -76,20 +76,25 @@ class VideoShow extends React.Component {
                         <div>0</div>
                       </div>
                       <div className="down">
-                        <i className="far fa-thumbs-down thumb"></i>
+                        <div>
+                          <i className="far fa-thumbs-down thumb"></i>
+                        </div>
                         <div>0</div>
                       </div>
                       <div className="share">
-
-                        <i className="fas fa-share thumb"></i>
                         <div>
-                          SHARE
+                          <a href="https://www.linkedin.com/in/george-tsimis-a5986224/" target="blank"><i className="fas fa-share thumb"></i></a>
+                        </div>
+                        <div>
+                          <a href="https://www.linkedin.com/in/george-tsimis-a5986224/" target="blank">SHARE</a>
                         </div>  
                       </div>
                       <div className="save">
-                        <i className="fas fa-plus thumb"></i>
                         <div>
-                          SAVE
+                          <a href="https://www.linkedin.com/in/george-tsimis-a5986224/"><i className="fas fa-plus thumb"></i></a>
+                        </div>
+                        <div>
+                          <a href="https://www.linkedin.com/in/george-tsimis-a5986224/">SAVE</a>
                         </div>
                       </div>
                     </div>
