@@ -13808,33 +13808,7 @@ var CommentsIndexItem = /*#__PURE__*/function (_React$Component) {
         className: "trash-btn"
       }, "Delete")))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "comment-body"
-      }, comment.body)) //   <div className='comments-index'>
-      //     <div className="pic-commenter">
-      //       <div className="user-circle">
-      //         {comment.commenter[0].toUpperCase()}
-      //       </div>
-      //       <div>
-      //         <strong>{comment.commenter}</strong>
-      //         &nbsp;&nbsp;
-      //         <span className="time-ago">
-      //           {timeAgo}
-      //         </span>
-      //       </div>
-      //     </div>
-      //     <div>
-      //       {comment.body}
-      //     </div>
-      //     <div className="comment-drop-down">
-      //       <div className="edit-delete-comment">
-      //         <div className="delete-comment">
-      //           <i className="fas fa-trash"></i>
-      //         </div>
-      //       </div>
-      //     </div>
-      //     <button onClick={() => destroyComment(comment.id)}>Delete</button>
-      //     <br /><br />
-      //   </div>
-      ;
+      }, comment.body));
     }
   }]);
 

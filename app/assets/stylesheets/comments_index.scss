@@ -40,13 +40,13 @@
 }
 
 .trash {
-  display: flex;
-  width: 100px;
+  width: 90px;
   border: 1px solid lightgray;
   box-shadow: 1px 1px darkgray;
   padding: 2px 4px;
   cursor: pointer;
   display: none;
+  position: relative;
 }
 
 .dots {
@@ -61,11 +61,18 @@
 
 .trash.active {
   display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: absolute;
+  right: 10%;
+  cursor: pointer;
 }
 
 .trash-btn {
   background-color: rgb(237, 237, 237);
   border: none;
+  cursor: pointer;
 }
 
 .comment-body {

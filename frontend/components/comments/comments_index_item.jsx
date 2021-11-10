@@ -66,32 +66,6 @@ class CommentsIndexItem extends React.Component {
           {comment.body}
         </div>
       </div>
-    //   <div className='comments-index'>
-    //     <div className="pic-commenter">
-    //       <div className="user-circle">
-    //         {comment.commenter[0].toUpperCase()}
-    //       </div>
-    //       <div>
-    //         <strong>{comment.commenter}</strong>
-    //         &nbsp;&nbsp;
-    //         <span className="time-ago">
-    //           {timeAgo}
-    //         </span>
-    //       </div>
-    //     </div>
-    //     <div>
-    //       {comment.body}
-    //     </div>
-    //     <div className="comment-drop-down">
-    //       <div className="edit-delete-comment">
-    //         <div className="delete-comment">
-    //           <i className="fas fa-trash"></i>
-    //         </div>
-    //       </div>
-    //     </div>
-    //     <button onClick={() => destroyComment(comment.id)}>Delete</button>
-    //     <br /><br />
-    //   </div>
     )
   }
 };
