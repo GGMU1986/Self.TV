@@ -14889,9 +14889,10 @@ var UploadVideoForm = /*#__PURE__*/function (_React$Component) {
       formData.append('video[description]', this.state.description);
       formData.append('video[video]', this.state.videoFile);
       formData.append('video[photo]', this.state.photoFile);
-      this.props.createVideo(formData).then(function () {
+      this.props.createVideo(formData).then(function (video) {
         return _this3.props.history.push('/');
       });
+      this.props.closeModal();
     }
   }, {
     key: "render",
@@ -14907,16 +14908,17 @@ var UploadVideoForm = /*#__PURE__*/function (_React$Component) {
         handleThumbnail: this.handleThumbnail,
         handleSubmit: this.handleSubmit
       });
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, part) // <div>
-      //     <UploadPart2 
-      //     closeModal={closeModal}
-      //     handleInput={this.handleInput}
-      //     handleThumbnail={this.handleThumbnail}
-      //     handleSubmit={this.handleSubmit}
-      //     videoFile={videoFile}
-      //   />
-      // </div>
-      ;
+      return (
+        /*#__PURE__*/
+        // <div>{part}</div>
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_video_upload_2__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          closeModal: closeModal,
+          handleInput: this.handleInput,
+          handleThumbnail: this.handleThumbnail,
+          handleSubmit: this.handleSubmit,
+          videoFile: videoFile
+        }))
+      );
     }
   }]);
 
@@ -14935,7 +14937,6 @@ var mSTP = function mSTP(state) {
 };
 
 var mDTP = function mDTP(dispatch) {
-  // debugger
   return {
     createVideo: function createVideo(video) {
       return dispatch((0,_actions_videos_actions__WEBPACK_IMPORTED_MODULE_2__.createVideo)(video));
@@ -15436,7 +15437,8 @@ var UploadPart1 = function UploadPart1(_ref) {
   }, "SELECT FILES", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     type: "file",
     className: "video-input",
-    onChange: handleFile
+    onChange: handleFile,
+    accept: ".mp4"
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "footer-upload-videos"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {

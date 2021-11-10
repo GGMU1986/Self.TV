@@ -23,7 +23,12 @@ const UploadPart1 = ({ handleFile, closeModal }) => {
           </div>
         </div>
         <label className="select-files">SELECT FILES
-          <input type="file" className="video-input" onChange={handleFile} />
+          <input 
+            type="file" 
+            className="video-input" 
+            onChange={handleFile} 
+            accept=".mp4"
+          />
         </label>
       </main>
       <div className="footer-upload-videos">

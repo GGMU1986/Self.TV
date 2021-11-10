@@ -15,7 +15,7 @@ class UploadVideoForm extends React.Component {
     this.handleThumbnail = this.handleThumbnail.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   };
-
+  
   handleFile(e) {
     this.setState({
       videoFile: e.currentTarget.files[0]
@@ -33,6 +33,7 @@ class UploadVideoForm extends React.Component {
   };
 
   handleSubmit(e) {
+    
     e.preventDefault();
     let formData = new FormData();
     formData.append('video[title]', this.state.title)
@@ -40,7 +41,8 @@ class UploadVideoForm extends React.Component {
     formData.append('video[video]', this.state.videoFile)
     formData.append('video[photo]', this.state.photoFile)
     this.props.createVideo(formData)
-      .then(() => this.props.history.push('/'))
+      .then(video => this.props.history.push('/'));
+      this.props.closeModal();
   }
 
   render() {
@@ -60,16 +62,16 @@ class UploadVideoForm extends React.Component {
       />
     )
     return (
-      <div>{part}</div>
-      // <div>
-      //     <UploadPart2 
-      //     closeModal={closeModal}
-      //     handleInput={this.handleInput}
-      //     handleThumbnail={this.handleThumbnail}
-      //     handleSubmit={this.handleSubmit}
-      //     videoFile={videoFile}
-      //   />
-      // </div>
+      // <div>{part}</div>
+      <div>
+          <UploadPart2 
+          closeModal={closeModal}
+          handleInput={this.handleInput}
+          handleThumbnail={this.handleThumbnail}
+          handleSubmit={this.handleSubmit}
+          videoFile={videoFile}
+        />
+      </div>
     )
   }
 }
@@ -84,7 +86,6 @@ const mSTP = state => ({
 });
 
 const mDTP = dispatch => {
-  // debugger
   return {
     createVideo: video => dispatch(createVideo(video))
   }
