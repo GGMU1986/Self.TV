@@ -15233,6 +15233,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var VideoShow = /*#__PURE__*/function (_React$Component) {
   _inherits(VideoShow, _React$Component);
 
@@ -15246,7 +15247,7 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       active: false,
-      likes: _this.props.likes,
+      // likes: this.props.likes,
       like: {
         likerId: currentUser.id,
         videoId: _this.props.match.params.videoId,
@@ -15265,18 +15266,40 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleLike",
     value: function handleLike(e) {
-      debugger;
+      var currState = this.state.active;
+      this.setState({
+        active: !currState
+      });
       this.props.createLike(this.state.like);
-    } // handleDislike(e) {
-    //   const currState = this.state.like.dislike
-    //   this.setState({ dislike: !currState  })
-    //   this.props.updateLike(this.state)
-    // }
-
+    }
+  }, {
+    key: "handleDislike",
+    value: function handleDislike(e) {
+      var currState = this.state.like.dislike;
+      this.setState({
+        dislike: !currState
+      });
+      this.props.createLike(this.state);
+    }
   }, {
     key: "render",
     value: function render() {
-      console.log(this.state);
+      var thumbsUp = this.state.active ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
+        className: "far fa-thumbs-up thumb active-thumb",
+        onClick: this.updateLike
+      }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
+        className: "far fa-thumbs-up thumb",
+        onClick: this.handleLike
+      });
+      var no = 0;
+      var yes = 0;
+      this.props.likes.forEach(function (like) {
+        if (like.dislike) {
+          no += 1;
+        } else {
+          yes += 1;
+        }
+      });
       var _this$props = this.props,
           video = _this$props.video,
           destroyComment = _this$props.destroyComment,
@@ -15312,14 +15335,12 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
         className: "likes-share"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "up"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
-        className: "far fa-thumbs-up thumb",
-        onClick: this.handleLike
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "0")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, thumbsUp, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, yes)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "down"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
+        id: "thumbs-down",
         className: "far fa-thumbs-down thumb"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "0")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, no)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "share"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
         href: "https://www.linkedin.com/in/george-tsimis-a5986224/",

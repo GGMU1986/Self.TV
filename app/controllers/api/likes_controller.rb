@@ -13,7 +13,7 @@ class Api::LikesController < ApplicationController
   def update
   end
 
-  # def destroy
+  # def destroysc
   #   @like = current_user.likes.find_by(id: params[:id])
 
   #   if @like

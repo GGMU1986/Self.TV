@@ -3,13 +3,14 @@ import Header from '../home/header';
 import CommentsIndex from '../comments/comments_index';
 import CommentForm from '../comments/comments_form';
 import Modal from '../modal/modal';
+import { fas } from '@fortawesome/free-solid-svg-icons';
 
 class VideoShow extends React.Component {
   constructor(props){
     super(props)
     this.state = {
       active: false,
-      likes: this.props.likes,
+      // likes: this.props.likes,
       like: {
         likerId: currentUser.id,
         videoId: this.props.match.params.videoId,
@@ -21,19 +22,35 @@ class VideoShow extends React.Component {
   componentDidMount() {
     this.props.fetchVideo(this.props.match.params.videoId)
   }
+
   handleLike(e) {
-    debugger
+    const currState = this.state.active
+    this.setState({ active: !currState })
     this.props.createLike(this.state.like)
   }
   
-  // handleDislike(e) {
-    //   const currState = this.state.like.dislike
-    //   this.setState({ dislike: !currState  })
-    //   this.props.updateLike(this.state)
-    // }
+  handleDislike(e) {
+    const currState = this.state.like.dislike
+    this.setState({ dislike: !currState })
+    this.props.createLike(this.state)
+  }
     
     render() {
-      console.log(this.state)
+      let thumbsUp = this.state.active ? (
+        <i className="far fa-thumbs-up thumb active-thumb" onClick={this.updateLike} />
+      ) : (
+        <i className = "far fa-thumbs-up thumb" onClick = {this.handleLike} />
+      )
+      let no = 0;
+      let yes = 0;
+      this.props.likes.forEach(like => {
+        if (like.dislike) {
+          no += 1
+        } else {
+          yes += 1
+        }
+        
+      })
       const { 
       video, destroyComment, 
       comments, action, comment
@@ -69,20 +86,21 @@ class VideoShow extends React.Component {
                     </div>
                     <div className="likes-share">
                       <div className="up">
-                        <i 
+                        {thumbsUp}
+                        {/* <i
                           className="far fa-thumbs-up thumb"
                           onClick={this.handleLike}
-                        ></i>
-                        <div>0</div>
+                        ></i> */}
+                        <div>{yes}</div>
                       </div>
                       <div className="down">
                         <div>
                           <i 
-                            className="far fa-thumbs-down thumb"
-                            
+                            id="thumbs-down"
+                            className="far fa-thumbs-down thumb" 
                           ></i>
                         </div>
-                        <div>0</div>
+                        <div>{no}</div>
                       </div>
                       <div className="share">
                         <div>
