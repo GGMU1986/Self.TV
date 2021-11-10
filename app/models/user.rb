@@ -29,7 +29,7 @@ class User < ApplicationRecord
     foreign_key: :liker_id,
     class_name: :Like
   
-  has_many :liked_uploads
+  has_many :liked_uploads,
     through: :uploaded_videos,
     source: :likes
     

@@ -14937,20 +14937,19 @@ var UploadVideoForm = /*#__PURE__*/function (_React$Component) {
         videoUrl: videoUrl,
         photoUrl: photoUrl
       });
-      return (
-        /*#__PURE__*/
-        // <div>{part}</div>
-        react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_video_upload_2__WEBPACK_IMPORTED_MODULE_4__["default"], {
-          closeModal: closeModal,
-          handleInput: this.handleInput,
-          handleThumbnail: this.handleThumbnail,
-          handleSubmit: this.handleSubmit,
-          photoFile: this.state.photoFile,
-          title: title,
-          videoUrl: videoUrl,
-          photoUrl: photoUrl
-        }))
-      );
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, part) // <div>
+      //     <UploadPart2 
+      //     closeModal={closeModal}
+      //     handleInput={this.handleInput}
+      //     handleThumbnail={this.handleThumbnail}
+      //     handleSubmit={this.handleSubmit}
+      //     photoFile={this.state.photoFile}
+      //     title={title}
+      //     videoUrl={videoUrl}
+      //     photoUrl={photoUrl}
+      //   />
+      // </div>
+      ;
     }
   }]);
 
@@ -15528,6 +15527,7 @@ var UploadPart2 = function UploadPart2(_ref) {
   }, "Details"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     type: "text",
     className: "title2",
+    value: title,
     placeholder: "Title (required)",
     onChange: handleInput('title')
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {

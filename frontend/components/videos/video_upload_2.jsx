@@ -18,7 +18,9 @@ const UploadPart2 = ({
         <div className="middle-left">
           <p className="details">Details</p>
           <input  
-            type="text" className='title2' 
+            type="text" 
+            className='title2'
+            value={title} 
             placeholder="Title (required)" 
             onChange={handleInput('title')} 
           />

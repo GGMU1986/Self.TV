@@ -56,11 +56,15 @@
   width: 40%;
   margin: 30% 2% 5% 2%;
   position: relative;
+  
 }
 
 .video-preview {
   position: absolute;
   right: 1%;
+  width: 300px;
+  height: 150px;
+  object-fit: cover;
 }
 
 .publish {
