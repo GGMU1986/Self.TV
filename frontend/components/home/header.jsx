@@ -96,18 +96,25 @@ class Header extends React.Component {
             {
               currentUser ? (
                 <div onClick={this.addActiveClass} className="loggedin">
-                  <span className="prof-icon-content">{currentUser.username[0].toUpperCase()}</span>
+                  <div className="prof-icon-content">{currentUser.username[0].toUpperCase()}</div>
                   {/* <span className="prof-icon-content">{profile}</span> */}
                   <div className={this.state.active ? 'dropdown active' : 'dropdown'}>
                     <div className="dropdown-username">
-                      {currentUser.username}
+                      <div className="user-email">
+                        <div className="user">
+                          {currentUser.username}
+                        </div>
+                        <div className="email">
+                          {currentUser.email}
+                        </div>
+                      </div>
                     </div>
                     <div className="out">
-                      <i className="fas fa-user-alt"></i>
+                      <i className="fas fa-user-alt icon"></i>
                       <p>Your channel</p>
                     </div>
                     <div className="out" onClick={() => logout()}>
-                      <i className="fas fa-sign-out-alt"></i>
+                      <i className="fas fa-sign-out-alt icon"></i>
                       <p>Sign out</p>
                     </div>
                   </div>
