@@ -15557,7 +15557,7 @@ var UploadPart2 = function UploadPart2(_ref) {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
     className: "descr",
     placeholder: "Tell viewers about your video",
-    onChange: handleInput('title')
+    onChange: handleInput('description')
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
     className: "thumb"
   }, "Thumbnail"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {

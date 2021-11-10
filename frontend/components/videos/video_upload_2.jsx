@@ -27,7 +27,7 @@ const UploadPart2 = ({
           <textarea 
             className="descr" 
             placeholder="Tell viewers about your video" 
-            onChange={handleInput('title')} 
+            onChange={handleInput('description')} 
           />
           <h2 className="thumb">Thumbnail</h2>
             <p className="words">Select or upload a picture that shows what's in your video.
