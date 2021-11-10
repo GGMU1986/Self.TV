@@ -1,11 +1,14 @@
 import { faDove } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 
-const UploadPart2 = ({ closeModal, handleInput, handleThumbnail, handleSubmit, photoFile }) => {
+const UploadPart2 = ({ 
+  closeModal, handleInput, handleThumbnail, 
+  handleSubmit, photoFile, title, videoUrl, photoUrl 
+}) => {
   return (
     <div className="title-desc-container">
       <div className="header2">
-        <p className="video-file-name">Title</p>
+        <p className="video-file-name">{title}</p>
         <div className="upload-video-icons-header" onClick={closeModal}>
          <i className="fas fa-times"></i>
         </div>
@@ -30,9 +33,16 @@ const UploadPart2 = ({ closeModal, handleInput, handleThumbnail, handleSubmit, p
             <span>Learn more</span></p>
             {
               photoFile ? (
-               <div>
-                 {photoFile.name}
-                 {/* <img src={photoFile} alt="thumbnail" /> */}
+               <div className="thumbnail-prev-cont">
+                 <div className="thumbnail-prev">
+                  <img 
+                    src={photoUrl} 
+                    alt="thumbnail" 
+                  />
+                 </div>
+                 <div className="thumbnail-name">
+                  {photoFile.name}
+                 </div>
                </div>  
               ) : (
                 <label className="thumb-input2">
@@ -43,7 +53,14 @@ const UploadPart2 = ({ closeModal, handleInput, handleThumbnail, handleSubmit, p
             }
         </div>
         <div className="middle-right">
-          [PREVIEW]
+          {
+            <video
+              className="video-preview" 
+              src={videoUrl} 
+              controls
+              muted
+            />
+          }
         </div>
       </div>
       <hr />
@@ -51,49 +68,6 @@ const UploadPart2 = ({ closeModal, handleInput, handleThumbnail, handleSubmit, p
         <button className="pub-btn" onClick={handleSubmit}>PUBLISH</button>
       </div>
     </div>
-
-    
-    // <div className="title-desc-container">
-    //   <div className="upload-videos-header">
-    //     <p className="video-file-name">[Title goes here]</p>
-    //     <div className="upload-video-icons-header" onClick={closeModal}>
-    //       <i className="fas fa-times"></i>
-    //     </div>
-    //   </div>
-    //   <hr />
-    //   <div class="middle">
-    //     <div className="middle-text-title">
-    //       <div className="middle-top">
-    //         <h2>Details</h2>
-    //         <input
-    //           className="details" 
-    //           type="text" 
-    //           placeholder="Title (required)" 
-    //           required
-    //           onChange={handleInput('title')} 
-    //         />
-    //         <textarea
-    //           className="description" 
-    //           placeholder="Descritpion of your video..."
-    //           onChange={handleInput('description')}
-    //         />
-    //       </div>
-    //       <div className="middle-bottom">
-    //         <h2>Thumbnail</h2>
-    //         <p>Select or upload a picture that shows what's in your video. 
-    //           A good thumbnail stands out and draws viewers' attention. 
-    //           <span>Learn more</span></p>
-    //         <input type="file" onChange={handleThumbnail}/>
-    //       </div>
-    //     </div>
-    //     <div className="preview">
-
-    //     </div>
-    //   </div>
-    //   <div className>
-    //     <button onClick={handleSubmit}>PUBLISH</button>
-    //   </div>
-    // </div>
   )
 };
 

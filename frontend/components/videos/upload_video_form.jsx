@@ -17,20 +17,28 @@ class UploadVideoForm extends React.Component {
   };
   
   handleFile(e) {
-    this.setState({
-      videoFile: e.currentTarget.files[0]
-    })
+    const file = e.currentTarget.files[0]
+    const fileReader = new FileReader();
+    fileReader.onloadend = () => {
+      this.setState({
+        title: file.name,
+        videoFile: file,
+        videoUrl: fileReader.result
+      })
+    }
+    if (file) fileReader.readAsDataURL(file);
   };
 
   handleThumbnail(e) {
-    // let thumbnailUrl;
-    // const file = e.currentTarget.files[0]
-    // const fileReader = new FileReader();
-    console.log(e.currentTarget.files[0])
-
-    this.setState({
-      photoFile: e.currentTarget.files[0]
-    })
+    const file = e.currentTarget.files[0]
+    const fileReader = new FileReader();
+    fileReader.onloadend = () => {
+      this.setState({
+        photoFile: file,
+        photoUrl: fileReader.result
+      })
+    }
+    if (file) fileReader.readAsDataURL(file);
   }
 
   handleInput(field) {
@@ -52,7 +60,7 @@ class UploadVideoForm extends React.Component {
 
   render() {
     const { closeModal } = this.props;
-    const { videoFile } = this.state;
+    const { videoFile, title, videoUrl, photoUrl } = this.state;
     const part = !videoFile ? (
       <UploadPart1 
         handleFile={this.handleFile} 
@@ -65,20 +73,25 @@ class UploadVideoForm extends React.Component {
         handleThumbnail={this.handleThumbnail}
         handleSubmit={this.handleSubmit}
         photoFile={this.state.photoFile}
+        title={title}
+        videoUrl={videoUrl}
+        photoUrl={photoUrl}
       />
     )
     return (
-      <div>{part}</div>
-      // <div>
-      //     <UploadPart2 
-      //     closeModal={closeModal}
-      //     handleInput={this.handleInput}
-      //     handleThumbnail={this.handleThumbnail}
-      //     handleSubmit={this.handleSubmit}
-      //     // videoFile={this.state.videoFile.bind(this)}
-      //     photoFile={this.state.photoFile}
-      //   />
-      // </div>
+      // <div>{part}</div>
+      <div>
+          <UploadPart2 
+          closeModal={closeModal}
+          handleInput={this.handleInput}
+          handleThumbnail={this.handleThumbnail}
+          handleSubmit={this.handleSubmit}
+          photoFile={this.state.photoFile}
+          title={title}
+          videoUrl={videoUrl}
+          photoUrl={photoUrl}
+        />
+      </div>
     )
   }
 }
@@ -88,7 +101,9 @@ const mSTP = state => ({
     title: '',
     description: '',
     videoFile: null,
+    videoUrl: null,
     photoFile: null,
+    photoUrl: null
   }
 });
 
