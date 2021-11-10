@@ -7,7 +7,7 @@ class Signup extends React.Component {
     this.state = this.props.user
     this.handleSubmit= this.handleSubmit.bind(this)
     this.handleDemo = this.handleDemo.bind(this)
- 
+
   }
 
   renderErrors() {
@@ -100,11 +100,21 @@ class Signup extends React.Component {
           </div>
           </div>
             <p>Just looking? Try Demo mode below to preview</p>
-            <Link to="" onClick={this.handleDemo}>Demo mode</Link>
+          <Link 
+            to="" className="session-links" 
+            onClick={this.handleDemo}
+          >
+            Demo mode
+          </Link>
             <br /><br />
           <div className="session-option">
-            <Link to="/signin">Sign In instead</Link>
-            <button onClick={this.handleSubmit}>Create account</button>
+            <Link className="session-links" to="/signin">Sign In instead</Link>
+             
+            <button 
+              onClick={this.handleSubmit}
+            >
+              Create account
+            </button>
           </div>
         </form>
       </div>

@@ -12,13 +12,9 @@
  *
  *= require_self
  */
-<<<<<<< HEAD:app/assets/stylesheets/application.scss
-@import 'reset.scss';
-@import "./session_forms.css";
-@import './header.css'
-=======
 
 @import './reset';
+@import "./session_forms";
 @import './header';
 @import './sidenav';
 @import './video_index';
@@ -27,4 +23,3 @@
 @import './comments_index';
 @import './upload_video_1';
 @import './upload_video_2';
->>>>>>> videos:app/assets/stylesheets/application.css

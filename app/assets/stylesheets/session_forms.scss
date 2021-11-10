@@ -19,9 +19,13 @@
    border-radius: 5px;
  }
 
- .georgle {
-   font-size: 30px;
+ .georgle > span {
+   font-size: 35px;
    font-family: 'Open Sans', sans-serif;
+ }
+
+ .session-links {
+   font-size: 15px;
  }
 
  .session-option {
@@ -50,6 +54,7 @@
 
 .g {
    color: blue;
+  //  font-size: 20px;
  }
 
 .e {

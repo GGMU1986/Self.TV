@@ -92,11 +92,11 @@ class Signin extends React.Component {
           </div>
           </div>
             <p>Just looking? Try Demo mode below to preview</p>
-            <Link to="" onClick={this.handleDemo}>Demo mode</Link>
+          <Link to="" className="session-links" onClick={this.handleDemo}>Demo mode</Link>
             <br /><br />
           <div className="session-option">
-            <Link to="/signup">Create account</Link>
-            <button onClick={this.handleSubmit}>Sign in</button>
+            <Link className="session-links" to="/signup">Create account</Link>
+            <button  onClick={this.handleSubmit}>Sign in</button>
           </div>
         </form>
       </div>

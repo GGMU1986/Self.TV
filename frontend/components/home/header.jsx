@@ -40,10 +40,6 @@ class Header extends React.Component {
   }
 
   render() {
-<<<<<<< HEAD
-    const { currentUser, logout } = this.props;
-=======
-    
     const { currentUser, logout, openModal } = this.props;
     // const profile = currentUser.imgUrl ? (
     //   currentUser.imgUrl
@@ -51,7 +47,6 @@ class Header extends React.Component {
     //   currentUser.username[0].toUpperCase() 
     // )
     
->>>>>>> videos
     return (
       <div className="header">
         <div className="bars-logo">
