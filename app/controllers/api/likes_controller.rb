@@ -5,4 +5,12 @@ class Api::LikesController < ApplicationController
     @like.video_id = params[:videoId].to_i
     @like.save
   end
+
+  def destroy
+    @like = current_user.likes.find_by(id: params[:id])
+
+    if @like
+      @like.destroy
+    end
+  end
 end

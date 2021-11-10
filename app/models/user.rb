@@ -28,6 +28,10 @@ class User < ApplicationRecord
   has_many :likes,
     foreign_key: :liker_id,
     class_name: :Like
+  
+  has_many :liked_uploads
+    through: :uploaded_videos,
+    source: :likes
     
   has_one_attached :prof_pic
 
