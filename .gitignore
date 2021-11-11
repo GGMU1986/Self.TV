@@ -22,6 +22,8 @@
 
 /public/assets
 .byebug_history
+bundle.js*
+node_modules
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
