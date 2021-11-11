@@ -13,7 +13,6 @@ export const getVideo = videoId => (
 );
 
 export const makeVideo = video => {
-  // debugger
   return $.ajax({
     method: 'POST',
     url: `/api/videos`,

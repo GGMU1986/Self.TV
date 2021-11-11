@@ -8,9 +8,9 @@ const receiveLike = like => ({
 });
 
 export const createLike = like => dispatch => {
-  debugger
+
   postLike(like).then(like => {
-    debugger
+
     return dispatch(receiveLike(like))})
 };
 

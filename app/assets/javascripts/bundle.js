@@ -13225,9 +13225,7 @@ var receiveLike = function receiveLike(like) {
 
 var createLike = function createLike(like) {
   return function (dispatch) {
-    debugger;
     (0,_utils_like_utils__WEBPACK_IMPORTED_MODULE_0__.postLike)(like).then(function (like) {
-      debugger;
       return dispatch(receiveLike(like));
     });
   };
@@ -14356,9 +14354,6 @@ var Modal = function Modal(_ref) {
         openModal: openModal
       });
       break;
-    // case 'title':
-    //   // // // debugger
-    //   component = <UploadVideoTitle closeModal={closeModal}/>
 
     default:
       return null;
@@ -15959,10 +15954,6 @@ var VideosReducer = function VideosReducer() {
       return Object.assign({}, state, _defineProperty({}, action.payload.video.id, action.payload.video));
 
     case _actions_videos_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_VIDEO:
-      // debugger
-      // return {
-      //   ...state, { [action.type.id]: action.type }
-      // }
       return Object.assign({}, state, _defineProperty({}, action.video.id, action.video));
 
     default:
@@ -15997,7 +15988,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var ViewsReducer = function ViewsReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  // // // debugger
   Object.freeze(state);
 
   switch (action.type) {
@@ -16058,7 +16048,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "updateLike": () => (/* binding */ updateLike)
 /* harmony export */ });
 var postLike = function postLike(like) {
-  debugger;
   return $.ajax({
     method: 'POST',
     url: '/api/likes',
@@ -16068,7 +16057,6 @@ var postLike = function postLike(like) {
   });
 };
 var updateLike = function updateLike(like) {
-  // debugger
   return $.ajax({
     method: 'PATCH',
     url: "/api/likes/".concat(like.id),
@@ -16076,12 +16064,7 @@ var updateLike = function updateLike(like) {
       like: like
     }
   });
-}; // export const destroylike = likeId => (
-//   $.ajax({
-//     method: 'POST',
-//     url: `/api/likes/likerId`
-//   })
-// );
+};
 
 /***/ }),
 
@@ -16213,7 +16196,6 @@ var updateComment = function updateComment(comment) {
   });
 };
 var createComment = function createComment(comment, videoId) {
-  // // // debugger
   return $.ajax({
     method: 'POST',
     url: "/api/comments",
@@ -16258,7 +16240,6 @@ var getVideo = function getVideo(videoId) {
   });
 };
 var makeVideo = function makeVideo(video) {
-  // debugger
   return $.ajax({
     method: 'POST',
     url: "/api/videos",

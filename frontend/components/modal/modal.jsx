@@ -17,9 +17,6 @@ const Modal = ({modal, closeModal, openModal}) => {
                     openModal={openModal}  
                   />;
       break;
-    // case 'title':
-    //   // // // debugger
-    //   component = <UploadVideoTitle closeModal={closeModal}/>
     default:
       return null;
   }
@@ -28,7 +25,6 @@ const Modal = ({modal, closeModal, openModal}) => {
     <div className='modal-background' >
       <div className="modal-child" onClick={e => e.stopPropagation()}>
         {component}
-        {/* <UploadVideoTitle closeModal={closeModal} /> */}
       </div>
     </div>
   )

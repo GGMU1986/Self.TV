@@ -14,7 +14,6 @@ export const updateComment = (comment)=> {
 };
 
 export const createComment = (comment, videoId)=> {
-  // // // debugger
   return $.ajax({
     method: 'POST',
     url: `/api/comments`,
