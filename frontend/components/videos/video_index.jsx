@@ -7,6 +7,10 @@ class VideoIndex extends React.Component {
     this.props.fetchVideos()
   };
 
+  componentDidUpdate() {
+    this.props.fetchVideos()
+  }
+
   render() {
     const { videos, incViews } = this.props;
     return (

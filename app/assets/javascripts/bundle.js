@@ -15168,6 +15168,11 @@ var VideoIndex = /*#__PURE__*/function (_React$Component) {
       this.props.fetchVideos();
     }
   }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      this.props.fetchVideos();
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -16260,7 +16265,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var ViewsReducer = function ViewsReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  // // // debugger
   Object.freeze(state);
 
   switch (action.type) {
@@ -16291,7 +16295,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux-thunk */ "./node_modules/redux-thunk/es/index.js");
 /* harmony import */ var _reducers_root__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../reducers/root */ "./frontend/reducers/root.js");
 
- // import logger from 'redux-logger';
 
 
 var middlewares = [redux_thunk__WEBPACK_IMPORTED_MODULE_1__["default"]];
@@ -16324,7 +16327,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "updateLike": () => (/* binding */ updateLike)
 /* harmony export */ });
 var postLike = function postLike(like) {
-  debugger;
   return $.ajax({
     method: 'POST',
     url: '/api/likes',
@@ -16334,7 +16336,6 @@ var postLike = function postLike(like) {
   });
 };
 var updateLike = function updateLike(like) {
-  // debugger
   return $.ajax({
     method: 'PATCH',
     url: "/api/likes/".concat(like.id),
@@ -16342,12 +16343,7 @@ var updateLike = function updateLike(like) {
       like: like
     }
   });
-}; // export const destroylike = likeId => (
-//   $.ajax({
-//     method: 'POST',
-//     url: `/api/likes/likerId`
-//   })
-// );
+};
 
 /***/ }),
 
@@ -16479,7 +16475,6 @@ var updateComment = function updateComment(comment) {
   });
 };
 var createComment = function createComment(comment, videoId) {
-  // // // debugger
   return $.ajax({
     method: 'POST',
     url: "/api/comments",
@@ -16524,7 +16519,6 @@ var getVideo = function getVideo(videoId) {
   });
 };
 var makeVideo = function makeVideo(video) {
-  // debugger
   return $.ajax({
     method: 'POST',
     url: "/api/videos",

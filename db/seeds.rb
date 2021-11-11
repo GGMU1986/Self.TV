@@ -22,3 +22,5 @@ ActiveRecord::Base.connection.reset_pk_sequence!('videos')
 Comment.destroy_all
 ActiveRecord::Base.connection.reset_pk_sequence!('comments')
 
+View.destroy_all
+Like.destroy_all
