@@ -38,7 +38,7 @@ class CommentsIndexItem extends React.Component {
               <span className="pic-text">{comment.commenter[0].toUpperCase()}</span>
             </div>
             <div className="commenter-time">
-              <strong>{comment.commenter}</strong>
+              <strong className="commenter-name">{comment.commenter}</strong>
               &nbsp;&nbsp;
               <span className="time-ago">
                 {timeAgo}

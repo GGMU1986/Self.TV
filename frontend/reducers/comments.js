@@ -6,7 +6,7 @@ const CommentsReducer = (state = {}, action) => {
   let nextState = Object.assign({}, state)
   switch (action.type) {
     case RECEIVE_VIDEO_DETAIL:
-      return {...state, ...action.payload.comments}
+      return {...action.payload.comments}
 
     case RECEIVE_COMMENT:
       return Object.assign({}, state, { [action.comment.id]: action.comment })
