@@ -29,11 +29,13 @@ class Video < ApplicationRecord
 
   has_many :views,
     foreign_key: :video_id,
-    class_name: :View 
+    class_name: :View,
+    dependent: :destroy 
 
   has_many :likes,
     foreign_key: :video_id,
-    class_name: :Like
+    class_name: :Like,
+    dependent: :destroy
     
   has_many :likers,
     through: :likes,
