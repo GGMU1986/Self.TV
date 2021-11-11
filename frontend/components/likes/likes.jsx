@@ -22,7 +22,10 @@ class VideoLikes extends React.Component {
           <div className="ikon">
             <i className="fas fa-share"></i>
           </div>
-          <a href="https://www.linkedin.com/in/george-tsimis-a5986224/">
+          <a 
+            href="https://www.linkedin.com/in/george-tsimis-a5986224/" 
+            target="blank"
+          >
             <div className="ikon2">
               SHARE
             </div>
