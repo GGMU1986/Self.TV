@@ -1,10 +1,9 @@
 import React from "react";
-import { render } from "react-dom";
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
-class VideoIndexItem extends React.Component {
+class VideoSideItem extends React.Component {
   constructor(props) {
-  
     super(props)
     this.viewCount = this.viewCount.bind(this);
   }
@@ -12,10 +11,9 @@ class VideoIndexItem extends React.Component {
   viewCount(e) {
     this.props.incViews(this.props.video.id);
   }
-
   render() {
     const { video } = this.props;
- 
+
     const timeNow = new Date()
     const oldTime = new Date(video.createdAt)
     const time = timeNow - oldTime
@@ -24,14 +22,14 @@ class VideoIndexItem extends React.Component {
       timeDays === 1 ? '1 day ago' : `${timeDays} days ago`
     )
     return (
-      <div className="video" onClick={this.viewCount}>
+      <div className="side" onClick={this.viewCount}>
         <Link to={`/videos/${video.id}`}>
-          <img className="index"src={video.photoUrl} /> 
+          <img className="side-view" src={video.photoUrl} />
         </Link>
         <Link to={`/videos/${video.id}`}>
-          <div className="video-index-link title">
+          <div className="side-view-title">
             {video.title}
-            <div className="video-index-link channel">
+            <div className="side-view-channel">
               {video.channel}
               <br />
               {this.props.video.views} views
@@ -45,4 +43,4 @@ class VideoIndexItem extends React.Component {
   }
 };
 
-export default VideoIndexItem;
+export default withRouter(VideoSideItem);
