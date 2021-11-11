@@ -70,6 +70,7 @@ class UploadVideoForm extends React.Component {
       <UploadPart2 
         closeModal={closeModal}
         handleInput={this.handleInput}
+        fileInputType={this.fileInputType}
         handleThumbnail={this.handleThumbnail}
         handleSubmit={this.handleSubmit}
         photoFile={this.state.photoFile}

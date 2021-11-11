@@ -14979,6 +14979,7 @@ var UploadVideoForm = /*#__PURE__*/function (_React$Component) {
       }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_video_upload_2__WEBPACK_IMPORTED_MODULE_4__["default"], {
         closeModal: closeModal,
         handleInput: this.handleInput,
+        fileInputType: this.fileInputType,
         handleThumbnail: this.handleThumbnail,
         handleSubmit: this.handleSubmit,
         photoFile: this.state.photoFile,
@@ -15622,6 +15623,7 @@ var UploadPart2 = function UploadPart2(_ref) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
     className: "fas fa-image"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    id: "file",
     type: "file",
     className: "thumb-file",
     onChange: handleThumbnail
