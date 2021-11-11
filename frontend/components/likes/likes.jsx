@@ -22,15 +22,19 @@ class VideoLikes extends React.Component {
           <div className="ikon">
             <i className="fas fa-share"></i>
           </div>
-          <div className="ikon2">
-            SHARE
-          </div>
+          <a href="https://www.linkedin.com/in/george-tsimis-a5986224/">
+            <div className="ikon2">
+              SHARE
+            </div>
+          </a>
           <div className="ikon">
             <i className="fas fa-plus"></i>
           </div>
-          <div className="ikon2">
-            SAVE
-          </div>
+          <a href="https://github.com/GGMU1986" target="blank">
+            <div className="ikon2 save">
+              SAVE
+            </div>
+          </a>
         </div>
       </div>
     )
