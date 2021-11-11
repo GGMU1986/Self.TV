@@ -9,10 +9,6 @@
   font-size: 15px;
 }
 
-// .pic-commenter {
-//   display: flex;
-// }
-
 .comment-header {
   display: flex;
   align-items: center;
@@ -78,4 +74,10 @@
 .comment-body {
   margin-left: 5%;
   margin-bottom: 4%;
+  font-size: 14px;;
+}
+
+.commenter-name {
+  font-size: 16px;
+  font-weight: bold;
 }
