@@ -15988,6 +15988,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var ViewsReducer = function ViewsReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
+  // // // debugger
   Object.freeze(state);
 
   switch (action.type) {
@@ -16022,10 +16023,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // if (process.env.NODE_ENV !== "production") {
-// const { logger } = require("redux-logger");
-//   middlewares.push(logger);
-// }
+
 
 var configureStore = function configureStore(preloadedState) {
   return (0,redux__WEBPACK_IMPORTED_MODULE_2__.createStore)(_reducers_root__WEBPACK_IMPORTED_MODULE_1__["default"], preloadedState, (0,redux__WEBPACK_IMPORTED_MODULE_2__.applyMiddleware)(redux_thunk__WEBPACK_IMPORTED_MODULE_3__["default"], (redux_logger__WEBPACK_IMPORTED_MODULE_0___default())));
@@ -16048,6 +16046,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "updateLike": () => (/* binding */ updateLike)
 /* harmony export */ });
 var postLike = function postLike(like) {
+  debugger;
   return $.ajax({
     method: 'POST',
     url: '/api/likes',
@@ -16057,6 +16056,7 @@ var postLike = function postLike(like) {
   });
 };
 var updateLike = function updateLike(like) {
+  // debugger
   return $.ajax({
     method: 'PATCH',
     url: "/api/likes/".concat(like.id),
@@ -16064,7 +16064,12 @@ var updateLike = function updateLike(like) {
       like: like
     }
   });
-};
+}; // export const destroylike = likeId => (
+//   $.ajax({
+//     method: 'POST',
+//     url: `/api/likes/likerId`
+//   })
+// );
 
 /***/ }),
 
@@ -16196,6 +16201,7 @@ var updateComment = function updateComment(comment) {
   });
 };
 var createComment = function createComment(comment, videoId) {
+  // // // debugger
   return $.ajax({
     method: 'POST',
     url: "/api/comments",
@@ -16240,6 +16246,7 @@ var getVideo = function getVideo(videoId) {
   });
 };
 var makeVideo = function makeVideo(video) {
+  // debugger
   return $.ajax({
     method: 'POST',
     url: "/api/videos",
