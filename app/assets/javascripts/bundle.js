@@ -15900,7 +15900,7 @@ var CommentsReducer = function CommentsReducer() {
 
   switch (action.type) {
     case _actions_videos_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_VIDEO_DETAIL:
-      return _objectSpread(_objectSpread({}, state), action.payload.comments);
+      return _objectSpread({}, action.payload.comments);
 
     case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_1__.RECEIVE_COMMENT:
       return Object.assign({}, state, _defineProperty({}, action.comment.id, action.comment));
