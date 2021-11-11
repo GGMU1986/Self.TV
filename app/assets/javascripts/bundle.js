@@ -15401,7 +15401,6 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
           comment = _this$props.comment;
       var uploadDate = new Date(video.createdAt).toString().slice(4, 15);
       var videoId = this.props.match.params.videoId;
-      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "video-show-cont"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_modal_modal__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_home_header__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -15435,7 +15434,7 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
         className: "sub"
       }, "SUBSCRIBE"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "comment-count"
-      }, comments.length, " Comments \xA0\xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+      }, comments.length === 1 ? "".concat(comments.length, " Comment") : "".concat(comments.length, " Comments"), "\xA0\xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
         className: "sort-by"
       }, "SORT BY")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_comments_comments_form__WEBPACK_IMPORTED_MODULE_3__["default"], {
         comment: comment,

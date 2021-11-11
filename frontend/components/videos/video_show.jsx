@@ -54,7 +54,6 @@ class VideoShow extends React.Component {
     } = this.props
     const uploadDate = new Date(video.createdAt).toString().slice(4, 15)
     let videoId = this.props.match.params.videoId
-    debugger
     return (
       <div className="video-show-cont">
         <Modal />
@@ -106,7 +105,7 @@ class VideoShow extends React.Component {
             </div>
             <hr />
             <div className="comment-count">
-              {comments.length} Comments
+              {comments.length === 1 ? `${comments.length} Comment` : `${comments.length} Comments`}
               &nbsp;&nbsp;
               <span className='sort-by'>
                 SORT BY
