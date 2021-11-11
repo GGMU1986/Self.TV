@@ -23,6 +23,12 @@ class VideoShow extends React.Component {
     this.props.fetchVideo(this.props.match.params.videoId)
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.match.params.videoId !== this.props.match.params.videoId) {
+      this.props.fetchVideo(this.props.match.params.videoId)
+    } 
+  }
+
   handleLike(e) {
     const currDislike = this.state.like.dislike
     const currState = this.state.active
@@ -48,6 +54,7 @@ class VideoShow extends React.Component {
     } = this.props
     const uploadDate = new Date(video.createdAt).toString().slice(4, 15)
     let videoId = this.props.match.params.videoId
+    debugger
     return (
       <div className="video-show-cont">
         <Modal />

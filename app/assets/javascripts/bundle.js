@@ -15356,6 +15356,13 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
       this.props.fetchVideo(this.props.match.params.videoId);
     }
   }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (prevProps.match.params.videoId !== this.props.match.params.videoId) {
+        this.props.fetchVideo(this.props.match.params.videoId);
+      }
+    }
+  }, {
     key: "handleLike",
     value: function handleLike(e) {
       var currDislike = this.state.like.dislike;
@@ -15394,6 +15401,7 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
           comment = _this$props.comment;
       var uploadDate = new Date(video.createdAt).toString().slice(4, 15);
       var videoId = this.props.match.params.videoId;
+      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "video-show-cont"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_modal_modal__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_home_header__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
