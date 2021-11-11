@@ -15053,7 +15053,9 @@ var UploadVideoForm = /*#__PURE__*/function (_React$Component) {
       formData.append('video[description]', this.state.description);
       formData.append('video[video]', this.state.videoFile);
       formData.append('video[photo]', this.state.photoFile);
-      this.props.createVideo(formData).then(function (video) {
+      this.props.createVideo(formData).then(function () {
+        return _this5.props.fetchVideos();
+      }).then(function (video) {
         return _this5.props.history.push('/');
       });
       this.props.closeModal();
@@ -15105,6 +15107,9 @@ var mDTP = function mDTP(dispatch) {
   return {
     createVideo: function createVideo(video) {
       return dispatch((0,_actions_videos_actions__WEBPACK_IMPORTED_MODULE_2__.createVideo)(video));
+    },
+    fetchVideos: function fetchVideos() {
+      return dispatch((0,_actions_videos_actions__WEBPACK_IMPORTED_MODULE_2__.fetchVideos)());
     }
   };
 };
@@ -15168,13 +15173,11 @@ var VideoIndex = /*#__PURE__*/function (_React$Component) {
       this.props.fetchVideos();
     }
   }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate() {
-      this.props.fetchVideos();
-    }
-  }, {
     key: "render",
-    value: function render() {
+    value: // componentDidUpdate() {
+    //   this.props.fetchVideos()
+    // }
+    function render() {
       var _this$props = this.props,
           videos = _this$props.videos,
           incViews = _this$props.incViews;
@@ -15632,8 +15635,7 @@ var VideoShowSide = /*#__PURE__*/function (_React$Component) {
       var _this$props = this.props,
           videos = _this$props.videos,
           videoId = _this$props.videoId,
-          incViews = _this$props.incViews; // console.log(videos, videoId)
-
+          incViews = _this$props.incViews;
       var otherVids = Object.values(videos).filter(function (vid) {
         return vid.id.toString() !== videoId;
       });

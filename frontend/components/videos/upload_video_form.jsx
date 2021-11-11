@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom';
-import { createVideo } from '../../actions/videos_actions';
+import { createVideo, fetchVideos } from '../../actions/videos_actions';
 import UploadPart1 from "./video_upload_1";
 import UploadPart2 from "./video_upload_2";
 
@@ -53,7 +53,7 @@ class UploadVideoForm extends React.Component {
     formData.append('video[description]', this.state.description)
     formData.append('video[video]', this.state.videoFile)
     formData.append('video[photo]', this.state.photoFile)
-    this.props.createVideo(formData)
+    this.props.createVideo(formData).then(() => this.props.fetchVideos())
       .then(video => this.props.history.push('/'));
       this.props.closeModal();
   }
@@ -98,7 +98,8 @@ const mSTP = state => ({
 
 const mDTP = dispatch => {
   return {
-    createVideo: video => dispatch(createVideo(video))
+    createVideo: video => dispatch(createVideo(video)),
+    fetchVideos: () => dispatch(fetchVideos())
   }
 };
 
