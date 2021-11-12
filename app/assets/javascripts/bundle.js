@@ -13434,7 +13434,9 @@ var receiveView = function receiveView(view) {
 
 var incrementViews = function incrementViews(videoId) {
   return function (dispatch) {
+    debugger;
     return (0,_utils_view_util__WEBPACK_IMPORTED_MODULE_0__.postView)(videoId).then(function (view) {
+      debugger;
       return dispatch(receiveView(view));
     });
   };
@@ -13674,13 +13676,15 @@ var CommentsIndex = /*#__PURE__*/function (_React$Component) {
       }, comments.reverse().map(function (comment) {
         if (comment) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_comments_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
-            key: comment.id,
-            currentUser: currentUser,
+            key: comment.id // currentUser={currentUser ? currentUser : null}  
+            ,
             comment: comment,
             destroyComment: destroyComment // updateComment={updateComment}
             // videoId={videoId}
 
           });
+        } else {
+          return null;
         }
       }));
     }
@@ -13772,7 +13776,6 @@ var CommentsIndexItem = /*#__PURE__*/function (_React$Component) {
       var _this$props = this.props,
           comment = _this$props.comment,
           destroyComment = _this$props.destroyComment,
-          currentUser = _this$props.currentUser,
           updateComment = _this$props.updateComment,
           videoId = _this$props.videoId;
       var timeNow = new Date();
@@ -15399,7 +15402,7 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       active: false,
       like: {
-        likerId: currentUser.id,
+        likerId: '',
         videoId: _this.props.match.params.videoId,
         dislike: false
       }
@@ -16544,6 +16547,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "postView": () => (/* binding */ postView)
 /* harmony export */ });
 var postView = function postView(videoId) {
+  debugger;
   return $.ajax({
     method: 'POST',
     url: '/api/views',

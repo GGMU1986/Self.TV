@@ -12,7 +12,7 @@ class VideoShow extends React.Component {
     this.state = {
       active: false,
       like: {
-        likerId: currentUser.id,
+        likerId: '',
         videoId: this.props.match.params.videoId,
         dislike: false
       }

@@ -17,14 +17,16 @@ class CommentsIndex extends React.Component {
             if (comment) {
               return <CommentsIndexItem
                 key={comment.id}
-                currentUser={currentUser}
+                // currentUser={currentUser ? currentUser : null}  
                 comment={comment}
                 destroyComment={destroyComment}
                 // updateComment={updateComment}
                 // videoId={videoId}
               />
+            } else {
+              return null;
             }
-          }
+          } 
         )
         }
       </div>

@@ -22,7 +22,7 @@ class CommentsIndexItem extends React.Component {
   }
 
   render () {
-    const { comment, destroyComment, currentUser, updateComment, videoId } = this.props
+    const { comment, destroyComment, updateComment, videoId } = this.props
     const timeNow = new Date()
     const oldTime = new Date(comment.createdAt)
     const time = timeNow - oldTime

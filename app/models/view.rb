@@ -8,7 +8,8 @@
 #  updated_at :datetime         not null
 #
 class View < ApplicationRecord
-  validates :video_id, presence: true
+  # debugger
+  # validates :video_id, presence: true
 
   belongs_to :video,
     foreign_key: :video_id,
