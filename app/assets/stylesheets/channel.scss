@@ -1,0 +1,18 @@
+.channel-container{
+  display: flex;
+}
+
+.side-nav-big{
+  width: 15%;
+  height: calc(100vh - 60px);
+}
+
+.channel-header-container{
+  width: calc(100vw - 15%);
+  height: 15%;
+}
+
+.channel-body-container{
+  width: calc(100vw - 15%);
+  height: calc(100vh - 15% - 60px);
+}
