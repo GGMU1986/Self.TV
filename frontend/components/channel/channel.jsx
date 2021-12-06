@@ -3,6 +3,7 @@ import Header from '../home/header';
 import SideNavBig from '../home/side_nav_big';
 import ChannelBody from './channel_body';
 import ChannelHeader from './channel_header';
+import { connect } from 'react-redux';
 
 class Channel extends React.Component{
   render() {
@@ -12,7 +13,9 @@ class Channel extends React.Component{
         <div className="channel-container">
           <SideNavBig />
           <div className="channel-header-body-container">
-          <ChannelHeader />
+          <ChannelHeader 
+            currentUser={currentUser}
+          />
           <ChannelBody />
           </div>
         </div>
@@ -21,4 +24,12 @@ class Channel extends React.Component{
   }
 }
 
-export default Channel;
+const mSTP = state => ({
+  currentUser: state.session.currentUser
+});
+
+// const mDTP = dispatch => ({
+
+// });
+
+export default connect(mSTP)(Channel);
