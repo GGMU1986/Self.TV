@@ -13464,14 +13464,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _home_home__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./home/home */ "./frontend/components/home/home.jsx");
 /* harmony import */ var _session_signup_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./session/signup_container */ "./frontend/components/session/signup_container.jsx");
 /* harmony import */ var _session_signin_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./session/signin_container */ "./frontend/components/session/signin_container.jsx");
 /* harmony import */ var _videos_video_show_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./videos/video_show_container */ "./frontend/components/videos/video_show_container.js");
 /* harmony import */ var _comments_edit_comment_form_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./comments/edit_comment_form_container */ "./frontend/components/comments/edit_comment_form_container.jsx");
 /* harmony import */ var _channel_channel__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./channel/channel */ "./frontend/components/channel/channel.jsx");
-/* harmony import */ var _utils_route_utils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../utils/route_utils */ "./frontend/utils/route_utils.jsx");
+/* harmony import */ var _channel_channel_about__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./channel/channel_about */ "./frontend/components/channel/channel_about.jsx");
+/* harmony import */ var _channel_channel_videos__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./channel/channel_videos */ "./frontend/components/channel/channel_videos.jsx");
+/* harmony import */ var _utils_route_utils__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../utils/route_utils */ "./frontend/utils/route_utils.jsx");
+
+
 
 
 
@@ -13483,22 +13487,29 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var App = function App() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
     path: "/channel",
     component: _channel_channel__WEBPACK_IMPORTED_MODULE_6__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
+    path: "/about",
+    component: _channel_channel_about__WEBPACK_IMPORTED_MODULE_7__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
+    exact: true,
+    path: "/videos",
+    component: _channel_channel_videos__WEBPACK_IMPORTED_MODULE_8__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
     path: "/videos/:videoId",
     component: _videos_video_show_container__WEBPACK_IMPORTED_MODULE_4__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
     path: "/edit",
     component: _comments_edit_comment_form_container__WEBPACK_IMPORTED_MODULE_5__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_utils_route_utils__WEBPACK_IMPORTED_MODULE_7__.AuthRoute, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_utils_route_utils__WEBPACK_IMPORTED_MODULE_9__.AuthRoute, {
     path: "/signup",
     component: _session_signup_container__WEBPACK_IMPORTED_MODULE_2__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_utils_route_utils__WEBPACK_IMPORTED_MODULE_7__.AuthRoute, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_utils_route_utils__WEBPACK_IMPORTED_MODULE_9__.AuthRoute, {
     path: "/signin",
     component: _session_signin_container__WEBPACK_IMPORTED_MODULE_3__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
     path: "/",
     component: _home_home__WEBPACK_IMPORTED_MODULE_1__["default"]
   })));
@@ -13593,10 +13604,10 @@ var mSTP = function mSTP(state) {
 
 /***/ }),
 
-/***/ "./frontend/components/channel/channel_body.jsx":
-/*!******************************************************!*\
-  !*** ./frontend/components/channel/channel_body.jsx ***!
-  \******************************************************/
+/***/ "./frontend/components/channel/channel_about.jsx":
+/*!*******************************************************!*\
+  !*** ./frontend/components/channel/channel_about.jsx ***!
+  \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -13605,6 +13616,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _home_side_nav_big__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../home/side_nav_big */ "./frontend/components/home/side_nav_big.jsx");
+/* harmony import */ var _channel_header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./channel_header */ "./frontend/components/channel/channel_header.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -13629,31 +13642,44 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-var ChannelBody = /*#__PURE__*/function (_React$Component) {
-  _inherits(ChannelBody, _React$Component);
 
-  var _super = _createSuper(ChannelBody);
 
-  function ChannelBody() {
-    _classCallCheck(this, ChannelBody);
+var ChannelAbout = /*#__PURE__*/function (_React$Component) {
+  _inherits(ChannelAbout, _React$Component);
+
+  var _super = _createSuper(ChannelAbout);
+
+  function ChannelAbout() {
+    _classCallCheck(this, ChannelAbout);
 
     return _super.apply(this, arguments);
   }
 
-  _createClass(ChannelBody, [{
+  _createClass(ChannelAbout, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "channel-body-container"
-      }, "Channel Body");
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_home_side_nav_big__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "channel-header-body-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_channel_header__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        currentUser: currentUser
+      }), "Channel About Section"));
     }
   }]);
 
-  return ChannelBody;
+  return ChannelAbout;
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
-;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ChannelBody);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ChannelAbout);
+
+/***/ }),
+
+/***/ "./frontend/components/channel/channel_body.jsx":
+/*!******************************************************!*\
+  !*** ./frontend/components/channel/channel_body.jsx ***!
+  \******************************************************/
+/***/ (() => {
+
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/george/Desktop/Self.TV/frontend/components/channel/channel_body.jsx: 'Const declarations' require an initialization value. (5:15)\n\n\u001b[0m \u001b[90m 3 |\u001b[39m \u001b[36mclass\u001b[39m \u001b[33mChannelBody\u001b[39m \u001b[36mextends\u001b[39m \u001b[33mReact\u001b[39m\u001b[33m.\u001b[39m\u001b[33mComponent\u001b[39m{\u001b[0m\n\u001b[0m \u001b[90m 4 |\u001b[39m   render() {\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 5 |\u001b[39m     \u001b[36mconst\u001b[39m which\u001b[0m\n\u001b[0m \u001b[90m   |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 6 |\u001b[39m     \u001b[36mreturn\u001b[39m (\u001b[0m\n\u001b[0m \u001b[90m 7 |\u001b[39m       \u001b[33m<\u001b[39m\u001b[33mdiv\u001b[39m className\u001b[33m=\u001b[39m\u001b[32m\"channel-body-container\"\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 8 |\u001b[39m         \u001b[33mChannel\u001b[39m \u001b[33mBody\u001b[39m\u001b[0m\n    at Object._raise (/Users/george/Desktop/Self.TV/node_modules/@babel/parser/lib/index.js:541:17)\n    at Object.raiseWithData (/Users/george/Desktop/Self.TV/node_modules/@babel/parser/lib/index.js:534:17)\n    at Object.raise (/Users/george/Desktop/Self.TV/node_modules/@babel/parser/lib/index.js:495:17)\n    at Object.parseVar (/Users/george/Desktop/Self.TV/node_modules/@babel/parser/lib/index.js:13813:18)\n    at Object.parseVarStatement (/Users/george/Desktop/Self.TV/node_modules/@babel/parser/lib/index.js:13623:10)\n    at Object.parseStatementContent (/Users/george/Desktop/Self.TV/node_modules/@babel/parser/lib/index.js:13208:21)\n    at Object.parseStatement (/Users/george/Desktop/Self.TV/node_modules/@babel/parser/lib/index.js:13139:17)\n    at Object.parseBlockOrModuleBlockBody (/Users/george/Desktop/Self.TV/node_modules/@babel/parser/lib/index.js:13728:25)\n    at Object.parseBlockBody (/Users/george/Desktop/Self.TV/node_modules/@babel/parser/lib/index.js:13719:10)\n    at Object.parseBlock (/Users/george/Desktop/Self.TV/node_modules/@babel/parser/lib/index.js:13703:10)");
 
 /***/ }),
 
@@ -13725,10 +13751,10 @@ var ChannelHeader = /*#__PURE__*/function (_React$Component) {
       }, "0 Subscribers")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "about-videos"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
-        to: "",
+        to: "/about",
         className: "channel-link"
       }, "ABOUT"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
-        to: "",
+        to: "/videos",
         className: "channel-link"
       }, "VIDEOS"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         // onClick={}
@@ -13742,6 +13768,67 @@ var ChannelHeader = /*#__PURE__*/function (_React$Component) {
 
 ;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ChannelHeader);
+
+/***/ }),
+
+/***/ "./frontend/components/channel/channel_videos.jsx":
+/*!********************************************************!*\
+  !*** ./frontend/components/channel/channel_videos.jsx ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var ChannelVideos = /*#__PURE__*/function (_React$Component) {
+  _inherits(ChannelVideos, _React$Component);
+
+  var _super = _createSuper(ChannelVideos);
+
+  function ChannelVideos() {
+    _classCallCheck(this, ChannelVideos);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(ChannelVideos, [{
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Channel About Section");
+    }
+  }]);
+
+  return ChannelVideos;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ChannelVideos);
 
 /***/ }),
 

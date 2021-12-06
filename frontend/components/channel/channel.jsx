@@ -12,11 +12,11 @@ class Channel extends React.Component{
         <Header />
         <div className="channel-container">
           <SideNavBig />
-          <div className="channel-header-body-container">
-          <ChannelHeader 
-            currentUser={currentUser}
-          />
-          <ChannelBody />
+            <div className="channel-header-body-container">
+            <ChannelHeader 
+              currentUser={currentUser}
+            />
+            <ChannelBody />
           </div>
         </div>
       </div>

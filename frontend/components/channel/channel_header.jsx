@@ -19,8 +19,8 @@ class ChannelHeader extends React.Component{
             </div>
           </div>
           <div className="about-videos">
-            <Link to="" className="channel-link">ABOUT</Link>
-            <Link to="" className="channel-link">VIDEOS</Link>
+            <Link to="/about" className="channel-link">ABOUT</Link>
+            <Link to="/videos" className="channel-link">VIDEOS</Link>
           </div>
         </div>
         <button 
