@@ -7,7 +7,6 @@ class VideoShowSide extends React.Component {
   render() {
     const { videos, videoId, incViews } = this.props
     const otherVids = Object.values(videos).filter(vid => vid.id.toString() !== videoId)
-    console.log(otherVids)
     return (
       <div className="side-vid-show">
         {

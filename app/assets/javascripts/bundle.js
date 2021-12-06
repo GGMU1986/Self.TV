@@ -15668,7 +15668,6 @@ var VideoShowSide = /*#__PURE__*/function (_React$Component) {
       var otherVids = Object.values(videos).filter(function (vid) {
         return vid.id.toString() !== videoId;
       });
-      console.log(otherVids);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "side-vid-show"
       }, otherVids.map(function (video) {
