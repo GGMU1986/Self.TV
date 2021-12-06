@@ -131,10 +131,10 @@ class Header extends React.Component {
                         </div>
                       </div>
                     </div>
-                    <div className="out">
+                    <Link className="out" to="channel">
                       <i className="fas fa-user-alt icon"></i>
                       <p>Your channel</p>
-                    </div>
+                    </Link>
                     <div className="out" onClick={() => logout()}>
                       <i className="fas fa-sign-out-alt icon"></i>
                       <p>Sign out</p>
