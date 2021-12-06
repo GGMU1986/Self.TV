@@ -13282,6 +13282,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "RECEIVE_CURRENT_USER": () => (/* binding */ RECEIVE_CURRENT_USER),
 /* harmony export */   "LOGOUT_CURRENT_USER": () => (/* binding */ LOGOUT_CURRENT_USER),
 /* harmony export */   "RECEIVE_SESSION_ERRORS": () => (/* binding */ RECEIVE_SESSION_ERRORS),
+/* harmony export */   "CLEAR_ERRORS": () => (/* binding */ CLEAR_ERRORS),
+/* harmony export */   "clearErrors": () => (/* binding */ clearErrors),
 /* harmony export */   "signup": () => (/* binding */ signup),
 /* harmony export */   "login": () => (/* binding */ login),
 /* harmony export */   "logout": () => (/* binding */ logout)
@@ -13291,6 +13293,7 @@ __webpack_require__.r(__webpack_exports__);
 var RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 var LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER';
 var RECEIVE_SESSION_ERRORS = 'RECEIVE_SESSION_ERRORS';
+var CLEAR_ERRORS = 'CLEAR_ERRORS';
 
 var receiveCurrentUser = function receiveCurrentUser(user) {
   return {
@@ -13312,6 +13315,11 @@ var receiveErrors = function receiveErrors(errors) {
   };
 };
 
+var clearErrors = function clearErrors() {
+  return {
+    type: CLEAR_ERRORS
+  };
+};
 var signup = function signup(user) {
   return function (dispatch) {
     return (0,_utils_session__WEBPACK_IMPORTED_MODULE_0__.postUser)(user).then(function (user) {
@@ -14581,6 +14589,11 @@ var Signin = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(Signin, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.clearErrors();
+    }
+  }, {
     key: "renderErrors",
     value: function renderErrors() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, this.props.errors.map(function (error, i) {
@@ -14669,7 +14682,8 @@ var Signin = /*#__PURE__*/function (_React$Component) {
         className: "session-option"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
         className: "session-links",
-        to: "/signup"
+        to: "/signup" // onClick={this.props.clearErrors()}
+
       }, "Create account"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         onClick: this.handleSubmit
       }, "Sign in"))));
@@ -14716,6 +14730,9 @@ var mDTP = function mDTP(dispatch) {
   return {
     login: function login(user) {
       return dispatch((0,_actions_session__WEBPACK_IMPORTED_MODULE_1__.login)(user));
+    },
+    clearErrors: function clearErrors() {
+      return dispatch((0,_actions_session__WEBPACK_IMPORTED_MODULE_1__.clearErrors)());
     }
   };
 };
@@ -14782,6 +14799,11 @@ var Signup = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(Signup, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.clearErrors();
+    }
+  }, {
     key: "renderErrors",
     value: function renderErrors() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, this.props.errors.map(function (error, i) {
@@ -14875,7 +14897,8 @@ var Signup = /*#__PURE__*/function (_React$Component) {
         className: "session-option"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
         className: "session-links",
-        to: "/signin"
+        to: "/signin" // onClick={this.props.clearErrors()}
+
       }, "Sign In instead"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         onClick: this.handleSubmit
       }, "Create account"))));
@@ -14926,6 +14949,9 @@ var mDTP = function mDTP(dispatch) {
     },
     login: function login(user) {
       return dispatch((0,_actions_session__WEBPACK_IMPORTED_MODULE_1__.login)(user));
+    },
+    clearErrors: function clearErrors() {
+      return dispatch((0,_actions_session__WEBPACK_IMPORTED_MODULE_1__.clearErrors)());
     }
   };
 };
@@ -16174,6 +16200,9 @@ var SessionErrorsReducer = function SessionErrorsReducer() {
       return action.errors;
 
     case _actions_session__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_CURRENT_USER:
+      return [];
+
+    case _actions_session__WEBPACK_IMPORTED_MODULE_0__.CLEAR_ERRORS:
       return [];
 
     default:

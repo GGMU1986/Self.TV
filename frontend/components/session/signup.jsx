@@ -10,6 +10,10 @@ class Signup extends React.Component {
 
   }
 
+  componentDidMount(){
+    this.props.clearErrors();
+  }
+
   renderErrors() {
     return (
       <ul>
@@ -108,7 +112,13 @@ class Signup extends React.Component {
           </Link>
             <br /><br />
           <div className="session-option">
-            <Link className="session-links" to="/signin">Sign In instead</Link>
+            <Link 
+              className="session-links" 
+              to="/signin"
+              // onClick={this.props.clearErrors()}
+            >
+              Sign In instead
+            </Link>
              
             <button 
               onClick={this.handleSubmit}

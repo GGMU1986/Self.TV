@@ -9,6 +9,10 @@ class Signin extends React.Component {
     this.handleDemo = this.handleDemo.bind(this)
   }
 
+  componentDidMount(){
+    this.props.clearErrors();
+  }
+
   renderErrors() {
     return (
       <ul>
@@ -95,7 +99,13 @@ class Signin extends React.Component {
           <Link to="" className="session-links" onClick={this.handleDemo}>Demo mode</Link>
             <br /><br />
           <div className="session-option">
-            <Link className="session-links" to="/signup">Create account</Link>
+          <Link 
+            className="session-links" 
+            to="/signup"
+            // onClick={this.props.clearErrors()}
+          >
+            Create account
+          </Link>
             <button  onClick={this.handleSubmit}>Sign in</button>
           </div>
         </form>
