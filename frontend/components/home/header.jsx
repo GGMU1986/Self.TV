@@ -14,13 +14,17 @@ library.add(
 import {
   faLinkedin,
   faYoutube,
-  faGithub
+  faGithub,
+  faAngellist,
+  // faUserTie
 } from '@fortawesome/free-brands-svg-icons'
 import { openModal } from '../../actions/modal_actions';
 library.add(
   faLinkedin,
   faYoutube,
-  faGithub
+  faGithub,
+  faAngellist,
+  // faUserTie
 )
 
 class Header extends React.Component {
@@ -90,6 +94,18 @@ class Header extends React.Component {
             >
               <FontAwesomeIcon icon={faLinkedin} className="link two"/>
             </a>
+            <a 
+              href="https://angel.co/u/george-tsimis" 
+              target="blank"
+            >
+              <FontAwesomeIcon icon={faAngellist} className="link"/>
+            </a>
+            {/* <a 
+              href="https://www.linkedin.com/in/george-tsimis-a5986224/" 
+              target="blank"
+            >
+              <FontAwesomeIcon icon={faUserTie} className="link two"/>
+            </a> */}
           </div>
           <div>
             {
