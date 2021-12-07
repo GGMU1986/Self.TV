@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 class Channel extends React.Component{
 
   componentDidMount(){
-    this.props.fetchUploads(currentUser.id)
+    this.props.fetchUploads(this.props.currentUser.id)
   }
 
   render() {

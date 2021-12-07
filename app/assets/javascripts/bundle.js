@@ -13598,7 +13598,7 @@ var Channel = /*#__PURE__*/function (_React$Component) {
   _createClass(Channel, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchUploads(currentUser.id);
+      this.props.fetchUploads(this.props.currentUser.id);
     }
   }, {
     key: "render",
@@ -13685,25 +13685,51 @@ var ChannelBody = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(ChannelBody);
 
   function ChannelBody(props) {
+    var _this;
+
     _classCallCheck(this, ChannelBody);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+    _this.totalViews = _this.totalViews.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(ChannelBody, [{
+    key: "totalViews",
+    value: function totalViews() {
+      var total = 0;
+
+      for (var i = 0; i < this.props.uploads.length; i++) {
+        total += this.props.uploads[i].views;
+      }
+
+      return total;
+    }
+  }, {
     key: "render",
     value: function render() {
-      var currentUser = this.props.currentUser;
-      var joinDate = new Date(currentUser.createdAt).toString().slice(4, 15); // console.log(currentUser.uploads)
-      // console.log(currentUser)
-
+      var _this$props = this.props,
+          currentUser = _this$props.currentUser,
+          uploads = _this$props.uploads;
+      var joinDate = new Date(currentUser.createdAt).toString().slice(4, 15);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "channel-body-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "stats"
       }, "Stats", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
         className: "joined"
-      }, "Joined ", joinDate), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null)));
+      }, "Joined ", joinDate), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+        className: "total-views"
+      }, this.totalViews(), " views")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "channel-uploads"
+      }, uploads.length ? uploads.map(function (video) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_upload_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          key: video.id,
+          video: video
+        });
+      }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "no-uploads"
+      }, "No uploaded videos...")));
     }
   }]);
 
@@ -13807,13 +13833,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
 
 
 var UploadIndexItem = function UploadIndexItem(_ref) {
   var video = _ref.video;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "upload-index-item"
-  });
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+    to: "/videos/".concat(video.id)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    className: "index",
+    src: video.photoUrl
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+    to: "/videos/".concat(video.id)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "video-index-link title"
+  }, video.title, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "video-index-link channel"
+  }, video.uploader, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), video.views, " views", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "\xA0 ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+    className: "bul"
+  }, "\u2022"), " \xA0")))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UploadIndexItem);
