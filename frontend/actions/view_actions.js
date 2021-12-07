@@ -8,8 +8,8 @@ const receiveView = view => ({
 })
 
 export const incrementViews = videoId => dispatch => {
-  debugger
+
   return postView(videoId).then(view => {
-    debugger
+
     return dispatch(receiveView(view))})
 };

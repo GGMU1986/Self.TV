@@ -52,6 +52,7 @@ class VideoShow extends React.Component {
       video, destroyComment, 
       comments, action, comment
     } = this.props
+    debugger
     const uploadDate = new Date(video.createdAt).toString().slice(4, 15)
     let videoId = this.props.match.params.videoId
     return (

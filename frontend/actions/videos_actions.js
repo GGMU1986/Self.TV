@@ -28,8 +28,6 @@ export const fetchVideo = videoId => dispatch => (
 ); 
 
 export const createVideo = video => dispatch => {
-  // debugger
   return makeVideo(video).then(video => {
-    // debugger
     return dispatch(receiveVideo(video))})
 };

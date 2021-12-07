@@ -19,16 +19,15 @@ class ChannelHeader extends React.Component{
             </div>
           </div>
           <div className="about-videos">
-            <Link to="/about" className="channel-link">ABOUT</Link>
-            <Link to="/videos" className="channel-link">VIDEOS</Link>
+            <p className="channel-link">VIDEOS</p>
           </div>
         </div>
-        <button 
+        {/* <button 
           // onClick={}
           className="create-channel-btn"
         >
           Create Channel
-        </button>
+        </button> */}
       </div>
     )
   }

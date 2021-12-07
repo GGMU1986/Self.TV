@@ -9,7 +9,11 @@ import {
 import { createLike, updateLike } from '../../actions/likes_actions';
 
 const mSTP = (state, ownProps) => {
+  let userLike = false;
+  Object.values(state.entities.likes).some(like => like.likerId === state.session.currentUser.id && like.dislike === false) ? 
+  userLike = true : userLike = false;
   return {
+    userLike,
     currentUser: state.session.currentUser,
     video: state.entities.videos[ownProps.match.params.videoId],
     comments: Object.values(state.entities.comments),

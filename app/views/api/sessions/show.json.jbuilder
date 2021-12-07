@@ -1,2 +1,2 @@
-json.extract! @user, :id, :username, :email
-json.imgUrl url_for(@user.prof_pic) if @user.prof_pic.attached?
+json.extract! @user, :id, :username, :email, :created_at
+

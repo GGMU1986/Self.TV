@@ -24,7 +24,6 @@ library.add(
   faYoutube,
   faGithub,
   faAngellist,
-  // faUserTie
 )
 
 class Header extends React.Component {
@@ -100,12 +99,6 @@ class Header extends React.Component {
             >
               <FontAwesomeIcon icon={faAngellist} className="link"/>
             </a>
-            {/* <a 
-              href="https://www.linkedin.com/in/george-tsimis-a5986224/" 
-              target="blank"
-            >
-              <FontAwesomeIcon icon={faUserTie} className="link two"/>
-            </a> */}
           </div>
           <div>
             {
@@ -131,7 +124,7 @@ class Header extends React.Component {
                         </div>
                       </div>
                     </div>
-                    <Link className="out" to="channel">
+                    <Link className="out" to="/channel">
                       <i className="fas fa-user-alt icon"></i>
                       <p>Your channel</p>
                     </Link>

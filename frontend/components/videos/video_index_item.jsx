@@ -31,7 +31,7 @@ class VideoIndexItem extends React.Component {
           <div className="video-index-link title">
             {video.title}
             <div className="video-index-link channel">
-              {video.channel}
+              {video.uploader}
               <br />
               {this.props.video.views} views
               <span>&nbsp; <span className="bul">&#8226;</span> &nbsp;</span>
