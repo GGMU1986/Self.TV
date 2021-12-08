@@ -23,6 +23,24 @@ class ChannelBody extends React.Component{
 
     return (
       <div className="channel-body-container">
+        <div className='channel-uploads'>
+          {
+            uploads.length ? (
+                uploads.map(video => <UploadIndexItem
+                                        key={video.id} 
+                                        currentUser={currentUser}
+                                        video={video}
+                                      />              
+                            )
+                            ) : (
+                            <div 
+                              className="no-uploads"
+                            >
+                              No uploaded videos...
+                            </div>
+                              )
+                            }
+        </div>
         <div className="stats">
           Stats
           <hr />
@@ -30,19 +48,6 @@ class ChannelBody extends React.Component{
           <hr />
           <p className="total-views">{this.totalViews()} views</p>
         </div>
-        <div className='channel-uploads'>
-          {
-            uploads.length ? (
-                uploads.map(video => <UploadIndexItem
-                                        key={video.id} 
-                                        video={video}
-                                      />              
-                            )
-                            ) : (
-                              <div className="no-uploads">No uploaded videos...</div>
-                              )
-                            }
-          </div>
       </div>
     )
   }

@@ -13715,21 +13715,22 @@ var ChannelBody = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "channel-body-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "channel-uploads"
+      }, uploads.length ? uploads.map(function (video) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_upload_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          key: video.id,
+          currentUser: currentUser,
+          video: video
+        });
+      }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "no-uploads"
+      }, "No uploaded videos...")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "stats"
       }, "Stats", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
         className: "joined"
       }, "Joined ", joinDate), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
         className: "total-views"
-      }, this.totalViews(), " views")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "channel-uploads"
-      }, uploads.length ? uploads.map(function (video) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_upload_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
-          key: video.id,
-          video: video
-        });
-      }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "no-uploads"
-      }, "No uploaded videos...")));
+      }, this.totalViews(), " views")));
     }
   }]);
 
@@ -13838,13 +13839,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var UploadIndexItem = function UploadIndexItem(_ref) {
-  var video = _ref.video;
+  var video = _ref.video,
+      currentUser = _ref.currentUser;
+  var timeNow = new Date();
+  var oldTime = new Date(video.createdAt);
+  var time = timeNow - oldTime;
+  var timeDays = Math.round(time / (1000 * 3600 * 24));
+  var timeAgo = timeDays < 1 ? 'less than 1 day ago' : timeDays === 1 ? '1 day ago' : "".concat(timeDays, " days ago");
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "upload-index-item"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
     to: "/videos/".concat(video.id)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-    className: "index",
+    className: "upload-item",
     src: video.photoUrl
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
     to: "/videos/".concat(video.id)
@@ -13852,9 +13859,9 @@ var UploadIndexItem = function UploadIndexItem(_ref) {
     className: "video-index-link title"
   }, video.title, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "video-index-link channel"
-  }, video.uploader, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), video.views, " views", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "\xA0 ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+  }, video.views, " views", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "\xA0 ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
     className: "bul"
-  }, "\u2022"), " \xA0")))));
+  }, "\u2022"), " \xA0"), timeAgo))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UploadIndexItem);
@@ -15915,7 +15922,6 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
           comments = _this$props.comments,
           action = _this$props.action,
           comment = _this$props.comment;
-      debugger;
       var uploadDate = new Date(video.createdAt).toString().slice(4, 15);
       var videoId = this.props.match.params.videoId;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -16597,7 +16603,6 @@ var SessionReducer = function SessionReducer() {
 
   switch (action.type) {
     case _actions_session__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_CURRENT_USER:
-      debugger;
       return {
         currentUser: action.user
       };

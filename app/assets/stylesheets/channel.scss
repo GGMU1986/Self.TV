@@ -32,9 +32,10 @@
 }
 
 .channel-body-container{
+  display: flex;
   width: calc(100vw - 15%);
   height: calc(100vh - 15% - 60px);
-  position:relative;
+  // position:relative;
   background-color: rgb(238, 238, 238);
 }
 
@@ -76,10 +77,9 @@
 }
 
 .stats{
-  width: 300px;
-  position: absolute;
-  right: 10%;
-  top: 5%;
+  width: 20%;
+  margin-top: 5%;
+  margin-right: 10%; 
 }
 
 .joined{
