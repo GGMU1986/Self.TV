@@ -1,12 +1,12 @@
 import { RECEIVE_USER_DETAIL } from "../actions/users_action";
 
-const UploadsReducer = (state = {}, action) => {
+const SubscriptionsReducer = (state = {}, action) => {
   Object.freeze(state)
 
   switch (action.type) {
     case RECEIVE_USER_DETAIL:
       return {
-        ...action.payload.uploads
+        ...action.payload.subscriptions
       }
   
     default:
@@ -14,4 +14,4 @@ const UploadsReducer = (state = {}, action) => {
   }
 }
 
-export default UploadsReducer;
+export default SubscriptionsReducer;

@@ -4,13 +4,13 @@ import SideNavBig from '../home/side_nav_big';
 import ChannelBody from './channel_body';
 import ChannelHeader from './channel_header';
 import Modal from '../modal/modal';
-import { fetchUploads } from '../../actions/uploads_action';
+import { fetchUser } from '../../actions/users_action';
 import { connect } from 'react-redux';
 
 class Channel extends React.Component{
 
   componentDidMount(){
-    this.props.fetchUploads(this.props.currentUser.id)
+    this.props.fetchUser(this.props.currentUser.id)
   }
 
   render() {
@@ -42,7 +42,7 @@ const mSTP = state => ({
 });
 
 const mDTP = dispatch => ({
-  fetchUploads: userId => dispatch(fetchUploads(userId))
+  fetchUser: userId => dispatch(fetchUser(userId))
 });
 
 export default connect(mSTP, mDTP)(Channel);

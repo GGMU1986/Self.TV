@@ -9,7 +9,7 @@ const receiveAllVideos = videos => ({
   videos
 });
 
-const receiveVideoDetail = (payload) => ({
+const receiveVideoDetail = payload => ({
   type: RECEIVE_VIDEO_DETAIL,
   payload
 });

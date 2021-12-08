@@ -14,7 +14,6 @@ const App = () => (
     <Switch>
       <Route path="/channel" component={Channel} />
       <Route path="/videos/:videoId" component={VideoShowContainer}/>
-      {/* <Route path="/edit" component={EditFormContainer} /> */}
       <AuthRoute path="/signup" component={SignUpContainer}/>
       <AuthRoute path="/signin" component={SignInContainer}/>
       <Route path="/" component={Home} />
