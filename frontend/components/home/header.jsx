@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session';
+import { openModal } from '../../actions/modal_actions';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { 
@@ -15,10 +16,8 @@ import {
   faLinkedin,
   faYoutube,
   faGithub,
-  faAngellist,
-  // faUserTie
+  faAngellist
 } from '@fortawesome/free-brands-svg-icons'
-import { openModal } from '../../actions/modal_actions';
 library.add(
   faLinkedin,
   faYoutube,
