@@ -15153,7 +15153,7 @@ var Modal = function Modal(_ref) {
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "modal-background"
-  }, "//     ", component, "// ");
+  }, component);
 };
 
 var mSTP = function mSTP(state) {

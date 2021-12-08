@@ -32,7 +32,28 @@ class User < ApplicationRecord
   has_many :liked_uploads,
     through: :uploaded_videos,
     source: :likes
-    
+
+  #######################
+  # Subs Logic, See Subscription Model
+
+  has_many :received_subs,
+    foreign_key: :user_id,
+    class_name: :Subscription
+
+  has_many :subscribers,
+    through: :received_subs,
+    source: :subscriber
+
+  has_many :subscriptions,
+    foreign_key: :subscriber_id,
+    class_name: :Subscription
+
+  has_many :subscribed_to,
+    through: :subscriptions,
+    source: :channel_owner
+
+  ##############################
+
   has_one_attached :prof_pic
 
   after_initialize :ensure_session_token

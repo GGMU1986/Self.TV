@@ -5,3 +5,6 @@
     json.views upload.views.count
   end
 end
+
+json.subscribers @user.subscribers.count
+json.subscriptions @user.subscriptions.count

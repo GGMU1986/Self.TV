@@ -35,9 +35,9 @@ const Modal = ({modal, closeModal, openModal}) => {
   return (
     <div className='modal-background' >
     {/* //   <div className="modal-child" onClick={e => e.stopPropagation()}> */}
-    //     {component}
+        {component}
     {/* //   </div> */}
-    // </div>
+    </div>
   )
 };
 
