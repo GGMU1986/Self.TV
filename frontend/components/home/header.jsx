@@ -98,6 +98,13 @@ class Header extends React.Component {
             >
               <FontAwesomeIcon icon={faAngellist} className="link"/>
             </a>
+            <a 
+              href="https://ggmu1986.github.io/" 
+              target="blank"
+            >
+              {/* <FontAwesomeIcon icon={faAngellist} className="link"/> */}
+              <i className="fas link fa-user-tie"></i>
+            </a>
           </div>
           <div>
             {

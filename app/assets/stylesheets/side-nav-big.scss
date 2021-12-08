@@ -1,17 +1,57 @@
 .side-nav-icon-cont{
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: center;
   color: black;
   margin-left: 15%;
-  height: 50px;
+  height: 55px;
 }
 
-.side-nav-icon-cont:hover{
+.big-nav-link{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  // background-color: lightgray;
+}
+
+.big-nav-link:hover{
   background-color: lightgray;
+}
+
+.last-link{
+  border-bottom: 2px solid lightgray;
 }
 
 .side-nav-icon-text{
   margin-left: 10px;
   font-size: 15px;
+}
+
+.created{
+  margin: 8%;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.big{
+  margin-top: 15px;
+  font-size: 23px;
+  color: black;
+}
+
+#in{
+  color:blue;
+}
+
+#george{
+  border-radius: 50%;
+  width: 160px;
+  height: 160px;
+}
+
+.avatar-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
 }

@@ -19,7 +19,7 @@ class SideNavBig extends React.Component{
   render() {
     return (
       <div className="side-nav-big">
-         <Link to="">
+         <Link to="" className="big-nav-link">
           <div className="side-nav-icon-cont">
             <div className="icon2">
               <i className="fas fa-home"></i>
@@ -29,7 +29,7 @@ class SideNavBig extends React.Component{
             </div>
           </div>
         </Link >
-        <Link to="">
+        <Link to="" className="big-nav-link">
           <div className="side-nav-icon-cont">
             <div className="icon2">
               <i className="far fa-compass"></i>
@@ -39,7 +39,7 @@ class SideNavBig extends React.Component{
             </div>
           </div>
         </Link>
-        <Link to="">
+        <Link to="" className="big-nav-link last-link">
           <div className="side-nav-icon-cont">
             <div className="icon2">
               <i className="far fa-play-circle"></i>
@@ -49,24 +49,32 @@ class SideNavBig extends React.Component{
             </div>
           </div>
         </Link>
-        <hr />
+        {/* <hr /> */}
         <a href="https://github.com/GGMU1986" target="blank">
-          <FontAwesomeIcon icon={faGithub} className="link"/>
+          <FontAwesomeIcon icon={faGithub} className="big link"/>
         </a>
         <a 
           href="https://www.linkedin.com/in/george-tsimis-a5986224/" 
           target="blank"
         >
-          <FontAwesomeIcon icon={faLinkedin} className="link two"/>
+          <FontAwesomeIcon icon={faLinkedin} className="big link" id="in"/>
         </a>
         <a 
           href="https://angel.co/u/george-tsimis" 
           target="blank"
         >
-          <FontAwesomeIcon icon={faAngellist} className="link"/>
+          <FontAwesomeIcon icon={faAngellist} className="big link"/>
         </a>
-        <img src="" alt="" />
-        <p>
+        <a 
+          href="https://ggmu1986.github.io/" 
+          target="blank"
+        >
+          <i className="fas big link fa-user-tie"></i>
+        </a>
+        <div className="avatar-container">
+          <img id="george" src={window.avatar} alt="george" />
+        </div>
+        <p className="created">
           Created by George Tsimis with Ruby on Rails, JavaScript,
           React, Redux, Amazon Web Services, Webpack, and Node.js
         </p>
