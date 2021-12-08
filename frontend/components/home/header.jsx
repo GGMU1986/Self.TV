@@ -52,7 +52,14 @@ class Header extends React.Component {
     return (
       <div className="header">
         <div className="bars-logo">
-          <FontAwesomeIcon className="bars" icon={faBars} />
+          {/* <i  class="fas fa-bars bars">
+            {/* <i class="fas fa-hamburger ham collapsed"></i> */}
+          {/* </i>  */}
+          <FontAwesomeIcon 
+            onClick={() => openModal('side-nav')} 
+            className="bars" 
+            icon={faBars} 
+          />
           <div className="logo">
             <Link className="logo-link" to="/">
               <FontAwesomeIcon className="YT" icon={faYoutube} />
