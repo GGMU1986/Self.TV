@@ -10,7 +10,6 @@ class VideoShow extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      active: false,
       like: {
         likerId: '',
         videoId: this.props.match.params.videoId,
@@ -28,6 +27,12 @@ class VideoShow extends React.Component {
       this.props.fetchVideo(this.props.match.params.videoId)
     } 
   }
+
+  // subbed(){
+  //   this.props.subscriptions.some(sub => {
+  //     sub.subscriber_id === this.props.currentUser.id
+  //   })
+  // }
 
   handleLike(e) {
     const currDislike = this.state.like.dislike
@@ -48,6 +53,13 @@ class VideoShow extends React.Component {
   }
     
     render() {
+    //   console.log(this.props.subscriptions)
+    //   const subBtn = this.subbed ? (
+    //     <button onClick={() => this.handleSub} className="subbed">SUBSCRIBED</button>
+    //     ) : (
+    //     <button onClick={() => this.handleSub} className="sub">SUBSCRIBE</button>
+    //   )
+
       const { 
       video, destroyComment, 
       comments, action, comment
@@ -95,13 +107,14 @@ class VideoShow extends React.Component {
                     {video.channel}
                   </strong>
                   <br />
-                  1B subscribers
+                  {video.uploaderSubs} subscribers
                 </div>
                 <br />
                 <div className="video-show-descr">
                   {video.description}
                 </div>
                 <button className="sub">SUBSCRIBE</button>
+                {/* {subBtn} */}
               </div>
             </div>
             <hr />

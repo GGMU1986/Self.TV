@@ -15,6 +15,7 @@ const mSTP = (state, ownProps) => {
   return {
     userLike,
     currentUser: state.session.currentUser,
+    subscriptions: Object.values(state.entities.subscriptions),
     video: state.entities.videos[ownProps.match.params.videoId],
     comments: Object.values(state.entities.comments),
     likes: Object.values(state.entities.likes),

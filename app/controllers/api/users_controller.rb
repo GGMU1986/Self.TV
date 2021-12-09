@@ -12,7 +12,10 @@ class Api::UsersController < ApplicationController
   end
 
   def show
-    @user = User.includes(:subscribers, :subscriptions).find_by(id: params[:id])
+    @user = User
+              .includes(:subscribers, :subscribed_to)
+              .find_by(id: params[:id])
+              
     render :show
   end
 

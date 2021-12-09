@@ -5,6 +5,7 @@ import ViewsReducer from "./views";
 import LikesReducer from "./likes_reducer";
 import UploadsReducer from "./uploads";
 import SubscriptionsReducer from "./subscriptions";
+import SubscribersReducer from "./subscribers";
 
 const EntitiesReducer = combineReducers({
   videos: VideosReducer,
@@ -12,7 +13,8 @@ const EntitiesReducer = combineReducers({
   views: ViewsReducer,
   likes: LikesReducer,
   uploads: UploadsReducer,
-  subscriptions: SubscriptionsReducer
+  subscriptions: SubscriptionsReducer,
+  subscribers: SubscribersReducer
 });
 
 export default EntitiesReducer;

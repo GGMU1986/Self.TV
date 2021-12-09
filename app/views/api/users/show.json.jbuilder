@@ -8,8 +8,6 @@ json.uploads do
   end
 end
 
-json.subscribers @user.subscribers.count
-
 json.subscriptions do 
   @user.subscribed_to.each do |sub|
     json.set! sub.id do 
@@ -17,3 +15,6 @@ json.subscriptions do
     end
   end
 end
+
+json.subscribers @user.subscribers.count
+

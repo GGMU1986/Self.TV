@@ -1,8 +1,9 @@
 json.video do
   json.extract! @video, :id, :title, :description, :created_at
+  json.uploader_subs @video.uploader.subscribers.count
   json.videoUrl url_for(@video.video)
   json.photoUrl url_for(@video.photo)
-  json.channel @video.channel.name
+  json.channel @video.uploader.username
   json.views @video.views.count
 end
 
