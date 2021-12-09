@@ -1,4 +1,4 @@
-export const getUploads = userId => (
+export const getUser = userId => (
   $.ajax({
     method: 'GET',
     url: `/api/users/${userId}`  

@@ -14,7 +14,7 @@ class Channel extends React.Component{
   }
 
   render() {
-    const { currentUser, uploads } = this.props;
+    const { currentUser, uploads, subs } = this.props;
     return (
       <div>
         <Modal />
@@ -24,6 +24,7 @@ class Channel extends React.Component{
             <div className="channel-header-body-container">
             <ChannelHeader 
               currentUser={currentUser}
+              subs={subs}
             />
             <ChannelBody 
               currentUser={currentUser} 
@@ -38,7 +39,8 @@ class Channel extends React.Component{
 
 const mSTP = state => ({
   currentUser: state.session.currentUser,
-  uploads: Object.values(state.entities.uploads)
+  uploads: Object.values(state.entities.uploads),
+  subs: state.entities.subscribers
 });
 
 const mDTP = dispatch => ({

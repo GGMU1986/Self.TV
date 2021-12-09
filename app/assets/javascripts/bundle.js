@@ -13373,7 +13373,7 @@ var receiveUserDetail = function receiveUserDetail(payload) {
 
 var fetchUser = function fetchUser(userId) {
   return function (dispatch) {
-    return (0,_utils_users_utils__WEBPACK_IMPORTED_MODULE_0__.getUploads)(userId).then(function (payload) {
+    return (0,_utils_users_utils__WEBPACK_IMPORTED_MODULE_0__.getUser)(userId).then(function (payload) {
       return dispatch(receiveUserDetail(payload));
     });
   };
@@ -13605,13 +13605,15 @@ var Channel = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this$props = this.props,
           currentUser = _this$props.currentUser,
-          uploads = _this$props.uploads;
+          uploads = _this$props.uploads,
+          subs = _this$props.subs;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_modal_modal__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_home_header__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "channel-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_home_side_nav_big__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "channel-header-body-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_channel_header__WEBPACK_IMPORTED_MODULE_4__["default"], {
-        currentUser: currentUser
+        currentUser: currentUser,
+        subs: subs
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_channel_body__WEBPACK_IMPORTED_MODULE_3__["default"], {
         currentUser: currentUser,
         uploads: uploads
@@ -13625,7 +13627,8 @@ var Channel = /*#__PURE__*/function (_React$Component) {
 var mSTP = function mSTP(state) {
   return {
     currentUser: state.session.currentUser,
-    uploads: Object.values(state.entities.uploads)
+    uploads: Object.values(state.entities.uploads),
+    subs: state.entities.subscribers
   };
 };
 
@@ -13778,7 +13781,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-
 var ChannelHeader = /*#__PURE__*/function (_React$Component) {
   _inherits(ChannelHeader, _React$Component);
 
@@ -13793,7 +13795,9 @@ var ChannelHeader = /*#__PURE__*/function (_React$Component) {
   _createClass(ChannelHeader, [{
     key: "render",
     value: function render() {
-      var currentUser = this.props.currentUser;
+      var _this$props = this.props,
+          currentUser = _this$props.currentUser,
+          subs = _this$props.subs;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "channel-header-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -13806,7 +13810,9 @@ var ChannelHeader = /*#__PURE__*/function (_React$Component) {
         className: "channel-header-username"
       }, currentUser.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "channel-header-subs"
-      }, "0 Subscribers")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, {
+        subs: subs
+      } === 1 ? "".concat(subs, " Subscriber") : "".concat(subs, " Subscribers"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "about-videos"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
         className: "channel-link"
@@ -16927,12 +16933,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _actions_users_action__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/users_action */ "./frontend/actions/users_action.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 var SubscribersReducer = function SubscribersReducer() {
@@ -16942,7 +16942,8 @@ var SubscribersReducer = function SubscribersReducer() {
 
   switch (action.type) {
     case _actions_users_action__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_USER_DETAIL:
-      return _objectSpread({}, action.payload.subscribers);
+      console.log(action.payload);
+      return action.payload.subscribers;
 
     default:
       return state;
@@ -17303,9 +17304,9 @@ var deleteSession = function deleteSession() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getUploads": () => (/* binding */ getUploads)
+/* harmony export */   "getUser": () => (/* binding */ getUser)
 /* harmony export */ });
-var getUploads = function getUploads(userId) {
+var getUser = function getUser(userId) {
   return $.ajax({
     method: 'GET',
     url: "/api/users/".concat(userId)

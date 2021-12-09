@@ -5,9 +5,8 @@ const SubscribersReducer = (state = {}, action) => {
 
   switch (action.type) {
     case RECEIVE_USER_DETAIL:
-      return {
-        ...action.payload.subscribers
-      }
+      console.log(action.payload)
+      return action.payload.subscribers
   
     default:
       return state
