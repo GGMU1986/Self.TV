@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :users, only: [:create, :show]
     resources :videos, only: [:index, :show, :create]
     resources :comments, only: [:create, :show, :update, :destroy]
+    resources :subscriptions, only: [:create, :destroy]
     resources :views, only: [:create]
     resources :likes, only: [:create, :update]
     resource :session, only: [:create, :destroy]

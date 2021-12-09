@@ -16983,6 +16983,14 @@ var SubscriptionsReducer = function SubscriptionsReducer() {
     case _actions_users_action__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_USER_DETAIL:
       return _objectSpread({}, action.payload.subscriptions);
 
+    case _actions_users_action__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_SUB:
+      return _objectSpread(_objectSpread({}, state), {}, _defineProperty({}, action.sub.id, action.sub));
+
+    case _actions_users_action__WEBPACK_IMPORTED_MODULE_0__.REMOVE_SUB:
+      var nextState = Object.assign({}, state);
+      delete nextState[userId];
+      return nextState;
+
     default:
       return state;
   }
