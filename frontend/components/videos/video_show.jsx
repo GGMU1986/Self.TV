@@ -5,6 +5,7 @@ import CommentForm from '../comments/comments_form';
 import Modal from '../modal/modal';
 import VideoShowSide from './video_show_side';
 import VideoLikes from '../likes/likes';
+import { faRoute } from '@fortawesome/free-solid-svg-icons';
 
 class VideoShow extends React.Component {
   constructor(props){
@@ -20,6 +21,7 @@ class VideoShow extends React.Component {
   }
   componentDidMount() {
     this.props.fetchVideo(this.props.match.params.videoId)
+    this.props.fetchUser(this.props.currentUser.id)
   }
 
   componentDidUpdate(prevProps) {
@@ -28,11 +30,14 @@ class VideoShow extends React.Component {
     } 
   }
 
-  // subbed(){
-  //   this.props.subscriptions.some(sub => {
-  //     sub.subscriber_id === this.props.currentUser.id
-  //   })
-  // }
+  subbed(){
+    for (let i = 0; i < this.props.subs.length; i++){
+      if (this.props.subs[i].id === this.props.video.uploaderId){
+        return true
+      }
+    }
+    return false
+  }
 
   handleLike(e) {
     const currDislike = this.state.like.dislike
@@ -53,12 +58,14 @@ class VideoShow extends React.Component {
   }
     
     render() {
-    //   console.log(this.props.subscriptions)
-    //   const subBtn = this.subbed ? (
-    //     <button onClick={() => this.handleSub} className="subbed">SUBSCRIBED</button>
-    //     ) : (
-    //     <button onClick={() => this.handleSub} className="sub">SUBSCRIBE</button>
-    //   )
+      console.log(this.subbed())
+      // console.log(this.props.subs)
+      // console.log(this.props.video.uploaderId)
+      const subBtn = this.subbed() ? (
+        <button onClick={() => this.handleSub} className="subbed">SUBSCRIBED</button>
+        ) : (
+        <button onClick={() => this.handleSub} className="sub">SUBSCRIBE</button>
+      )
 
       const { 
       video, destroyComment, 
@@ -113,8 +120,8 @@ class VideoShow extends React.Component {
                 <div className="video-show-descr">
                   {video.description}
                 </div>
-                <button className="sub">SUBSCRIBE</button>
-                {/* {subBtn} */}
+                {/* <button className="sub">SUBSCRIBE</button> */}
+                {subBtn}
               </div>
             </div>
             <hr />

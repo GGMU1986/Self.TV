@@ -10,7 +10,7 @@ const SubscriptionsReducer = (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_USER_DETAIL:
       return {
-        ...action.payload.subscriptions
+        ...action.payload.subscriptions,
       }
     
     case RECEIVE_SUB:

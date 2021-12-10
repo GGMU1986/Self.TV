@@ -13348,6 +13348,56 @@ var logout = function logout() {
 
 /***/ }),
 
+/***/ "./frontend/actions/subs_actions.js":
+/*!******************************************!*\
+  !*** ./frontend/actions/subs_actions.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "RECEIVE_SUB": () => (/* binding */ RECEIVE_SUB),
+/* harmony export */   "REMOVE_SUB": () => (/* binding */ REMOVE_SUB),
+/* harmony export */   "createSub": () => (/* binding */ createSub),
+/* harmony export */   "destroySub": () => (/* binding */ destroySub)
+/* harmony export */ });
+/* harmony import */ var _utils_subs_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/subs_util */ "./frontend/utils/subs_util.js");
+
+var RECEIVE_SUB = 'RECEIVE_SUB';
+var REMOVE_SUB = 'REMOVE_SUB';
+
+var receiveSub = function receiveSub(sub) {
+  return {
+    type: RECEIVE_SUB,
+    sub: sub
+  };
+};
+
+var removeSub = function removeSub(userId) {
+  return {
+    type: REMOVE_SUB,
+    userId: userId
+  };
+};
+
+var createSub = function createSub(userId) {
+  return function (dispatch) {
+    return (0,_utils_subs_util__WEBPACK_IMPORTED_MODULE_0__.makeSub)(userId).then(function (sub) {
+      return dispatch(receiveSub(sub));
+    });
+  };
+};
+var destroySub = function destroySub(userId) {
+  return function (dispatch) {
+    return (0,_utils_subs_util__WEBPACK_IMPORTED_MODULE_0__.deleteSub)(userId).then(function () {
+      return dispatch(removeSub(userId));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/users_action.js":
 /*!******************************************!*\
   !*** ./frontend/actions/users_action.js ***!
@@ -16097,6 +16147,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var VideoShow = /*#__PURE__*/function (_React$Component) {
   _inherits(VideoShow, _React$Component);
 
@@ -16123,6 +16174,7 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchVideo(this.props.match.params.videoId);
+      this.props.fetchUser(this.props.currentUser.id);
     }
   }, {
     key: "componentDidUpdate",
@@ -16130,12 +16182,18 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
       if (prevProps.match.params.videoId !== this.props.match.params.videoId) {
         this.props.fetchVideo(this.props.match.params.videoId);
       }
-    } // subbed(){
-    //   this.props.subscriptions.some(sub => {
-    //     sub.subscriber_id === this.props.currentUser.id
-    //   })
-    // }
+    }
+  }, {
+    key: "subbed",
+    value: function subbed() {
+      for (var i = 0; i < this.props.subs.length; i++) {
+        if (this.props.subs[i].id === this.props.video.uploaderId) {
+          return true;
+        }
+      }
 
+      return false;
+    }
   }, {
     key: "handleLike",
     value: function handleLike(e) {
@@ -16167,12 +16225,22 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      //   console.log(this.props.subscriptions)
-      //   const subBtn = this.subbed ? (
-      //     <button onClick={() => this.handleSub} className="subbed">SUBSCRIBED</button>
-      //     ) : (
-      //     <button onClick={() => this.handleSub} className="sub">SUBSCRIBE</button>
-      //   )
+      var _this2 = this;
+
+      console.log(this.subbed()); // console.log(this.props.subs)
+      // console.log(this.props.video.uploaderId)
+
+      var subBtn = this.subbed() ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        onClick: function onClick() {
+          return _this2.handleSub;
+        },
+        className: "subbed"
+      }, "SUBSCRIBED") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        onClick: function onClick() {
+          return _this2.handleSub;
+        },
+        className: "sub"
+      }, "SUBSCRIBE");
       var _this$props = this.props,
           video = _this$props.video,
           destroyComment = _this$props.destroyComment,
@@ -16210,9 +16278,7 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
         className: "video-channel"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, video.channel), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), video.uploaderSubs, " subscribers"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "video-show-descr"
-      }, video.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-        className: "sub"
-      }, "SUBSCRIBE"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, video.description), subBtn)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "comment-count"
       }, comments.length === 1 ? "".concat(comments.length, " Comment") : "".concat(comments.length, " Comments"), "\xA0\xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
         className: "sort-by"
@@ -16256,6 +16322,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_videos_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/videos_actions */ "./frontend/actions/videos_actions.js");
 /* harmony import */ var _actions_comments_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/comments_actions */ "./frontend/actions/comments_actions.js");
 /* harmony import */ var _actions_likes_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/likes_actions */ "./frontend/actions/likes_actions.js");
+/* harmony import */ var _actions_subs_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/subs_actions */ "./frontend/actions/subs_actions.js");
+/* harmony import */ var _actions_users_action__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../actions/users_action */ "./frontend/actions/users_action.js");
+
+
 
 
 
@@ -16270,7 +16340,7 @@ var mSTP = function mSTP(state, ownProps) {
   return {
     userLike: userLike,
     currentUser: state.session.currentUser,
-    subscriptions: Object.values(state.entities.subscriptions),
+    subs: Object.values(state.entities.subscriptions),
     video: state.entities.videos[ownProps.match.params.videoId],
     comments: Object.values(state.entities.comments),
     likes: Object.values(state.entities.likes),
@@ -16282,6 +16352,9 @@ var mSTP = function mSTP(state, ownProps) {
 
 var mDTP = function mDTP(dispatch) {
   return {
+    fetchUser: function fetchUser(userId) {
+      return dispatch((0,_actions_users_action__WEBPACK_IMPORTED_MODULE_6__.fetchUser)(userId));
+    },
     fetchVideo: function fetchVideo(videoId) {
       return dispatch((0,_actions_videos_actions__WEBPACK_IMPORTED_MODULE_2__.fetchVideo)(videoId));
     },
@@ -16296,6 +16369,12 @@ var mDTP = function mDTP(dispatch) {
     },
     updateLike: function updateLike(like) {
       return dispatch((0,_actions_likes_actions__WEBPACK_IMPORTED_MODULE_4__.updateLike)(like));
+    },
+    createSub: function createSub(userId) {
+      return dispatch((0,_actions_subs_actions__WEBPACK_IMPORTED_MODULE_5__.createSub)(userId));
+    },
+    destroySub: function destroySub(userId) {
+      return dispatch((0,_actions_subs_actions__WEBPACK_IMPORTED_MODULE_5__.destroySub)(userId));
     }
   };
 };
@@ -16706,7 +16785,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _videos_reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./videos_reducer */ "./frontend/reducers/videos_reducer.js");
 /* harmony import */ var _comments__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./comments */ "./frontend/reducers/comments.js");
 /* harmony import */ var _views__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./views */ "./frontend/reducers/views.js");
@@ -16714,6 +16793,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _uploads__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./uploads */ "./frontend/reducers/uploads.js");
 /* harmony import */ var _subscriptions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./subscriptions */ "./frontend/reducers/subscriptions.js");
 /* harmony import */ var _subscribers__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./subscribers */ "./frontend/reducers/subscribers.js");
+/* harmony import */ var _subs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./subs */ "./frontend/reducers/subs.js");
 
 
 
@@ -16722,14 +16802,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var EntitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_7__.combineReducers)({
+
+var EntitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_8__.combineReducers)({
   videos: _videos_reducer__WEBPACK_IMPORTED_MODULE_0__["default"],
   comments: _comments__WEBPACK_IMPORTED_MODULE_1__["default"],
   views: _views__WEBPACK_IMPORTED_MODULE_2__["default"],
   likes: _likes_reducer__WEBPACK_IMPORTED_MODULE_3__["default"],
   uploads: _uploads__WEBPACK_IMPORTED_MODULE_4__["default"],
   subscriptions: _subscriptions__WEBPACK_IMPORTED_MODULE_5__["default"],
-  subscribers: _subscribers__WEBPACK_IMPORTED_MODULE_6__["default"]
+  subscribers: _subscribers__WEBPACK_IMPORTED_MODULE_6__["default"],
+  subs: _subs__WEBPACK_IMPORTED_MODULE_7__["default"]
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EntitiesReducer);
 
@@ -16918,6 +17000,44 @@ var SessionErrorsReducer = function SessionErrorsReducer() {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SessionErrorsReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/subs.js":
+/*!***********************************!*\
+  !*** ./frontend/reducers/subs.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _actions_users_action__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/users_action */ "./frontend/actions/users_action.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var SubsReducer = function SubsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_users_action__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_USER_DETAIL:
+      return _objectSpread({}, action.payload.subbedTo);
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SubsReducer);
 
 /***/ }),
 
@@ -17298,6 +17418,34 @@ var deleteSession = function deleteSession() {
   return $.ajax({
     method: 'DELETE',
     url: '/api/session'
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/utils/subs_util.js":
+/*!*************************************!*\
+  !*** ./frontend/utils/subs_util.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "makeSub": () => (/* binding */ makeSub),
+/* harmony export */   "deleteSub": () => (/* binding */ deleteSub)
+/* harmony export */ });
+var makeSub = function makeSub(userId) {
+  return $.ajax({
+    method: 'POST',
+    url: '/api/subscriptions',
+    data: userId
+  });
+};
+var deleteSub = function deleteSub(userId) {
+  return $.ajax({
+    method: 'DELETE',
+    url: "/api/subscriptions/".concat(userId)
   });
 };
 
