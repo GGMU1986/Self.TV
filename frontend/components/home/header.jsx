@@ -125,7 +125,6 @@ class Header extends React.Component {
                     )
                   } */}
                   <div className="prof-icon-content">{currentUser.username[0].toUpperCase()}</div>
-                  {/* <span className="prof-icon-content">{profile}</span> */}
                   <div className={this.state.active ? 'dropdown active' : 'dropdown'}>
                     <div className="dropdown-username">
                       <div className="user-email">

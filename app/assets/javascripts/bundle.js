@@ -16225,28 +16225,25 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
-
-      console.log(this.subbed()); // console.log(this.props.subs)
-      // console.log(this.props.video.uploaderId)
-
+      var _this$props = this.props,
+          video = _this$props.video,
+          destroyComment = _this$props.destroyComment,
+          createSub = _this$props.createSub,
+          destroySub = _this$props.destroySub,
+          comments = _this$props.comments,
+          action = _this$props.action,
+          comment = _this$props.comment;
       var subBtn = this.subbed() ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         onClick: function onClick() {
-          return _this2.handleSub;
+          return destroySub(video.uploaderId);
         },
         className: "subbed"
       }, "SUBSCRIBED") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         onClick: function onClick() {
-          return _this2.handleSub;
+          return createSub(video.uploaderId);
         },
         className: "sub"
       }, "SUBSCRIBE");
-      var _this$props = this.props,
-          video = _this$props.video,
-          destroyComment = _this$props.destroyComment,
-          comments = _this$props.comments,
-          action = _this$props.action,
-          comment = _this$props.comment;
       var uploadDate = new Date(video.createdAt).toString().slice(4, 15);
       var videoId = this.props.match.params.videoId;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -16785,7 +16782,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _videos_reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./videos_reducer */ "./frontend/reducers/videos_reducer.js");
 /* harmony import */ var _comments__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./comments */ "./frontend/reducers/comments.js");
 /* harmony import */ var _views__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./views */ "./frontend/reducers/views.js");
@@ -16793,7 +16790,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _uploads__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./uploads */ "./frontend/reducers/uploads.js");
 /* harmony import */ var _subscriptions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./subscriptions */ "./frontend/reducers/subscriptions.js");
 /* harmony import */ var _subscribers__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./subscribers */ "./frontend/reducers/subscribers.js");
-/* harmony import */ var _subs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./subs */ "./frontend/reducers/subs.js");
 
 
 
@@ -16802,16 +16798,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-var EntitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_8__.combineReducers)({
+var EntitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_7__.combineReducers)({
   videos: _videos_reducer__WEBPACK_IMPORTED_MODULE_0__["default"],
   comments: _comments__WEBPACK_IMPORTED_MODULE_1__["default"],
   views: _views__WEBPACK_IMPORTED_MODULE_2__["default"],
   likes: _likes_reducer__WEBPACK_IMPORTED_MODULE_3__["default"],
   uploads: _uploads__WEBPACK_IMPORTED_MODULE_4__["default"],
   subscriptions: _subscriptions__WEBPACK_IMPORTED_MODULE_5__["default"],
-  subscribers: _subscribers__WEBPACK_IMPORTED_MODULE_6__["default"],
-  subs: _subs__WEBPACK_IMPORTED_MODULE_7__["default"]
+  subscribers: _subscribers__WEBPACK_IMPORTED_MODULE_6__["default"]
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EntitiesReducer);
 
@@ -17000,44 +16994,6 @@ var SessionErrorsReducer = function SessionErrorsReducer() {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SessionErrorsReducer);
-
-/***/ }),
-
-/***/ "./frontend/reducers/subs.js":
-/*!***********************************!*\
-  !*** ./frontend/reducers/subs.js ***!
-  \***********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _actions_users_action__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/users_action */ "./frontend/actions/users_action.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
-var SubsReducer = function SubsReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-  Object.freeze(state);
-
-  switch (action.type) {
-    case _actions_users_action__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_USER_DETAIL:
-      return _objectSpread({}, action.payload.subbedTo);
-
-    default:
-      return state;
-  }
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SubsReducer);
 
 /***/ }),
 

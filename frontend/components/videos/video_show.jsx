@@ -58,20 +58,17 @@ class VideoShow extends React.Component {
   }
     
     render() {
-      console.log(this.subbed())
-      // console.log(this.props.subs)
-      // console.log(this.props.video.uploaderId)
+      const { 
+      video, destroyComment, createSub, 
+      destroySub, comments, action, comment
+    } = this.props
+      
       const subBtn = this.subbed() ? (
-        <button onClick={() => this.handleSub} className="subbed">SUBSCRIBED</button>
+        <button onClick={() => destroySub(video.uploaderId)} className="subbed">SUBSCRIBED</button>
         ) : (
-        <button onClick={() => this.handleSub} className="sub">SUBSCRIBE</button>
+        <button onClick={() => createSub(video.uploaderId)} className="sub">SUBSCRIBE</button>
       )
 
-      const { 
-      video, destroyComment, 
-      comments, action, comment
-    } = this.props
-    
     const uploadDate = new Date(video.createdAt).toString().slice(4, 15)
     let videoId = this.props.match.params.videoId
     return (
