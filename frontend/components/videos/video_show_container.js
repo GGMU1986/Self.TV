@@ -7,13 +7,16 @@ import { createSub, destroySub } from '../../actions/subs_actions';
 import { fetchUser } from '../../actions/users_action';
 
 const mSTP = (state, ownProps) => {
-  let userLike = false;
-  Object.values(state.entities.likes).some(like => like.likerId === state.session.currentUser.id && like.dislike === false) ? 
-  userLike = true : userLike = false;
+  
+  // let userLike = false;
+  // Object.values(state.entities.likes).some(like => like.likerId === state.session.currentUser.id && like.dislike === false) ? 
+  // userLike = true : userLike = false;
+ 
   return {
-    userLike,
+    // userLike,
     currentUser: state.session.currentUser,
-    subs: Object.values(state.entities.subscriptions),
+    subs: Object.values(state.entities.subscriptions.subs),
+    subbedTo: Object.values(state.entities.subscriptions.usersSubTo),
     video: state.entities.videos[ownProps.match.params.videoId],
     comments: Object.values(state.entities.comments),
     likes: Object.values(state.entities.likes),
@@ -31,7 +34,7 @@ const mDTP = dispatch => ({
   createLike: like => dispatch(createLike(like)),
   updateLike: like => dispatch(updateLike(like)),
   createSub: userId => dispatch(createSub(userId)),
-  destroySub: userId => dispatch(destroySub(userId))
+  destroySub: (subId, userId) => dispatch(destroySub(subId, userId))
 });
 
 export default connect(mSTP, mDTP)(VideoShow);

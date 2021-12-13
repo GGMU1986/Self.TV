@@ -5,7 +5,17 @@
     <title>Self.TV</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+     <meta property="og:title" content="Self.TV" />
+     <meta property='og:image' content="<%= image_url('self_tv_pic.png') %>"/>
+     <meta property="og:description"
+       content="Self.TV is pixel-perfect clone of YouTube. 
+       Users can view videos uploaded by other users, as well as 
+       comment and like those videos. Users can upload their own 
+       videos as well."
+     />
+     <meta property="og:url"
+       content="http://selfdottv.herokuapp.com/"
+     />
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <% if current_user %>

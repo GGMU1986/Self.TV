@@ -1,12 +1,10 @@
-import { 
-  RECEIVE_USER_DETAIL,
-  RECEIVE_SUB,
-  REMOVE_SUB 
-} from "../actions/users_action";
+import { RECEIVE_USER_DETAIL } from "../actions/users_action";
+import { REMOVE_SUB, RECEIVE_SUB } from "../actions/subs_actions";
 
 const SubscriptionsReducer = (state = {}, action) => {
   Object.freeze(state)
-
+  let nextState = Object.assign({}, state);
+  debugger
   switch (action.type) {
     case RECEIVE_USER_DETAIL:
       return {
@@ -14,14 +12,15 @@ const SubscriptionsReducer = (state = {}, action) => {
       }
     
     case RECEIVE_SUB:
-      return {
-        ...state,
-        [action.sub.id]: action.sub
-      }
+      // debugger
+      nextState.subs[action.payload.sub.id] = action.payload.sub
+      nextState.usersSubTo[action.payload.subbedTo.id] = action.payload.subbedTo
+      return nextState
     
     case REMOVE_SUB:
-      let nextState = Object.assign({}, state)
-      delete nextState[userId]
+      debugger
+      delete nextState.subs[action.subId]
+      // delete nextState.usersSubTo[action.subToId]
       return nextState
   
     default:

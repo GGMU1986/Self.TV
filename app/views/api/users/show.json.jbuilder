@@ -8,13 +8,24 @@ json.uploads do
   end
 end
 
-json.subscriptions do 
-  @user.subscribed_to.each do |sub|
-    json.set! sub.id do 
-      json.extract! sub, :id, :username
+json.subscriptions do
+  json.users_sub_to do 
+    @user.subscribed_to.each do |sub|
+      json.set! sub.id do 
+        json.extract! sub, :id, :username
+      end
+    end
+  end
+  json.subs do 
+    @user.subscriptions.each do |sub2|
+      json.set! sub2.id do 
+        json.extract! sub2, :id, :user_id, :subscriber_id
+      end
     end
   end
 end
+
+
 
 json.subscribers @user.subscribers.count
 

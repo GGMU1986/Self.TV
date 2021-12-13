@@ -3,15 +3,25 @@ import { makeSub, deleteSub } from "../utils/subs_util";
 export const RECEIVE_SUB = 'RECEIVE_SUB'
 export const REMOVE_SUB = 'REMOVE_SUB'
 
-const receiveSub = sub => ({
+const receiveSub = payload => ({
   type: RECEIVE_SUB,
-  sub
+  payload
 })
 
-const removeSub = userId => ({
+const removeSub = subId => ({
   type: REMOVE_SUB,
-  userId
+  subId
 })
+
+// const receiveSubTo = subTo => ({
+//   type: RECEIVE_SUB,
+//   subTo
+// })
+
+// const removeSubTo = subToId => ({
+//   type: REMOVE_SUB,
+//   subToId
+// })
 
 export const createSub = userId => dispatch => {
   return makeSub(userId).then(sub => {
@@ -19,8 +29,10 @@ export const createSub = userId => dispatch => {
   })
 };
 
-export const destroySub = userId => dispatch => {
-  return deleteSub(userId).then(() => {
-    return dispatch(removeSub(userId))
+export const destroySub = (subId, userId) => dispatch => {
+  debugger
+  return deleteSub(subId, userId).then(() => {
+    debugger
+    return dispatch(removeSub(subId))
   })
 };
