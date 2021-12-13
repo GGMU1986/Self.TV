@@ -8,20 +8,10 @@ const receiveSub = payload => ({
   payload
 })
 
-const removeSub = subId => ({
+const removeSub = payload => ({
   type: REMOVE_SUB,
-  subId
+  payload
 })
-
-// const receiveSubTo = subTo => ({
-//   type: RECEIVE_SUB,
-//   subTo
-// })
-
-// const removeSubTo = subToId => ({
-//   type: REMOVE_SUB,
-//   subToId
-// })
 
 export const createSub = userId => dispatch => {
   return makeSub(userId).then(sub => {
@@ -31,8 +21,8 @@ export const createSub = userId => dispatch => {
 
 export const destroySub = (subId, userId) => dispatch => {
   debugger
-  return deleteSub(subId, userId).then(() => {
+  return deleteSub(subId, userId).then(sub => {
     debugger
-    return dispatch(removeSub(subId))
+    return dispatch(removeSub(sub))
   })
 };

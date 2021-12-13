@@ -13374,20 +13374,12 @@ var receiveSub = function receiveSub(payload) {
   };
 };
 
-var removeSub = function removeSub(subId) {
+var removeSub = function removeSub(payload) {
   return {
     type: REMOVE_SUB,
-    subId: subId
+    payload: payload
   };
-}; // const receiveSubTo = subTo => ({
-//   type: RECEIVE_SUB,
-//   subTo
-// })
-// const removeSubTo = subToId => ({
-//   type: REMOVE_SUB,
-//   subToId
-// })
-
+};
 
 var createSub = function createSub(userId) {
   return function (dispatch) {
@@ -13399,9 +13391,9 @@ var createSub = function createSub(userId) {
 var destroySub = function destroySub(subId, userId) {
   return function (dispatch) {
     debugger;
-    return (0,_utils_subs_util__WEBPACK_IMPORTED_MODULE_0__.deleteSub)(subId, userId).then(function () {
+    return (0,_utils_subs_util__WEBPACK_IMPORTED_MODULE_0__.deleteSub)(subId, userId).then(function (sub) {
       debugger;
-      return dispatch(removeSub(subId));
+      return dispatch(removeSub(sub));
     });
   };
 };
@@ -17077,22 +17069,21 @@ var SubscriptionsReducer = function SubscriptionsReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
-  var nextState = Object.assign({}, state); // debugger
+  var nextState = Object.assign({}, state);
 
   switch (action.type) {
     case _actions_users_action__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_USER_DETAIL:
       return _objectSpread({}, action.payload.subscriptions);
 
     case _actions_subs_actions__WEBPACK_IMPORTED_MODULE_1__.RECEIVE_SUB:
-      // debugger
       nextState.subs[action.payload.sub.id] = action.payload.sub;
       nextState.usersSubTo[action.payload.subbedTo.id] = action.payload.subbedTo;
       return nextState;
 
     case _actions_subs_actions__WEBPACK_IMPORTED_MODULE_1__.REMOVE_SUB:
       debugger;
-      delete nextState.subs[action.subId]; // delete nextState.usersSubTo[action.subToId]
-
+      delete nextState.subs[action.payload.sub.id];
+      delete nextState.usersSubTo[action.payload.subbedTo.id];
       return nextState;
 
     default:
