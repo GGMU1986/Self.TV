@@ -17,7 +17,13 @@ class UploadVideoForm extends React.Component {
   };
   
   handleFile(e) {
+    // check if file ends with .mp4
     const file = e.currentTarget.files[0]
+    // if (!file.endsWith('.mp4')){
+    //   this.setState({
+    //     errors: "Please make sure your video is an MP4!"
+    //   })
+    // }
     const fileReader = new FileReader();
     fileReader.onloadend = () => {
       this.setState({
@@ -60,7 +66,7 @@ class UploadVideoForm extends React.Component {
 
   render() {
     const { closeModal } = this.props;
-    const { videoFile, title, videoUrl, photoUrl } = this.state;
+    const { videoFile, title, videoUrl, photoUrl, errors } = this.state;
     const part = !videoFile ? (
       <UploadPart1 
         handleFile={this.handleFile} 
@@ -93,7 +99,8 @@ const mSTP = state => ({
     videoUrl: null,
     photoFile: null,
     photoUrl: null
-  }
+  },
+  // errors: ''
 });
 
 const mDTP = dispatch => {

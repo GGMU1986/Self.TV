@@ -15775,7 +15775,13 @@ var UploadVideoForm = /*#__PURE__*/function (_React$Component) {
     value: function handleFile(e) {
       var _this2 = this;
 
-      var file = e.currentTarget.files[0];
+      // check if file ends with .mp4
+      var file = e.currentTarget.files[0]; // if (!file.endsWith('.mp4')){
+      //   this.setState({
+      //     errors: "Please make sure your video is an MP4!"
+      //   })
+      // }
+
       var fileReader = new FileReader();
 
       fileReader.onloadend = function () {
@@ -15840,7 +15846,8 @@ var UploadVideoForm = /*#__PURE__*/function (_React$Component) {
           videoFile = _this$state.videoFile,
           title = _this$state.title,
           videoUrl = _this$state.videoUrl,
-          photoUrl = _this$state.photoUrl;
+          photoUrl = _this$state.photoUrl,
+          errors = _this$state.errors;
       var part = !videoFile ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_video_upload_1__WEBPACK_IMPORTED_MODULE_3__["default"], {
         handleFile: this.handleFile,
         closeModal: closeModal
@@ -15871,7 +15878,8 @@ var mSTP = function mSTP(state) {
       videoUrl: null,
       photoFile: null,
       photoUrl: null
-    }
+    } // errors: ''
+
   };
 };
 
@@ -16177,8 +16185,9 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       subbed: _this.subbed(),
-      subCount: _this.props.video.uploaderSubs
-    };
+      subCount: _this.props.subCount
+    }; // debugger
+
     _this.handleSub = _this.handleSub.bind(_assertThisInitialized(_this));
     _this.findSubId = _this.findSubId.bind(_assertThisInitialized(_this));
     return _this;
@@ -16250,14 +16259,15 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
           comments = _this$props.comments,
           action = _this$props.action,
           comment = _this$props.comment;
-      console.log(this.props.video.uploaderSubs);
       var subBtn = this.state.subbed ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         onClick: this.handleSub,
         className: "subbed"
       }, "SUBSCRIBED") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         onClick: this.handleSub,
         className: "sub"
-      }, "SUBSCRIBE");
+      }, "SUBSCRIBE"); // console.log(video.uploaderSubs)
+
+      console.log(this.state.subCount);
       var uploadDate = new Date(video.createdAt).toString().slice(4, 15);
       var videoId = this.props.match.params.videoId;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -16344,15 +16354,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  // let userLike = false;
+  debugger; // let userLike = false;
   // Object.values(state.entities.likes).some(like => like.likerId === state.session.currentUser.id && like.dislike === false) ? 
   // userLike = true : userLike = false;
+
+  var subbedTo = state.entities.subscriptions.usersSubTo ? Object.values(state.entities.subscriptions.usersSubTo) : [];
   return {
     // userLike,
     currentUser: state.session.currentUser,
     subs: Object.values(state.entities.subscriptions.subs),
-    subbedTo: Object.values(state.entities.subscriptions.usersSubTo),
+    subbedTo: subbedTo,
     video: state.entities.videos[ownProps.match.params.videoId],
+    subCount: state.entities.videos[ownProps.match.params.videoId].subCount,
     comments: Object.values(state.entities.comments),
     likes: Object.values(state.entities.likes),
     comment: {
@@ -17069,8 +17082,7 @@ var SubscriptionsReducer = function SubscriptionsReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
-  var nextState = Object.assign({}, state);
-  debugger;
+  var nextState = Object.assign({}, state); // debugger
 
   switch (action.type) {
     case _actions_users_action__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_USER_DETAIL:

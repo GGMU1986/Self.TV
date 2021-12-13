@@ -4,7 +4,7 @@ import { REMOVE_SUB, RECEIVE_SUB } from "../actions/subs_actions";
 const SubscriptionsReducer = (state = {}, action) => {
   Object.freeze(state)
   let nextState = Object.assign({}, state);
-  debugger
+  // debugger
   switch (action.type) {
     case RECEIVE_USER_DETAIL:
       return {
