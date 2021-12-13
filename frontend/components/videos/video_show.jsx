@@ -13,7 +13,6 @@ class VideoShow extends React.Component {
       subbed: this.subbed(),
       subCount: this.props.subCount
     }
-    // debugger
     this.handleSub = this.handleSub.bind(this);
     this.findSubId = this.findSubId.bind(this);
   }
@@ -72,9 +71,7 @@ class VideoShow extends React.Component {
         ) : (
           <button onClick={this.handleSub} className="sub">SUBSCRIBE</button>
           )
-          
-      // console.log(video.uploaderSubs)
-      console.log(this.state.subCount)
+
     const uploadDate = new Date(video.createdAt).toString().slice(4, 15)
     let videoId = this.props.match.params.videoId
     return (
@@ -143,7 +140,6 @@ class VideoShow extends React.Component {
               <CommentsIndex 
                 comments={comments} 
                 destroyComment={destroyComment}
-                videoId={videoId}
               />
             </div>
           </div>

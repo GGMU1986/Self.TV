@@ -56,7 +56,7 @@ class CommentsIndexItem extends React.Component {
                   <i className="fas fa-trash"></i>
                 </div>
                 <div>
-                  <button  className="trash-btn">Delete</button>
+                  <button className="trash-btn">Delete</button>
                 </div>
               </div>
             </div>

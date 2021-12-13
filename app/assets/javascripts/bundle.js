@@ -14104,23 +14104,16 @@ var CommentsIndex = /*#__PURE__*/function (_React$Component) {
   _createClass(CommentsIndex, [{
     key: "render",
     value: function render() {
-      var _this$props = this.props,
-          destroyComment = _this$props.destroyComment,
-          makeComment = _this$props.makeComment,
-          updateComment = _this$props.updateComment,
-          videoId = _this$props.videoId;
+      var destroyComment = this.props.destroyComment;
       var comments = Object.values(this.props.comments);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "comments"
       }, comments.reverse().map(function (comment) {
         if (comment) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_comments_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
-            key: comment.id // currentUser={currentUser ? currentUser : null}  
-            ,
+            key: comment.id,
             comment: comment,
-            destroyComment: destroyComment // updateComment={updateComment}
-            // videoId={videoId}
-
+            destroyComment: destroyComment
           });
         } else {
           return null;
@@ -15762,7 +15755,9 @@ var UploadVideoForm = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, UploadVideoForm);
 
     _this = _super.call(this, props);
-    _this.state = _this.props.video;
+    _this.state = {
+      video: _this.props.video
+    };
     _this.handleFile = _this.handleFile.bind(_assertThisInitialized(_this));
     _this.handleInput = _this.handleInput.bind(_assertThisInitialized(_this));
     _this.handleThumbnail = _this.handleThumbnail.bind(_assertThisInitialized(_this));
@@ -15776,11 +15771,13 @@ var UploadVideoForm = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       // check if file ends with .mp4
-      var file = e.currentTarget.files[0]; // if (!file.endsWith('.mp4')){
-      //   this.setState({
-      //     errors: "Please make sure your video is an MP4!"
-      //   })
-      // }
+      var file = e.currentTarget.files[0]; // console.log(file.name)
+
+      if (!file.name.endsWith('.mp4')) {
+        this.setState({
+          errors: "Please make sure your video is an MP4!"
+        });
+      }
 
       var fileReader = new FileReader();
 
@@ -15850,7 +15847,8 @@ var UploadVideoForm = /*#__PURE__*/function (_React$Component) {
           errors = _this$state.errors;
       var part = !videoFile ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_video_upload_1__WEBPACK_IMPORTED_MODULE_3__["default"], {
         handleFile: this.handleFile,
-        closeModal: closeModal
+        closeModal: closeModal,
+        errors: errors
       }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_video_upload_2__WEBPACK_IMPORTED_MODULE_4__["default"], {
         closeModal: closeModal,
         handleInput: this.handleInput,
@@ -15877,9 +15875,9 @@ var mSTP = function mSTP(state) {
       videoFile: null,
       videoUrl: null,
       photoFile: null,
-      photoUrl: null
-    } // errors: ''
-
+      photoUrl: null,
+      errors: ''
+    }
   };
 };
 
@@ -16186,8 +16184,7 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       subbed: _this.subbed(),
       subCount: _this.props.subCount
-    }; // debugger
-
+    };
     _this.handleSub = _this.handleSub.bind(_assertThisInitialized(_this));
     _this.findSubId = _this.findSubId.bind(_assertThisInitialized(_this));
     return _this;
@@ -16265,9 +16262,7 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
       }, "SUBSCRIBED") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         onClick: this.handleSub,
         className: "sub"
-      }, "SUBSCRIBE"); // console.log(video.uploaderSubs)
-
-      console.log(this.state.subCount);
+      }, "SUBSCRIBE");
       var uploadDate = new Date(video.createdAt).toString().slice(4, 15);
       var videoId = this.props.match.params.videoId;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -16309,8 +16304,7 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
         videoId: videoId
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_comments_comments_index__WEBPACK_IMPORTED_MODULE_2__["default"], {
         comments: comments,
-        destroyComment: destroyComment,
-        videoId: videoId
+        destroyComment: destroyComment
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "related-videos-cont"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_video_show_side__WEBPACK_IMPORTED_MODULE_5__["default"], {
@@ -16618,7 +16612,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var UploadPart1 = function UploadPart1(_ref) {
   var handleFile = _ref.handleFile,
-      closeModal = _ref.closeModal;
+      closeModal = _ref.closeModal,
+      errors = _ref.errors;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "upload-video-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -16647,7 +16642,7 @@ var UploadPart1 = function UploadPart1(_ref) {
     className: "video-input",
     onChange: handleFile,
     accept: ".mp4"
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  })), errors), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "footer-upload-videos"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
     className: "gray"

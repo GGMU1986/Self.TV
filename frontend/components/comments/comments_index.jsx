@@ -7,22 +7,17 @@ class CommentsIndex extends React.Component {
     super(props)
   }
   render() {
-    const { 
-      destroyComment, makeComment, 
-      updateComment, videoId } = this.props
+    const { destroyComment } = this.props
     let comments = Object.values(this.props.comments)
     return (
       <div className="comments">
           {comments.reverse().map(comment => {
             if (comment) {
               return <CommentsIndexItem
-                key={comment.id}
-                // currentUser={currentUser ? currentUser : null}  
-                comment={comment}
-                destroyComment={destroyComment}
-                // updateComment={updateComment}
-                // videoId={videoId}
-              />
+                        key={comment.id}
+                        comment={comment}
+                        destroyComment={destroyComment}
+                      />
             } else {
               return null;
             }

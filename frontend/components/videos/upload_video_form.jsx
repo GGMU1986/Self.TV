@@ -8,7 +8,10 @@ import UploadPart2 from "./video_upload_2";
 class UploadVideoForm extends React.Component {
   constructor(props) {
     super(props)
-    this.state = this.props.video;
+    this.state = {
+      video: this.props.video,
+    }
+      
     
     this.handleFile = this.handleFile.bind(this);
     this.handleInput = this.handleInput.bind(this);
@@ -19,11 +22,12 @@ class UploadVideoForm extends React.Component {
   handleFile(e) {
     // check if file ends with .mp4
     const file = e.currentTarget.files[0]
-    // if (!file.endsWith('.mp4')){
-    //   this.setState({
-    //     errors: "Please make sure your video is an MP4!"
-    //   })
-    // }
+    // console.log(file.name)
+    if (!file.name.endsWith('.mp4')){
+      this.setState({
+        errors: "Please make sure your video is an MP4!"
+      })
+    }
     const fileReader = new FileReader();
     fileReader.onloadend = () => {
       this.setState({
@@ -71,6 +75,7 @@ class UploadVideoForm extends React.Component {
       <UploadPart1 
         handleFile={this.handleFile} 
         closeModal={closeModal}
+        errors={errors}
       />
     ) : (
       <UploadPart2 
@@ -98,9 +103,9 @@ const mSTP = state => ({
     videoFile: null,
     videoUrl: null,
     photoFile: null,
-    photoUrl: null
+    photoUrl: null,
+    errors: ''
   },
-  // errors: ''
 });
 
 const mDTP = dispatch => {

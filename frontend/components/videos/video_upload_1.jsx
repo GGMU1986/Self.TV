@@ -1,6 +1,6 @@
 import React from "react";
 
-const UploadPart1 = ({ handleFile, closeModal }) => {
+const UploadPart1 = ({ handleFile, closeModal, errors }) => {
   return (
     <div className="upload-video-container">
       <div className="upload-videos-header">
@@ -30,6 +30,7 @@ const UploadPart1 = ({ handleFile, closeModal }) => {
             accept=".mp4"
           />
         </label>
+        {errors}
       </main>
       <div className="footer-upload-videos">
         <p className='gray'>
