@@ -118,7 +118,9 @@ class VideoShow extends React.Component {
                 </div>
                 <br />
                 <div className="video-show-descr">
-                  {video.description}
+                  {
+                    video.description === undefined ? video.description : ''
+                  }
                 </div>
                 {subBtn}
               </div>

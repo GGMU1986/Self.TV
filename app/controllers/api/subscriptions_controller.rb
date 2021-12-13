@@ -9,9 +9,9 @@ class Api::SubscriptionsController < ApplicationController
   end
   
   def destroy
-    # debugger
+   
     @subscription = current_user.subscriptions.find_by(id: params[:id])
-    # debugger
+  
     if @subscription
       @subscription.destroy
       render :info
