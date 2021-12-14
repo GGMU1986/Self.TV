@@ -18,37 +18,44 @@ class UploadVideoForm extends React.Component {
     this.handleThumbnail = this.handleThumbnail.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   };
-  
+
   handleFile(e) {
-    // check if file ends with .mp4
+    // check if file ends with .mp4 || .MP4
     const file = e.currentTarget.files[0]
-    // console.log(file.name)
-    if (!file.name.endsWith('.mp4')){
+  
+    if ((!file.name.endsWith('.mp4')) && (!file.name.endsWith('.MP4'))){
       this.setState({
         errors: "Please make sure your video is an MP4!"
       })
+    } else {
+      const fileReader = new FileReader();
+      fileReader.onloadend = () => {
+        this.setState({
+          title: file.name,
+          videoFile: file,
+          videoUrl: fileReader.result
+        })
+      }
+      if (file) fileReader.readAsDataURL(file);
     }
-    const fileReader = new FileReader();
-    fileReader.onloadend = () => {
-      this.setState({
-        title: file.name,
-        videoFile: file,
-        videoUrl: fileReader.result
-      })
-    }
-    if (file) fileReader.readAsDataURL(file);
   };
 
   handleThumbnail(e) {
     const file = e.currentTarget.files[0]
-    const fileReader = new FileReader();
-    fileReader.onloadend = () => {
+    if (!file){
       this.setState({
-        photoFile: file,
-        photoUrl: fileReader.result
+
       })
+    } else {
+      const fileReader = new FileReader();
+      fileReader.onloadend = () => {
+        this.setState({
+          photoFile: file,
+          photoUrl: fileReader.result
+        })
+      }
+      if (file) fileReader.readAsDataURL(file);
     }
-    if (file) fileReader.readAsDataURL(file);
   }
 
   handleInput(field) {
@@ -56,19 +63,25 @@ class UploadVideoForm extends React.Component {
   };
 
   handleSubmit(e) {
-    
-    e.preventDefault();
-    let formData = new FormData();
-    formData.append('video[title]', this.state.title)
-    formData.append('video[description]', this.state.description)
-    formData.append('video[video]', this.state.videoFile)
-    formData.append('video[photo]', this.state.photoFile)
-    this.props.createVideo(formData).then(() => this.props.fetchVideos())
-      .then(video => this.props.history.push('/'));
-      this.props.closeModal();
+    if (!this.props.photoFile){
+      this.setState({
+        errors: 'Please choose a Thumbnail'
+      })
+    } else {
+      e.preventDefault();
+      let formData = new FormData();
+      formData.append('video[title]', this.state.title)
+      formData.append('video[description]', this.state.description)
+      formData.append('video[video]', this.state.videoFile)
+      formData.append('video[photo]', this.state.photoFile)
+      this.props.createVideo(formData).then(() => this.props.fetchVideos())
+        .then(video => this.props.history.push('/'));
+        this.props.closeModal();
+    }
   }
 
   render() {
+    
     const { closeModal } = this.props;
     const { videoFile, title, videoUrl, photoUrl, errors } = this.state;
     const part = !videoFile ? (
@@ -88,6 +101,7 @@ class UploadVideoForm extends React.Component {
         title={title}
         videoUrl={videoUrl}
         photoUrl={photoUrl}
+        errors={errors}
       />
     )
     return (

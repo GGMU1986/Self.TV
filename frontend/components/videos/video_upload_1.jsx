@@ -11,6 +11,7 @@ const UploadPart1 = ({ handleFile, closeModal, errors }) => {
       </div>
       <hr />
       <main className='file-upload'>
+        
         <div className="upload-circle">
           <i className="fas fa-upload"></i>
         </div>
@@ -30,7 +31,9 @@ const UploadPart1 = ({ handleFile, closeModal, errors }) => {
             accept=".mp4"
           />
         </label>
-        {errors}
+         <div className="upload-errors">
+            {errors}
+          </div>
       </main>
       <div className="footer-upload-videos">
         <p className='gray'>

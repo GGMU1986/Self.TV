@@ -15762,26 +15762,26 @@ var UploadVideoForm = /*#__PURE__*/function (_React$Component) {
     value: function handleFile(e) {
       var _this2 = this;
 
-      // check if file ends with .mp4
-      var file = e.currentTarget.files[0]; // console.log(file.name)
+      // check if file ends with .mp4 || .MP4
+      var file = e.currentTarget.files[0];
 
-      if (!file.name.endsWith('.mp4')) {
+      if (!file.name.endsWith('.mp4') && !file.name.endsWith('.MP4')) {
         this.setState({
           errors: "Please make sure your video is an MP4!"
         });
+      } else {
+        var fileReader = new FileReader();
+
+        fileReader.onloadend = function () {
+          _this2.setState({
+            title: file.name,
+            videoFile: file,
+            videoUrl: fileReader.result
+          });
+        };
+
+        if (file) fileReader.readAsDataURL(file);
       }
-
-      var fileReader = new FileReader();
-
-      fileReader.onloadend = function () {
-        _this2.setState({
-          title: file.name,
-          videoFile: file,
-          videoUrl: fileReader.result
-        });
-      };
-
-      if (file) fileReader.readAsDataURL(file);
     }
   }, {
     key: "handleThumbnail",
@@ -15789,16 +15789,21 @@ var UploadVideoForm = /*#__PURE__*/function (_React$Component) {
       var _this3 = this;
 
       var file = e.currentTarget.files[0];
-      var fileReader = new FileReader();
 
-      fileReader.onloadend = function () {
-        _this3.setState({
-          photoFile: file,
-          photoUrl: fileReader.result
-        });
-      };
+      if (!file) {
+        this.setState({});
+      } else {
+        var fileReader = new FileReader();
 
-      if (file) fileReader.readAsDataURL(file);
+        fileReader.onloadend = function () {
+          _this3.setState({
+            photoFile: file,
+            photoUrl: fileReader.result
+          });
+        };
+
+        if (file) fileReader.readAsDataURL(file);
+      }
     }
   }, {
     key: "handleInput",
@@ -15814,18 +15819,24 @@ var UploadVideoForm = /*#__PURE__*/function (_React$Component) {
     value: function handleSubmit(e) {
       var _this5 = this;
 
-      e.preventDefault();
-      var formData = new FormData();
-      formData.append('video[title]', this.state.title);
-      formData.append('video[description]', this.state.description);
-      formData.append('video[video]', this.state.videoFile);
-      formData.append('video[photo]', this.state.photoFile);
-      this.props.createVideo(formData).then(function () {
-        return _this5.props.fetchVideos();
-      }).then(function (video) {
-        return _this5.props.history.push('/');
-      });
-      this.props.closeModal();
+      if (!this.props.photoFile) {
+        this.setState({
+          errors: 'Please choose a Thumbnail'
+        });
+      } else {
+        e.preventDefault();
+        var formData = new FormData();
+        formData.append('video[title]', this.state.title);
+        formData.append('video[description]', this.state.description);
+        formData.append('video[video]', this.state.videoFile);
+        formData.append('video[photo]', this.state.photoFile);
+        this.props.createVideo(formData).then(function () {
+          return _this5.props.fetchVideos();
+        }).then(function (video) {
+          return _this5.props.history.push('/');
+        });
+        this.props.closeModal();
+      }
     }
   }, {
     key: "render",
@@ -15850,7 +15861,8 @@ var UploadVideoForm = /*#__PURE__*/function (_React$Component) {
         photoFile: this.state.photoFile,
         title: title,
         videoUrl: videoUrl,
-        photoUrl: photoUrl
+        photoUrl: photoUrl,
+        errors: errors
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, part);
     }
@@ -16634,7 +16646,9 @@ var UploadPart1 = function UploadPart1(_ref) {
     className: "video-input",
     onChange: handleFile,
     accept: ".mp4"
-  })), errors), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "upload-errors"
+  }, errors)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "footer-upload-videos"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
     className: "gray"
@@ -16664,6 +16678,7 @@ var UploadPart2 = function UploadPart2(_ref) {
   var closeModal = _ref.closeModal,
       handleInput = _ref.handleInput,
       handleThumbnail = _ref.handleThumbnail,
+      errors = _ref.errors,
       handleSubmit = _ref.handleSubmit,
       photoFile = _ref.photoFile,
       title = _ref.title,
@@ -16718,7 +16733,9 @@ var UploadPart2 = function UploadPart2(_ref) {
     type: "file",
     className: "thumb-file",
     onChange: handleThumbnail
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "upload-errors"
+  }, errors)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "middle-right"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("video", {
     className: "video-preview",
