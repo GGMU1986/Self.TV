@@ -16,7 +16,12 @@ const UploadPart2 = ({
       <hr />
       <div className="middle">
         <div className="middle-left">
-          <p className="details">Details</p>
+          <div className="details-errors-container">
+            <p className="details">Details</p>
+            <div className="title-errors">
+              {titleErrors}
+            </div>
+          </div>
           <input  
             type="text" 
             className='title2'
@@ -58,14 +63,11 @@ const UploadPart2 = ({
                 </label>
               ) 
             }
-            <div className="upload-errors">
+            <div className="thumb-errors">
               {thumbErrors}
             </div>
         </div>
         <div className="middle-right">
-          <div className="upload-errors">
-            {titleErrors}
-          </div>
           {
             <video
               className="video-preview" 

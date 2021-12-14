@@ -69,7 +69,7 @@ class UploadVideoForm extends React.Component {
     } 
     if (!this.state.title){
       publish = false;
-      this.setState({``
+      this.setState({
         titleErrors: 'A title is required'
       })
     }

@@ -128,3 +128,21 @@
   color: gray;
 }
 
+.details-errors-container{
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.thumb-errors{
+  font-size: 21px;
+  color: red;
+  margin-top: 5px;
+}
+
+.title-errors{
+  font-size: 21px;
+  color: red;
+  margin-right: 50px;
+}
+
