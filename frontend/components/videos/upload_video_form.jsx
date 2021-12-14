@@ -8,10 +8,7 @@ import UploadPart2 from "./video_upload_2";
 class UploadVideoForm extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      video: this.props.video,
-    }
-      
+    this.state = this.props.video
     
     this.handleFile = this.handleFile.bind(this);
     this.handleInput = this.handleInput.bind(this);
@@ -42,32 +39,42 @@ class UploadVideoForm extends React.Component {
 
   handleThumbnail(e) {
     const file = e.currentTarget.files[0]
-    if (!file){
+  
+    const fileReader = new FileReader();
+    fileReader.onloadend = () => {
       this.setState({
-
+        photoFile: file,
+        photoUrl: fileReader.result,
+        thumbErrors: ''
       })
-    } else {
-      const fileReader = new FileReader();
-      fileReader.onloadend = () => {
-        this.setState({
-          photoFile: file,
-          photoUrl: fileReader.result
-        })
-      }
-      if (file) fileReader.readAsDataURL(file);
     }
+    if (file) fileReader.readAsDataURL(file);
   }
-
+  
   handleInput(field) {
-    return e => this.setState({ [field]: e.currentTarget.value });
+    return e => this.setState({ 
+      [field]: e.currentTarget.value, 
+      titleErrors: '' 
+    });
   };
 
   handleSubmit(e) {
-    if (!this.props.photoFile){
+    let publish = true;
+
+    if (!this.state.photoFile){
+      publish = false;
       this.setState({
-        errors: 'Please choose a Thumbnail'
+        thumbErrors: 'Please choose a Thumbnail'
       })
-    } else {
+    } 
+    if (!this.state.title){
+      publish = false;
+      this.setState({``
+        titleErrors: 'A title is required'
+      })
+    }
+
+    if (publish){
       e.preventDefault();
       let formData = new FormData();
       formData.append('video[title]', this.state.title)
@@ -83,7 +90,11 @@ class UploadVideoForm extends React.Component {
   render() {
     
     const { closeModal } = this.props;
-    const { videoFile, title, videoUrl, photoUrl, errors } = this.state;
+    const { 
+      videoFile, title, videoUrl, 
+      photoUrl, errors, thumbErrors, titleErrors 
+    } = this.state;
+
     const part = !videoFile ? (
       <UploadPart1 
         handleFile={this.handleFile} 
@@ -101,7 +112,8 @@ class UploadVideoForm extends React.Component {
         title={title}
         videoUrl={videoUrl}
         photoUrl={photoUrl}
-        errors={errors}
+        thumbErrors={thumbErrors}
+        titleErrors={titleErrors}
       />
     )
     return (
@@ -118,7 +130,9 @@ const mSTP = state => ({
     videoUrl: null,
     photoFile: null,
     photoUrl: null,
-    errors: ''
+    errors: '',
+    thumbsErrors: '',
+    titleErrors: ''
   },
 });
 
