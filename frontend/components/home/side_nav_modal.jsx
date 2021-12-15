@@ -20,7 +20,7 @@ class SideNavModal extends React.Component{
     const { closeModal } = this.props
     return (
       <div className="side-nav-modal">
-         <Link to="/" className="big-nav-link">
+         <Link to="/" onClick={() => closeModal()} className="big-nav-link">
           <div className="side-nav-icon-cont">
             <div className="icon2">
               <i className="fas fa-home"></i>
@@ -50,28 +50,29 @@ class SideNavModal extends React.Component{
             </div>
           </div>
         </Link>
-        {/* <hr /> */}
-        <a href="https://github.com/GGMU1986" target="blank">
-          <FontAwesomeIcon icon={faGithub} className="modal-link big link"/>
-        </a>
-        <a 
-          href="https://www.linkedin.com/in/george-tsimis-a5986224/" 
-          target="blank"
-        >
-          <FontAwesomeIcon icon={faLinkedin} className="modal-link big link" id="in"/>
-        </a>
-        <a 
-          href="https://angel.co/u/george-tsimis" 
-          target="blank"
-        >
-          <FontAwesomeIcon icon={faAngellist} className="modal-link big link"/>
-        </a>
-        <a 
-          href="https://ggmu1986.github.io/" 
-          target="blank"
-        >
-          <i className="fas modal-link big link fa-user-tie"></i>
-        </a>
+        <div id="side-nav-modal-links">
+          <a href="https://github.com/GGMU1986" target="blank">
+            <FontAwesomeIcon icon={faGithub} className="modal-link big link"/>
+          </a>
+          <a 
+            href="https://www.linkedin.com/in/george-tsimis-a5986224/" 
+            target="blank"
+          >
+            <FontAwesomeIcon icon={faLinkedin} className="modal-link big link" id="in"/>
+          </a>
+          <a 
+            href="https://angel.co/u/george-tsimis" 
+            target="blank"
+          >
+            <FontAwesomeIcon icon={faAngellist} className="modal-link big link"/>
+          </a>
+          <a 
+            href="https://ggmu1986.github.io/" 
+            target="blank"
+          >
+            <img id="george-fav" className="big link" src={window.pers_icon} alt="prsonal-site" />
+          </a>
+        </div>
         <div className="avatar-container">
           <img id="george" src={window.avatar} alt="george" />
         </div>

@@ -1,14 +1,12 @@
 .side-nav-modal{
   width: 280px;
-  // height: calc(100vh - 60px);
   height: 100vh;
   background-color: white;
-  // position: fixed;
-  // left: 0;
 }
 
 .modal-link{
   margin-left: 5%;
+  font-size: 30px;
 }
 
 .side-nav-close{
@@ -46,4 +44,15 @@
   // bottom: 0;
   // left: 0;
   // transform: translate(-50%, -50%);
+}
+
+#george-fav{
+  width: 45px;
+  height: auto;
+}
+
+#side-nav-modal-links{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
