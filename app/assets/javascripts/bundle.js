@@ -16686,7 +16686,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 
-
 var UploadPart2 = function UploadPart2(_ref) {
   var closeModal = _ref.closeModal,
       handleInput = _ref.handleInput,
