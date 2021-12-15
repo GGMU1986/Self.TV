@@ -43,18 +43,11 @@ class Header extends React.Component {
 
   render() {
     const { currentUser, logout, openModal } = this.props;
-    // const profile = currentUser.imgUrl ? (
-    //   currentUser.imgUrl
-    // ) : (
-    //   currentUser.username[0].toUpperCase() 
-    // )
     
     return (
       <div className="header">
         <div className="bars-logo">
-          {/* <i  class="fas fa-bars bars">
-            {/* <i class="fas fa-hamburger ham collapsed"></i> */}
-          {/* </i>  */}
+
           <FontAwesomeIcon 
             onClick={() => openModal('side-nav')} 
             className="bars" 
@@ -109,8 +102,7 @@ class Header extends React.Component {
               href="https://ggmu1986.github.io/" 
               target="blank"
             >
-              {/* <FontAwesomeIcon icon={faAngellist} className="link"/> */}
-              <i className="fas link fa-user-tie"></i>
+              <img id="geo-icon" className="link" src={window.pers_icon} alt="george-icon" />
             </a>
           </div>
           <div>
