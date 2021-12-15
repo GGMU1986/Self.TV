@@ -6,7 +6,7 @@ const UploadPart1 = ({ handleFile, closeModal, errors }) => {
       <div className="upload-videos-header">
         <p className="title">Upload videos</p>
         <div className="upload-video-icons-header" onClick={closeModal}>
-          <i className="fas fa-times"></i>
+          <i className="fas fa-times x"></i>
         </div>
       </div>
       <hr />

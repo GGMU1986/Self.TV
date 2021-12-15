@@ -10,7 +10,7 @@ const UploadPart2 = ({
       <div className="header2">
         <p className="video-file-name">{title}</p>
         <div className="upload-video-icons-header" onClick={closeModal}>
-         <i className="fas fa-times"></i>
+         <i className="fas fa-times x x2"></i>
         </div>
       </div>
       <hr />
