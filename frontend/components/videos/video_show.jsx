@@ -10,15 +10,13 @@ class VideoShow extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      active: false,
-      like: {
-        likerId: '',
-        videoId: this.props.match.params.videoId,
-        dislike: false
-      }
+      subbed: this.subbed(),
+      subCount: this.props.subCount
     }
-    this.handleLike = this.handleLike.bind(this);
+    this.handleSub = this.handleSub.bind(this);
+    this.findSubId = this.findSubId.bind(this);
   }
+
   componentDidMount() {
     this.props.fetchVideo(this.props.match.params.videoId)
   }
@@ -29,29 +27,51 @@ class VideoShow extends React.Component {
     } 
   }
 
-  handleLike(e) {
-    const currDislike = this.state.like.dislike
-    const currState = this.state.active
-    this.setState({ active: !currState, dislike: !currDislike })
-    this.props.createLike(this.state.like)
+  subbed(){
+    for (let i = 0; i < this.props.subbedTo.length; i++){
+      if (this.props.subbedTo[i].id === this.props.video.uploaderId){
+        return true
+      }
+    }
+    return false
   }
   
-  handleDislike(e) {
-    const currState = this.state.like.dislike
-    this.setState({ dislike: !currState })
-    this.props.createLike(this.state.like)
+  findSubId(){
+    let subId;
+    for (let i = 0; i < this.props.subs.length; i++){
+      if (this.props.subs[i].userId === this.props.video.uploaderId &&
+        this.props.subs[i].subscriberId === this.props.currentUser.id){
+          subId = this.props.subs[i].id
+      }
+    }
+    return subId
   }
 
-  updateLike(e) {
-    this.setState({ dislike: null })
-    this.props.updateLike(this.state.like)
+  handleSub(){
+    if (this.state.subbed) {
+      this.props.destroySub(this.findSubId(),this.props.video.uploaderId) 
+      this.setState(prevState => ({
+        subCount: prevState.subCount - 1, subbed: false
+      }))
+    } else {
+      this.props.createSub(this.props.video.uploaderId)
+      this.setState(prevState => ({
+        subCount: prevState.subCount + 1, subbed: true
+      }))
+    }
   }
-    
+
     render() {
       const { 
-      video, destroyComment, 
-      comments, action, comment
-    } = this.props
+        video, destroyComment,
+        comments, action, comment
+      } = this.props
+      const subBtn = this.state.subbed ? (
+        <button onClick={this.handleSub} className="subbed">SUBSCRIBED</button>
+        ) : (
+          <button onClick={this.handleSub} className="sub">SUBSCRIBE</button>
+          )
+
     const uploadDate = new Date(video.createdAt).toString().slice(4, 15)
     let videoId = this.props.match.params.videoId
     return (
@@ -94,13 +114,15 @@ class VideoShow extends React.Component {
                     {video.channel}
                   </strong>
                   <br />
-                  1B subscribers
+                  {this.state.subCount} subscribers
                 </div>
                 <br />
                 <div className="video-show-descr">
-                  {video.description}
+                  {
+                    video.description === undefined ? video.description : ''
+                  }
                 </div>
-                <button className="sub">SUBSCRIBE</button>
+                {subBtn}
               </div>
             </div>
             <hr />
@@ -120,7 +142,6 @@ class VideoShow extends React.Component {
               <CommentsIndex 
                 comments={comments} 
                 destroyComment={destroyComment}
-                videoId={videoId}
               />
             </div>
           </div>

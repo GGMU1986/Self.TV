@@ -15,6 +15,11 @@
 
 .video-file-name {
   margin-left: 20px;
+  margin-top: 18px;
+}
+
+.x2{
+  margin-right: 40px;
 }
 
 .middle {
@@ -126,5 +131,23 @@
 .words {
   font-size: 12px;
   color: gray;
+}
+
+.details-errors-container{
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.thumb-errors{
+  font-size: 21px;
+  color: red;
+  margin-top: 5px;
+}
+
+.title-errors{
+  font-size: 21px;
+  color: red;
+  margin-right: 50px;
 }
 

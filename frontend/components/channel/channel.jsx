@@ -3,20 +3,33 @@ import Header from '../home/header';
 import SideNavBig from '../home/side_nav_big';
 import ChannelBody from './channel_body';
 import ChannelHeader from './channel_header';
+import Modal from '../modal/modal';
+import { fetchUser } from '../../actions/users_action';
 import { connect } from 'react-redux';
 
 class Channel extends React.Component{
+
+  componentDidMount(){
+    this.props.fetchUser(this.props.currentUser.id)
+  }
+
   render() {
+    const { currentUser, uploads, subs } = this.props;
     return (
       <div>
+        <Modal />
         <Header />
         <div className="channel-container">
           <SideNavBig />
             <div className="channel-header-body-container">
             <ChannelHeader 
               currentUser={currentUser}
+              subs={subs}
             />
-            <ChannelBody />
+            <ChannelBody 
+              currentUser={currentUser} 
+              uploads={uploads} 
+            />
           </div>
         </div>
       </div>
@@ -25,11 +38,13 @@ class Channel extends React.Component{
 }
 
 const mSTP = state => ({
-  currentUser: state.session.currentUser
+  currentUser: state.session.currentUser,
+  uploads: Object.values(state.entities.uploads),
+  subs: state.entities.subscribers
 });
 
-// const mDTP = dispatch => ({
+const mDTP = dispatch => ({
+  fetchUser: userId => dispatch(fetchUser(userId))
+});
 
-// });
-
-export default connect(mSTP)(Channel);
+export default connect(mSTP, mDTP)(Channel);

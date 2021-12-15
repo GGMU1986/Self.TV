@@ -20,21 +20,25 @@ const removeComment = commentId => ({
 
 export const destroyComment = commentId => dispatch => {
   return deleteComment(commentId).then(() => { 
-    return dispatch(removeComment(commentId))})
+    return dispatch(removeComment(commentId))
+  })
 };
 
 export const reviseComment = (comment) => dispatch => {
   return updateComment(comment).then(comment => { 
-    return dispatch(receiveComment(comment))})
+    return dispatch(receiveComment(comment))
+  })
 };
 
 export const requestComment = commentId => dispatch => {
   return fetchComment(commentId).then(comment => {
-    return dispatch(receiveComment(comment))}) 
+    return dispatch(receiveComment(comment))
+  }) 
 }
 
 export const makeComment = (comment, videoId) => dispatch => {
   return createComment(comment, videoId).then(comment => { 
-    return dispatch(receiveComment(comment))})
+    return dispatch(receiveComment(comment))
+  })
 };
 

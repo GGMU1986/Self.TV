@@ -1,16 +1,17 @@
 import React from "react";
 
-const UploadPart1 = ({ handleFile, closeModal }) => {
+const UploadPart1 = ({ handleFile, closeModal, errors }) => {
   return (
     <div className="upload-video-container">
       <div className="upload-videos-header">
         <p className="title">Upload videos</p>
         <div className="upload-video-icons-header" onClick={closeModal}>
-          <i className="fas fa-times"></i>
+          <i className="fas fa-times x"></i>
         </div>
       </div>
       <hr />
       <main className='file-upload'>
+        
         <div className="upload-circle">
           <i className="fas fa-upload"></i>
         </div>
@@ -30,6 +31,9 @@ const UploadPart1 = ({ handleFile, closeModal }) => {
             accept=".mp4"
           />
         </label>
+         <div className="upload-errors">
+            {errors}
+          </div>
       </main>
       <div className="footer-upload-videos">
         <p className='gray'>

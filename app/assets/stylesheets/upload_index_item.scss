@@ -1,0 +1,17 @@
+.channel-uploads{
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+}
+
+.upload-index-item{
+  display: flex;
+  flex-direction: column;
+  margin:  10px 20px;
+  height: 200px;
+}
+
+.upload-item{
+  width: 220px;
+  height: 150px;
+}

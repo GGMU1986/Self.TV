@@ -5,11 +5,10 @@ class VideoIndex extends React.Component {
   
   componentDidMount() {
     this.props.fetchVideos()
+    if (this.props.currentUser){
+      this.props.fetchUser(this.props.currentUser.id)
+    }
   };
-
-  // componentDidUpdate() {
-  //   this.props.fetchVideos()
-  // }
 
   render() {
     const { videos, incViews } = this.props;
@@ -20,7 +19,8 @@ class VideoIndex extends React.Component {
                                 key={video.id} 
                                 video={video}
                                 incViews={incViews}
-                              />)
+                              />
+                    )
         }
       </div>
     )

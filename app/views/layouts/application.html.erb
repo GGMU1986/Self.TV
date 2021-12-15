@@ -1,11 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="https://kit.fontawesome.com/330804cb51.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/67ab5644d5.js" crossorigin="anonymous"></script>
     <title>Self.TV</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+     <meta property="og:title" content="Self.TV" />
+     <meta property='og:image' content="<%= image_url('self_tv_pic.png') %>"/>
+     <meta property="og:description"
+       content="Self.TV is pixel-perfect clone of YouTube. 
+       Users can view videos uploaded by other users, as well as 
+       comment and like those videos. Users can upload their own 
+       videos as well."
+     />
+     <meta property="og:url"
+       content="http://selfdottv.herokuapp.com/"
+     />
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <% if current_user %>
@@ -13,10 +23,14 @@
         window.currentUser = {
           'id': <%= current_user.id %>,
           'username': '<%= current_user.username %>',
-          'email': '<%= current_user.email %>'
+          'email': '<%= current_user.email %>',
+          'createdAt': '<%= current_user.created_at %>'
         };
       </script> 
     <% end %>
+    <script type=text/javascript>
+      window.avatar = '<%= image_url('george.png') %>'
+    </script>
     <%= favicon_link_tag asset_path('self_tv_favicon.png') %>
   </head>
 

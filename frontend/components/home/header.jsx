@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session';
+import { openModal } from '../../actions/modal_actions';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { 
@@ -15,16 +16,13 @@ import {
   faLinkedin,
   faYoutube,
   faGithub,
-  faAngellist,
-  // faUserTie
+  faAngellist
 } from '@fortawesome/free-brands-svg-icons'
-import { openModal } from '../../actions/modal_actions';
 library.add(
   faLinkedin,
   faYoutube,
   faGithub,
   faAngellist,
-  // faUserTie
 )
 
 class Header extends React.Component {
@@ -54,7 +52,14 @@ class Header extends React.Component {
     return (
       <div className="header">
         <div className="bars-logo">
-          <FontAwesomeIcon className="bars" icon={faBars} />
+          {/* <i  class="fas fa-bars bars">
+            {/* <i class="fas fa-hamburger ham collapsed"></i> */}
+          {/* </i>  */}
+          <FontAwesomeIcon 
+            onClick={() => openModal('side-nav')} 
+            className="bars" 
+            icon={faBars} 
+          />
           <div className="logo">
             <Link className="logo-link" to="/">
               <FontAwesomeIcon className="YT" icon={faYoutube} />
@@ -100,26 +105,23 @@ class Header extends React.Component {
             >
               <FontAwesomeIcon icon={faAngellist} className="link"/>
             </a>
-            {/* <a 
-              href="https://www.linkedin.com/in/george-tsimis-a5986224/" 
+            <a 
+              href="https://ggmu1986.github.io/" 
               target="blank"
             >
-              <FontAwesomeIcon icon={faUserTie} className="link two"/>
-            </a> */}
+              {/* <FontAwesomeIcon icon={faAngellist} className="link"/> */}
+              <i className="fas link fa-user-tie"></i>
+            </a>
           </div>
           <div>
             {
               currentUser ? (
                 <div onClick={this.addActiveClass} className="loggedin">
-                  {/* {
-                    currentUser.imgUrl ? (
-                      <div className="prof-icon-img"><img className="hi" src={currentUser.imgUrl} alt="profile-pic" /></div>
-                    ) : (
-                      <div className="prof-icon-content">{currentUser.username[0].toUpperCase()}</div>
-                    )
-                  } */}
-                  <div className="prof-icon-content">{currentUser.username[0].toUpperCase()}</div>
-                  {/* <span className="prof-icon-content">{profile}</span> */}
+                 {
+                   currentUser ? (
+                     <div className="prof-icon-content">{currentUser.username[0].toUpperCase()}</div>
+                   ) : null
+                 }
                   <div className={this.state.active ? 'dropdown active' : 'dropdown'}>
                     <div className="dropdown-username">
                       <div className="user-email">
@@ -131,7 +133,7 @@ class Header extends React.Component {
                         </div>
                       </div>
                     </div>
-                    <Link className="out" to="channel">
+                    <Link className="out" to="/channel">
                       <i className="fas fa-user-alt icon"></i>
                       <p>Your channel</p>
                     </Link>

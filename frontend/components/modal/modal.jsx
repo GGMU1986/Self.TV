@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from 'react-redux';
 import { closeModal, openModal } from '../../actions/modal_actions';
 import UploadVideoForm from "../videos/upload_video_form";
-// import UploadVideoTitle from "../videos/upload_video_title";
+import SideNavModal from "../home/side_nav_modal";
 
 const Modal = ({modal, closeModal, openModal}) => {
   if (!modal) {
@@ -12,10 +12,21 @@ const Modal = ({modal, closeModal, openModal}) => {
   let component;
   switch (modal) {
     case 'upload':
-      component = <UploadVideoForm 
-                    closeModal={closeModal}
-                    openModal={openModal}  
-                  />;
+      component = 
+        <div className="modal-child" onClick={e => e.stopPropagation()}>
+          <UploadVideoForm 
+            closeModal={closeModal}
+            openModal={openModal}  
+          />;
+        </div>
+
+      break;
+    case 'side-nav':
+      component = 
+        <div className="modal-child2" onClick={e => e.stopPropagation()}>
+          <SideNavModal closeModal={closeModal}/>
+        </div>
+  
       break;
     default:
       return null;
@@ -23,9 +34,9 @@ const Modal = ({modal, closeModal, openModal}) => {
 
   return (
     <div className='modal-background' >
-      <div className="modal-child" onClick={e => e.stopPropagation()}>
+    {/* //   <div className="modal-child" onClick={e => e.stopPropagation()}> */}
         {component}
-      </div>
+    {/* //   </div> */}
     </div>
   )
 };

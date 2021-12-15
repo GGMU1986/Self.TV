@@ -32,6 +32,19 @@
   font-size: 12px;
 }
 
+.subbed {
+  right: 0;
+  bottom: 50%;
+  position: absolute;
+  color: gray;
+  background-color: lightgray;
+  width: 110px;
+  height: 35px;
+  padding: 10px 10px;
+  border: none;
+  font-size: 12px;
+}
+
 .video-show-title {
   margin-top: 20px;
   margin-bottom: 5px;

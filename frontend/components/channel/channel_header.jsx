@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
 
 class ChannelHeader extends React.Component{
   render() {
-    const { currentUser } = this.props;
+    const { currentUser, subs } = this.props;
+
     return (
       <div className="channel-header-container">
         <div className="letter-username-sub-container">
@@ -15,20 +15,15 @@ class ChannelHeader extends React.Component{
               {currentUser.username}
             </div>
             <div className="channel-header-subs">
-              0 Subscribers
+              {
+                {subs} === 1 ? `${subs} Subscriber` : `${subs} Subscribers`
+              }
             </div>
           </div>
           <div className="about-videos">
-            <Link to="/about" className="channel-link">ABOUT</Link>
-            <Link to="/videos" className="channel-link">VIDEOS</Link>
+            <p className="channel-link">VIDEOS</p>
           </div>
         </div>
-        <button 
-          // onClick={}
-          className="create-channel-btn"
-        >
-          Create Channel
-        </button>
       </div>
     )
   }

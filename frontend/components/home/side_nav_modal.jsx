@@ -15,10 +15,11 @@ library.add(
   faAngellist,
 )
 
-class SideNavBig extends React.Component{
+class SideNavModal extends React.Component{
   render() {
+    const { closeModal } = this.props
     return (
-      <div className="side-nav-big">
+      <div className="side-nav-modal">
          <Link to="/" className="big-nav-link">
           <div className="side-nav-icon-cont">
             <div className="icon2">
@@ -51,25 +52,25 @@ class SideNavBig extends React.Component{
         </Link>
         {/* <hr /> */}
         <a href="https://github.com/GGMU1986" target="blank">
-          <FontAwesomeIcon icon={faGithub} className="big link"/>
+          <FontAwesomeIcon icon={faGithub} className="modal-link big link"/>
         </a>
         <a 
           href="https://www.linkedin.com/in/george-tsimis-a5986224/" 
           target="blank"
         >
-          <FontAwesomeIcon icon={faLinkedin} className="big link" id="in"/>
+          <FontAwesomeIcon icon={faLinkedin} className="modal-link big link" id="in"/>
         </a>
         <a 
           href="https://angel.co/u/george-tsimis" 
           target="blank"
         >
-          <FontAwesomeIcon icon={faAngellist} className="big link"/>
+          <FontAwesomeIcon icon={faAngellist} className="modal-link big link"/>
         </a>
         <a 
           href="https://ggmu1986.github.io/" 
           target="blank"
         >
-          <i className="fas big link fa-user-tie"></i>
+          <i className="fas modal-link big link fa-user-tie"></i>
         </a>
         <div className="avatar-container">
           <img id="george" src={window.avatar} alt="george" />
@@ -78,9 +79,13 @@ class SideNavBig extends React.Component{
           Created by George Tsimis with Ruby on Rails, JavaScript,
           React, Redux, Amazon Web Services, Webpack, and Node.js
         </p>
+        <div onClick={() => closeModal()} className="side-close-container">
+          <i className="fas side-nav-close fa-times"></i>
+        </div>
       </div>
     )
   }
 };
 
-export default SideNavBig;
+export default SideNavModal;
+

@@ -8,7 +8,6 @@
 #  updated_at :datetime         not null
 #
 class View < ApplicationRecord
-  # debugger
   # validates :video_id, presence: true
 
   belongs_to :video,

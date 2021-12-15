@@ -2,21 +2,26 @@ import { faDove } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 
 const UploadPart2 = ({ 
-  closeModal, handleInput, handleThumbnail,
-  handleSubmit, photoFile, title, videoUrl, photoUrl 
+  closeModal, handleInput, handleThumbnail, thumbErrors,
+  titleErrors, handleSubmit, photoFile, title, videoUrl, photoUrl 
 }) => {
   return (
     <div className="title-desc-container">
       <div className="header2">
         <p className="video-file-name">{title}</p>
         <div className="upload-video-icons-header" onClick={closeModal}>
-         <i className="fas fa-times"></i>
+         <i className="fas fa-times x x2"></i>
         </div>
       </div>
       <hr />
       <div className="middle">
         <div className="middle-left">
-          <p className="details">Details</p>
+          <div className="details-errors-container">
+            <p className="details">Details</p>
+            <div className="title-errors">
+              {titleErrors}
+            </div>
+          </div>
           <input  
             type="text" 
             className='title2'
@@ -58,6 +63,9 @@ const UploadPart2 = ({
                 </label>
               ) 
             }
+            <div className="thumb-errors">
+              {thumbErrors}
+            </div>
         </div>
         <div className="middle-right">
           {

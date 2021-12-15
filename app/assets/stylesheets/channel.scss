@@ -18,19 +18,25 @@
 }
 
 .about-videos{
+  margin: 15px 0 0 0;
   position: absolute;
-   bottom: -40%;
+  bottom: -50%;
 }
 
 .channel-link{
-  margin-left: 10px;
-  color: gray;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  padding-bottom: 0;
+  color: black;
   font-weight: 600;
 }
 
 .channel-body-container{
+  display: flex;
   width: calc(100vw - 15%);
   height: calc(100vh - 15% - 60px);
+  // position:relative;
+  background-color: rgb(238, 238, 238);
 }
 
 .create-channel-btn{
@@ -68,4 +74,21 @@
 .channel-header-letter > p{
   color: white;
   font-size: 55px;
+}
+
+.stats{
+  width: 20%;
+  margin-top: 5%;
+  margin-right: 10%; 
+}
+
+.joined{
+  margin: 15px 0;
+}
+
+.no-uploads{
+  display: flex;
+  font-size: 40px;
+  margin-left: 25%;
+  margin-top: 10%;
 }
