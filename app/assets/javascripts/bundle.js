@@ -13778,7 +13778,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-
 var ChannelHeader = /*#__PURE__*/function (_React$Component) {
   _inherits(ChannelHeader, _React$Component);
 
@@ -16550,7 +16549,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
 
 
 var UploadPart2 = function UploadPart2(_ref) {

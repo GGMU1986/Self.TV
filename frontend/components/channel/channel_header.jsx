@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
 
 class ChannelHeader extends React.Component{
   render() {
@@ -22,12 +21,6 @@ class ChannelHeader extends React.Component{
             <p className="channel-link">VIDEOS</p>
           </div>
         </div>
-        {/* <button 
-          // onClick={}
-          className="create-channel-btn"
-        >
-          Create Channel
-        </button> */}
       </div>
     )
   }
