@@ -4,7 +4,6 @@ import ChannelVideos from './channel_videos';
 
 class ChannelBody extends React.Component{
   render() {
-    const whichLink = if ()
     return (
       <div className="channel-body-container">
         
