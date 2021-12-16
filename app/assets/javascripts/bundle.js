@@ -13390,9 +13390,7 @@ var createSub = function createSub(userId) {
 };
 var destroySub = function destroySub(subId, userId) {
   return function (dispatch) {
-    debugger;
     return (0,_utils_subs_util__WEBPACK_IMPORTED_MODULE_0__.deleteSub)(subId, userId).then(function (sub) {
-      debugger;
       return dispatch(removeSub(sub));
     });
   };
@@ -16253,7 +16251,6 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "findSubId",
     value: function findSubId() {
-      debugger;
       var subId;
 
       for (var i = 0; i < this.props.subs.length; i++) {
@@ -16267,8 +16264,6 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleSub",
     value: function handleSub() {
-      debugger;
-
       if (this.state.subbed) {
         this.props.destroySub(this.findSubId(), this.props.video.uploaderId);
         this.setState(function (prevState) {
@@ -16314,7 +16309,7 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "video-show-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("video", {
-        className: "video-cont",
+        id: "video-cont",
         src: video.videoUrl,
         title: video.title,
         autoPlay: true,
@@ -17476,7 +17471,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "deleteSub": () => (/* binding */ deleteSub)
 /* harmony export */ });
 var makeSub = function makeSub(userId) {
-  // debugger
   return $.ajax({
     method: 'POST',
     url: '/api/subscriptions',
@@ -17486,7 +17480,6 @@ var makeSub = function makeSub(userId) {
   });
 };
 var deleteSub = function deleteSub(subId, userId) {
-  debugger;
   return $.ajax({
     method: 'DELETE',
     url: "/api/subscriptions/".concat(subId),

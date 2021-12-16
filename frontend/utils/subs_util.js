@@ -1,5 +1,4 @@
 export const makeSub = userId => {
-  // debugger
   return $.ajax({
     method: 'POST',
     url: '/api/subscriptions',
@@ -8,7 +7,6 @@ export const makeSub = userId => {
 };
 
 export const deleteSub = (subId, userId) => {
-  debugger
   return $.ajax({
     method: 'DELETE',
     url: `/api/subscriptions/${subId}`,

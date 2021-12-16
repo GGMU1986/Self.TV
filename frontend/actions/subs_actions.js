@@ -20,9 +20,7 @@ export const createSub = userId => dispatch => {
 };
 
 export const destroySub = (subId, userId) => dispatch => {
-  debugger
   return deleteSub(subId, userId).then(sub => {
-    debugger
     return dispatch(removeSub(sub))
   })
 };

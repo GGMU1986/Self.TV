@@ -37,7 +37,6 @@ class VideoShow extends React.Component {
   }
   
   findSubId(){
-    debugger
     let subId;
     for (let i = 0; i < this.props.subs.length; i++){
       if (this.props.subs[i].userId === this.props.video.uploaderId &&
@@ -49,7 +48,6 @@ class VideoShow extends React.Component {
   }
 
   handleSub(){
-    debugger
     if (this.state.subbed) {
       this.props.destroySub(this.findSubId(),this.props.video.uploaderId) 
       this.setState(prevState => ({
@@ -85,7 +83,7 @@ class VideoShow extends React.Component {
             <div>
               <div className="video-show-container">
                 <video
-                  className="video-cont"
+                  id="video-cont"
                   src={video.videoUrl}   
                   title={video.title}
                   autoPlay

@@ -14,9 +14,16 @@
   position: relative;
 }
 
-.video-cont {
+#video-cont {
   width: 100%;
   height: 40%;
+  // object-fit: contain;
+}
+
+.video-show-container {
+  position: relative;
+  max-width:1400px;
+  // height: 1300px;
 }
 
 .sub {
@@ -61,10 +68,6 @@
   align-items: center;
 }
 
-.video-show-container {
-  position: relative;
-  max-width:1400px;
-}
 
 .play-btn {
   position: absolute;
