@@ -29,9 +29,13 @@ class Header extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      active: false
+      active: false,
+      inputSearch: '',
+      searchArray: []
     }
     this.addActiveClass = this.addActiveClass.bind(this);
+    this.searchVideos = this.searchVideos.bind(this);
+    this.handleInput = this.handleInput.bind(this)
   }
 
   addActiveClass(e) {
@@ -41,13 +45,34 @@ class Header extends React.Component {
     })
   }
 
+  searchVideos(){
+    console.log(this.state.inputSearch)
+    let searchVideos = [];
+    this.props.videos.forEach(video => {
+      if (video.title.toLowerCase().includes(this.state.inputSearch)){
+        searchVideos.push(video)
+      }
+    })
+    this.setState({
+      searchArray: searchVideos
+    })
+  }
+
+  handleInput(e){
+    this.setState({
+      inputSearch: e.currentTarget.value
+    })
+    setTimeout(() => this.searchVideos(), 50)    
+  }
+
   render() {
+    console.log("header-comp", this.state.searchArray)
+
     const { currentUser, logout, openModal } = this.props;
     
     return (
       <div className="header">
         <div className="bars-logo">
-
           <FontAwesomeIcon 
             onClick={() => openModal('side-nav')} 
             className="bars" 
@@ -63,10 +88,23 @@ class Header extends React.Component {
 
         <div className="search-mic">
           <div className='search-glass'>
-            <input className="input" type="text" placeholder="Search" />
-            <div className="mag-glass">
+            <input
+              onChange={this.handleInput}
+              value={this.state.inputSearch} 
+              className="input" 
+              type="input" 
+              placeholder="Search" 
+            />
+            <Link 
+              className="mag-glass"
+              to={{
+                pathname: '/search',
+                state: {
+                  searchArray: this.state.searchArray
+                }
+            }}>
               <i className="fas fa-search"></i>
-            </div>
+            </Link>
           </div>
           <div className="mic">
             <FontAwesomeIcon 
@@ -150,7 +188,8 @@ class Header extends React.Component {
 }
 
 const mSTP = state => ({
-  currentUser: state.session.currentUser
+  currentUser: state.session.currentUser,
+  videos: Object.values(state.entities.videos)
 });
 
 const mDTP = dispatch => ({

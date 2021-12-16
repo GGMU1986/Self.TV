@@ -54,26 +54,6 @@
    cursor: pointer;
  }
 
-// .bars.collapsed:hover .bars:before {
-//     content: '\f805';
-// }
-// .ham{
-//   color: transparent;
-// }
-
-// .bars:hover{
-//   display: none;
-// }
-
-// .ham:hover{
-//   color: black;
-// }
-
-// .bars:hover .ham{
-//   display: inline-block;
-// }
-
-
  .ext-links {
    width: 25%;
    display: flex;
@@ -119,6 +99,7 @@
   height: 34px;
   width: 60px;
   cursor: pointer;
+  color:black;
  }
 
  .mag-glass:hover {

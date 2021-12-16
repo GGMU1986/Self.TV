@@ -19,6 +19,7 @@ class VideoShow extends React.Component {
 
   componentDidMount() {
     this.props.fetchVideo(this.props.match.params.videoId)
+    
   }
 
   componentDidUpdate(prevProps) {
@@ -83,7 +84,7 @@ class VideoShow extends React.Component {
             <div>
               <div className="video-show-container">
                 <video
-                  id="video-cont"
+                  id="video-container"
                   src={video.videoUrl}   
                   title={video.title}
                   autoPlay

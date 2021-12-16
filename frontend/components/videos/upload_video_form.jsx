@@ -64,13 +64,13 @@ class UploadVideoForm extends React.Component {
     if (!this.state.photoFile){
       publish = false;
       this.setState({
-        thumbErrors: 'Please choose a Thumbnail'
+        thumbErrors: '❗ Please choose a Thumbnail'
       })
     } 
     if (!this.state.title){
       publish = false;
       this.setState({
-        titleErrors: 'A title is required'
+        titleErrors: '❗ A title is required'
       })
     }
 
