@@ -16244,6 +16244,7 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "findSubId",
     value: function findSubId() {
+      debugger;
       var subId;
 
       for (var i = 0; i < this.props.subs.length; i++) {
@@ -16257,6 +16258,8 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleSub",
     value: function handleSub() {
+      debugger;
+
       if (this.state.subbed) {
         this.props.destroySub(this.findSubId(), this.props.video.uploaderId);
         this.setState(function (prevState) {
@@ -17134,9 +17137,9 @@ var SubscriptionsReducer = function SubscriptionsReducer() {
       return nextState;
 
     case _actions_subs_actions__WEBPACK_IMPORTED_MODULE_1__.REMOVE_SUB:
-      var sub = nextState.subs[action.subId];
-      delete nextState.subs[action.subId];
-      delete nextState.usersSubTo[sub.userId];
+      // let sub = nextState.subs[action.subId]
+      delete nextState.subs[action.payload.sub.id];
+      delete nextState.usersSubTo[action.payload.subbedTo.id];
       return nextState;
 
     default:
@@ -17474,6 +17477,7 @@ var makeSub = function makeSub(userId) {
   });
 };
 var deleteSub = function deleteSub(subId, userId) {
+  debugger;
   return $.ajax({
     method: 'DELETE',
     url: "/api/subscriptions/".concat(subId),

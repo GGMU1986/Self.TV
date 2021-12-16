@@ -23,9 +23,9 @@ const SubscriptionsReducer = (state = {}, action) => {
       return nextState
     
     case REMOVE_SUB:
-      let sub = nextState.subs[action.subId]
-      delete nextState.subs[action.subId]
-      delete nextState.usersSubTo[sub.userId]
+      // let sub = nextState.subs[action.subId]
+      delete nextState.subs[action.payload.sub.id]
+      delete nextState.usersSubTo[action.payload.subbedTo.id]
       return nextState
   
     default:
