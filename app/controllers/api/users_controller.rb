@@ -15,7 +15,7 @@ class Api::UsersController < ApplicationController
     @user = User
               .includes(:subscribers, :subscribed_to)
               .find_by(id: params[:id])
-              
+      
     render :show
   end
 

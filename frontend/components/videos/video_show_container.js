@@ -7,17 +7,19 @@ import { createSub, destroySub } from '../../actions/subs_actions';
 import { fetchUser } from '../../actions/users_action';
 
 const mSTP = (state, ownProps) => {
-  debugger
   // let userLike = false;
   // Object.values(state.entities.likes).some(like => like.likerId === state.session.currentUser.id && like.dislike === false) ? 
   // userLike = true : userLike = false;
   let subbedTo = state.entities.subscriptions.usersSubTo ? (
     Object.values(state.entities.subscriptions.usersSubTo)
     ) : []
+  let subs = state.entities.subscriptions.subs ? (
+    Object.values(state.entities.subscriptions.subs)
+    ) : []
   return {
     // userLike,
     currentUser: state.session.currentUser,
-    subs: Object.values(state.entities.subscriptions.subs),
+    subs,
     subbedTo,
     video: state.entities.videos[ownProps.match.params.videoId],
     subCount: state.entities.videos[ownProps.match.params.videoId].subCount,
