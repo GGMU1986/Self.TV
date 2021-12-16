@@ -46,7 +46,6 @@ class Header extends React.Component {
   }
 
   searchVideos(){
-    console.log(this.state.inputSearch)
     let searchVideos = [];
     this.props.videos.forEach(video => {
       if (video.title.toLowerCase().includes(this.state.inputSearch)){

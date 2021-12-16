@@ -14352,7 +14352,6 @@ var Header = /*#__PURE__*/function (_React$Component) {
     value: function searchVideos() {
       var _this2 = this;
 
-      console.log(this.state.inputSearch);
       var searchVideos = [];
       this.props.videos.forEach(function (video) {
         if (video.title.toLowerCase().includes(_this2.state.inputSearch)) {
@@ -15289,7 +15288,6 @@ var Search = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var searchArray = this.props.location.state.searchArray;
       var incViews = this.props.incViews;
-      console.log("search-comp:", searchArray);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_modal_modal__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_home_header__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "search-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_home_side_nav_big__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {

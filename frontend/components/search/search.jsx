@@ -19,7 +19,6 @@ class Search extends React.Component{
   render() {
     const { searchArray } = this.props.location.state
     const { incViews } = this.props
-    console.log("search-comp:", searchArray)
     return (
       <div>
         <Modal />

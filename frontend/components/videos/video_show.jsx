@@ -6,6 +6,7 @@ import Modal from '../modal/modal';
 import VideoShowSide from './video_show_side';
 import VideoLikes from '../likes/likes';
 
+
 class VideoShow extends React.Component {
   constructor(props){
     super(props)
@@ -19,7 +20,6 @@ class VideoShow extends React.Component {
 
   componentDidMount() {
     this.props.fetchVideo(this.props.match.params.videoId)
-    
   }
 
   componentDidUpdate(prevProps) {
