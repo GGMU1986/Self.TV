@@ -13,16 +13,6 @@ const removeSub = subId => ({
   subId
 })
 
-// const receiveSubTo = subTo => ({
-//   type: RECEIVE_SUB,
-//   subTo
-// })
-
-// const removeSubTo = subToId => ({
-//   type: REMOVE_SUB,
-//   subToId
-// })
-
 export const createSub = userId => dispatch => {
   return makeSub(userId).then(sub => {
     return dispatch(receiveSub(sub))

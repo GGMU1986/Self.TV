@@ -13379,15 +13379,7 @@ var removeSub = function removeSub(subId) {
     type: REMOVE_SUB,
     subId: subId
   };
-}; // const receiveSubTo = subTo => ({
-//   type: RECEIVE_SUB,
-//   subTo
-// })
-// const removeSubTo = subToId => ({
-//   type: REMOVE_SUB,
-//   subToId
-// })
-
+};
 
 var createSub = function createSub(userId) {
   return function (dispatch) {
@@ -16354,15 +16346,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  debugger; // let userLike = false;
+  // let userLike = false;
   // Object.values(state.entities.likes).some(like => like.likerId === state.session.currentUser.id && like.dislike === false) ? 
   // userLike = true : userLike = false;
-
   var subbedTo = state.entities.subscriptions.usersSubTo ? Object.values(state.entities.subscriptions.usersSubTo) : [];
+  var subs = state.entities.subscriptions.subs ? Object.values(state.entities.subscriptions.subs) : [];
   return {
     // userLike,
     currentUser: state.session.currentUser,
-    subs: Object.values(state.entities.subscriptions.subs),
+    subs: subs,
     subbedTo: subbedTo,
     video: state.entities.videos[ownProps.match.params.videoId],
     subCount: state.entities.videos[ownProps.match.params.videoId].subCount,
@@ -17082,22 +17074,29 @@ var SubscriptionsReducer = function SubscriptionsReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
-  var nextState = Object.assign({}, state); // debugger
+  var nextState = Object.assign({}, state);
 
   switch (action.type) {
     case _actions_users_action__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_USER_DETAIL:
       return _objectSpread({}, action.payload.subscriptions);
 
     case _actions_subs_actions__WEBPACK_IMPORTED_MODULE_1__.RECEIVE_SUB:
-      // debugger
+      if (!nextState.subs) {
+        nextState.subs = {};
+      }
+
+      if (!nextState.usersSubTo) {
+        nextState.usersSubTo = {};
+      }
+
       nextState.subs[action.payload.sub.id] = action.payload.sub;
       nextState.usersSubTo[action.payload.subbedTo.id] = action.payload.subbedTo;
       return nextState;
 
     case _actions_subs_actions__WEBPACK_IMPORTED_MODULE_1__.REMOVE_SUB:
-      debugger;
-      delete nextState.subs[action.subId]; // delete nextState.usersSubTo[action.subToId]
-
+      var sub = nextState.subs[action.subId];
+      delete nextState.subs[action.subId];
+      delete nextState.usersSubTo[sub.userId];
       return nextState;
 
     default:

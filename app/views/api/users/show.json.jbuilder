@@ -1,3 +1,5 @@
+json.extract! @user, :id, :username, :email, :created_at
+
 json.uploads do
   @user.uploaded_videos.each do |upload|
     json.set! upload.id do 
@@ -24,8 +26,6 @@ json.subscriptions do
     end
   end
 end
-
-
 
 json.subscribers @user.subscribers.count
 
