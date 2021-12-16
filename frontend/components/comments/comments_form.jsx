@@ -10,6 +10,7 @@ class CommentForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
     this.noComment = this.noComment.bind(this);
+    this.cancelComment = this.cancelComment.bind(this);
   }
 
   update(e) {
@@ -26,6 +27,12 @@ class CommentForm extends React.Component {
     if (!this.props.currentUser) this.props.history.push('/signin')
   }
 
+  cancelComment(e){
+    this.setState({
+      body: ''
+    })
+  }
+
   render() {
     return (
       <div className="comment-form">
@@ -38,7 +45,12 @@ class CommentForm extends React.Component {
             onClick={this.noComment}
           />
           <div className="comment-btns">
-            <p className="cmt-cancel">CANCEL</p>
+            <p
+              onClick={this.cancelComment} 
+              className="cmt-cancel"
+            >
+              CANCEL
+            </p>
             <button 
               className="cmt-btn"
               onClick={this.handleSubmit}

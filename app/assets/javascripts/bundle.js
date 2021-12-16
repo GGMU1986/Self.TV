@@ -13981,6 +13981,7 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.update = _this.update.bind(_assertThisInitialized(_this));
     _this.noComment = _this.noComment.bind(_assertThisInitialized(_this));
+    _this.cancelComment = _this.cancelComment.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -14006,6 +14007,13 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
       if (!this.props.currentUser) this.props.history.push('/signin');
     }
   }, {
+    key: "cancelComment",
+    value: function cancelComment(e) {
+      this.setState({
+        body: ''
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -14019,6 +14027,7 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "comment-btns"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+        onClick: this.cancelComment,
         className: "cmt-cancel"
       }, "CANCEL"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         className: "cmt-btn",
