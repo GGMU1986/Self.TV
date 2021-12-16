@@ -84,7 +84,7 @@ class VideoShow extends React.Component {
           <div className="video-show">
             <div>
               <div className="video-show-container">
-                <video 
+                <video
                   className="video-cont"
                   src={video.videoUrl}   
                   title={video.title}
@@ -121,7 +121,7 @@ class VideoShow extends React.Component {
                 <br />
                 <div className="video-show-descr">
                   {
-                    video.description === undefined ? video.description : ''
+                    video.description === undefined ? '' : video.description
                   }
                 </div>
                 {subBtn}

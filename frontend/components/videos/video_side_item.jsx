@@ -30,7 +30,7 @@ class VideoSideItem extends React.Component {
           <div className="side-view-title">
             {video.title}
             <div className="side-view-channel">
-              {video.channel}
+              {video.uploader}
               <br />
               {this.props.video.views} views
               <span>&nbsp; <span className="bul">&#8226;</span> &nbsp;</span>
