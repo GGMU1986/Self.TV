@@ -35,7 +35,7 @@ const UploadPart2 = ({
           />
           <h2 className="thumb">Thumbnail</h2>
             <p className="words">Select or upload a picture that shows what's in your video.
-            A good thumbnail stands out and draws viewers' attention. 
+            A good thumbnail stands out and draws the viewers' attention.&nbsp; 
             <span>Learn more</span></p>
             {
               photoFile ? (

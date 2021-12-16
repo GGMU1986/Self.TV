@@ -16755,7 +16755,7 @@ var UploadPart2 = function UploadPart2(_ref) {
     className: "thumb"
   }, "Thumbnail"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
     className: "words"
-  }, "Select or upload a picture that shows what's in your video. A good thumbnail stands out and draws viewers' attention.", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Learn more")), photoFile ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, "Select or upload a picture that shows what's in your video. A good thumbnail stands out and draws the viewers' attention.\xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Learn more")), photoFile ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "thumbnail-prev-cont"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "thumbnail-prev"

@@ -10,17 +10,23 @@ User.destroy_all
 ActiveRecord::Base.connection.reset_pk_sequence!('users')
 
 user1 = User.create!(email: "demo@demo.com", username: "demomode", password: "demomode")
-user2 = User.create!(email: "geo@geo.com", username: "George21", password: "iloveiro")
+user2 = User.create!(email: "geo@geo.com", username: "George", password: "123456")
+user3 = User.create!(email: "olaf@olaf.com", username: "Olaf", password: "123456")
+user4 = User.create!(email: "einstein@einstein.com", username: "Einstein", password: "123456")
 
 Channel.destroy_all
 ActiveRecord::Base.connection.reset_pk_sequence!('channels')
 
-channel1 = Channel.create!(name: "GeorgeTV", about: "My coding life", creator_id: 2)
-
 Video.destroy_all
 ActiveRecord::Base.connection.reset_pk_sequence!('videos')
+
 Comment.destroy_all
 ActiveRecord::Base.connection.reset_pk_sequence!('comments')
 
+Subscription.destroy_all
+ActiveRecord::Base.connection.reset_pk_sequence!('subscriptions')
+
 View.destroy_all
+ActiveRecord::Base.connection.reset_pk_sequence!('views')
+
 Like.destroy_all
