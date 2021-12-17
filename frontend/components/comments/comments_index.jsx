@@ -7,7 +7,7 @@ class CommentsIndex extends React.Component {
     super(props)
   }
   render() {
-    const { destroyComment } = this.props
+    const { destroyComment, currentUser } = this.props
     let comments = Object.values(this.props.comments)
     return (
       <div className="comments">
@@ -17,6 +17,7 @@ class CommentsIndex extends React.Component {
                         key={comment.id}
                         comment={comment}
                         destroyComment={destroyComment}
+                        currentUser={currentUser}
                       />
             } else {
               return null;

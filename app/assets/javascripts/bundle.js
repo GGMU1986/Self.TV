@@ -14108,7 +14108,9 @@ var CommentsIndex = /*#__PURE__*/function (_React$Component) {
   _createClass(CommentsIndex, [{
     key: "render",
     value: function render() {
-      var destroyComment = this.props.destroyComment;
+      var _this$props = this.props,
+          destroyComment = _this$props.destroyComment,
+          currentUser = _this$props.currentUser;
       var comments = Object.values(this.props.comments);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "comments"
@@ -14117,7 +14119,8 @@ var CommentsIndex = /*#__PURE__*/function (_React$Component) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_comments_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
             key: comment.id,
             comment: comment,
-            destroyComment: destroyComment
+            destroyComment: destroyComment,
+            currentUser: currentUser
           });
         } else {
           return null;
@@ -14212,13 +14215,13 @@ var CommentsIndexItem = /*#__PURE__*/function (_React$Component) {
       var _this$props = this.props,
           comment = _this$props.comment,
           destroyComment = _this$props.destroyComment,
-          updateComment = _this$props.updateComment,
-          videoId = _this$props.videoId;
+          currentUser = _this$props.currentUser;
       var timeNow = new Date();
       var oldTime = new Date(comment.createdAt);
       var time = timeNow - oldTime;
       var timeDays = Math.round(time / (1000 * 3600 * 24));
       var timeAgo = timeDays < 1 ? 'less than 1 day ago' : timeDays === 1 ? '1 day ago' : "".concat(timeDays, " days ago");
+      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "comments-index"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -14235,7 +14238,7 @@ var CommentsIndexItem = /*#__PURE__*/function (_React$Component) {
         className: "commenter-name"
       }, comment.commenter), "\xA0\xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
         className: "time-ago"
-      }, timeAgo))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, timeAgo))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, currentUser.id === comment.commenterId ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "delete-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
         className: "fas fa-ellipsis-v dots",
@@ -14249,7 +14252,7 @@ var CommentsIndexItem = /*#__PURE__*/function (_React$Component) {
         className: "fas fa-trash"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         className: "trash-btn"
-      }, "Delete")))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, "Delete")))) : null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "comment-body"
       }, comment.body));
     }

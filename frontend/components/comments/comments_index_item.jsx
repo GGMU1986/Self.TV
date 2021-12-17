@@ -22,14 +22,15 @@ class CommentsIndexItem extends React.Component {
   }
 
   render () {
-    const { comment, destroyComment, updateComment, videoId } = this.props
+    const { comment, destroyComment, currentUser } = this.props
     const timeNow = new Date()
     const oldTime = new Date(comment.createdAt)
     const time = timeNow - oldTime
     const timeDays = Math.round(time / (1000 * 3600 * 24))
     const timeAgo = timeDays < 1 ? 'less than 1 day ago' : (
       timeDays === 1 ? '1 day ago' : `${timeDays} days ago`
-    )
+      )
+    debugger
     return (
       <div className="comments-index">
         <div className="comment-header">
@@ -46,20 +47,24 @@ class CommentsIndexItem extends React.Component {
             </div>
           </div>
           <div>
-            <div className="delete-container">
-              <i className="fas fa-ellipsis-v dots" onClick={this.addActiveClass}></i>
-              <div 
-                className={this.state.active ? "trash active" : "trash"} 
-                onClick={() => destroyComment(comment.id)}
-              > 
-                <div>
-                  <i className="fas fa-trash"></i>
-                </div>
-                <div>
-                  <button className="trash-btn">Delete</button>
+            {
+              currentUser.id === comment.commenterId ? (
+              <div className="delete-container">
+                <i className="fas fa-ellipsis-v dots" onClick={this.addActiveClass}></i>
+                <div 
+                  className={this.state.active ? "trash active" : "trash"} 
+                  onClick={() => destroyComment(comment.id)}
+                > 
+                  <div>
+                    <i className="fas fa-trash"></i>
+                  </div>
+                  <div>
+                    <button className="trash-btn">Delete</button>
+                  </div>
                 </div>
               </div>
-            </div>
+              ) : null
+            }
           </div>
         </div>
         <div className="comment-body">
