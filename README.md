@@ -97,11 +97,9 @@ The solutions to the above two problems gave me a much better understsnding of t
 
 Upcoming features
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
-  * Subscriptions
   * like/dislike videos/comments
   * Drag and drop video files for upload
-  * Search functionality
-  * Create Channel/User Show page
+  * Updated search functionality
   * Edit account information
   * Edit comments
 
