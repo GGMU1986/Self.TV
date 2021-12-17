@@ -17,6 +17,8 @@ user4 = User.create!(email: "einstein@einstein.com", username: "Einstein", passw
 Channel.destroy_all
 ActiveRecord::Base.connection.reset_pk_sequence!('channels')
 
+channel1 = Channel.create!(name: "defaultChannel", creator_id: 1)
+
 Video.destroy_all
 ActiveRecord::Base.connection.reset_pk_sequence!('videos')
 

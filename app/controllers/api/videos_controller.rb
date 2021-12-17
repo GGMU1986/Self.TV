@@ -15,7 +15,7 @@ class Api::VideosController < ApplicationController
   def create
     @video = Video.new(video_params)
     @video.uploader_id = current_user.id
-    @video.channel_id = 2
+    @video.channel_id = 1
      if @video.save
       render :info
      else
