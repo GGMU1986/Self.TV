@@ -13,14 +13,13 @@ class Api::VideosController < ApplicationController
   end
 
   def create
-
     @video = Video.new(video_params)
     @video.uploader_id = current_user.id
     @video.channel_id = 2
      if @video.save
       render :info
      else
-
+      puts @video.errors.full_messages
       render json: @video.errors.full_messages, status: 422
 
      end
