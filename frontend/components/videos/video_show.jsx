@@ -119,7 +119,7 @@ class VideoShow extends React.Component {
               <div className="channel-desc">
                 <div className="video-channel">
                   <strong>
-                    {video.channel}
+                    {video.uploader}
                   </strong>
                   <br />
                   {this.state.subCount} subscribers
