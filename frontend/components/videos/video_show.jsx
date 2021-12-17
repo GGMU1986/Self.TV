@@ -22,7 +22,7 @@ class VideoShow extends React.Component {
   componentDidMount() {
     this.props.fetchVideos()
     if (this.props.currentUser){
-      this.props.fetchUser(this.props.currentUser.id)
+      this.props.fetchUser(this.props.currentUser?.id)
     }
   };
 
@@ -34,7 +34,7 @@ class VideoShow extends React.Component {
 
   subbed(){
     for (let i = 0; i < this.props.subbedTo.length; i++){
-      if (this.props.subbedTo[i].id === this.props.video.uploaderId){
+      if (this.props.subbedTo[i]?.id === this.props.video.uploaderId){
         return true
       }
     }
@@ -45,8 +45,8 @@ class VideoShow extends React.Component {
     let subId;
     for (let i = 0; i < this.props.subs.length; i++){
       if (this.props.subs[i].userId === this.props.video.uploaderId &&
-        this.props.subs[i].subscriberId === this.props.currentUser.id){
-          subId = this.props.subs[i].id
+        this.props.subs[i].subscriberId === this.props.currentUser?.id){
+          subId = this.props.subs[i]?.id
       }
     }
     return subId

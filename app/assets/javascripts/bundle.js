@@ -16387,7 +16387,9 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
       this.props.fetchVideos();
 
       if (this.props.currentUser) {
-        this.props.fetchUser(this.props.currentUser.id);
+        var _this$props$currentUs;
+
+        this.props.fetchUser((_this$props$currentUs = this.props.currentUser) === null || _this$props$currentUs === void 0 ? void 0 : _this$props$currentUs.id);
       }
     }
   }, {
@@ -16401,7 +16403,9 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
     key: "subbed",
     value: function subbed() {
       for (var i = 0; i < this.props.subbedTo.length; i++) {
-        if (this.props.subbedTo[i].id === this.props.video.uploaderId) {
+        var _this$props$subbedTo$;
+
+        if (((_this$props$subbedTo$ = this.props.subbedTo[i]) === null || _this$props$subbedTo$ === void 0 ? void 0 : _this$props$subbedTo$.id) === this.props.video.uploaderId) {
           return true;
         }
       }
@@ -16414,8 +16418,12 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
       var subId;
 
       for (var i = 0; i < this.props.subs.length; i++) {
-        if (this.props.subs[i].userId === this.props.video.uploaderId && this.props.subs[i].subscriberId === this.props.currentUser.id) {
-          subId = this.props.subs[i].id;
+        var _this$props$currentUs2;
+
+        if (this.props.subs[i].userId === this.props.video.uploaderId && this.props.subs[i].subscriberId === ((_this$props$currentUs2 = this.props.currentUser) === null || _this$props$currentUs2 === void 0 ? void 0 : _this$props$currentUs2.id)) {
+          var _this$props$subs$i;
+
+          subId = (_this$props$subs$i = this.props.subs[i]) === null || _this$props$subs$i === void 0 ? void 0 : _this$props$subs$i.id;
         }
       }
 
