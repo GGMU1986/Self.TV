@@ -16385,7 +16385,11 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
   _createClass(VideoShow, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchVideo(this.props.match.params.videoId);
+      this.props.fetchVideos();
+
+      if (this.props.currentUser) {
+        this.props.fetchUser(this.props.currentUser.id);
+      }
     }
   }, {
     key: "componentDidUpdate",
@@ -16448,6 +16452,7 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
           comments = _this$props.comments,
           action = _this$props.action,
           comment = _this$props.comment;
+      if (!video) return null;
       var subBtn = this.state.subbed ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         onClick: this.handleSub,
         className: "subbed"
@@ -16540,6 +16545,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
+  var _state$entities$video;
+
   // let userLike = false;
   // Object.values(state.entities.likes).some(like => like.likerId === state.session.currentUser.id && like.dislike === false) ? 
   // userLike = true : userLike = false;
@@ -16551,7 +16558,7 @@ var mSTP = function mSTP(state, ownProps) {
     subs: subs,
     subbedTo: subbedTo,
     video: state.entities.videos[ownProps.match.params.videoId],
-    subCount: state.entities.videos[ownProps.match.params.videoId].subCount,
+    subCount: (_state$entities$video = state.entities.videos[ownProps.match.params.videoId]) === null || _state$entities$video === void 0 ? void 0 : _state$entities$video.subCount,
     comments: Object.values(state.entities.comments),
     likes: Object.values(state.entities.likes),
     comment: {
@@ -16567,6 +16574,9 @@ var mDTP = function mDTP(dispatch) {
     },
     fetchVideo: function fetchVideo(videoId) {
       return dispatch((0,_actions_videos_actions__WEBPACK_IMPORTED_MODULE_2__.fetchVideo)(videoId));
+    },
+    fetchVideos: function fetchVideos() {
+      return dispatch((0,_actions_videos_actions__WEBPACK_IMPORTED_MODULE_2__.fetchVideos)());
     },
     destroyComment: function destroyComment(commentId) {
       return dispatch((0,_actions_comments_actions__WEBPACK_IMPORTED_MODULE_3__.destroyComment)(commentId));
@@ -16774,7 +16784,7 @@ var VideoSideItem = /*#__PURE__*/function (_React$Component) {
         className: "side-view-title"
       }, video.title, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "side-view-channel"
-      }, video.uploader || video.channel, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), this.props.video.views, " views", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "\xA0 ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+      }, video.uploader, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), this.props.video.views, " views", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "\xA0 ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
         className: "bul"
       }, "\u2022"), " \xA0"), timeAgo))));
     }

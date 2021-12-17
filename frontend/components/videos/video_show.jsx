@@ -18,9 +18,13 @@ class VideoShow extends React.Component {
     this.findSubId = this.findSubId.bind(this);
   }
 
+  
   componentDidMount() {
-    this.props.fetchVideo(this.props.match.params.videoId)
-  }
+    this.props.fetchVideos()
+    if (this.props.currentUser){
+      this.props.fetchUser(this.props.currentUser.id)
+    }
+  };
 
   componentDidUpdate(prevProps) {
     if (prevProps.match.params.videoId !== this.props.match.params.videoId) {
@@ -67,6 +71,9 @@ class VideoShow extends React.Component {
         video, destroyComment,
         comments, action, comment
       } = this.props
+      
+      if (!video) return null;
+
       const subBtn = this.state.subbed ? (
         <button onClick={this.handleSub} className="subbed">SUBSCRIBED</button>
         ) : (

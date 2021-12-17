@@ -4,7 +4,7 @@ json.video do
   json.uploader_id @video.uploader.id
   json.videoUrl url_for(@video.video)
   json.photoUrl url_for(@video.photo)
-  json.channel @video.uploader.username
+  json.uploader @video.uploader.username
   json.views @video.views.count
 end
 

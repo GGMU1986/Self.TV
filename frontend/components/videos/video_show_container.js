@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import VideoShow from './video_show';
-import { fetchVideo } from '../../actions/videos_actions';
+import { fetchVideo, fetchVideos } from '../../actions/videos_actions';
 import { destroyComment, makeComment } from '../../actions/comments_actions';
 import { createLike, updateLike } from '../../actions/likes_actions';
 import { createSub, destroySub } from '../../actions/subs_actions';
@@ -22,7 +22,7 @@ const mSTP = (state, ownProps) => {
     subs,
     subbedTo,
     video: state.entities.videos[ownProps.match.params.videoId],
-    subCount: state.entities.videos[ownProps.match.params.videoId].subCount,
+    subCount: state.entities.videos[ownProps.match.params.videoId]?.subCount,
     comments: Object.values(state.entities.comments),
     likes: Object.values(state.entities.likes),
     comment: {
@@ -34,6 +34,7 @@ const mSTP = (state, ownProps) => {
 const mDTP = dispatch => ({
   fetchUser: userId => dispatch(fetchUser(userId)),
   fetchVideo: videoId => dispatch(fetchVideo(videoId)),
+  fetchVideos: () => dispatch(fetchVideos()),
   destroyComment: commentId => dispatch(destroyComment(commentId)),
   action: (comment, videoId) => dispatch(makeComment(comment, videoId)),
   createLike: like => dispatch(createLike(like)),
