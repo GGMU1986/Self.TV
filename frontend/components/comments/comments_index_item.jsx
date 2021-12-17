@@ -30,7 +30,7 @@ class CommentsIndexItem extends React.Component {
     const timeAgo = timeDays < 1 ? 'less than 1 day ago' : (
       timeDays === 1 ? '1 day ago' : `${timeDays} days ago`
       )
-    debugger
+      
     return (
       <div className="comments-index">
         <div className="comment-header">

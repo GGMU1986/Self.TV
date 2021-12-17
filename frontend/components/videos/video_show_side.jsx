@@ -6,7 +6,7 @@ import VideoSideItem from './video_side_item';
 class VideoShowSide extends React.Component {
   render() {
     const { videos, videoId, incViews } = this.props
-    const otherVids = Object.values(videos).filter(vid => vid.id.toString() !== videoId)
+    const otherVids = Object.values(videos).filter(vid => vid.id?.toString() !== videoId)
     return (
       <div className="side-vid-show">
         {

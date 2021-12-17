@@ -80,7 +80,7 @@ class VideoShow extends React.Component {
           <button onClick={this.handleSub} className="sub">SUBSCRIBE</button>
           )
 
-    const uploadDate = new Date(video.createdAt).toString().slice(4, 15)
+    const uploadDate = new Date(video.createdAt)?.toString()?.slice(4, 15)
     let videoId = this.props.match.params.videoId
     return (
       <div className="video-show-cont">

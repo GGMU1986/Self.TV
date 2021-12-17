@@ -14221,7 +14221,6 @@ var CommentsIndexItem = /*#__PURE__*/function (_React$Component) {
       var time = timeNow - oldTime;
       var timeDays = Math.round(time / (1000 * 3600 * 24));
       var timeAgo = timeDays < 1 ? 'less than 1 day ago' : timeDays === 1 ? '1 day ago' : "".concat(timeDays, " days ago");
-      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "comments-index"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -16446,6 +16445,8 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _Date, _Date$toString;
+
       var _this$props = this.props,
           video = _this$props.video,
           destroyComment = _this$props.destroyComment,
@@ -16460,7 +16461,7 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
         onClick: this.handleSub,
         className: "sub"
       }, "SUBSCRIBE");
-      var uploadDate = new Date(video.createdAt).toString().slice(4, 15);
+      var uploadDate = (_Date = new Date(video.createdAt)) === null || _Date === void 0 ? void 0 : (_Date$toString = _Date.toString()) === null || _Date$toString === void 0 ? void 0 : _Date$toString.slice(4, 15);
       var videoId = this.props.match.params.videoId;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "video-show-cont"
@@ -16664,7 +16665,9 @@ var VideoShowSide = /*#__PURE__*/function (_React$Component) {
           videoId = _this$props.videoId,
           incViews = _this$props.incViews;
       var otherVids = Object.values(videos).filter(function (vid) {
-        return vid.id.toString() !== videoId;
+        var _vid$id;
+
+        return ((_vid$id = vid.id) === null || _vid$id === void 0 ? void 0 : _vid$id.toString()) !== videoId;
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "side-vid-show"
@@ -17479,8 +17482,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var middlewares = [redux_thunk__WEBPACK_IMPORTED_MODULE_1__["default"]];
 
-if (true) {// const { logger } = require("redux-logger");
-  // middlewares.push(logger);
+if (true) {
+  2;
 }
 
 var configureStore = function configureStore(preloadedState) {

@@ -19,9 +19,7 @@ class Api::VideosController < ApplicationController
      if @video.save
       render :info
      else
-      puts @video.errors.full_messages
       render json: @video.errors.full_messages, status: 422
-
      end
   end
 
