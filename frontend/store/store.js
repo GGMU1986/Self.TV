@@ -4,8 +4,8 @@ import RootReducer from '../reducers/root';
 
 let middlewares = [thunk];
 if (process.env.NODE_ENV !== "production") {
-const { logger } = require("redux-logger");
-middlewares.push(logger);
+// const { logger } = require("redux-logger");
+// middlewares.push(logger);
 }
 
 const configureStore = (preloadedState) => (
