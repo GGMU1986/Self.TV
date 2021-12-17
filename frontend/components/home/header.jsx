@@ -65,7 +65,6 @@ class Header extends React.Component {
   }
 
   render() {
-    console.log("header-comp", this.state.searchArray)
 
     const { currentUser, logout, openModal } = this.props;
     

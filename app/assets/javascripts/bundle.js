@@ -14377,7 +14377,6 @@ var Header = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log("header-comp", this.state.searchArray);
       var _this$props = this.props,
           currentUser = _this$props.currentUser,
           logout = _this$props.logout,
