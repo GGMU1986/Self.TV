@@ -25,6 +25,13 @@ const UploadIndexItem = ({ video, currentUser }) => {
             </div>
           </div>
         </Link> 
+        <div>
+          <button 
+            className="upload-delete-btn"
+          >
+            Delete
+          </button>
+        </div>
     </div>
   )
 };

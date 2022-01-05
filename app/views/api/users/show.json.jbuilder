@@ -4,7 +4,7 @@ json.uploads do
   @user.uploaded_videos.each do |upload|
     json.set! upload.id do 
       json.extract! upload, :id, :title, :description, :created_at
-      json.photoUrl url_for(upload.photo)
+      #json.photoUrl url_for(upload.photo)
       json.views upload.views.count
     end
   end

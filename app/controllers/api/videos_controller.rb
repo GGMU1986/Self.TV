@@ -23,6 +23,10 @@ class Api::VideosController < ApplicationController
      end
   end
 
+  def delete
+    
+  end
+
   private
 
   def video_params
