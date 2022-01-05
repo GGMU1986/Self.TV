@@ -13443,15 +13443,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "RECEIVE_ALL_VIDEOS": () => (/* binding */ RECEIVE_ALL_VIDEOS),
 /* harmony export */   "RECEIVE_VIDEO_DETAIL": () => (/* binding */ RECEIVE_VIDEO_DETAIL),
 /* harmony export */   "RECEIVE_VIDEO": () => (/* binding */ RECEIVE_VIDEO),
+/* harmony export */   "REMOVE_VIDEO": () => (/* binding */ REMOVE_VIDEO),
 /* harmony export */   "fetchVideos": () => (/* binding */ fetchVideos),
 /* harmony export */   "fetchVideo": () => (/* binding */ fetchVideo),
-/* harmony export */   "createVideo": () => (/* binding */ createVideo)
+/* harmony export */   "createVideo": () => (/* binding */ createVideo),
+/* harmony export */   "destroyVideo": () => (/* binding */ destroyVideo)
 /* harmony export */ });
 /* harmony import */ var _utils_util_videos__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/util_videos */ "./frontend/utils/util_videos.js");
 
 var RECEIVE_ALL_VIDEOS = 'RECEIVE_ALL_VIDEOS';
 var RECEIVE_VIDEO_DETAIL = 'RECEIVE_VIDEO_DETAIL';
 var RECEIVE_VIDEO = 'RECEIVE_VIDEO';
+var REMOVE_VIDEO = 'REMOVE_VIDEO';
 
 var receiveAllVideos = function receiveAllVideos(videos) {
   return {
@@ -13474,6 +13477,13 @@ var receiveVideo = function receiveVideo(video) {
   };
 };
 
+var removeVideo = function removeVideo(videoId) {
+  return {
+    type: REMOVE_VIDEO,
+    videoId: videoId
+  };
+};
+
 var fetchVideos = function fetchVideos() {
   return function (dispatch) {
     return (0,_utils_util_videos__WEBPACK_IMPORTED_MODULE_0__.getAllVideos)().then(function (videos) {
@@ -13492,6 +13502,13 @@ var createVideo = function createVideo(video) {
   return function (dispatch) {
     return (0,_utils_util_videos__WEBPACK_IMPORTED_MODULE_0__.makeVideo)(video).then(function (video) {
       return dispatch(receiveVideo(video));
+    });
+  };
+};
+var destroyVideo = function destroyVideo(videoId) {
+  return function (dispatch) {
+    return (0,_utils_util_videos__WEBPACK_IMPORTED_MODULE_0__.deleteVideo)(videoId).then(function () {
+      return dispatch(removeVideo(videoId));
     });
   };
 };
