@@ -5,6 +5,7 @@ import ChannelBody from './channel_body';
 import ChannelHeader from './channel_header';
 import Modal from '../modal/modal';
 import { fetchUser } from '../../actions/users_action';
+import { deleteVideo } from '../../utils/util_videos';
 import { connect } from 'react-redux';
 
 class Channel extends React.Component{
@@ -14,7 +15,7 @@ class Channel extends React.Component{
   }
 
   render() {
-    const { currentUser, uploads, subs } = this.props;
+    const { currentUser, uploads, subs, deleteVideo } = this.props;
     return (
       <div>
         <Modal />
@@ -29,6 +30,7 @@ class Channel extends React.Component{
             <ChannelBody 
               currentUser={currentUser} 
               uploads={uploads} 
+              deleteVideo={deleteVideo}
             />
           </div>
         </div>
@@ -44,7 +46,8 @@ const mSTP = state => ({
 });
 
 const mDTP = dispatch => ({
-  fetchUser: userId => dispatch(fetchUser(userId))
+  fetchUser: userId => dispatch(fetchUser(userId)),
+  deleteVideo: videoId => dispatch(deleteVideo(videoId))
 });
 
 export default connect(mSTP, mDTP)(Channel);

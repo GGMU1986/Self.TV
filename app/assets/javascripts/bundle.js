@@ -13624,7 +13624,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _channel_header__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./channel_header */ "./frontend/components/channel/channel_header.jsx");
 /* harmony import */ var _modal_modal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../modal/modal */ "./frontend/components/modal/modal.jsx");
 /* harmony import */ var _actions_users_action__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../actions/users_action */ "./frontend/actions/users_action.js");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _utils_util_videos__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../utils/util_videos */ "./frontend/utils/util_videos.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -13646,6 +13647,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -13678,7 +13680,8 @@ var Channel = /*#__PURE__*/function (_React$Component) {
       var _this$props = this.props,
           currentUser = _this$props.currentUser,
           uploads = _this$props.uploads,
-          subs = _this$props.subs;
+          subs = _this$props.subs,
+          deleteVideo = _this$props.deleteVideo;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_modal_modal__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_home_header__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "channel-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_home_side_nav_big__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -13688,7 +13691,8 @@ var Channel = /*#__PURE__*/function (_React$Component) {
         subs: subs
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_channel_body__WEBPACK_IMPORTED_MODULE_3__["default"], {
         currentUser: currentUser,
-        uploads: uploads
+        uploads: uploads,
+        deleteVideo: deleteVideo
       }))));
     }
   }]);
@@ -13708,11 +13712,14 @@ var mDTP = function mDTP(dispatch) {
   return {
     fetchUser: function fetchUser(userId) {
       return dispatch((0,_actions_users_action__WEBPACK_IMPORTED_MODULE_6__.fetchUser)(userId));
+    },
+    deleteVideo: function deleteVideo(videoId) {
+      return dispatch((0,_utils_util_videos__WEBPACK_IMPORTED_MODULE_7__.deleteVideo)(videoId));
     }
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_7__.connect)(mSTP, mDTP)(Channel));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_8__.connect)(mSTP, mDTP)(Channel));
 
 /***/ }),
 
@@ -13785,7 +13792,8 @@ var ChannelBody = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this$props = this.props,
           currentUser = _this$props.currentUser,
-          uploads = _this$props.uploads;
+          uploads = _this$props.uploads,
+          deleteVideo = _this$props.deleteVideo;
       var joinDate = new Date(currentUser.createdAt).toString().slice(4, 15);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "channel-body-container"
@@ -13795,7 +13803,8 @@ var ChannelBody = /*#__PURE__*/function (_React$Component) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_upload_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: video.id,
           currentUser: currentUser,
-          video: video
+          video: video,
+          deleteVideo: deleteVideo
         });
       }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "no-uploads"
@@ -13918,7 +13927,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var UploadIndexItem = function UploadIndexItem(_ref) {
   var video = _ref.video,
-      currentUser = _ref.currentUser;
+      currentUser = _ref.currentUser,
+      deleteVideo = _ref.deleteVideo;
   var timeNow = new Date();
   var oldTime = new Date(video.createdAt);
   var time = timeNow - oldTime;
@@ -13940,7 +13950,10 @@ var UploadIndexItem = function UploadIndexItem(_ref) {
   }, video.views, " views", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "\xA0 ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
     className: "bul"
   }, "\u2022"), " \xA0"), timeAgo))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-    className: "upload-delete-btn"
+    className: "upload-delete-btn",
+    onClick: function onClick() {
+      return deleteVideo(video.id);
+    }
   }, "Delete")));
 };
 

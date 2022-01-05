@@ -18,7 +18,7 @@ class ChannelBody extends React.Component{
 
   render() {
     
-    const { currentUser, uploads } = this.props
+    const { currentUser, uploads, deleteVideo } = this.props
     const joinDate = new Date(currentUser.createdAt).toString().slice(4, 15)
 
     return (
@@ -30,6 +30,7 @@ class ChannelBody extends React.Component{
                                         key={video.id} 
                                         currentUser={currentUser}
                                         video={video}
+                                        deleteVideo={deleteVideo}
                                       />              
                             )
                             ) : (

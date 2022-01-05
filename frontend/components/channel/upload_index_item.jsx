@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const UploadIndexItem = ({ video, currentUser }) => {
+const UploadIndexItem = ({ video, currentUser, deleteVideo }) => {
   const timeNow = new Date()
   const oldTime = new Date(video.createdAt)
   const time = timeNow - oldTime
@@ -28,6 +28,7 @@ const UploadIndexItem = ({ video, currentUser }) => {
         <div>
           <button 
             className="upload-delete-btn"
+            onClick={() => deleteVideo(video.id)}
           >
             Delete
           </button>
