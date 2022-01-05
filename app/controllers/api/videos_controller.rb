@@ -24,7 +24,8 @@ class Api::VideosController < ApplicationController
   end
 
   def delete
-    
+    @video = Video.find_by(id: params[:id])
+    @video.destroy
   end
 
   private
