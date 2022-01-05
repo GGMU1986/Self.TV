@@ -21,3 +21,10 @@ export const makeVideo = video => {
     processData: false
   })
 };
+
+export const deleteVideo = videoId => {
+  return $.ajax({
+    method: 'DELETE',
+    url: '/api/videos/${videoId}'
+  })
+};

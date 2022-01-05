@@ -17750,7 +17750,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "getAllVideos": () => (/* binding */ getAllVideos),
 /* harmony export */   "getVideo": () => (/* binding */ getVideo),
-/* harmony export */   "makeVideo": () => (/* binding */ makeVideo)
+/* harmony export */   "makeVideo": () => (/* binding */ makeVideo),
+/* harmony export */   "deleteVideo": () => (/* binding */ deleteVideo)
 /* harmony export */ });
 var getAllVideos = function getAllVideos() {
   return $.ajax({
@@ -17771,6 +17772,12 @@ var makeVideo = function makeVideo(video) {
     data: video,
     contentType: false,
     processData: false
+  });
+};
+var deleteVideo = function deleteVideo(videoId) {
+  return $.ajax({
+    method: 'DELETE',
+    url: '/api/videos/${videoId}'
   });
 };
 
