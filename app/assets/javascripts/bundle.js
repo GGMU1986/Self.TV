@@ -17443,6 +17443,11 @@ var VideosReducer = function VideosReducer() {
     case _actions_videos_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_VIDEO:
       return Object.assign({}, state, _defineProperty({}, action.video.id, action.video));
 
+    case _actions_videos_actions__WEBPACK_IMPORTED_MODULE_0__.REMOVE_VIDEO:
+      var nextState = Object.assign({}, state);
+      delete nextState[action.videoId];
+      return nextState;
+
     default:
       return state;
   }

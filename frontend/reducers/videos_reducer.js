@@ -1,7 +1,8 @@
 import { 
   RECEIVE_ALL_VIDEOS, 
   RECEIVE_VIDEO_DETAIL,
-  RECEIVE_VIDEO 
+  RECEIVE_VIDEO,
+  REMOVE_VIDEO
 } from "../actions/videos_actions";
 
 const VideosReducer = (state = {}, action) => {
@@ -23,6 +24,12 @@ const VideosReducer = (state = {}, action) => {
           state,
           { [action.video.id]: action.video }
         )
+    
+    case REMOVE_VIDEO:
+      let nextState = Object.assign({}, state)
+      delete nextState[action.videoId]
+      return nextState 
+
     default:
       return state;
   }
