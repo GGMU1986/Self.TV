@@ -13507,7 +13507,9 @@ var createVideo = function createVideo(video) {
 };
 var destroyVideo = function destroyVideo(videoId) {
   return function (dispatch) {
+    //debugger
     return (0,_utils_util_videos__WEBPACK_IMPORTED_MODULE_0__.deleteVideo)(videoId).then(function () {
+      //debugger
       return dispatch(removeVideo(videoId));
     });
   };
@@ -17439,7 +17441,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_videos_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/videos_actions */ "./frontend/actions/videos_actions.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-
+ //debugger
 
 var VideosReducer = function VideosReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
@@ -17457,6 +17459,7 @@ var VideosReducer = function VideosReducer() {
       return Object.assign({}, state, _defineProperty({}, action.video.id, action.video));
 
     case _actions_videos_actions__WEBPACK_IMPORTED_MODULE_0__.REMOVE_VIDEO:
+      //debugger
       var nextState = Object.assign({}, state);
       delete nextState[action.videoId];
       return nextState;
@@ -17801,6 +17804,7 @@ var getVideo = function getVideo(videoId) {
   });
 };
 var makeVideo = function makeVideo(video) {
+  console.log(video);
   return $.ajax({
     method: 'POST',
     url: "/api/videos",
@@ -17810,9 +17814,10 @@ var makeVideo = function makeVideo(video) {
   });
 };
 var deleteVideo = function deleteVideo(videoId) {
+  debugger;
   return $.ajax({
     method: 'DELETE',
-    url: '/api/videos/${videoId}'
+    url: "/api/videos/".concat(videoId)
   });
 };
 

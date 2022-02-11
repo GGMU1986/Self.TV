@@ -13,6 +13,7 @@ export const getVideo = videoId => (
 );
 
 export const makeVideo = video => {
+  console.log(video)
   return $.ajax({
     method: 'POST',
     url: `/api/videos`,
@@ -23,8 +24,9 @@ export const makeVideo = video => {
 };
 
 export const deleteVideo = videoId => {
+  debugger
   return $.ajax({
     method: 'DELETE',
-    url: '/api/videos/${videoId}'
+    url: `/api/videos/${videoId}`
   })
 };

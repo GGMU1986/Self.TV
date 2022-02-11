@@ -45,6 +45,8 @@ export const createVideo = video => dispatch => {
 };
 
 export const destroyVideo = videoId => dispatch => {
+  //debugger
   return deleteVideo(videoId).then(() => {
+    //debugger
     return dispatch(removeVideo(videoId))})
 };

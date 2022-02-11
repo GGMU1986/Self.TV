@@ -5,9 +5,9 @@ import {
   REMOVE_VIDEO
 } from "../actions/videos_actions";
 
+//debugger
 const VideosReducer = (state = {}, action) => {
   Object.freeze(state)
-
   switch (action.type) {
     case RECEIVE_ALL_VIDEOS:
       return action.videos
@@ -26,9 +26,10 @@ const VideosReducer = (state = {}, action) => {
         )
     
     case REMOVE_VIDEO:
+      //debugger
       let nextState = Object.assign({}, state)
       delete nextState[action.videoId]
-      return nextState 
+      return nextState; 
 
     default:
       return state;
