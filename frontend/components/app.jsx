@@ -10,6 +10,11 @@ import { AuthRoute, ProtectedRoute } from '../utils/route_utils';
 
 
 const App = () => (
+
+  // ***************************************
+  // ADD MODAL AND HEADER INSIDE DIV TO DRY UP CODE
+  // ***************************************
+
   <div>
     <Switch>
       <Route exact path="/channel" component={Channel} />

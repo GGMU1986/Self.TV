@@ -22,7 +22,7 @@ class UploadVideoForm extends React.Component {
   
     if ((!file.name.endsWith('.mp4')) && (!file.name.endsWith('.MP4'))){
       this.setState({
-        errors: "Please make sure your video is an MP4!"
+        errors: "❗ Please make sure your video is an MP4!"
       })
     } else {
       const fileReader = new FileReader();
