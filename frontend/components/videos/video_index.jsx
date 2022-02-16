@@ -4,7 +4,7 @@ import VideoIndexItem from './video_index_item';
 class VideoIndex extends React.Component {
   
   componentDidMount() {
-    this.props.fetchVideos()
+    this.props.fetchVideos();
     if (this.props.currentUser){
       this.props.fetchUser(this.props.currentUser.id)
     }
