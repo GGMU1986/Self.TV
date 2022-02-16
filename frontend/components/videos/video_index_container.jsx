@@ -4,6 +4,11 @@ import { fetchVideos } from '../../actions/videos_actions';
 import { incrementViews } from '../../actions/view_actions';
 import { fetchUser } from '../../actions/users_action';
 
+// **********************************
+// THIS WHOLE COMPONENT IS UNNECESSARY, 
+// CAN BE MOVED TO BOTTOM OF VIDEO INDEX
+// ***********************************
+
 const mSTP = state => ({
   currentUser: state.session.currentUser,
   videos: Object.values(state.entities.videos) 
